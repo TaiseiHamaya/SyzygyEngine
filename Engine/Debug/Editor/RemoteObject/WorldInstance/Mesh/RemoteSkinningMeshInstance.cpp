@@ -54,9 +54,13 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	ImGui::Text("Type : SkinningMeshInstance");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
+
 	ImGui::Separator();
+	
 	// Transform
 	transform.show_gui();
+	
 	ImGui::Separator();
 
 	isDraw.show_gui();
@@ -193,15 +197,16 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 }
 
 nlohmann::json RemoteSkinningMeshInstance::serialize() const {
-	nlohmann::json json;
+	nlohmann::json result;
 
-	json.update(hierarchyName);
-	json.update(transform);
-	json["Type"] = instance_type();
-	json.update(isDraw);
-	json.update(layer);
-	json["MeshName"] = meshName;
-	json["Materials"] = nlohmann::json::array();
+	result.update(hierarchyName);
+	result.update(isUseRuntime);
+	result.update(transform);
+	result["Type"] = instance_type();
+	result.update(isDraw);
+	result.update(layer);
+	result["MeshName"] = meshName;
+	result["Materials"] = nlohmann::json::array();
 	for (const auto& material : materials) {
 		nlohmann::json jMaterial;
 		jMaterial["Texture"] = material.texture;
@@ -209,13 +214,13 @@ nlohmann::json RemoteSkinningMeshInstance::serialize() const {
 		jMaterial["UV Transform"] = material.uvTransform;
 		jMaterial["LightingType"] = static_cast<std::underlying_type_t<LighingType>>(material.lightingType);
 		jMaterial["Shininess"] = material.shininess;
-		json["Materials"].emplace_back(std::move(jMaterial));
+		result["Materials"].emplace_back(std::move(jMaterial));
 	}
 
-	json["AnimationName"] = animationName;
-	json.update(isLoop);
+	result["AnimationName"] = animationName;
+	result.update(isLoop);
 
-	return json;
+	return result;
 }
 
 void RemoteSkinningMeshInstance::on_spawn() {

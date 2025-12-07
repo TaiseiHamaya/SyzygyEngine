@@ -31,7 +31,7 @@ private:
 	void create_directional_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 	void create_point_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 
-	void calclate_folder_hierarchy(const nlohmann::json& json, Reference<WorldInstance> parent);
+	void calculate_folder_hierarchy(const nlohmann::json& json, Reference<WorldInstance> parent);
 
 private:
 	Reference<WorldRoot> worldRoot;

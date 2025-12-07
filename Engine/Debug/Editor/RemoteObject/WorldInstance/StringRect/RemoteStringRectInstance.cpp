@@ -45,6 +45,7 @@ void RemoteStringRectInstance::draw_inspector() {
 	ImGui::Text("Type : StringRectInstance");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
 
 	ImGui::Separator();
 
@@ -79,6 +80,7 @@ nlohmann::json RemoteStringRectInstance::serialize() const {
 	nlohmann::json result;
 
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 
 	result["Type"] = instance_type();
