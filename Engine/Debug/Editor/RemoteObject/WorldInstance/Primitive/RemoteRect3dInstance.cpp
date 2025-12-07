@@ -45,6 +45,7 @@ void RemoteRect3dInstance::draw_inspector() {
 	ImGui::Text("Type : Rect3dInstance");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
 
 	ImGui::Separator();
 
@@ -110,6 +111,7 @@ void RemoteRect3dInstance::draw_inspector() {
 nlohmann::json RemoteRect3dInstance::serialize() const {
 	nlohmann::json result;
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 
 	result["Type"] = instance_type();

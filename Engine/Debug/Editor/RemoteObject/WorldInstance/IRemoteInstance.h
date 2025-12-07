@@ -54,6 +54,7 @@ protected:
 
 	std::unique_ptr<DebugVisualType> debugVisual;
 
+	EditorValueField<bool> isUseRuntime{ "Use runtime", false };
 	EditorValueField<Transform3D> transform{ "Local transform" };
 	Affine worldAffine;
 };
