@@ -16,6 +16,7 @@ void RemoteSphereColliderInstance::draw_inspector() {
 	ImGui::Text("Type : SphereCollider");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
 	ImGui::Separator();
 
 	transform.show_gui();
@@ -28,6 +29,7 @@ nlohmann::json RemoteSphereColliderInstance::serialize() const {
 	nlohmann::json result;
 
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 	result.update(radius);
 	result["Type"] = instance_type();

@@ -141,6 +141,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteInstance(const
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
 
 	return result;
 }
@@ -154,6 +155,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStaticMeshInst
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
 	json.get_to(result->isDraw);
 	if (json.contains("MeshName")) {
 		json["MeshName"].get_to(result->meshName);
@@ -192,6 +194,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
 	json.get_to(result->isDraw);
 	if (json.contains("MeshName")) {
 		json["MeshName"].get_to(result->meshName);
@@ -229,7 +232,6 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstance(const nlohmann::json& json) {
 	std::unique_ptr<RemoteRect3dInstance> result = std::make_unique<RemoteRect3dInstance>();
 	json.get_to(result->hierarchyName);
-	json.get_to(result->transform);
 
 
 	if (json.contains("Children") && json["Children"].is_array()) {
@@ -237,6 +239,9 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstanc
 			result->add_child(CreateRemoteObject(instance));
 		}
 	}
+
+	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
 
 	json.get_to(result->isDraw);
 	json.get_to(result->layer);
@@ -258,13 +263,15 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstanc
 std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStringRectInstance(const nlohmann::json& json) {
 	std::unique_ptr<RemoteStringRectInstance> result = std::make_unique<RemoteStringRectInstance>();
 	json.get_to(result->hierarchyName);
-	json.get_to(result->transform);
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instance : json["Children"]) {
 			result->add_child(CreateRemoteObject(instance));
 		}
 	}
+
+	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
 
 	json.get_to(result->isDraw);
 	json.get_to(result->layer);
@@ -287,6 +294,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteCamera3DInstan
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
 	json.get_to(result->fovY);
 	json.get_to(result->aspectRatio);
 	json.get_to(result->nearClip);
@@ -304,6 +313,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSphereCollider
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
 	json.get_to(result->radius);
 
 	return result;
@@ -318,6 +329,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteAABBColliderIn
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
 	json.get_to(result->size);
 	json.get_to(result->offset);
 
@@ -335,6 +348,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteDirectionalLig
 	}
 
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
 	json.get_to(result->color);
 	json.get_to(result->intensity);
 	json.get_to(result->direction);
@@ -351,6 +366,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemotePointLightInst
 		}
 	}
 	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
 	json.get_to(result->color);
 	json.get_to(result->intensity);
 	json.get_to(result->radius);
