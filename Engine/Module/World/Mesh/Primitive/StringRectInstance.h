@@ -50,18 +50,23 @@ public:
 	/// </summary>
 	/// <param name="string_"></param>
 	void reset_string(std::string_view string_);
+	void reset_string(std::wstring_view string_);
 
 	/// <summary>
 	/// 文字列を末尾に追加
 	/// </summary>
 	/// <param name="append_"></param>
 	void append(const std::string& append_);
+	void append(const std::wstring& append_);
 
 	/// <summary>
 	/// 文字を末尾に追加
 	/// </summary>
 	/// <param name="c"></param>
 	void append(char c);
+	void append(wchar_t c);
+
+	void pop_back();
 
 	/// <summary>
 	/// 不変参照で文字列を取得
