@@ -26,14 +26,16 @@ void EditorDebugCamera::initialize() {
 void EditorDebugCamera::update() {
 	mouseInputHandler.update();
 
+	if (!sceneView || !sceneView->is_hovered_window()) {
+		return;
+	}
+
 	// マウスの移動量を取得
 	Vector2 mouseDelta = Input::MouseDelta();
-
+	
 	// 注視距離設定
-	if (sceneView && sceneView->is_hovered_window()) {
-		r32 wheel = static_cast<r32>(Input::WheelDelta());
-		offset = std::min(offset + wheel, 0.0f);
-	}
+	r32 wheel = static_cast<r32>(Input::WheelDelta());
+	offset = std::min(offset + wheel, 0.0f);
 
 	// 右クリック(回転)
 	if (mouseInputHandler.press(MouseID::Right)) {

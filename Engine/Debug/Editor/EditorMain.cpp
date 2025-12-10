@@ -92,6 +92,7 @@ void EditorMain::DrawBase() {
 
 	// ホットリロード
 	if (instance.isHotReload) {
+		// TODO: シーンの切り替えが上手く出来てない
 		Reference<Scene> currentScene = SceneManager2::GetCurrentScene();
 		if (currentScene) {
 			currentScene->load_assets();
@@ -100,6 +101,7 @@ void EditorMain::DrawBase() {
 		instance.isHotReload = false;
 	}
 
+	// シーン切り替え
 	if (instance.switchSceneName.has_value()) {
 		// シーンビューを未設定に設定
 		instance.sceneView.reset_force();
@@ -110,8 +112,10 @@ void EditorMain::DrawBase() {
 		instance.selectObject.set_item(nullptr);
 		// コマンドのリセット
 		EditorCommandInvoker::ResetHistoryForce();
+		// RenderDAGのロード
+		instance.isHotReload = true;
+		instance.switchSceneName = std::nullopt;
 	}
-	instance.switchSceneName = std::nullopt;
 
 	// HierarchyとSceneViewの同期
 	instance.gizmo.begin_frame(instance.sceneView.view_origin(), instance.sceneView.view_size());
@@ -237,7 +241,7 @@ void EditorMain::set_imgui_command() {
 			if (ImGui::BeginMenu("Scene")) {
 				std::string currentSceneName = hierarchy.current_scene_name();
 				if (sceneList.scene_list_gui(currentSceneName)) {
-					switchSceneName = currentSceneName;;
+					switchSceneName = currentSceneName;
 				}
 				ImGui::EndMenu();
 			}
