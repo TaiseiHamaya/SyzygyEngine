@@ -4,6 +4,8 @@ using namespace szg;
 
 #include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
 
+#include <Library/Utility/Tools/ConvertString.h>
+
 StringRectInstance::StringRectInstance() noexcept = default;
 
 StringRectInstance::~StringRectInstance() noexcept = default;
@@ -61,6 +63,19 @@ void StringRectInstance::reset_string(std::string_view string_) {
 	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
 }
 
+void szg::StringRectInstance::reset_string(std::wstring_view string_) {
+	std::string tempStr;
+	tempStr.reserve(string_.size());
+	tempStr = ConvertString(string_);
+	string = tempStr;
+	charRenderingData.clear();
+	if (!fontAtlas) {
+		return;
+	}
+	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
+}
+
 const std::string& StringRectInstance::string_imm() const {
 	return string;
 }
@@ -72,11 +87,40 @@ void StringRectInstance::append(const std::string& append_) {
 	string += append_;
 }
 
+void StringRectInstance::append(const std::wstring& append_) {
+	std::string tempStr;
+	tempStr.reserve(append_.size());
+	tempStr = ConvertString(append_);
+	string += tempStr;
+	// TODO: 差分だけ計算し直すみたいなことをしたい
+	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
+}
+
 void StringRectInstance::append(char c) {
 	auto temp = fontAtlas->calculate_glyph(std::string(1, c), data.fontSize);
 	data.offset += fontAtlas->calculate_offset(temp, data.pivot, data.fontSize);
 	charRenderingData.emplace_back(temp[0]);
 	string += c;
+}
+
+void StringRectInstance::append(wchar_t c) {
+	std::string tempStr;
+	tempStr = ConvertString(std::wstring(1, c));
+	auto temp = fontAtlas->calculate_glyph(tempStr, data.fontSize);
+	data.offset += fontAtlas->calculate_offset(temp, data.pivot, data.fontSize);
+	charRenderingData.emplace_back(temp[0]);
+	string += tempStr;
+}
+
+void szg::StringRectInstance::pop_back() {
+	if (string.empty()) {
+		//szgWarning()
+		return;
+	}
+	string.pop_back();
+	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
 }
 
 const std::vector<GlyphRenderingData>& StringRectInstance::glyph_data_imm() const {

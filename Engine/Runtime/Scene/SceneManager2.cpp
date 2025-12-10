@@ -110,6 +110,7 @@ void SceneManager2::SceneChange(u32 nextSceneIndex, r32 interval, bool isStackSc
 	auto nextScene = instance.factory->create_scene2(nextSceneIndex);
 
 	// アセットロード
+	nextScene->load_assets();
 	nextScene->custom_load_asset();
 
 	// シーンスタック
