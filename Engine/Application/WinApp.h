@@ -26,7 +26,6 @@ public:
 	/// 初期化
 	/// </summary>
 	static void Initialize();
-	
 
 	/// <summary>
 	/// フレーム開始処理

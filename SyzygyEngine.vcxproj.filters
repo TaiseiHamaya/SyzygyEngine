@@ -1739,6 +1739,7 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1788,6 +1789,7 @@
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h" />
+    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />

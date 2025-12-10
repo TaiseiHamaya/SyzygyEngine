@@ -452,6 +452,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp" />
     <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
     <None Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
@@ -1011,6 +1012,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h" />
     <ClInclude Include="Engine\Loader\SceneAssetListLoader.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
+    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
