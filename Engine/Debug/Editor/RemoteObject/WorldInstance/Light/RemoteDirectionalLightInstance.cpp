@@ -54,6 +54,7 @@ void RemoteDirectionalLightInstance::draw_inspector() {
 	ImGui::Text("Type : DirectionalLightInstance");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
 
 	ImGui::Separator();
 
@@ -124,6 +125,7 @@ nlohmann::json RemoteDirectionalLightInstance::serialize() const {
 	nlohmann::json result;
 
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 	result.update(color);
 	result.update(intensity);

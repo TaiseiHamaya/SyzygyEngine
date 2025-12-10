@@ -37,6 +37,7 @@ void RemotePointLightInstance::draw_inspector() {
 	ImGui::Text("Type : PointLight");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
 	ImGui::Separator();
 
 	transform.show_gui();
@@ -73,6 +74,7 @@ nlohmann::json RemotePointLightInstance::serialize() const {
 	nlohmann::json result;
 
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 	result.update(color);
 	result.update(intensity);

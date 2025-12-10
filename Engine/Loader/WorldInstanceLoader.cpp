@@ -15,6 +15,7 @@ using namespace szg;
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
 #include "Engine/Module/World/WorldInstance/WorldInstance.h"
 #include "Engine/Module/World/WorldInstanceType.h"
+#include "Engine/Module/Manager/RuntimeStorage/RuntimeStorage.h"
 
 #define TRANSFORM3D_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
@@ -73,7 +74,7 @@ void WorldInstanceLoader::entry_point(const nlohmann::json& json, Reference<Worl
 		break;
 
 	case InstanceType::DebugFolder:
-		calclate_folder_hierarchy(json, parent);
+		calculate_folder_hierarchy(json, parent);
 		break;
 
 	case InstanceType::ErrorInstance:
@@ -87,6 +88,9 @@ void WorldInstanceLoader::create_world_instance(const nlohmann::json& json, Refe
 	auto instance = worldRoot->instantiate<WorldInstance>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
@@ -137,6 +141,10 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 	auto instance = worldRoot->instantiate<SkinningMeshInstance>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
+
 	instance->reset_animated_mesh(json.value("MeshName", ""), json.value("AnimationName", ""), json.value("IsLoop", false));
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
@@ -175,6 +183,9 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 	auto instance = worldRoot->instantiate<Rect3d>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
 
 	instance->initialize(
 		json.value("Size", CVector2::BASIS), json.value("Pivot", CVector2::ZERO)
@@ -201,6 +212,10 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<StringRectInstance>(parent);
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
+
 	instance->initialize(
 		json.value("Font", ""),
 		json.value("Size", 10.0f),
@@ -223,6 +238,10 @@ void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, R
 	auto instance = worldRoot->instantiate<Camera3D>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
+
 	instance->set_perspective_fov_info(
 		json.value("FovY", 0.45f),
 		json.value("AspectRatio", 1.7777f),
@@ -241,6 +260,10 @@ void WorldInstanceLoader::create_sphere_collider_instance(const nlohmann::json& 
 	auto instance = worldRoot->instantiate<SphereCollider>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
+
 	instance->set_radius(json.value("Radius", 1.0f));
 
 	if (json.contains("Children") && json["Children"].is_array()) {
@@ -254,6 +277,9 @@ void WorldInstanceLoader::create_aabb_collider_instance(const nlohmann::json& js
 	auto instance = worldRoot->instantiate<AABBCollider>(parent, json.value("Size", CVector3::ONE), json.value("Offset", CVector3::ZERO));
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
@@ -266,6 +292,9 @@ void WorldInstanceLoader::create_directional_light_instance(const nlohmann::json
 	auto instance = worldRoot->instantiate<DirectionalLightInstance>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
 
 	instance->light_data_mut().color = json.value("Color", CColor3::WHITE);
 	instance->light_data_mut().intensity = json.value("Intensity", 1.0f);
@@ -283,6 +312,9 @@ void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json
 	auto instance = worldRoot->instantiate<PointLightInstance>(parent);
 
 	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
 
 	instance->light_data_mut().color = json.value("Color", CColor3::WHITE);
 	instance->light_data_mut().intensity = json.value("Intensity", 1.0f);
@@ -297,7 +329,7 @@ void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json
 	}
 }
 
-void WorldInstanceLoader::calclate_folder_hierarchy(const nlohmann::json& json, Reference<WorldInstance> parent) {
+void WorldInstanceLoader::calculate_folder_hierarchy(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
 			entry_point(instanceJson, parent);

@@ -3,6 +3,8 @@
 #include <dinput.h>
 #include <Xinput.h>
 
+namespace szg {
+
 enum class KeyID {
 	Escape = DIK_ESCAPE,
 	One = DIK_1,
@@ -189,3 +191,5 @@ enum class PadID {
 	X = XINPUT_GAMEPAD_X,
 	Y = XINPUT_GAMEPAD_Y,
 };
+
+} // namespace szg

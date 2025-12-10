@@ -39,18 +39,20 @@ void FontAtlasBuilder::load_glyphs() {
 	}
 
 	TightAtlasPacker packer;
-	constexpr int atlasSize = 1024;
-	packer.setDimensions(atlasSize, atlasSize);
-	packer.setMinimumScale(16.0);
+	packer.setMinimumScale(10.0);
 	packer.setPixelRange(2.0);
 	packer.setUnitRange(1.0);
+	packer.setDimensionsConstraint(DimensionsConstraint::POWER_OF_TWO_SQUARE);
 	packer.pack(glyphs.data(), static_cast<int>(glyphs.size()));
 
 	baseFontScale = static_cast<r32>(packer.getScale());
 	lineHeight = static_cast<r32>(fontGeometry.getMetrics().lineHeight);
 
+	int sizeX, sizeY;
+	packer.getDimensions(sizeX, sizeY);
+
 	// 実際の生成
-	generator.resize(atlasSize, atlasSize);
+	generator.resize(sizeX, sizeY);
 	GeneratorAttributes attributes;
 	generator.setAttributes(attributes);
 	generator.setThreadCount(std::thread::hardware_concurrency());

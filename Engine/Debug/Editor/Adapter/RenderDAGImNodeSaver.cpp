@@ -159,7 +159,12 @@ void RenderDAGImNodeSaver::entry_point(const std::filesystem::path& filePath, co
 	// ResultNode
 	{
 		nlohmann::json resultJson = nlohmann::json::object();
-		resultJson["Connect"] = outputTargetNodeIndices[0][0].second + 1;
+		if (outputTargetNodeIndices[0].empty()) {
+			resultJson["Connect"] = nullptr;
+		}
+		else {
+			resultJson["Connect"] = outputTargetNodeIndices[0][0].second + 1;
+		}
 		const auto& node = std::get<3>(nodes.at(0));
 		resultJson["Debug"]["Position"]["X"] = node->getPos().x;
 		resultJson["Debug"]["Position"]["Y"] = node->getPos().y;
