@@ -64,6 +64,8 @@ void EditorHierarchy::draw() {
 
 	int flags = 0;
 	ImGui::Begin("Hierarchy", &isActive, flags);
+
+	update_focus();
 	savedTrigger = false;
 
 	// 検索ボックス

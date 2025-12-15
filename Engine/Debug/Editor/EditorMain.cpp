@@ -32,8 +32,6 @@ void EditorMain::Initialize() {
 	instance.renderDAG.initialize();
 	instance.screenResult.initialize(true);
 
-	instance.input.initialize({ KeyID::F6, KeyID::LControl, KeyID::LShift, KeyID::Z, KeyID::S });
-
 	FontAtlasBuilderManager::Initialize();
 	//FontAtlasBuilder{}.entry_point("./SyzygyEngine/EngineResources/Misc/UDEVGothic35HS-Regular.ttf");
 }
@@ -86,6 +84,10 @@ void EditorMain::Setup() {
 
 void EditorMain::DrawBase() {
 	EditorMain& instance = GetInstance();
+	if (ImGui::IsKeyDown(ImGuiKey_F6, false)) {
+		instance.isActiveEditor ^= 1;
+	}
+
 	if (!instance.isActiveEditor) {
 		return;
 	}
@@ -107,7 +109,8 @@ void EditorMain::DrawBase() {
 		instance.sceneView.reset_force();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
-		instance.hierarchy.setup(instance.selectObject, instance.sceneView);
+		// DAG Editorのリセット
+		instance.renderDAG.load(instance.switchSceneName.value());
 		// 選択オブジェクトのリセット
 		instance.selectObject.set_item(nullptr);
 		// コマンドのリセット
@@ -123,28 +126,28 @@ void EditorMain::DrawBase() {
 	instance.hierarchy.update_preview();
 	instance.sceneView.draw_scene();
 
-	instance.input.update();
-	if (instance.input.trigger(KeyID::F6)) {
-		instance.isActiveEditor ^= 1;
-	}
-
 	if (!instance.isActiveEditor) {
 		return;
 	}
 
 	instance.set_imgui_command();
 
-	// Undo / Redo
-	if (instance.input.trigger(KeyID::Z) && instance.input.press(KeyID::LControl)) {
-		if (instance.input.press(KeyID::LShift)) {
-			EditorCommandInvoker::Redo();
-		}
-		else {
-			EditorCommandInvoker::Undo();
+	// ショートカット
+	ImGuiIO& io = ImGui::GetIO();
+	for (auto& c : io.InputQueueCharacters) {
+		switch (c) {
+		case 26: // Undo / Redo
+			if (ImGui::IsKeyDown(ImGuiKey_LeftShift)) {
+				EditorCommandInvoker::Redo();
+			}
+			else {
+				EditorCommandInvoker::Undo();
+			}
+			break;
 		}
 	}
 	// 保存
-	if (instance.input.trigger(KeyID::S) && instance.input.press(KeyID::LControl)) {
+	if (ImGui::IsKeyPressed(ImGuiKey_S, false) && ImGui::IsKeyDown(ImGuiKey_LeftCtrl)) {
 		instance.sceneList.add_scene(instance.hierarchy.current_scene_name());
 		SeveScene();
 	}
@@ -212,6 +215,16 @@ bool EditorMain::SeveScene() {
 void EditorMain::SetHotReload() {
 	EditorMain& instance = GetInstance();
 	instance.isHotReload = true;
+}
+
+bool szg::EditorMain::IsRuntimeInput() {
+	// エディターのシーンビューがフォーカスされている
+	// or
+	// エディターが無効の場合のみ受け取る
+	EditorMain& instance = GetInstance();
+	return
+		instance.screenResult.is_focus() ||
+		!instance.isActiveEditor;
 }
 
 void EditorMain::set_imgui_command() {

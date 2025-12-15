@@ -4,8 +4,7 @@
 
 #include "Engine/Module/World/Camera/Camera3D.h"
 
-#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
-#include "Engine/Runtime/Input/InputHandler.h"
+#include "Engine/Module/World/WorldInstance/WorldInstance.h"
 
 namespace szg {
 
@@ -17,16 +16,13 @@ public:
 	void update();
 	void update_affine() override;
 
-private:
-	std::unique_ptr<StaticMeshInstance> constraint;
-	r32 offset{ -5.0f };
-	InputHandler<MouseID> mouseInputHandler;
-
-private:
-	static inline Reference<EditorSceneView> sceneView{ nullptr };
-
 public:
-	static void Setup(Reference<EditorSceneView> sceneView_);
+	Vector3 view_point() const;
+	r32 offset_imm() const;
+
+private:
+	std::unique_ptr<WorldInstance> constraint;
+	r32 offset{ -5.0f };
 };
 
 }; // szg

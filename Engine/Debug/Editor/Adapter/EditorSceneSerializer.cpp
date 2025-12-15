@@ -278,7 +278,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStringRectInst
 
 	result->font = json.value("Font", "");
 	json.get_to(result->pivot);
-	result->text = json.value("Text", "Sample Text");
+	result->text.set_weak(json.value("Text", "Sample Text"));
 	json.get_to(result->fontSize);
 	json.get_to(result->color);
 

@@ -39,6 +39,8 @@ public:
 
 	static void SetHotReload();
 
+	static bool IsRuntimeInput();
+
 private:
 	void set_imgui_command();
 
@@ -51,8 +53,6 @@ private:
 	bool isHotReload{ false };
 
 	std::optional<std::string> switchSceneName;
-
-	InputHandler<KeyID> input;
 
 	EditorSceneView sceneView;
 	EditorScreenResult screenResult;

@@ -45,7 +45,10 @@ void EditorSceneView::initialize(bool isActive_) {
 	);
 	directionalLights.resize(32);
 
-	EditorDebugCamera::Setup(this);
+	axisMesh = std::make_unique<StaticMeshInstance>("CameraAxis.obj");
+	axisMesh->get_materials()[0].lightingType = LighingType::None;
+
+	staticMeshDrawManager.register_instance(axisMesh);
 }
 
 void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const EditorHierarchy> hierarchy_) {
@@ -56,8 +59,23 @@ void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const Edito
 void EditorSceneView::update() {
 	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
+		
+		// Windowがフォーカスされている場合のみ更新
+		if (is_focus()) {
+			view.update();
+		}
+		view.transfer();
+		// デバッグカメラの注視点に描画する
+		axisMesh->get_transform().set_translate(view.get_camera()->view_point());
+		axisMesh->update_affine();
+		// カメラが近すぎる場合は非表示にする
+		if (view.get_camera()->offset_imm() > -0.1f) {
+			axisMesh->set_active(false);
+		}
+		else {
+			axisMesh->set_active(true);
+		}
 
-		view.update();
 		directionalLightingExecutor.begin();
 		for (auto& lightInstance : directionalLights[selectWorldId.value()]) {
 			if (!lightInstance->is_active()) {
@@ -263,6 +281,8 @@ void EditorSceneView::set_imgui_command() {
 
 	screenResultTexture.start_read();
 	ImGui::Begin("Scene", &isActive, ImGuiWindowFlags_NoScrollbar);
+
+	update_focus();
 
 	// Gizmo用ヘッダー描画
 	gizmo->scene_header();

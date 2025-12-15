@@ -28,10 +28,11 @@ public:
 	void initialize();
 	void setup(Reference<RemoteWorldObject> remoteWorld_);
 
-	void register_mesh(Reference<StaticMeshInstance> meshInstance);
 	void register_primitive(const std::string& name, const Affine& affine);
 
 	void update();
+	void transfer();
+
 	void register_world_projection(u32 index);
 	void register_world_lighting(u32 index);
 	void draw_lines();

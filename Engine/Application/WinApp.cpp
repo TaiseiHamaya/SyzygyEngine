@@ -86,7 +86,7 @@ void WinApp::Initialize() {
 	// chrono時間精度の設定
 	timeBeginPeriod(1);
 
-	szgErrorIf(isInitialized, "WinApp is already initialized.");
+	szgCriticalIf(isInitialized, "WinApp is already initialized.");
 	isInitialized = true;
 
 	// アプリケーション内のwstring charsetをutf-8にする
@@ -206,25 +206,27 @@ void WinApp::Initialize() {
 		EditorMain::SetActiveEditor(false);
 	}
 	EditorMain::Initialize();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	szgInformation("Complete initialize application.");
 }
 
 void WinApp::BeginFrame() {
+#ifdef DEBUG_FEATURES_ENABLE
 	Logger::SyncErrorWindow();
 
-#ifdef DEBUG_FEATURES_ENABLE
 	auto& instance = GetInstance();
 	instance.profiler.clear_timestamps();
 	instance.profiler.timestamp("BeginFrame");
-#endif // _DEBUG
 
 	WorldClock::Update();
-	Input::Update();
+
+	if (EditorMain::IsRuntimeInput()) {
+		Input::Update();
+	}
+
 	DxCore::BeginFrame(); // SetDescriptorHeapsやる
 
-#ifdef DEBUG_FEATURES_ENABLE
 	ImGuiManager::BeginFrame();
 
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "EditorScene");
@@ -232,9 +234,19 @@ void WinApp::BeginFrame() {
 	EditorMain::DrawBase(); // Editorのベース描画
 
 	PIXEndEvent(DxCommand::GetCommandList().Get());
-#endif // _DEBUG
 
 	SceneManager2::BeginFrame();
+#else
+	Logger::SyncErrorWindow();
+
+	WorldClock::Update();
+
+	Input::Update();
+
+	DxCore::BeginFrame(); // SetDescriptorHeapsやる
+
+	SceneManager2::BeginFrame();
+#endif // DEBUG_FEATURES_ENABLE
 }
 
 void WinApp::Update() {
@@ -254,6 +266,8 @@ void WinApp::Draw() {
 #ifdef DEBUG_FEATURES_ENABLE
 	auto& instance = GetInstance();
 	instance.profiler.timestamp("PreDraw");
+
+#else
 
 #endif // DEBUG_FEATURES_ENABLE
 
@@ -297,7 +311,7 @@ void WinApp::EndFrame() {
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "ImGui");
 	ImGuiManager::EndFrame();
 	PIXEndEvent(DxCommand::GetCommandList().Get());
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	// 描画実行とWait
 	DxCore::EndFrame();
@@ -322,7 +336,7 @@ void WinApp::Finalize() {
 	// ImGui
 	EditorMain::Finalize();
 	ImGuiManager::Finalize();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	BackgroundLoader::Finalize();
 
@@ -342,7 +356,7 @@ void WinApp::ShowAppWindow() {
 
 #ifdef DEBUG_FEATURES_ENABLE
 	EditorMain::Setup();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	// 時計初期化
 	WorldClock::Initialize();
