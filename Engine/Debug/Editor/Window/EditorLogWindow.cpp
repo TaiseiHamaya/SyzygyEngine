@@ -42,6 +42,8 @@ void EditorLogWindow::draw() {
 	int flags = 0;
 	ImGui::Begin("Log", &isActive, flags);
 
+	update_focus();
+
 	// ---------- ログ消去ボタン ----------
 	ImGui::Columns(2, "##LogColumns", false);
 	ImGui::SetColumnWidth(0, 75.0f);
@@ -73,7 +75,7 @@ void EditorLogWindow::draw() {
 			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
 		}
-		if (ImGui::Button(std::format("{} {}", logState.icon, logState.numLogs <= 999 ? std::to_string(logState.numLogs) : "999+"s).c_str(), ImVec2{ 65.0f, 25.0f })) {
+		if (ImGui::Button(std::format("{} {}###LogButton{}", logState.icon, logState.numLogs <= 999 ? std::to_string(logState.numLogs) : "999+"s, i).c_str(), ImVec2{ 65.0f, 25.0f })) {
 			logState.isActive = !logState.isActive;
 		}
 		ImGui::PopStyleColor(2);
@@ -83,7 +85,7 @@ void EditorLogWindow::draw() {
 
 	// ---------- ログの表示領域 ----------
 	ImGui::NextColumn();
-	ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4{ 0.03f,0.03f,0.03f,1.0f });
+	ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4{ 0.05f,0.05f,0.05f,1.0f });
 	ImGui::BeginChild("##LogWindow", ImVec2{}, ImGuiChildFlags_FrameStyle);
 	ImGui::PopStyleColor();
 

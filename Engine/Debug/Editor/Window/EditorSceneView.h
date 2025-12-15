@@ -94,6 +94,8 @@ private:
 	
 	RenderPath renderPath;
 
+	std::unique_ptr<StaticMeshInstance> axisMesh;
+
 	DirectionalLightingExecutor directionalLightingExecutor;
 	StaticMeshDrawManager staticMeshDrawManager;
 	Rect3dDrawManager rect3dDrawManager;

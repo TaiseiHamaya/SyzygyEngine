@@ -8,7 +8,6 @@ using namespace szg;
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 #include "Engine/Module/World/Camera/Camera3D.h"
-#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
 
 #include <imgui.h>
 
@@ -36,9 +35,6 @@ void EditorWorldView::setup(Reference<RemoteWorldObject> remoteWorld_) {
 	remoteWorld = remoteWorld_;
 }
 
-void EditorWorldView::register_mesh(Reference<StaticMeshInstance>) {
-}
-
 void EditorWorldView::register_primitive(const std::string& name, const Affine& affine) {
 	if (primitive.contains(name)) {
 		primitive.at(name)->write_to_buffer(affine.to_matrix());
@@ -50,10 +46,16 @@ void EditorWorldView::update() {
 		return;
 	}
 
+	cameraInstance->update();
+}
+
+void szg::EditorWorldView::transfer() {
+	if (!isSelectTab) {
+		return;
+	}
 	for (auto& executor : primitive | std::views::values) {
 		executor->begin();
 	}
-	cameraInstance->update();
 	cameraInstance->update_affine();
 	cameraInstance->transfer();
 }

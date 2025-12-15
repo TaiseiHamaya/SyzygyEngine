@@ -21,8 +21,14 @@ public:
 	bool is_active() const;
 	void set_active(bool active);
 
+	bool is_focus() const;
+
+protected:
+	void update_focus();
+
 protected:
 	bool isActive{ false };
+	bool isFocus{ false };
 };
 
 }; // szg

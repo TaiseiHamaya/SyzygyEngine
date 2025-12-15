@@ -25,6 +25,8 @@ void EditorInspector::draw() {
 	int flags = 0;
 	ImGui::Begin("Inspector", &isActive, flags);
 
+	update_focus();
+
 	Reference<IRemoteObject> select = selectObject->get_item_mut().object;
 
 	if (select) {

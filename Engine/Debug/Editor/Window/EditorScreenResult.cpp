@@ -29,6 +29,7 @@ void EditorScreenResult::copy_screen_result() {
 	screen->start_read();
 
 	command->CopyResource(screenResultCpy.get_resource().Get(), screen->get_resource().Get());
+	screenResultCpy.start_read();
 }
 
 void EditorScreenResult::set_imgui_command() {
@@ -36,8 +37,9 @@ void EditorScreenResult::set_imgui_command() {
 		return;
 	}
 
-	screenResultCpy.start_read();
 	ImGui::Begin("SceneView", &isActive, ImGuiWindowFlags_NoScrollbar);
+
+	update_focus();
 
 	// Imageの位置とサイズを計算
 	ImVec2 winSize = ImGui::GetContentRegionAvail();
