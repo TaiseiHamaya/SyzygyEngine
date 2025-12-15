@@ -14,8 +14,10 @@ public:
 	static void ProssesInput(wchar_t c, u32 pram);
 
 	static const std::wstring& FrameInputImm() noexcept;
+	static bool IsDeleteInput() noexcept;
 
 private:
+	bool isDeleteInput{ false };
 	std::wstring frameInputBuffer;
 };
 
