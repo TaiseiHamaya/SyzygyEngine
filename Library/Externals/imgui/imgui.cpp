@@ -3738,6 +3738,7 @@ const char* ImGui::GetStyleColorName(ImGuiCol idx)
     case ImGuiCol_ChildBg: return "ChildBg";
     case ImGuiCol_PopupBg: return "PopupBg";
     case ImGuiCol_Border: return "Border";
+    case ImGuiCol_BorderSelected: return "BorderSelected";
     case ImGuiCol_BorderShadow: return "BorderShadow";
     case ImGuiCol_FrameBg: return "FrameBg";
     case ImGuiCol_FrameBgHovered: return "FrameBgHovered";
@@ -7306,8 +7307,18 @@ static void ImGui::RenderWindowOuterBorders(ImGuiWindow* window)
     ImGuiContext& g = *GImGui;
     const float border_size = window->WindowBorderSize;
     const ImU32 border_col = GetColorU32(ImGuiCol_Border);
-    if (border_size > 0.0f && (window->Flags & ImGuiWindowFlags_NoBackground) == 0)
+    if (border_size > 0.0f && (window->Flags & ImGuiWindowFlags_NoBackground) == 0) {
         window->DrawList->AddRect(window->Pos, window->Pos + window->Size, border_col, window->WindowRounding, 0, window->WindowBorderSize);
+        // Highlight border when docked and active or focused
+        // FIX: Border is not rendered on the parent window when a non-docking child window is selected.
+        if (window->DockIsActive || IsWindowFocused()) {
+            const ImU32 border_selected_col = GetColorU32(ImGuiCol_BorderSelected);
+            RenderWindowOuterSingleBorder(window, 0, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 1, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 2, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 3, border_selected_col, border_size);
+        }
+    }
     else if (border_size > 0.0f)
     {
         if (window->ChildFlags & ImGuiChildFlags_ResizeX) // Similar code as 'resize_border_mask' computation in UpdateWindowManualResize() but we specifically only always draw explicit child resize border.
@@ -7472,7 +7483,7 @@ void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar
         }
 
         // Borders (for dock node host they will be rendered over after the tab bar)
-        if (handle_borders_and_resize_grips && !window->DockNodeAsHost)
+        if ((handle_borders_and_resize_grips && !window->DockNodeAsHost) || IsWindowFocused(ImGuiFocusedFlags_ChildWindows))
             RenderWindowOuterBorders(window);
     }
     window->DC.NavLayerCurrent = ImGuiNavLayer_Main;
