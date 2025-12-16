@@ -326,8 +326,11 @@ void EditorMain::set_imgui_command() {
 
 	// メインのドックスペースを追加
 	ImGuiID dockSpaceId = ImGui::GetID("EditorMain");
-	ImGui::SetCursorPos({ 0.0f, menuHight });
-	ImVec2 editorSize = { ProjectSettings::ClientSize().x, ProjectSettings::ClientSize().y - menuHight };
+	ImVec2 one = { 1.0f, 1.0f };
+	ImVec2 cursorPos = ImVec2{ 0.0f, menuHight } + one;
+	ImGui::SetCursorPos(cursorPos);
+	ImVec2 baseSize = ImVec2{ ProjectSettings::ClientSize().x, ProjectSettings::ClientSize().y };
+	ImVec2 editorSize = baseSize - cursorPos - one;
 	ImGui::DockSpace(dockSpaceId, editorSize, ImGuiDockNodeFlags_PassthruCentralNode);
 
 	ImGui::End();

@@ -12,6 +12,7 @@ void SetImGuiStyle() {
 	colors[ImGuiCol_ChildBg] = ImVec4(0.02f, 0.02f, 0.02f, 0.00f);
 	colors[ImGuiCol_PopupBg] = ImVec4(0.05f, 0.05f, 0.05f, 0.94f);
 	colors[ImGuiCol_Border] = ImVec4(0.04f, 0.04f, 0.04f, 0.99f);
+	colors[ImGuiCol_BorderSelected] = ImVec4(0.10f, 0.60f, 0.12f, 1.00f);
 	colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
 	colors[ImGuiCol_FrameBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.54f);
 	colors[ImGuiCol_FrameBgHovered] = ImVec4(0.38f, 0.51f, 0.51f, 0.80f);
@@ -76,4 +77,5 @@ void SetImGuiStyle() {
 	style.DockingSeparatorSize = 1.0f;
 	style.SeparatorTextBorderSize = 2.0f;
 	style.DisplaySafeAreaPadding.y = 15.0f;
+	style.WindowBorderSize = 1.0f;
 }
