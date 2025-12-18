@@ -2,6 +2,8 @@
 
 using namespace szg;
 
+#include <Windows.h>
+
 #include "Engine/Debug/Editor/EditorMain.h"
 
 void szg::TextInput::BeginFrame() noexcept {

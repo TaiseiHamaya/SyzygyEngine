@@ -4,6 +4,8 @@
 
 #include "IEditorCommand.h"
 
+#include <functional>
+
 #include <Library/Utility/Template/Reference.h>
 
 namespace szg {
