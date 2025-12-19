@@ -14,6 +14,7 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ScreenTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxSwapChain/DxSwapChain.h"
+#include "Engine/Module/Render/RenderPipeline/Debug/Grid/GridPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Debug/PrimitiveLine/PrimitiveLinePipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/FontRenderingNode/FontRenderingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Mesh/StaticMeshForwardPipeline.h"
@@ -36,12 +37,15 @@ void EditorSceneView::initialize(bool isActive_) {
 	std::shared_ptr<PrimitiveLinePipeline> primitiveLineNode = std::make_shared<PrimitiveLinePipeline>();
 	primitiveLineNode->initialize();
 
+	std::shared_ptr<GridPipeline> gridPipeline = std::make_shared<GridPipeline>();
+	gridPipeline->initialize();
+
 	staticMeshDrawManager.initialize(1);
 	rect3dDrawManager.initialize(1);
 	stringRectDrawManager.initialize(1);
 	directionalLightingExecutor.reinitialize(3);
 	renderPath.initialize(
-		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode }
+		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode, gridPipeline }
 	);
 	directionalLights.resize(32);
 
@@ -59,7 +63,7 @@ void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const Edito
 void EditorSceneView::update() {
 	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
-		
+
 		// Windowがフォーカスされている場合のみ更新
 		if (is_focus()) {
 			view.update();
@@ -69,7 +73,7 @@ void EditorSceneView::update() {
 		axisMesh->get_transform().set_translate(view.get_camera()->view_point());
 		axisMesh->update_affine();
 		// カメラが近すぎる場合は非表示にする
-		if (view.get_camera()->offset_imm() > -0.1f) {
+		if (view.get_camera()->offset_imm() < 0.1f) {
 			axisMesh->set_active(false);
 		}
 		else {
@@ -141,6 +145,11 @@ void EditorSceneView::draw_scene() {
 		// lines
 		renderPath.next();
 		view.draw_lines();
+
+		renderPath.next();
+		if (isActiveGrid) {
+			view.draw_grid();
+		}
 
 		renderPath.next();
 	}
@@ -285,8 +294,40 @@ void EditorSceneView::set_imgui_command() {
 	update_focus();
 
 	// Gizmo用ヘッダー描画
-	gizmo->scene_header();
+	if (ImGui::BeginChild("SceneViewHeader", ImVec2{ 0,30 })) {
+		ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+		ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0], 18);
+
+		gizmo->scene_header();
+
+		ImGui::SameLine();
+		ImGui::TextColored(ImColor{ 0.2f, 0.2f, 0.2f }, "|");
+		ImGui::SameLine();
+
+		// グリッド表示切替
+		if (isActiveGrid) {
+			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.10f, 0.60f, 0.12f, 1.00f });
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.22f, 0.23f, 0.40f });
+			if (ImGui::Button("\ue3ec###GridActive")) {
+				isActiveGrid = !isActiveGrid;
+			}
+		}
+		else {
+			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
+			if (ImGui::Button("\ue3eb###GridActive")) {
+				isActiveGrid = !isActiveGrid;
+			}
+		}
+		ImGui::PopStyleColor(2);
+
+		ImGui::PopStyleVar(1);
+		ImGui::PopFont();
+	}
+	ImGui::EndChild();
+
 	ImGui::Separator();
+
 	ImGui::BeginTabBar("WorldViewTabBar", ImGuiTabBarFlags_DrawSelectedOverline);
 
 	// Guizmoのために必要

@@ -174,6 +174,9 @@ void WinApp::Initialize() {
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Forward.PS.hlsl");
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Misc/PrimitiveGeometry/PrimitiveGeometry.PS.hlsl");
 
+	ShaderLibrary::RegisterLoadQue("[[editor]]/Grid/Grid.VS.hlsl");
+	ShaderLibrary::RegisterLoadQue("[[editor]]/Grid/Grid.PS.hlsl");
+
 	// primitive
 	PrimitiveGeometryLibrary::Transfer(
 		"Sphere",

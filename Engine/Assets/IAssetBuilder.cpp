@@ -15,6 +15,16 @@ std::filesystem::path IAssetBuilder::ResolveFilePath(const std::filesystem::path
 		}
 		return result / filePath.native().substr(8);
 	}
+#ifdef DEBUG_FEATURES_ENABLE
+	else if (filePath.native().starts_with(L"[[editor]]") || filePath.native().starts_with(L"[[EDITOR]]")) {
+		// エディターリソース
+		std::filesystem::path result{ "./SyzygyEngine/EditorResources/" };
+		if (!subdirectory.empty()) {
+			result /= subdirectory;
+		}
+		return result / filePath.native().substr(11);
+	}
+#endif // DEBUG_FEATURES_ENABLE
 	// ファイル名のみor一部ディレクトリの続きの場合
 	else {
 		std::filesystem::path result{ "./Game/Resources/" };

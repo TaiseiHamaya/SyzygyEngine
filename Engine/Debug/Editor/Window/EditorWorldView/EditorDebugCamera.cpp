@@ -28,18 +28,21 @@ void EditorDebugCamera::update() {
 		ImGui::GetIO().MouseDelta.x,
 		ImGui::GetIO().MouseDelta.y
 	};
-	
+
 	// 注視距離設定
 	r32 wheel = static_cast<r32>(ImGui::GetIO().MouseWheel);
 	if (wheel != 0) {
 		wheel = wheel / std::abs(wheel); // 正規化
+		if (ImGui::IsKeyDown(ImGuiKey_LeftShift)) {
+			wheel *= 10.0f; // シフト押下で倍率をかける
+		}
 		if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl)) {
 			// constraintを前後移動
 			constraint->get_transform().plus_translate(Vector3{ 0,0,wheel } * transform.get_quaternion());
 		}
 		else {
 			// 注視距離を変更
-			offset = std::min(offset + wheel, 0.0f);
+			offset = std::max(offset - wheel, 0.0f);
 		}
 	}
 
@@ -58,12 +61,16 @@ void EditorDebugCamera::update() {
 	else if (ImGui::IsMouseDown(ImGuiMouseButton_Middle)) {
 		// Vector3にし、倍率をかける
 		Vector3 move = Converter::ToVector3(mouseDelta / 100, 0);
+		if (ImGui::IsKeyDown(ImGuiKey_LeftShift)) {
+			move *= 10.0f;
+		}
 		// X軸は反転させる
 		move.x *= -1;
 		// デバッグカメラの方向を向かせる
 		constraint->get_transform().plus_translate(move * transform.get_quaternion());
 	}
-	transform.set_translate(Vector3{ 0,0,offset } *transform.get_quaternion());
+	Vector3 offsetVec3 = Vector3{ 0,0,-offset };
+	transform.set_translate(offsetVec3 * transform.get_quaternion());
 }
 
 void EditorDebugCamera::update_affine() {

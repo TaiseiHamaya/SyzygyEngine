@@ -11,6 +11,7 @@
 
 namespace szg {
 
+class EditorWorldGridBuffer;
 class RemoteWorldObject;
 class DirectionalLightInstance;
 class StaticMeshInstance;
@@ -19,8 +20,8 @@ class PrimitiveGeometryDrawExecutor;
 
 class EditorWorldView final {
 public:
-	EditorWorldView() = default;
-	~EditorWorldView() = default;
+	EditorWorldView();
+	~EditorWorldView();
 
 	SZG_CLASS_MOVE_ONLY(EditorWorldView)
 
@@ -36,6 +37,7 @@ public:
 	void register_world_projection(u32 index);
 	void register_world_lighting(u32 index);
 	void draw_lines();
+	void draw_grid();
 	std::tuple<bool, Vector2, Vector2> draw_editor(const TempTexture& texture);
 
 	void camera_gui();
@@ -49,6 +51,7 @@ private:
 	Reference<RemoteWorldObject> remoteWorld;
 
 	std::unique_ptr<EditorDebugCamera> cameraInstance;
+	std::unique_ptr<EditorWorldGridBuffer> worldGrid;
 	std::unordered_map<std::string, std::unique_ptr<PrimitiveGeometryDrawExecutor>> primitive;
 };
 
