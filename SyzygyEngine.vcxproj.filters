@@ -1740,6 +1740,8 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
     <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1790,6 +1792,8 @@
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h" />
     <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
@@ -2057,6 +2061,8 @@
     <FxCompile Include="EngineResources\HLSL\PostEffect\GaussianBlur.PS.hlsl" />
     <FxCompile Include="EngineResources\HLSL\PostEffect\Bloom.PS.hlsl" />
     <FxCompile Include="EngineResources\HLSL\FullscreenShader.VS.hlsl" />
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.VS.hlsl" />
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.PS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EngineResources\HLSL\Tools\Lighing\CalcLighting.hlsli" />
@@ -2071,5 +2077,6 @@
     <None Include="EngineResources\HLSL\Tools\ToLinearZBuffer.hlsli" />
     <None Include="EngineResources\HLSL\Tools\UnormNormal.hlsli" />
     <None Include="EngineResources\HLSL\FullscreenShader.hlsli" />
+    <None Include="EditorResources\HLSL\Grid\Grid.hlsli" />
   </ItemGroup>
 </Project>

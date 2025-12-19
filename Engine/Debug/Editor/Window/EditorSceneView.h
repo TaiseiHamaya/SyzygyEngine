@@ -76,6 +76,7 @@ private:
 
 private:
 	bool isHoverWindow{ false };
+	bool isActiveGrid{ true };
 	u32 layerSize;
 
 	Vector2 origin;
@@ -91,7 +92,7 @@ private:
 
 	// 描画用データ
 	TempTexture screenResultTexture;
-	
+
 	RenderPath renderPath;
 
 	std::unique_ptr<StaticMeshInstance> axisMesh;

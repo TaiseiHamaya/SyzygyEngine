@@ -184,6 +184,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp" />
     <ClCompile Include="Engine\Application\ArgumentParser.cpp" />
     <ClCompile Include="Engine\Application\CrashHandler.cpp" />
@@ -379,6 +380,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp" />
@@ -453,6 +455,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
     <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
+    <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
@@ -550,6 +557,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h" />
     <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
@@ -776,6 +784,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h" />
@@ -1023,6 +1032,16 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.PS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.VS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.PS.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>

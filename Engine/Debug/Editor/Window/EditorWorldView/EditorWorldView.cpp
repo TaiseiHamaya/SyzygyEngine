@@ -4,6 +4,7 @@
 
 using namespace szg;
 
+#include "./EditorWorldGridBuffer.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
@@ -13,9 +14,14 @@ using namespace szg;
 
 using namespace std::string_literals;
 
+EditorWorldView::EditorWorldView() = default;
+EditorWorldView::~EditorWorldView() = default;
+
 void EditorWorldView::initialize() {
 	cameraInstance = std::make_unique<EditorDebugCamera>();
 	cameraInstance->initialize();
+
+	worldGrid = std::make_unique<EditorWorldGridBuffer>();
 
 	primitive.emplace("Frustum", std::make_unique<PrimitiveGeometryDrawExecutor>(
 		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum"), 16
@@ -58,6 +64,11 @@ void szg::EditorWorldView::transfer() {
 	}
 	cameraInstance->update_affine();
 	cameraInstance->transfer();
+
+	worldGrid->transfer(
+		cameraInstance->view_point(),
+		std::max(cameraInstance->world_position().y, cameraInstance->offset_imm())
+	);
 }
 
 void EditorWorldView::register_world_projection(u32 index) {
@@ -73,6 +84,11 @@ void EditorWorldView::draw_lines() {
 	for (auto& executor : primitive | std::views::values) {
 		executor->draw_command();
 	}
+}
+
+void EditorWorldView::draw_grid() {
+	cameraInstance->register_world_projection(1);
+	worldGrid->stack_command();
 }
 
 std::tuple<bool, Vector2, Vector2> EditorWorldView::draw_editor(const TempTexture& texture) {
