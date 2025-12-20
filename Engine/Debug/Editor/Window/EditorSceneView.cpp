@@ -40,9 +40,6 @@ void EditorSceneView::initialize(bool isActive_) {
 	std::shared_ptr<GridPipeline> gridPipeline = std::make_shared<GridPipeline>();
 	gridPipeline->initialize();
 
-	staticMeshDrawManager.initialize(1);
-	rect3dDrawManager.initialize(1);
-	stringRectDrawManager.initialize(1);
 	directionalLightingExecutor.reinitialize(3);
 	renderPath.initialize(
 		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode, gridPipeline }
@@ -51,8 +48,6 @@ void EditorSceneView::initialize(bool isActive_) {
 
 	axisMesh = std::make_unique<StaticMeshInstance>("CameraAxis.obj");
 	axisMesh->get_materials()[0].lightingType = LighingType::None;
-
-	staticMeshDrawManager.register_instance(axisMesh);
 }
 
 void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const EditorHierarchy> hierarchy_) {
@@ -62,6 +57,7 @@ void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const Edito
 
 void EditorSceneView::update() {
 	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
+		u32 layer = worldViews[selectWorldId.value()].layer;
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
 
 		// Windowがフォーカスされている場合のみ更新
@@ -71,6 +67,7 @@ void EditorSceneView::update() {
 		view.transfer();
 		// デバッグカメラの注視点に描画する
 		axisMesh->get_transform().set_translate(view.get_camera()->view_point());
+		axisMesh->set_layer(layer);
 		axisMesh->update_affine();
 		// カメラが近すぎる場合は非表示にする
 		if (view.get_camera()->offset_imm() < 0.1f) {
@@ -164,6 +161,8 @@ void EditorSceneView::reset_force() {
 	selectWorldId.reset();
 	worldViews.clear();
 	staticMeshDrawManager = StaticMeshDrawManager{};
+	rect3dDrawManager = Rect3dDrawManager{};
+	stringRectDrawManager = StringRectDrawManager{};
 	layerSize = 0;
 }
 
@@ -181,6 +180,11 @@ void EditorSceneView::register_world(Reference<RemoteWorldObject> world) {
 	tmp.layer = layerSize;
 	++layerSize;
 	staticMeshDrawManager.initialize(layerSize);
+	rect3dDrawManager.initialize(layerSize);
+	stringRectDrawManager.initialize(layerSize);
+	if (layerSize == 0) {
+		staticMeshDrawManager.register_instance(axisMesh);
+	}
 }
 
 void EditorSceneView::create_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName) {

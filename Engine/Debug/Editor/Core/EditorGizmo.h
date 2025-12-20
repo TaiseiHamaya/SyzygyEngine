@@ -11,8 +11,6 @@
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "Engine/Runtime/Input/InputHandler.h"
-
 namespace szg {
 
 class Camera3D;
@@ -22,8 +20,8 @@ class EditorWorldView;
 
 class EditorGizmo {
 public:
-	EditorGizmo();
-	~EditorGizmo();
+	EditorGizmo() noexcept;
+	~EditorGizmo() noexcept;
 
 	SZG_CLASS_MOVE_ONLY(EditorGizmo)
 
@@ -40,8 +38,6 @@ private:
 
 	ImGuizmo::MODE mode{ ImGuizmo::MODE::WORLD };
 	ImGuizmo::OPERATION operation{ ImGuizmo::OPERATION::TRANSLATE };
-
-	InputHandler<KeyID> gizmoKeyHandler;
 };
 
 }; // szg

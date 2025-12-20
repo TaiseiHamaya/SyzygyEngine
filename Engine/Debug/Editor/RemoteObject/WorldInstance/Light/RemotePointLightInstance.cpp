@@ -16,6 +16,8 @@ void RemotePointLightInstance::setup() {
 	debugVisual->get_material().lightingType = LighingType::None;
 	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
 
+	on_spawn();
+
 	sceneView->register_rect(query_world(), debugVisual);
 }
 
@@ -91,11 +93,13 @@ nlohmann::json RemotePointLightInstance::serialize() const {
 }
 
 void RemotePointLightInstance::on_spawn() {
-	debugVisual->set_active(true);
+	auto world = query_world();
+	auto result = sceneView->get_layer(world);
+	debugVisual->set_layer(result.value_or(-1));
 }
 
 void RemotePointLightInstance::on_destroy() {
-	debugVisual->set_active(false);
+	debugVisual->set_layer(std::numeric_limits<u32>::max());
 }
 
 #endif // DEBUG_FEATURES_ENABLE

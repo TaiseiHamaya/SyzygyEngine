@@ -17,10 +17,8 @@ using namespace szg;
 #include "../Window/EditorWorldView/EditorWorldView.h"
 #include "Engine/Module/World/Camera/Camera3D.h"
 
-EditorGizmo::EditorGizmo() {
-	gizmoKeyHandler.initialize({ KeyID::LControl });
-}
-EditorGizmo::~EditorGizmo() = default;
+EditorGizmo::EditorGizmo() noexcept = default;
+EditorGizmo::~EditorGizmo() noexcept = default;
 
 void EditorGizmo::begin_frame(const Vector2& origin, const Vector2& size) {
 	ImGuizmo::SetRect(origin.x, origin.y, size.x, size.y);
@@ -69,7 +67,6 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 	Affine parentAffine =
 		Affine::FromTransform3D(*item.transformData.transform).inverse() * *item.transformData.affine;
 
-	gizmoKeyHandler.update();
 	std::array<float, 3> snap = { 0.0f, 0.0f, 0.0f };
 	switch (operation) {
 	case ImGuizmo::OPERATION::SCALEU:
@@ -86,7 +83,12 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 	}
 	// manipulate
 	gizmoState <<= 1;
-	ImGuizmo::Manipulate(&view[0][0], &proj[0][0], operation, mode, &matrix[0][0], nullptr, gizmoKeyHandler.press(KeyID::LControl) ? snap.data() : nullptr);
+	ImGuizmo::Manipulate(
+		&view[0][0], &proj[0][0],
+		operation, mode,
+		&matrix[0][0], nullptr,
+		ImGui::IsKeyDown(ImGuiMod_Ctrl) ? snap.data() : nullptr
+	);
 	gizmoState.set(0, ImGuizmo::IsUsing());
 	if (gizmoState == 0b01) {
 		switch (operation) {

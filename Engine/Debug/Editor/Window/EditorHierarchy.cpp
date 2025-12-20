@@ -8,8 +8,8 @@ using namespace szg;
 #include <imgui_stdlib.h>
 
 #include "../Adapter/EditorSceneSerializer.h"
-#include "EditorSceneView.h"
-
+#include "./EditorSceneView.h"
+#include "../EditorMain.h"
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorCreateObjectCommand.h"
 #include "../Command/EditorDeleteObjectCommand.h"
@@ -40,7 +40,6 @@ void EditorHierarchy::update_preview() {
 }
 
 void EditorHierarchy::load(const std::string& sceneName) {
-	savedTrigger = false;
 	isActive = true;
 
 	scene = EditorSceneSerializer::CreateRemoteScene(sceneName);
@@ -66,7 +65,6 @@ void EditorHierarchy::draw() {
 	ImGui::Begin("Hierarchy", &isActive, flags);
 
 	update_focus();
-	savedTrigger = false;
 
 	// 検索ボックス
 	ImGui::InputText("##HierarchySearch", &searchString); ImGui::SameLine();
@@ -240,9 +238,8 @@ void EditorHierarchy::draw() {
 			}
 		}
 
-		ImGui::SetNextItemShortcut(ImGuiKey_S | ImGuiMod_Ctrl, ImGuiInputFlags_RouteFromRootWindow);
 		if (ImGui::MenuItem("SaveScene")) {
-			savedTrigger = true;
+			EditorMain::SeveScene();
 		}
 
 		ImGui::EndPopup();
