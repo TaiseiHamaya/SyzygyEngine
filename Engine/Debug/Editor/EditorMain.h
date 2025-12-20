@@ -44,6 +44,14 @@ public:
 private:
 	void set_imgui_command();
 
+	void draw_menu_bar(r32& menuHight);
+
+	void draw_window_buttons(r32 menuHight);
+
+	void draw_dock_space(r32 menuHight);
+
+	void execute_shortcut();
+
 private:
 	bool isActiveEditor{ true };
 

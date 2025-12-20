@@ -17,6 +17,9 @@ void RemoteDirectionalLightInstance::setup() {
 	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
 
 	instance = std::make_unique<DirectionalLightInstance>();
+
+	on_spawn();
+	
 	sceneView->register_directional_light(query_world(), instance);
 	sceneView->register_rect(query_world(), debugVisual);
 }
@@ -24,15 +27,16 @@ void RemoteDirectionalLightInstance::setup() {
 void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	RemoteInstanceType::update_preview(world, parentAffine);
 
+	// ライト方向の線
 	Affine affine;
 	affine = Affine::FromSRT(
 		Vector3{ intensity, intensity, intensity },
 		Quaternion::LookForward(direction),
 		worldAffine.get_origin()
 	);
-
 	sceneView->write_primitive(world, "Line", affine);
 
+	// ライト情報の更新
 	instance->light_data_mut().color = color;
 	instance->light_data_mut().direction = direction;
 	instance->light_data_mut().intensity = intensity;
@@ -42,6 +46,7 @@ void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject>
 	instance->get_transform().set_translate(worldAffine.get_origin());
 	instance->update_affine();
 
+	// ライトアイコンの更新
 	Reference<const EditorDebugCamera> camera = sceneView->query_debug_camera();
 	if (camera) {
 		debugVisual->look_at(camera);
@@ -141,12 +146,14 @@ nlohmann::json RemoteDirectionalLightInstance::serialize() const {
 }
 
 void RemoteDirectionalLightInstance::on_spawn() {
-	debugVisual->set_active(true);
+	auto world = query_world();
+	auto result = sceneView->get_layer(world);
+	debugVisual->set_layer(result.value_or(-1));
 	instance->set_active(true);
 }
 
 void RemoteDirectionalLightInstance::on_destroy() {
-	debugVisual->set_active(false);
+	debugVisual->set_layer(std::numeric_limits<u32>::max());
 	instance->set_active(false);
 }
 
