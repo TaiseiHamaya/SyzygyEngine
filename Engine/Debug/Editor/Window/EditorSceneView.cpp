@@ -182,7 +182,9 @@ void EditorSceneView::register_world(Reference<RemoteWorldObject> world) {
 	staticMeshDrawManager.initialize(layerSize);
 	rect3dDrawManager.initialize(layerSize);
 	stringRectDrawManager.initialize(layerSize);
-	if (layerSize == 0) {
+
+	staticMeshDrawManager.make_instancing(tmp.layer, "CameraAxis.obj", 1024);
+	if (layerSize == 1) {
 		staticMeshDrawManager.register_instance(axisMesh);
 	}
 }

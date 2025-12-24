@@ -17,6 +17,8 @@ void RemoteWorldInstance::draw_inspector() {
 	ImGui::Separator();
 
 	transform.show_gui();
+
+	isUseRuntime.show_gui();
 }
 
 nlohmann::json RemoteWorldInstance::serialize() const {
