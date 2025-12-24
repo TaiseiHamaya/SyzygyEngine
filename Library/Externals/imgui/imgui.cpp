@@ -7479,16 +7479,15 @@ void ImGui::RenderWindowDecorations(ImGuiWindow* window, const ImRect& title_bar
 
         // Selected border
         const float border_size = window->WindowBorderSize;
-        if (border_size > 0.0f && title_bar_is_highlight && !(flags & ImGuiWindowFlags_NoTitleBar))
+        bool is_window_selected = border_size > 0.0f && title_bar_is_highlight && !(window->Flags & (ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_MenuBar));
+        is_window_selected &= (!window->DockIsActive || window->DockNode->IsFocused);
+        if (is_window_selected)
         {
-            if (!window->DockIsActive || window->DockNode->IsFocused)
-            {
-                const ImU32 border_selected_col = GetColorU32(ImGuiCol_BorderSelected);
-                RenderWindowOuterSingleBorder(window, 0, border_selected_col, border_size);
-                RenderWindowOuterSingleBorder(window, 1, border_selected_col, border_size);
-                RenderWindowOuterSingleBorder(window, 2, border_selected_col, border_size);
-                RenderWindowOuterSingleBorder(window, 3, border_selected_col, border_size);
-            }
+            const ImU32 border_selected_col = GetColorU32(ImGuiCol_BorderSelected);
+            RenderWindowOuterSingleBorder(window, 0, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 1, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 2, border_selected_col, border_size);
+            RenderWindowOuterSingleBorder(window, 3, border_selected_col, border_size);
         }
     }
     window->DC.NavLayerCurrent = ImGuiNavLayer_Main;

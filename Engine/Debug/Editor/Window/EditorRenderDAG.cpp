@@ -136,7 +136,9 @@ void EditorRenderDAG::draw() {
 	});
 
 	imNodeFlow->setSize(ImGui::GetContentRegionAvail());
+	ImGui::PushStyleColor(ImGuiCol_BorderSelected, ImVec4{});
 	imNodeFlow->update();
+	ImGui::PopStyleColor();
 
 	ImGui::End();
 }

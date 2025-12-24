@@ -313,6 +313,7 @@ void szg::EditorMain::draw_dock_space(r32 menuHight) {
 		ImGuiWindowFlags_MenuBar | // メニューバーを表示
 		ImGuiWindowFlags_NoDocking | // ドッキングしない
 		ImGuiWindowFlags_NoTitleBar | // タイトルバーなし
+		ImGuiWindowFlags_NoNavFocus | // フォーカスしない
 		ImGuiWindowFlags_NoMove | // 移動しない
 		ImGuiWindowFlags_NoScrollWithMouse | // スクロールしない
 		ImGuiWindowFlags_NoResize | // リサイズしない
