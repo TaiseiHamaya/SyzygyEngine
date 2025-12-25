@@ -134,6 +134,7 @@ public:
 	bool is_active() const { return isActive; };
 
 	// ----- Destroyフラグ -----
+	void destroy_self();
 	void mark_destroy();
 	bool is_marked_destroy() const { return isDestroy; }
 	virtual void on_mark_destroy() {};

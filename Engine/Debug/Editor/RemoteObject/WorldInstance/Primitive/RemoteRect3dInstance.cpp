@@ -76,7 +76,7 @@ void RemoteRect3dInstance::draw_inspector() {
 			EditorValueChangeCommandHandler::End();
 		}
 	}
-
+	material.color.show_gui();
 	material.uvTransform.show_gui();
 	{
 		std::optional<LighingType> temp;

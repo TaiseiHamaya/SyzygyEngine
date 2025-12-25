@@ -36,7 +36,9 @@ void WorldLayerRenderNode::stack_command() {
 	commandList->RSSetScissorRects(1, &data.gBuffer.rect);
 	data.gBuffer.renderTarget->begin_write(true, depthStencilTexture);
 	depthStencilTexture->start_write();
-	depthStencilTexture->get_as_dsv()->clear();
+	if (data.layerData.isClearRenderTarget) {
+		depthStencilTexture->get_as_dsv()->clear();
+	}
 
 	// ----- GBufferPass -----
 	// StaticMesh
