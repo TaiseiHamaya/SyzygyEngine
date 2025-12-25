@@ -43,4 +43,5 @@ void WorldRoot::delete_marked_destroy() {
 	for (auto& id : destroyInstanceId) {
 		worldInstances.erase(id);
 	}
+	destroyInstanceId.clear();
 }

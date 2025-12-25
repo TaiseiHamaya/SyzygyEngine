@@ -14,17 +14,19 @@ void RemoteWorldInstance::draw_inspector() {
 	ImGui::Text("Type : WorldInstance");
 
 	hierarchyName.show_gui();
+
+	isUseRuntime.show_gui();
+
 	ImGui::Separator();
 
 	transform.show_gui();
-
-	isUseRuntime.show_gui();
 }
 
 nlohmann::json RemoteWorldInstance::serialize() const {
 	nlohmann::json result;
 
 	result.update(transform);
+	result.update(isUseRuntime);
 	result.update(hierarchyName);
 	result["Type"] = instance_type();
 	result["Children"] = nlohmann::json::array();

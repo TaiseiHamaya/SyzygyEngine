@@ -2,7 +2,7 @@
 
 using namespace szg;
 
-#include "../WorldManager.h"
+#include "Engine/Module/Manager/World/WorldRoot.h"
 
 void WorldInstance::update_affine() {
 	if (!isActive) {
@@ -97,12 +97,16 @@ void WorldInstance::reparent(Reference<WorldInstance> parent, bool isKeepPose) {
 	recalculate_depth();
 }
 
+void szg::WorldInstance::destroy_self() {
+	worldRoot->destroy(this);
+}
+
 void WorldInstance::mark_destroy() {
 	isDestroy = true;
 	on_mark_destroy();
 	// 子も削除予定にする
 	for (auto& [_, child] : hierarchy.children_mut()) {
-		child->mark_destroy();
+		child->destroy_self();
 	}
 }
 
