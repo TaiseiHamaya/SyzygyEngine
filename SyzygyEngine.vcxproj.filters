@@ -1739,9 +1739,11 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
-    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1791,9 +1793,11 @@
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h" />
-    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextController.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />

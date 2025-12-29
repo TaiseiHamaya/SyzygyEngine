@@ -3,7 +3,9 @@
 #include <memory>
 #include <array>
 
+#ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION 0x0800
+#endif
 
 #include <wrl/client.h>
 #include <dinput.h>
