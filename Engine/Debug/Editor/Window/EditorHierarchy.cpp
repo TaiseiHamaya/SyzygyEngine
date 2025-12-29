@@ -229,6 +229,8 @@ void EditorHierarchy::draw() {
 			}
 		}
 
+		ImGui::Separator();
+
 		if (ImGui::MenuItem("Delete")) {
 			if (select->get_item_mut().object && select->get_item_mut().object.ptr() != scene.get()) {
 				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());

@@ -140,6 +140,8 @@ void WinApp::Initialize() {
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/ErrorObject/ErrorObject.obj");
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Grid/Grid.obj");
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Camera/CameraAxis.obj");
+	// テクスチャ
+	TextureLibrary::RegisterLoadQue("[[szg]]/White.png");
 	// Primitive
 	PrimitiveGeometryLibrary::Transfer(
 		"Ico3",
