@@ -65,13 +65,7 @@ void SceneManager2::Update() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
 
-#ifdef DEBUG_FEATURES_ENABLE
-	if (!WinApp::IsStopUpdate()) {
-		currentScene->update();
-	}
-#else
 	currentScene->update();
-#endif
 }
 
 void SceneManager2::PreDraw() {

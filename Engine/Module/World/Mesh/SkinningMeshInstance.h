@@ -61,11 +61,7 @@ protected:
 
 private:
 	std::vector<SkeletonSpaceInstance> jointInstances; // JointのTransformとMatrix
-	std::shared_ptr<const SkeletonAsset> skeletonResrouce; // Skeleton関連
-
-#ifdef DEBUG_FEATURES_ENABLE
-	std::vector<StaticMeshInstance> boneMeshTest; // デバッグ用
-#endif // _DEBUG
+	std::shared_ptr<const SkeletonAsset> skeletonAsset; // Skeleton関連
 };
 
 }; // szg
