@@ -63,6 +63,7 @@ std::vector<GlyphRenderingData> FontAtlasMSDFAsset::calculate_glyph(std::string_
 	for (i32 i = 0; i < static_cast<i32>(codepoints.size()); ++i) {
 		u32 index = indices[i];
 
+		// 改行文字
 		if (index == std::numeric_limits<u32>::max()) {
 			advancedX = 0.0f;
 			offsetY += fontSize / data.baseScale * data.lineHeight;
@@ -88,13 +89,18 @@ std::vector<GlyphRenderingData> FontAtlasMSDFAsset::calculate_glyph(std::string_
 	return result;
 }
 
-Vector2 FontAtlasMSDFAsset::calculate_offset(const std::vector<GlyphRenderingData>& glyph, const Vector2& pivot, r32 fontSize) const {
-	r32 advancedX = 0.0f;
+r32 szg::FontAtlasMSDFAsset::calculate_advance(const std::vector<GlyphRenderingData>& glyph) const {
+	r32 advanced = 0.0f;
 	for (i32 i = 0; i < static_cast<i32>(glyph.size()); ++i) {
 		u32 index = glyph[i].glyphIndex;
 		const GlyphData& glyphData = glyphsData[index];
-		advancedX += glyphData.advance;
+		advanced += glyphData.advance;
 	}
+	return advanced;
+}
+
+Vector2 FontAtlasMSDFAsset::calculate_offset(const std::vector<GlyphRenderingData>& glyph, const Vector2& pivot, r32 fontSize) const {
+	r32 advancedX = calculate_advance(glyph);
 	Vector2 base = { advancedX, fontSize / data.baseScale * data.lineHeight };
 	return Vector2::Multiply(base, pivot);
 }

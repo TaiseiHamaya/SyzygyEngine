@@ -145,6 +145,10 @@ std::optional<u32> StringRectInstance::glyph_bindless_index() const {
 	return fontAtlas->glyph_bindless_index();
 }
 
+std::shared_ptr<const FontAtlasMSDFAsset> szg::StringRectInstance::font_atlas_asset() const noexcept {
+	return fontAtlas;
+}
+
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include <imgui.h>

@@ -23,8 +23,9 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCore.h"
 #include "Engine/Runtime/Clock/WorldClock.h"
 #include "Engine/Runtime/Input/Input.h"
+#include "Engine/Runtime/Input/InputTextFrame.h"
+#include "Engine/Runtime/Input/InputVKeyState.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
-#include "Engine/Runtime/Input/TextInput.h"
 
 #pragma comment(lib, "Dbghelp.lib") // Symとか
 #pragma comment(lib, "Oleacc.lib") // GetProcessHandleFromHwnd
@@ -367,7 +368,10 @@ void WinApp::ShowAppWindow() {
 
 void WinApp::ProcessMessage() {
 	auto& instance = GetInstance();
-	TextInput::BeginFrame();
+	// 入力のリセット
+	InputTextFrame::BeginFrame();
+	InputVKeyState::BeginFrame();
+
 	while (true) {
 		// windowにメッセージが来たら最優先で処理
 		if (PeekMessage(&instance.msg, NULL, 0, 0, PM_REMOVE)) {
@@ -382,11 +386,21 @@ void WinApp::ProcessMessage() {
 			instance.isEndApp = true;
 			break;
 		case WM_CHAR:
-			TextInput::ProssesInput(
+			InputTextFrame::ProssesInputChar(
 				static_cast<wchar_t>(instance.msg.wParam),
 				static_cast<u32>(instance.msg.lParam)
 			);
 			break;
+		case WM_KEYDOWN:
+			InputVKeyState::OnKeyDown(
+				static_cast<VirtualKeyID>(instance.msg.wParam),
+				static_cast<u32>(instance.msg.lParam)
+			);
+			break;
+		case WM_IME_COMPOSITION:
+			if (instance.msg.lParam & GCS_RESULTSTR) {
+				InputTextFrame::SetImmEnter();
+			}
 		}
 	}
 }

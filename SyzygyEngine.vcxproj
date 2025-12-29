@@ -381,6 +381,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp" />
@@ -454,7 +456,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp" />
     <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
-    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -785,6 +787,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextController.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h" />
@@ -1021,7 +1025,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h" />
     <ClInclude Include="Engine\Loader\SceneAssetListLoader.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
-    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
