@@ -2,6 +2,8 @@
 
 #include <windows.h>
 
+#pragma comment(lib, "Imm32.lib")
+
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFAsset.h"
 #include "Engine/Module/World/Mesh/Primitive/CharRectStruct.h"
