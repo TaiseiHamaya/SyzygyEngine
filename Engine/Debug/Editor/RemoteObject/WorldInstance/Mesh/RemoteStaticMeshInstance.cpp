@@ -51,6 +51,8 @@ void RemoteStaticMeshInstance::draw_inspector() {
 	ImGui::Text("Type : StaticMeshInstance");
 
 	hierarchyName.show_gui();
+	isUseRuntime.show_gui();
+
 	ImGui::Separator();
 	// Transform
 	transform.show_gui();
@@ -169,6 +171,7 @@ nlohmann::json RemoteStaticMeshInstance::serialize() const {
 	nlohmann::json json;
 
 	json.update(hierarchyName);
+	json.update(isUseRuntime);
 	json.update(transform);
 	json["Type"] = instance_type();
 	json.update(isDraw);
