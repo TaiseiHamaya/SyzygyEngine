@@ -103,6 +103,10 @@ void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json
 	auto instance = worldRoot->instantiate<StaticMeshInstance>(parent);
 
 	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+	}
+
 	instance->reset_mesh(json.value("MeshName", ""));
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
