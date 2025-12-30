@@ -41,9 +41,9 @@ void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject>
 	instance->light_data_mut().direction = direction;
 	instance->light_data_mut().intensity = intensity;
 
-	instance->get_transform().set_scale(worldAffine.get_basis().to_scale());
-	instance->get_transform().set_quaternion(worldAffine.get_basis().to_quaternion());
-	instance->get_transform().set_translate(worldAffine.get_origin());
+	instance->transform_mut().set_scale(worldAffine.get_basis().to_scale());
+	instance->transform_mut().set_quaternion(worldAffine.get_basis().to_quaternion());
+	instance->transform_mut().set_translate(worldAffine.get_origin());
 	instance->update_affine();
 
 	// ライトアイコンの更新
@@ -51,7 +51,7 @@ void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject>
 	if (camera) {
 		debugVisual->look_at(camera);
 	}
-	debugVisual->get_transform().set_translate(worldAffine.get_origin());
+	debugVisual->transform_mut().set_translate(worldAffine.get_origin());
 	debugVisual->update_affine();
 }
 

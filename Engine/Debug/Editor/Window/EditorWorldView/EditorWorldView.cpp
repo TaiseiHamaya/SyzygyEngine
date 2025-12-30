@@ -62,7 +62,7 @@ void szg::EditorWorldView::transfer() {
 	for (auto& executor : primitive | std::views::values) {
 		executor->begin();
 	}
-	cameraInstance->update_affine();
+	cameraInstance->constraint_mut()->update_affine();
 	cameraInstance->transfer();
 
 	worldGrid->transfer(

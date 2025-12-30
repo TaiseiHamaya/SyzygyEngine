@@ -22,12 +22,12 @@ void WorldManager::update_matrix() {
 }
 
 void WorldManager::reset_depth(Reference<WorldInstance> instance, u32 after) {
-	worldInstances[instance->depth()].erase(instance);
+	worldInstances[instance->hierarchy_depth()].erase(instance);
 	worldInstances[after].emplace(instance);
 }
 
 void WorldManager::erase(Reference<WorldInstance> instance) {
-	worldInstances[instance->depth()].erase(instance);
+	worldInstances[instance->hierarchy_depth()].erase(instance);
 }
 
 std::vector<std::unordered_set<Reference<WorldInstance>>>& WorldManager::get_world_instances() {

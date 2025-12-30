@@ -20,8 +20,9 @@ void WorldRoot::update() {
 
 void WorldRoot::update_affine() {
 	for (auto& [_, instance] : worldInstances) {
-		instance->fixed_update();
-		instance->update_affine();
+		if (instance->hierarchy_depth() == 0) {
+			instance->update_affine();
+		}
 	}
 }
 

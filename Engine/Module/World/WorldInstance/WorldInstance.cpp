@@ -8,7 +8,12 @@ void WorldInstance::update_affine() {
 	if (!isActive) {
 		return;
 	}
+	fixed_update();
 	affine = create_world_affine();
+
+	for (auto& [_, child] : hierarchy.children_mut()) {
+		child->update_affine();
+	}
 }
 
 Affine WorldInstance::create_world_affine() const {
@@ -136,7 +141,7 @@ void WorldInstance::attach_child(Reference<WorldInstance> child) {
 
 void WorldInstance::recalculate_depth() {
 	if (hierarchy.has_parent()) {
-		hierarchyDepth = hierarchy.parent_imm()->depth() + 1;
+		hierarchyDepth = hierarchy.parent_imm()->hierarchy_depth() + 1;
 	}
 	else {
 		hierarchyDepth = 0;

@@ -87,7 +87,7 @@ void WorldInstanceLoader::entry_point(const nlohmann::json& json, Reference<Worl
 void WorldInstanceLoader::create_world_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<WorldInstance>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -102,7 +102,7 @@ void WorldInstanceLoader::create_world_instance(const nlohmann::json& json, Refe
 void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<StaticMeshInstance>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	instance->reset_mesh(json.value("MeshName", ""));
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
@@ -140,7 +140,7 @@ void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json
 void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<SkinningMeshInstance>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -182,7 +182,7 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<Rect3d>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -211,7 +211,7 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 
 void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<StringRectInstance>(parent);
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -237,7 +237,7 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<Camera3D>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -259,7 +259,7 @@ void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, R
 void WorldInstanceLoader::create_sphere_collider_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<SphereCollider>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -276,7 +276,7 @@ void WorldInstanceLoader::create_sphere_collider_instance(const nlohmann::json& 
 void WorldInstanceLoader::create_aabb_collider_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<AABBCollider>(parent, json.value("Size", CVector3::ONE), json.value("Offset", CVector3::ZERO));
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -291,7 +291,7 @@ void WorldInstanceLoader::create_aabb_collider_instance(const nlohmann::json& js
 void WorldInstanceLoader::create_directional_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<DirectionalLightInstance>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
@@ -311,7 +311,7 @@ void WorldInstanceLoader::create_directional_light_instance(const nlohmann::json
 void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	auto instance = worldRoot->instantiate<PointLightInstance>(parent);
 
-	instance->get_transform().copy(json["Local transform"].get<Transform3D>());
+	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}

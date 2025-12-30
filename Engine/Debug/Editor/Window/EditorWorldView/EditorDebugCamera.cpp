@@ -38,7 +38,7 @@ void EditorDebugCamera::update() {
 		}
 		if (ImGui::IsKeyDown(ImGuiKey_LeftCtrl)) {
 			// constraintを前後移動
-			constraint->get_transform().plus_translate(Vector3{ 0,0,wheel } * transform.get_quaternion());
+			constraint->transform_mut().plus_translate(Vector3{ 0,0,wheel } * transform.get_quaternion());
 		}
 		else {
 			// 注視距離を変更
@@ -67,14 +67,13 @@ void EditorDebugCamera::update() {
 		// X軸は反転させる
 		move.x *= -1;
 		// デバッグカメラの方向を向かせる
-		constraint->get_transform().plus_translate(move * transform.get_quaternion());
+		constraint->transform_mut().plus_translate(move * transform.get_quaternion());
 	}
 	Vector3 offsetVec3 = Vector3{ 0,0,-offset };
 	transform.set_translate(offsetVec3 * transform.get_quaternion());
 }
 
 void EditorDebugCamera::update_affine() {
-	constraint->update_affine();
 	Camera3D::update_affine();
 }
 
@@ -84,6 +83,10 @@ Vector3 szg::EditorDebugCamera::view_point() const {
 
 r32 szg::EditorDebugCamera::offset_imm() const {
 	return offset;
+}
+
+Reference<WorldInstance> szg::EditorDebugCamera::constraint_mut() noexcept {
+	return constraint;
 }
 
 #endif // DEBUG_FEATURES_ENABLE

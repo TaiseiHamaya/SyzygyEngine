@@ -31,7 +31,7 @@ void RemotePointLightInstance::update_preview(Reference<RemoteWorldObject> world
 	if (camera) {
 		debugVisual->look_at(camera);
 	}
-	debugVisual->get_transform().set_translate(worldAffine.get_origin());
+	debugVisual->transform_mut().set_translate(worldAffine.get_origin());
 	debugVisual->update_affine();
 }
 

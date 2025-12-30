@@ -66,7 +66,7 @@ void EditorSceneView::update() {
 		}
 		view.transfer();
 		// デバッグカメラの注視点に描画する
-		axisMesh->get_transform().set_translate(view.get_camera()->view_point());
+		axisMesh->transform_mut().set_translate(view.get_camera()->view_point());
 		axisMesh->set_layer(layer);
 		axisMesh->update_affine();
 		// カメラが近すぎる場合は非表示にする
