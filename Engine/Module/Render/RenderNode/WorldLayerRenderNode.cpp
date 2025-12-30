@@ -36,7 +36,7 @@ void WorldLayerRenderNode::stack_command() {
 	commandList->RSSetScissorRects(1, &data.gBuffer.rect);
 	data.gBuffer.renderTarget->begin_write(true, depthStencilTexture);
 	depthStencilTexture->start_write();
-	if (data.layerData.isClearRenderTarget) {
+	if (data.layerData.isClearDepthStencil) {
 		depthStencilTexture->get_as_dsv()->clear();
 	}
 
