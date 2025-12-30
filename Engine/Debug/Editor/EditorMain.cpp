@@ -84,7 +84,7 @@ void EditorMain::Setup() {
 
 void EditorMain::DrawBase() {
 	EditorMain& instance = GetInstance();
-	if (ImGui::IsKeyDown(ImGuiKey_F6, false)) {
+	if (ImGui::IsKeyPressed(ImGuiKey_F6, false)) {
 		instance.isActiveEditor ^= 1;
 	}
 
