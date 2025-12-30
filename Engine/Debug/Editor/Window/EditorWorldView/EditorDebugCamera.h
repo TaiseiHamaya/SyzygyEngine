@@ -19,6 +19,7 @@ public:
 public:
 	Vector3 view_point() const;
 	r32 offset_imm() const;
+	Reference<WorldInstance> constraint_mut() noexcept;
 
 private:
 	std::unique_ptr<WorldInstance> constraint;

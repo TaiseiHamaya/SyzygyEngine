@@ -173,8 +173,8 @@ void Camera3D::debug_gui() {
 		ImGui::Checkbox("UseDebugCameraLighting", &useDebugCameraLighting);
 
 		ImGui::DragFloat("Offset", &offset.z, 0.1f, -std::numeric_limits<r32>::infinity(), 0.0f);
-		debugCameraCenter->get_transform().debug_gui();
-		debugCamera->get_transform().debug_gui();
+		debugCameraCenter->transform_mut().debug_gui();
+		debugCamera->transform_mut().debug_gui();
 	}
 }
 
@@ -194,12 +194,12 @@ void Camera3D::debug_camera() {
 		if (debugMouseInputHandler.press(MouseID::Left)) {
 			// 倍率をかけて調整
 			Vector2 rotateAngle = mouseDelta / 200;
-			Quaternion rotation = debugCamera->get_transform().get_quaternion();
+			Quaternion rotation = debugCamera->transform_mut().get_quaternion();
 			// 平行成分と垂直成分でQuaternionを生成
 			Quaternion holizontal = Quaternion::AngleAxis(CVector3::BASIS_Y, rotateAngle.x);
 			Quaternion vertical = Quaternion::AngleAxis(CVector3::BASIS_X, rotateAngle.y);
 			// 垂直->元->平行で適用させる
-			debugCamera->get_transform().set_quaternion(holizontal * rotation * vertical);
+			debugCamera->transform_mut().set_quaternion(holizontal * rotation * vertical);
 		}
 
 		// 中クリック(Translate)
@@ -209,11 +209,11 @@ void Camera3D::debug_camera() {
 			// X軸は反転させる
 			move.x *= -1;
 			// デバッグカメラの方向を向かせる
-			debugCameraCenter->get_transform().plus_translate(move * debugCamera->get_transform().get_quaternion());
+			debugCameraCenter->transform_mut().plus_translate(move * debugCamera->transform_mut().get_quaternion());
 		}
 	}
 	// 位置更新
-	debugCamera->get_transform().set_translate(offset * debugCamera->get_transform().get_quaternion());
+	debugCamera->transform_mut().set_translate(offset * debugCamera->transform_mut().get_quaternion());
 
 
 	if (isValidDebugCamera && offset.z < -0.001) {

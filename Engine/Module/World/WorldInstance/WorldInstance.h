@@ -86,22 +86,22 @@ public:
 	void look_at_axis(const Vector3& point, r32 angle = 0.0f, const Vector3& axis = CVector3::BASIS_Y) noexcept;
 
 	/// <summary>
-	/// 階層構造の震度
+	/// 階層構造の深度
 	/// </summary>
 	/// <returns></returns>
-	u32 depth() const { return hierarchyDepth; };
+	u32 hierarchy_depth() const { return hierarchyDepth; };
 
 	/// <summary>
 	/// Transformの取得(Const)
 	/// </summary>
 	/// <returns></returns>
-	const Transform3D& get_transform() const { return transform; };
+	const Transform3D& transform_imm() const { return transform; };
 
 	/// <summary>
 	/// Transformの取得(非Const)
 	/// </summary>
 	/// <returns></returns>
-	Transform3D& get_transform() { return transform; };
+	Transform3D& transform_mut() { return transform; };
 
 	/// <summary>
 	/// Hierarchyの親アドレスの取得
@@ -135,9 +135,13 @@ public:
 
 	// ----- Destroyフラグ -----
 	void destroy_self();
-	void mark_destroy();
 	bool is_marked_destroy() const { return isDestroy; }
 	virtual void on_mark_destroy() {};
+
+	/// <summary>
+	/// ユーザー使用禁止
+	/// </summary>
+	void mark_destroy();
 
 	// ----- id関連 -----
 	void setup_id(u64 id);
