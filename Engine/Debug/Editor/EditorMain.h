@@ -12,7 +12,6 @@
 #include "./Window/EditorRenderDAG.h"
 #include "./Window/EditorSceneView.h"
 #include "./Window/EditorScreenResult.h"
-#include "Engine/Runtime/Input/InputHandler.h"
 #include "RemoteObject/EditorDeletedObjectPool.h"
 
 namespace szg {
