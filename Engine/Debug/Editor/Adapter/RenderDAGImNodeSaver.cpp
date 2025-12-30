@@ -186,6 +186,8 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<WorldLayer
 	json["Data"].update(data.worldIndex);
 	json["Data"].update(data.layerIndex);
 	json["Data"].update(data.cameraId);
+	json["Data"].update(data.isClearDepthStencil);
+
 	json["Data"].update(data.gBufferSize);
 	json["Data"].update(data.gBufferViewport.left);
 	json["Data"].update(data.gBufferViewport.top);
@@ -193,6 +195,7 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<WorldLayer
 	json["Data"].update(data.gBufferViewport.height);
 	json["Data"].update(data.gBufferViewport.minDepth);
 	json["Data"].update(data.gBufferViewport.maxDepth);
+	
 	json["Data"].update(data.layerScissor.topLeft);
 	json["Data"].update(data.layerScissor.bottomRight);
 

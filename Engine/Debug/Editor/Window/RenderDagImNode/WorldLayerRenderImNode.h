@@ -37,6 +37,7 @@ public:
 		EditorValueField<u32> layerIndex{ "LayerIndex" };
 		EditorValueField<u32> cameraId{ "CameraId" };
 		EditorValueField<Vector2> gBufferSize{ "GBufferSize", ProjectSettings::ClientSize() };
+		EditorValueField<bool> isClearDepthStencil{ "ClearDepthStencil", true };
 		Viewport gBufferViewport;
 		Scissor layerScissor;
 	};

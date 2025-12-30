@@ -36,6 +36,7 @@ public:
 		ConstantBuffer<Vector2> outputTextureSize;
 
 		bool isClearRenderTarget;
+		bool isClearDepthStencil;
 	};
 
 	struct Data {
