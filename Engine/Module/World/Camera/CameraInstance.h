@@ -1,7 +1,10 @@
 #pragma once
 
+#include <memory>
+
 #include <Library/Math/Vector2.h>
 
+#include "./ProjectionAdapter/ICameraProjection.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/ConstantBuffer/ConstantBuffer.h"
 #include "Engine/Module/World/WorldInstance/WorldInstance.h"
 
@@ -50,7 +53,6 @@ public:
 
 protected:
 	void make_view_matrix();
-	void make_perspective_matrix();
 
 public:
 	static Matrix4x4 MakeViewportMatrix(const Vector2& origin, const Vector2& size, r32 minDepth = 0.0f, r32 maxDepth = 1.0f);
@@ -62,10 +64,7 @@ private:
 	ConstantBuffer<VpBuffers> vpBuffers;
 	ConstantBuffer<LightingPathBuffer> lightingBuffer;
 
-	r32 fovY;
-	r32 aspectRatio;
-	r32 nearClip;
-	r32 farClip;
+	std::unique_ptr<ICameraProjection> projection;
 };
 
 }; // szg

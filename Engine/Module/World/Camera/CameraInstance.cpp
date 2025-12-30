@@ -2,8 +2,6 @@
 
 using namespace szg;
 
-#include <cmath>
-
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 
@@ -26,7 +24,12 @@ void CameraInstance::update_affine() {
 
 	// カメラ位置をもとにViewMatrixを更新
 	make_view_matrix();
-	make_perspective_matrix();
+	if (projection) {
+		projectionMatrix = projection->generate_matrix();
+	}
+	else {
+		projectionMatrix = CMatrix4x4::IDENTITY;
+	}
 }
 
 void CameraInstance::transfer() {
@@ -56,10 +59,7 @@ void CameraInstance::set_transform(const Transform3D& transform_) noexcept {
 }
 
 void CameraInstance::set_perspective_fov_info(r32 fovY_, r32 aspectRatio_, r32 nearClip_, r32 farClip_) noexcept {
-	fovY = fovY_;
-	aspectRatio = aspectRatio_;
-	nearClip = nearClip_;
-	farClip = farClip_;
+
 }
 
 const Matrix4x4& CameraInstance::vp_matrix() const {
@@ -76,16 +76,6 @@ const Matrix4x4& CameraInstance::proj_matrix() const {
 
 void CameraInstance::make_view_matrix() {
 	viewAffine = world_affine().inverse_fast();
-}
-
-void CameraInstance::make_perspective_matrix() {
-	r32 cot = 1 / std::tan(fovY / 2);
-	projectionMatrix = {
-		{{ cot / aspectRatio, 0, 0, 0 },
-		{ 0, cot, 0, 0 },
-		{ 0, 0, farClip / (farClip - nearClip), 1 },
-		{ 0, 0, -nearClip * farClip / (farClip - nearClip), 0 } }
-	};
 }
 
 Matrix4x4 CameraInstance::MakeViewportMatrix(const Vector2& origin, const Vector2& size, r32 minDepth, r32 maxDepth) {
