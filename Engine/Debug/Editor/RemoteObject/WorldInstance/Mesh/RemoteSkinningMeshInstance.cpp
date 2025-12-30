@@ -15,9 +15,11 @@ using namespace szg;
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 
-RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() {
+RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() noexcept {
 	debugVisual = std::make_unique<StaticMeshInstance>();
 }
+
+szg::RemoteSkinningMeshInstance::~RemoteSkinningMeshInstance() noexcept = default;
 
 void RemoteSkinningMeshInstance::setup() {
 	on_spawn();
@@ -26,17 +28,17 @@ void RemoteSkinningMeshInstance::setup() {
 		sceneView->register_mesh(query_world(), debugVisual);
 	}
 
-	IRemoteInstance<SkinningMeshInstance, StaticMeshInstance>::setup();
+	RemoteInstanceType::setup();
 }
 
 void RemoteSkinningMeshInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
-	IRemoteInstance<SkinningMeshInstance, StaticMeshInstance>::update_preview(world, parentAffine);
+	RemoteInstanceType::update_preview(world, parentAffine);
 
 	debugVisual->reset_mesh(meshName);
 	debugVisual->localAffine = worldAffine;
 	debugVisual->isDraw = isDraw.cget();
 
-	if(debugVisual->keyID != meshName) {
+	if (debugVisual->keyID != meshName) {
 		return;
 	}
 	for (i32 i = 0; i < materials.size(); ++i) {
@@ -57,10 +59,10 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	isUseRuntime.show_gui();
 
 	ImGui::Separator();
-	
+
 	// Transform
 	transform.show_gui();
-	
+
 	ImGui::Separator();
 
 	isDraw.show_gui();

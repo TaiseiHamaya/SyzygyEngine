@@ -798,9 +798,6 @@
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera2D.cpp">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClCompile>
@@ -854,9 +851,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Sprite\SpriteInstance.cpp">
-      <Filter>Engine\Module\World\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
       <Filter>Engine\Module\World\WorldInstance</Filter>
@@ -1398,9 +1392,6 @@
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera2D.h">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Module\World\Camera\Camera3D.h">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClInclude>
@@ -1469,9 +1460,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Sprite\SpriteInstance.h">
-      <Filter>Engine\Module\World\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h">
       <Filter>Engine\Module\World\WorldInstance</Filter>

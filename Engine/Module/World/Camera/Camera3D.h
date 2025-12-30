@@ -5,12 +5,6 @@
 #include "Engine/GraphicsAPI/DirectX/DxResource/ConstantBuffer/ConstantBuffer.h"
 #include "Engine/Module/World/WorldInstance/WorldInstance.h"
 
-#ifdef DEBUG_FEATURES_ENABLE
-#include "Engine/Runtime/Input/InputHandler.h"
-#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
-#include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
-#endif // _DEBUG
-
 namespace szg {
 
 class Camera3D : public WorldInstance {
@@ -56,22 +50,10 @@ public:
 
 protected:
 	void make_view_matrix();
-	void make_perspectivefov_matrix();
+	void make_perspective_matrix();
 
 public:
 	static Matrix4x4 MakeViewportMatrix(const Vector2& origin, const Vector2& size, r32 minDepth = 0.0f, r32 maxDepth = 1.0f);
-
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	virtual void debug_gui();
-	void debug_camera();
-	void debug_draw_axis();
-	void debug_draw_frustum() const;
-	const Matrix4x4& vp_matrix_debug() const;
-	const Affine& debug_view_affine() const;
-	const Matrix4x4& debug_proj_matrix() const;
-	Reference<const StaticMeshInstance> camera_axis() const { return debugCameraCenter; }
-#endif // _DEBUG
 
 private:
 	Affine viewAffine;
@@ -84,18 +66,6 @@ private:
 	r32 aspectRatio;
 	r32 nearClip;
 	r32 farClip;
-
-#ifdef DEBUG_FEATURES_ENABLE
-	Matrix4x4 vpMatrix;
-	Affine debugViewAffine;
-	bool isValidDebugCamera{ false };
-	bool useDebugCameraLighting{ true };
-	Reference<StaticMeshInstance> debugCameraCenter;
-	Reference<WorldInstance> debugCamera;
-	std::unique_ptr<PrimitiveGeometryDrawExecutor> frustumExecutor;
-	Vector3 offset;
-	InputHandler<MouseID> debugMouseInputHandler;
-#endif // _DEBUG
 };
 
 }; // szg

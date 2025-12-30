@@ -8,6 +8,7 @@ using namespace szg;
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
+#include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
 #include "Engine/Module/World/Camera/Camera3D.h"
 
 #include <imgui.h>
@@ -127,10 +128,6 @@ std::tuple<bool, Vector2, Vector2> EditorWorldView::draw_editor(const TempTextur
 	}
 
 	return { isSelectTab, resultPos, resultSize };
-}
-
-void EditorWorldView::camera_gui() {
-	cameraInstance->debug_gui();
 }
 
 Reference<const EditorDebugCamera> EditorWorldView::get_camera() const {

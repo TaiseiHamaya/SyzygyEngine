@@ -8,7 +8,7 @@
 
 namespace szg {
 
-class RemoteCamera3dInstance final : public IRemoteInstance<Camera3D, void*> {
+class RemoteCamera3dInstance final : public IRemoteInstance<Camera3D> {
 public:
 	friend class EditorSceneSerializer;
 
