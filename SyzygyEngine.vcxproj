@@ -344,7 +344,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.cpp" />
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp" />
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\BaseCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\SphereCollider.cpp" />
@@ -740,7 +740,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.h" />
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.h" />
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h" />
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h" />
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\BaseCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\SphereCollider.h" />

@@ -74,7 +74,7 @@ void EditorDebugCamera::update() {
 }
 
 void EditorDebugCamera::update_affine() {
-	Camera3D::update_affine();
+	CameraInstance::update_affine();
 }
 
 Vector3 szg::EditorDebugCamera::view_point() const {

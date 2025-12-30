@@ -7,7 +7,7 @@
 
 namespace szg {
 
-class Camera3D;
+class CameraInstance;
 class StaticMeshInstance;
 class SkinningMeshInstance;
 class DirectionalLightInstance;
@@ -31,7 +31,7 @@ public:
 	void register_instance(Reference<T> instance);
 
 private:
-	std::vector<Reference<Camera3D>> camera;
+	std::vector<Reference<CameraInstance>> camera;
 	std::vector<Reference<StaticMeshInstance>> staticMesh;
 	std::vector<Reference<SkinningMeshInstance>> skinMesh;
 	std::vector<Reference<DirectionalLightInstance>> directionalLightInstance;
@@ -42,7 +42,7 @@ private:
 
 template<typename T>
 void InstanceBucket::register_instance(Reference<T> instance) {
-	if constexpr (std::derived_from<T, Camera3D>) {
+	if constexpr (std::derived_from<T, CameraInstance>) {
 		camera.emplace_back(instance);
 	}
 	else if constexpr (std::derived_from<T, StaticMeshInstance>) {

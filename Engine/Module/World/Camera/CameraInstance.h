@@ -7,7 +7,7 @@
 
 namespace szg {
 
-class Camera3D : public WorldInstance {
+class CameraInstance : public WorldInstance {
 	friend class RemoteCamera3DInstance;
 
 public:
@@ -24,10 +24,10 @@ public:
 	};
 
 public:
-	Camera3D() = default;
-	virtual ~Camera3D() = default;
+	CameraInstance() = default;
+	virtual ~CameraInstance() = default;
 
-	SZG_CLASS_MOVE_ONLY(Camera3D)
+	SZG_CLASS_MOVE_ONLY(CameraInstance)
 
 public:
 	virtual void initialize();

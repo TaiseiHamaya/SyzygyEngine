@@ -2,7 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 #include "Engine/Module/World/WorldInstance/WorldInstance.h"
 
@@ -10,7 +10,7 @@ namespace szg {
 
 class EditorSceneView;
 
-class EditorDebugCamera final : public Camera3D {
+class EditorDebugCamera final : public CameraInstance {
 public:
 	void initialize() override;
 	void update();

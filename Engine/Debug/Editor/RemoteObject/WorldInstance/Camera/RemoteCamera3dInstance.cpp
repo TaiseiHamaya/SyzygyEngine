@@ -7,12 +7,12 @@ using namespace szg;
 #include "../../../Window/EditorSceneView.h"
 
 void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
-	IRemoteInstance<Camera3D, void*>::update_preview(world, parentAffine);
+	IRemoteInstance<CameraInstance, void*>::update_preview(world, parentAffine);
 	sceneView->write_primitive(world, "Frustum", worldAffine);
 }
 
 void RemoteCamera3dInstance::draw_inspector() {
-	ImGui::Text("Type : Camera3D");
+	ImGui::Text("Type : CameraInstance");
 
 	hierarchyName.show_gui();
 	isUseRuntime.show_gui();

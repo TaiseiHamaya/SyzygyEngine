@@ -9,7 +9,7 @@ using namespace szg;
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 #include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 #include <imgui.h>
 

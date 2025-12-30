@@ -26,7 +26,7 @@ void StaticMeshDrawManager::make_instancing(u32 layer, const std::string& meshNa
 }
 
 #ifdef DEBUG_FEATURES_ENABLE
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Debug/DebugValues/DebugValues.h"
 
 #include <imgui.h>

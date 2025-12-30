@@ -11,7 +11,7 @@
 
 namespace szg {
 
-class Camera3D;
+class CameraInstance;
 class TextureAsset;
 
 class ParticleDrawSystemRect final : public BaseParticleDrawSystem {

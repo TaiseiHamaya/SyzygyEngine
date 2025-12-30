@@ -4,11 +4,11 @@
 
 #include "../IRemoteInstance.h"
 
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 namespace szg {
 
-class RemoteCamera3dInstance final : public IRemoteInstance<Camera3D> {
+class RemoteCamera3dInstance final : public IRemoteInstance<CameraInstance> {
 public:
 	friend class EditorSceneSerializer;
 

@@ -37,7 +37,7 @@ public:
 
 	void transfer();
 
-	Reference<Camera3D> camera_at(u32 index) const;
+	Reference<CameraInstance> camera_at(u32 index) const;
 
 private:
 	u8 numLayer{ 0 };
@@ -52,7 +52,7 @@ private:
 	std::vector<Reference<DirectionalLightInstance>> directionalLights;
 	std::vector<Reference<PointLightInstance>> pointLights;
 
-	std::vector<Reference<Camera3D>> cameras;
+	std::vector<Reference<CameraInstance>> cameras;
 };
 
 }; // szg

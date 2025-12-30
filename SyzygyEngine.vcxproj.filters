@@ -798,7 +798,7 @@
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp">
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp">
@@ -1392,7 +1392,7 @@
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h">
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h">

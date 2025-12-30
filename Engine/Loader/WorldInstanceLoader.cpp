@@ -4,7 +4,7 @@ using namespace szg;
 
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Module/Manager/World/WorldRoot.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Module/World/Collision/Collider/AABBCollider.h"
 #include "Engine/Module/World/Collision/Collider/SphereCollider.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
@@ -239,7 +239,7 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 }
 
 void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
-	auto instance = worldRoot->instantiate<Camera3D>(parent);
+	auto instance = worldRoot->instantiate<CameraInstance>(parent);
 
 	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {

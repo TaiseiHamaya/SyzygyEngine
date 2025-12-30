@@ -6,7 +6,7 @@ using namespace szg;
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 void WorldLayerRenderNode::setup(Data&& data_) {
 	data = std::move(data_);
@@ -15,7 +15,7 @@ void WorldLayerRenderNode::setup(Data&& data_) {
 
 void WorldLayerRenderNode::stack_command() {
 	// カメラ取得
-	Reference<Camera3D> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
+	Reference<CameraInstance> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
 	if (!camera) {
 		szgWarning("Camera is invalid. LayerIndex: {}", data.layerData.index);
 		return;
