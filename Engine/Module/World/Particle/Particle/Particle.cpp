@@ -20,7 +20,6 @@ Particle::Particle(
 	startColor(startColor_), endColor(endColor_),
 	startSize(startSize_), endSize(endSize_),
 	rotationType(rotationType_), rotationData(rotationData_) {
-	isDestroy = false;
 	timer.set(0.0f);
 	transform.set_translate(translate);
 	transform.set_scale(startSize_);

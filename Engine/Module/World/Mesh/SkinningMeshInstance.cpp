@@ -30,7 +30,7 @@ void SkinningMeshInstance::update() {
 }
 
 void SkinningMeshInstance::update_animation() {
-	if (!isActive || !skeletonAsset) {
+	if (!is_active() || !skeletonAsset) {
 		return;
 	}
 	nodeAnimation->update();

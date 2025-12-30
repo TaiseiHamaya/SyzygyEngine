@@ -52,7 +52,7 @@ void IDrawInstance<KeyType>::update_affine() {
 
 template<typename KeyType>
 bool IDrawInstance<KeyType>::is_draw() const {
-	return isDraw && isActive;
+	return isDraw && is_active();
 }
 
 }; // szg

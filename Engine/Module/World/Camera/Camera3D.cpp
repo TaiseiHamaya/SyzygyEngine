@@ -40,7 +40,7 @@ void Camera3D::initialize() {
 }
 
 void Camera3D::update_affine() {
-	if (!isActive) {
+	if (!is_active()) {
 		return;
 	}
 	// カメラそのもののMatrix更新
