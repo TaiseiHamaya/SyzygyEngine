@@ -31,10 +31,14 @@ void EditorLogWindow::Draw() {
 }
 
 void EditorLogWindow::DrawMenu(string_literal label) {
-	GetInstance().draw_menu(label);
+	auto& instance = GetInstance();
+	std::lock_guard lock{ instance.mutex };
+	instance.draw_menu(label);
 }
 
 void EditorLogWindow::draw() {
+	std::lock_guard lock{ mutex };
+
 	if (!isActive) {
 		return;
 	}
@@ -125,6 +129,8 @@ void EditorLogWindow::draw() {
 
 void EditorLogWindow::AppendLogEntry(Logger::Level level, const std::string& message) {
 	auto& instance = GetInstance();
+	std::lock_guard lock{ instance.mutex };
+
 	++instance.logStates[static_cast<u8>(level)].numLogs;
 	instance.logs.emplace_back(level, message);
 	if (instance.logs.size() >= MAX_LOG_SIZE) {
