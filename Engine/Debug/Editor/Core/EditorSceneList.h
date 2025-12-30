@@ -2,8 +2,8 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
+#include <set>
 #include <string>
-#include <unordered_set>
 
 namespace szg {
 
@@ -21,7 +21,7 @@ private:
 	void export_scene_list();
 
 private:
-	std::unordered_set<std::string> sceneList;
+	std::set<std::string> sceneList;
 };
 
 }; // szg
