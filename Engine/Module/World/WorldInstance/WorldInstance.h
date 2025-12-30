@@ -165,12 +165,11 @@ private:
 
 	Reference<WorldRoot> worldRoot;
 
-	u32 hierarchyDepth{ 0 };
-
 	u64 instanceId;
 
-protected:
-	bool isActive = true;
+	u32 hierarchyDepth{ 0 };
+
+	bool isActive{ true };
 	bool isDestroy{ false };
 };
 

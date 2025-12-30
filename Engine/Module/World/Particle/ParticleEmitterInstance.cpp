@@ -58,7 +58,7 @@ ParticleEmitterInstance::~ParticleEmitterInstance() {
 }
 
 void ParticleEmitterInstance::update() {
-	if (!isActive) {
+	if (!is_active()) {
 		return;
 	}
 
@@ -93,7 +93,7 @@ void ParticleEmitterInstance::update() {
 }
 
 void ParticleEmitterInstance::transfer() {
-	if (!isActive || !drawSystem || is_end_all()) {
+	if (!is_active() || !drawSystem || is_end_all()) {
 		return;
 	}
 	for (u32 index = 0; Reference<Particle>& particle : particles) {
@@ -108,7 +108,7 @@ void ParticleEmitterInstance::transfer() {
 }
 
 void ParticleEmitterInstance::draw() const {
-	if (!isActive || !drawSystem || is_end_all()) {
+	if (!is_active() || !drawSystem || is_end_all()) {
 		return;
 	}
 
