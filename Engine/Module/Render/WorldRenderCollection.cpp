@@ -111,7 +111,7 @@ void WorldRenderCollection::transfer() {
 	}
 }
 
-Reference<Camera3D> WorldRenderCollection::camera_at(u32 index) const {
+Reference<CameraInstance> WorldRenderCollection::camera_at(u32 index) const {
 	if (index >= cameras.size()) {
 		return nullptr;
 	}

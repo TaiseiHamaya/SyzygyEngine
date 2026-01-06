@@ -150,7 +150,7 @@ void EditorHierarchy::draw() {
 			}
 
 			ImGui::SeparatorText("Camera");
-			if (ImGui::MenuItem("Camera3D")) {
+			if (ImGui::MenuItem("CameraInstance")) {
 				if (select->get_item_mut().object) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(

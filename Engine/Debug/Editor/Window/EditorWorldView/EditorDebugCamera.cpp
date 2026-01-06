@@ -7,15 +7,18 @@ using namespace szg;
 #include <Library/Math/VectorConverter.h>
 
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraPerspectiveProjection.h"
 
 #include <imgui.h>
 
 void EditorDebugCamera::initialize() {
-	set_perspective_fov_info(
+	auto projectionTemp = std::make_unique<CameraPerspectiveProjection>();
+	projectionTemp->initialize(
 		0.45f,
 		(float)ProjectSettings::ClientWidth() / ProjectSettings::ClientHeight(),
-		0.1f, 1000
+		0.1f, 10000
 	);
+	setup(std::move(projectionTemp));
 
 	constraint = std::make_unique<WorldInstance>();
 
@@ -74,7 +77,7 @@ void EditorDebugCamera::update() {
 }
 
 void EditorDebugCamera::update_affine() {
-	Camera3D::update_affine();
+	CameraInstance::update_affine();
 }
 
 Vector3 szg::EditorDebugCamera::view_point() const {

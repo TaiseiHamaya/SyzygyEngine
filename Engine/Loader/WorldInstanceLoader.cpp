@@ -4,7 +4,10 @@ using namespace szg;
 
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Module/Manager/World/WorldRoot.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraOrthroProjection.h"
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraPerspectiveProjection.h"
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Module/World/Collision/Collider/AABBCollider.h"
 #include "Engine/Module/World/Collision/Collider/SphereCollider.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
@@ -239,19 +242,59 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 }
 
 void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
-	auto instance = worldRoot->instantiate<Camera3D>(parent);
+	auto instance = worldRoot->instantiate<CameraInstance>(parent);
 
 	instance->transform_mut().copy(json["Local transform"].get<Transform3D>());
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
 
-	instance->set_perspective_fov_info(
-		json.value("FovY", 0.45f),
-		json.value("AspectRatio", 1.7777f),
-		json.value("NearClip", 0.1f),
-		json.value("FarClip", 1000.0f)
-	);
+	// 投影関連
+	const nlohmann::json& projectionJson = json.value("Projection", nlohmann::json::object());
+	switch (projectionJson.value("Type", CameraProjectionTypeEnum::Undefined)) {
+	case CameraProjectionTypeEnum::Perspective:
+	{
+		auto projection = std::make_unique<CameraPerspectiveProjection>();
+		projection->initialize(
+			projectionJson.value("FovY", 0.45f),
+			projectionJson.value("AspectRatio", 1.7777f),
+			projectionJson.value("NearClip", 0.1f),
+			projectionJson.value("FarClip", 1000.0f)
+		);
+		instance->setup(std::move(projection));
+		break;
+	}
+
+	case CameraProjectionTypeEnum::Orthographic:
+	{
+		auto projection = std::make_unique<CameraOrthroProjection>();
+		projection->initialize(
+			projectionJson.value("Left", -1.0f),
+			projectionJson.value("Right", 1.0f),
+			projectionJson.value("Bottom", -1.0f),
+			projectionJson.value("Top", 1.0f),
+			projectionJson.value("NearClip", 0.0f),
+			projectionJson.value("FarClip", 1000.0f)
+		);
+		instance->setup(std::move(projection));
+		break;
+	}
+
+	default:
+	{
+		// デフォルトはPerspective
+		auto projection = std::make_unique<CameraPerspectiveProjection>();
+		projection->initialize(
+			projectionJson.value("FovY", 0.45f),
+			projectionJson.value("AspectRatio", 1.7777f),
+			projectionJson.value("NearClip", 0.1f),
+			projectionJson.value("FarClip", 1000.0f)
+		);
+		instance->setup(std::move(projection));
+		szgWarning("CameraInstance was created with default Perspective projection due to undefined projection type.");
+		break;
+	}
+	}
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {

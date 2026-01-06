@@ -8,7 +8,8 @@ using namespace szg;
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 #include <imgui.h>
 
@@ -23,8 +24,11 @@ void EditorWorldView::initialize() {
 
 	worldGrid = std::make_unique<EditorWorldGridBuffer>();
 
-	primitive.emplace("Frustum", std::make_unique<PrimitiveGeometryDrawExecutor>(
-		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum"), 16
+	primitive.emplace("Frustum0", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum0"), 16
+	));
+	primitive.emplace("Frustum1", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum1"), 16
 	));
 	primitive.emplace("Box", std::make_unique<PrimitiveGeometryDrawExecutor>(
 		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Box"), 1024
@@ -127,10 +131,6 @@ std::tuple<bool, Vector2, Vector2> EditorWorldView::draw_editor(const TempTextur
 	}
 
 	return { isSelectTab, resultPos, resultSize };
-}
-
-void EditorWorldView::camera_gui() {
-	cameraInstance->debug_gui();
 }
 
 Reference<const EditorDebugCamera> EditorWorldView::get_camera() const {

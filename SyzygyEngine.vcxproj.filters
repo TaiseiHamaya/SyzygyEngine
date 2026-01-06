@@ -798,10 +798,7 @@
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera2D.cpp">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp">
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp">
@@ -854,9 +851,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Sprite\SpriteInstance.cpp">
-      <Filter>Engine\Module\World\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
       <Filter>Engine\Module\World\WorldInstance</Filter>
@@ -1398,10 +1392,7 @@
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera2D.h">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h">
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h">
@@ -1469,9 +1460,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Sprite\SpriteInstance.h">
-      <Filter>Engine\Module\World\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h">
       <Filter>Engine\Module\World\WorldInstance</Filter>
@@ -1744,6 +1732,10 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1798,6 +1790,11 @@
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
     <ClInclude Include="Engine\Runtime\Input\InputTextController.h" />
     <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />

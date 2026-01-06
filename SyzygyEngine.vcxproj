@@ -184,6 +184,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp" />
     <ClCompile Include="Engine\Application\ArgumentParser.cpp" />
@@ -344,8 +347,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.cpp" />
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp" />
-    <ClCompile Include="Engine\Module\World\Camera\Camera2D.cpp" />
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\BaseCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\SphereCollider.cpp" />
@@ -363,7 +365,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.cpp" />
     <ClCompile Include="Engine\Module\World\Particle\ParticleEmitterInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp" />
-    <ClCompile Include="Engine\Module\World\Sprite\SpriteInstance.cpp" />
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp" />
     <ClCompile Include="Engine\Module\World\WorldManager.cpp" />
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp" />
@@ -383,6 +384,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp" />
@@ -559,6 +561,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h" />
     <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h" />
@@ -742,8 +748,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.h" />
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.h" />
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h" />
-    <ClInclude Include="Engine\Module\World\Camera\Camera2D.h" />
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h" />
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\BaseCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\SphereCollider.h" />
@@ -766,7 +771,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.h" />
     <ClInclude Include="Engine\Module\World\Particle\ParticleEmitterInstance.h" />
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h" />
-    <ClInclude Include="Engine\Module\World\Sprite\SpriteInstance.h" />
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h" />
     <ClInclude Include="Engine\Module\World\WorldManager.h" />
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h" />
@@ -789,6 +793,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
     <ClInclude Include="Engine\Runtime\Input\InputTextController.h" />
     <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h" />

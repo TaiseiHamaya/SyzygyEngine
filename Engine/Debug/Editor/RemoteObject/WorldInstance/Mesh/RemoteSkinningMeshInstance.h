@@ -10,6 +10,7 @@
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
 
 #define COLOR3_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
@@ -17,7 +18,6 @@
 namespace szg {
 
 class SkinningMeshInstance;
-class StaticMeshInstance;
 
 class SkeletonAsset;
 
@@ -35,8 +35,8 @@ public:
 	};
 
 public:
-	RemoteSkinningMeshInstance();
-	~RemoteSkinningMeshInstance() = default;
+	RemoteSkinningMeshInstance() noexcept;
+	~RemoteSkinningMeshInstance() noexcept;
 
 public:
 	void setup() override;

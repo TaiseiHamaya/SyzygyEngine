@@ -25,7 +25,7 @@ public:
 	IRemoteInstance() = default;
 	virtual ~IRemoteInstance() = default;
 
-	SZG_CLASS_DEFAULT(IRemoteInstance)
+	SZG_CLASS_MOVE_ONLY(IRemoteInstance)
 
 public:
 	using RemoteInstanceType = IRemoteInstance<RuntimeType, DebugVisualType>;

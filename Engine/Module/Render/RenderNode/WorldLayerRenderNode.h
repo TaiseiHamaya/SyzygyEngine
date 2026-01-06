@@ -13,7 +13,7 @@
 
 namespace szg {
 
-class Camera3D;
+class CameraInstance;
 class WorldRenderCollection;
 
 class WorldLayerRenderNode final : public IRenderNode {

@@ -40,7 +40,6 @@ public:
 	void draw_grid();
 	std::tuple<bool, Vector2, Vector2> draw_editor(const TempTexture& texture);
 
-	void camera_gui();
 	Reference<const EditorDebugCamera> get_camera() const;
 
 	bool is_select_tab() const;
