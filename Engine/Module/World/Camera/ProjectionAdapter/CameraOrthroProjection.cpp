@@ -1,5 +1,7 @@
 #include "CameraOrthroProjection.h"
 
+using namespace szg;
+
 #include <cstdlib>
 
 #include "Engine/Application/Logger.h"

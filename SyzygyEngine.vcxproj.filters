@@ -1735,6 +1735,7 @@
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1792,6 +1793,8 @@
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />

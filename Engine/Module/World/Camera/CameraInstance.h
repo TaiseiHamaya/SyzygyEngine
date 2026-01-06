@@ -33,7 +33,7 @@ public:
 	SZG_CLASS_MOVE_ONLY(CameraInstance)
 
 public:
-	virtual void initialize();
+	void setup(std::unique_ptr<ICameraProjection> projection_) noexcept;
 
 	void update_affine() override;
 	void transfer();
@@ -43,8 +43,6 @@ public:
 
 public:
 	void set_transform(const Transform3D& transform) noexcept;
-
-	void set_perspective_fov_info(r32 fovY, r32 aspectRatio, r32 nearClip, r32 farClip) noexcept;
 
 	const Matrix4x4& vp_matrix() const;
 

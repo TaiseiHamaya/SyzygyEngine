@@ -1,5 +1,7 @@
 #include "CameraPerspectiveProjection.h"
 
+using namespace szg;
+
 #include <cmath>
 #include <cstdlib>
 

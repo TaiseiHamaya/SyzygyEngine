@@ -2,6 +2,8 @@
 
 #include "./ICameraProjection.h"
 
+namespace szg {
+
 class CameraPerspectiveProjection final : public ICameraProjection {
 public:
 	void initialize(r32 fovY_, r32 aspectRatio_, r32 nearClip_, r32 farClip_) noexcept;
@@ -15,3 +17,4 @@ private:
 	r32 farClip;
 };
 
+}; // namespace szg

@@ -2,15 +2,10 @@
 
 using namespace szg;
 
-#include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 
-void CameraInstance::initialize() {
-	set_perspective_fov_info(
-		0.45f,
-		(float)ProjectSettings::ClientWidth() / ProjectSettings::ClientHeight(),
-		0.1f, 1000
-	);
+void szg::CameraInstance::setup(std::unique_ptr<ICameraProjection> projection_) noexcept {
+	projection = std::move(projection_);
 
 	update_affine();
 }
@@ -56,10 +51,6 @@ void CameraInstance::register_world_lighting(u32 index) const {
 
 void CameraInstance::set_transform(const Transform3D& transform_) noexcept {
 	transform.copy(transform_);
-}
-
-void CameraInstance::set_perspective_fov_info(r32 fovY_, r32 aspectRatio_, r32 nearClip_, r32 farClip_) noexcept {
-
 }
 
 const Matrix4x4& CameraInstance::vp_matrix() const {

@@ -22,8 +22,7 @@ using namespace szg;
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/Json/JsonAsset.h"
-
-#include <Library/Utility/Template/string_hashed.h>
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
 
 #define COLOR3_SERIALIZER
 #define COLOR4_SERIALIZER
@@ -296,10 +295,34 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteCamera3DInstan
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
 
-	json.get_to(result->fovY);
-	json.get_to(result->aspectRatio);
-	json.get_to(result->nearClip);
-	json.get_to(result->farClip);
+	nlohmann::json projectionJson = json.value("Projection", nlohmann::json::object());
+	CameraProjectionTypeEnum projectionType = projectionJson.value("Type", szg::CameraProjectionTypeEnum::Undefined);
+	switch (projectionType) {
+	case szg::CameraProjectionTypeEnum::Perspective:
+	{
+		RemoteCamera3dInstance::PerspectiveParameters perspectiveParams;
+		projectionJson.get_to(perspectiveParams.fovY);
+		projectionJson.get_to(perspectiveParams.aspectRatio);
+		projectionJson.get_to(perspectiveParams.nearClip);
+		projectionJson.get_to(perspectiveParams.farClip);
+		result->projectionParameters = perspectiveParams;
+	}
+	break;
+	case szg::CameraProjectionTypeEnum::Orthographic:
+	{
+		RemoteCamera3dInstance::OrthroParameters orthroParams;
+		projectionJson.get_to(orthroParams.left);
+		projectionJson.get_to(orthroParams.right);
+		projectionJson.get_to(orthroParams.bottom);
+		projectionJson.get_to(orthroParams.top);
+		projectionJson.get_to(orthroParams.nearClip);
+		projectionJson.get_to(orthroParams.farClip);
+		result->projectionParameters = orthroParams;
+	}
+	break;
+	default:
+		break;
+	}
 
 	return result;
 }

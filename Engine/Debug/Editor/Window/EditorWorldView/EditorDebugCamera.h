@@ -12,7 +12,7 @@ class EditorSceneView;
 
 class EditorDebugCamera final : public CameraInstance {
 public:
-	void initialize() override;
+	void initialize();
 	void update();
 	void update_affine() override;
 

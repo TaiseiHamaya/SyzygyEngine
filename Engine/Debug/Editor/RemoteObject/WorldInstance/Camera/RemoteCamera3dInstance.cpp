@@ -5,6 +5,8 @@
 using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
+#include "./DebugProjectionVariantVisitor.h"
+#include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 
 void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<CameraInstance, void*>::update_preview(world, parentAffine);
@@ -21,10 +23,21 @@ void RemoteCamera3dInstance::draw_inspector() {
 	transform.show_gui();
 
 	ImGui::Separator();
-	fovY.show_gui();
-	aspectRatio.show_gui();
-	nearClip.show_gui();
-	farClip.show_gui();
+
+	ImGui::Text("Projection Type");
+	if (ImGui::RadioButton("Perspective", std::holds_alternative<PerspectiveParameters>(projectionParameters))) {
+		EditorValueChangeCommandHandler::GenCommand<decltype(projectionParameters)>(projectionParameters);
+		projectionParameters = PerspectiveParameters{};
+		EditorValueChangeCommandHandler::End();
+	}
+	ImGui::SameLine();
+	if (ImGui::RadioButton("Orthographic", std::holds_alternative<OrthroParameters>(projectionParameters))) {
+		EditorValueChangeCommandHandler::GenCommand<decltype(projectionParameters)>(projectionParameters);
+		projectionParameters = OrthroParameters{};
+		EditorValueChangeCommandHandler::End();
+	}
+
+	std::visit(DebugProjectionVariantVisitor{}, projectionParameters);
 }
 
 nlohmann::json RemoteCamera3dInstance::serialize() const {
@@ -33,10 +46,12 @@ nlohmann::json RemoteCamera3dInstance::serialize() const {
 	result.update(transform);
 	result.update(isUseRuntime);
 	result.update(hierarchyName);
-	result.update(fovY);
-	result.update(aspectRatio);
-	result.update(nearClip);
-	result.update(farClip);
+
+	{
+		nlohmann::json projectionJson = std::visit(DebugProjectionVariantSaver{}, projectionParameters);
+		result["Projection"] = projectionJson;
+	}
+
 	result["Type"] = instance_type();
 	result["Children"] = nlohmann::json::array();
 	for (const auto& child : children) {
