@@ -16,7 +16,7 @@ void EditorDebugCamera::initialize() {
 	projectionTemp->initialize(
 		0.45f,
 		(float)ProjectSettings::ClientWidth() / ProjectSettings::ClientHeight(),
-		0.1f, 1000
+		0.1f, 10000
 	);
 	setup(std::move(projectionTemp));
 

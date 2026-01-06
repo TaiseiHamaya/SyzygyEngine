@@ -10,7 +10,44 @@ using namespace szg;
 
 void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<CameraInstance, void*>::update_preview(world, parentAffine);
-	sceneView->write_primitive(world, "Frustum", worldAffine);
+	if (std::holds_alternative<PerspectiveParameters>(projectionParameters)) {
+		PerspectiveParameters& param = std::get<PerspectiveParameters>(projectionParameters);
+		Vector3 clipBaseScale = {
+			std::tan(param.fovY.cget() * 0.5f) * param.aspectRatio.cget(),
+			std::tan(param.fovY.cget() * 0.5f),
+			1.0f,
+		};
+		{ // 遠平面
+			Vector3 scale = clipBaseScale * param.farClip.cget();
+			Affine localAffine = Affine::FromScale(scale);
+			sceneView->write_primitive(world, "Frustum0", localAffine * worldAffine);
+		}
+		{ // 近平面
+			Vector3 scale = clipBaseScale * param.nearClip.cget();
+			Vector3 translate{ 0,0, param.nearClip.cget() };
+			Affine localAffine = Affine::FromSRT(
+				scale,
+				CQuaternion::IDENTITY,
+				translate
+			);
+			sceneView->write_primitive(world, "Frustum1", localAffine * worldAffine);
+		}
+	}
+	else if (std::holds_alternative<OrthroParameters>(projectionParameters)) {
+		OrthroParameters& orthoParams = std::get<OrthroParameters>(projectionParameters);
+		Vector3 scale = {
+			orthoParams.right.cget() - orthoParams.left.cget(),
+			orthoParams.bottom.cget() - orthoParams.top.cget(),
+			orthoParams.farClip.cget() - orthoParams.nearClip.cget(),
+		};
+		Vector3 translate = {
+			orthoParams.left.cget(),
+			orthoParams.top.cget(),
+			orthoParams.nearClip.cget(),
+		};
+		Affine localAffine = Affine::FromSRT(scale, CQuaternion::IDENTITY, translate);
+		sceneView->write_primitive(world, "Box", localAffine * worldAffine);
+	}
 }
 
 void RemoteCamera3dInstance::draw_inspector() {

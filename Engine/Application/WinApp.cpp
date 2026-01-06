@@ -194,8 +194,12 @@ void WinApp::Initialize() {
 		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Line.json")
 	);
 	PrimitiveGeometryLibrary::Transfer(
-		"Frustum",
-		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum.json")
+		"Frustum0",
+		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum0.json")
+	);
+	PrimitiveGeometryLibrary::Transfer(
+		"Frustum1",
+		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum1.json")
 	);
 
 	// Texture

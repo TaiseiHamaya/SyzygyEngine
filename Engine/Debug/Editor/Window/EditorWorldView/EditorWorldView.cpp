@@ -24,8 +24,11 @@ void EditorWorldView::initialize() {
 
 	worldGrid = std::make_unique<EditorWorldGridBuffer>();
 
-	primitive.emplace("Frustum", std::make_unique<PrimitiveGeometryDrawExecutor>(
-		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum"), 16
+	primitive.emplace("Frustum0", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum0"), 16
+	));
+	primitive.emplace("Frustum1", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum1"), 16
 	));
 	primitive.emplace("Box", std::make_unique<PrimitiveGeometryDrawExecutor>(
 		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Box"), 1024
