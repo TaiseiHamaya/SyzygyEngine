@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "./RemoteCamera3dInstance.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
 
@@ -49,3 +51,5 @@ public:
 };
 
 }; // szg
+
+#endif // DEBUG_FEATURES_ENABLE
