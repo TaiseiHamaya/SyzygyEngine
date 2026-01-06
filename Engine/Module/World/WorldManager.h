@@ -13,7 +13,7 @@ namespace szg {
 
 class WorldInstance;
 
-class WorldManager {
+class [[deprecated("新シーンシステム移行に伴い、使用されなくなりました。WorldCluster及びWorldRootを使用してください。")]] WorldManager {
 public:
 	WorldManager();
 	~WorldManager();

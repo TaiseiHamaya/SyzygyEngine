@@ -855,9 +855,6 @@
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
       <Filter>Engine\Module\World\WorldInstance</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\WorldManager.cpp">
-      <Filter>Engine\Module\World</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp">
       <Filter>Engine\Runtime\Clock</Filter>
     </ClCompile>
@@ -866,9 +863,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Input\Input.cpp">
       <Filter>Engine\Runtime\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\BaseScene.cpp">
-      <Filter>Engine\Runtime\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Scene\Scene.cpp">
       <Filter>Engine\Runtime\Scene</Filter>
@@ -1464,9 +1458,6 @@
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h">
       <Filter>Engine\Module\World\WorldInstance</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\WorldManager.h">
-      <Filter>Engine\Module\World</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h">
       <Filter>Engine\Runtime\Clock</Filter>
     </ClInclude>
@@ -1481,9 +1472,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Input\InputHandler.h">
       <Filter>Engine\Runtime\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\BaseScene.h">
-      <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h">
       <Filter>Engine\Runtime\Scene</Filter>

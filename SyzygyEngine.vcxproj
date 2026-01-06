@@ -366,11 +366,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\World\Particle\ParticleEmitterInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp" />
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp" />
-    <ClCompile Include="Engine\Module\World\WorldManager.cpp" />
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp" />
     <ClCompile Include="Engine\Runtime\Clock\WorldTimer.cpp" />
     <ClCompile Include="Engine\Runtime\Input\Input.cpp" />
-    <ClCompile Include="Engine\Runtime\Scene\BaseScene.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp" />
@@ -772,13 +770,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\World\Particle\ParticleEmitterInstance.h" />
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h" />
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h" />
-    <ClInclude Include="Engine\Module\World\WorldManager.h" />
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h" />
     <ClInclude Include="Engine\Runtime\Clock\WorldTimer.h" />
     <ClInclude Include="Engine\Runtime\Input\Input.h" />
     <ClInclude Include="Engine\Runtime\Input\InputEnum.h" />
     <ClInclude Include="Engine\Runtime\Input\InputHandler.h" />
-    <ClInclude Include="Engine\Runtime\Scene\BaseScene.h" />
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h" />
     <ClInclude Include="Engine\Runtime\Scene\Scene.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h" />
