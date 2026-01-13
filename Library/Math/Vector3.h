@@ -336,6 +336,7 @@ constexpr Vector3 BASIS_Y{ 0.0f, 1.0f, 0.0f }; // x(0.0f), y(1.0f), z(0.0f)
 constexpr Vector3 BASIS_Z{ 0.0f, 0.0f, 1.0f }; // x(0.0f), y(0.0f), z(1.0f)
 constexpr Vector3 ONE{ BASIS }; // x(0.0f), y(0.0f), z(0.0f)
 constexpr Vector3 ZERO{ 0.0f, 0.0f, 0.0f }; // x(0.0f), y(0.0f), z(0.0f)
+constexpr Vector3 HALF{ 0.5f, 0.5f, 0.5f }; // x(0.5f), y(0.5f), z(0.5f)
 constexpr Vector3 INFINTY{ std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity() };
 constexpr Vector3 INFINTY_X{ std::numeric_limits<r32>::infinity(), 0, 0 };
 constexpr Vector3 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity(), 0 };
