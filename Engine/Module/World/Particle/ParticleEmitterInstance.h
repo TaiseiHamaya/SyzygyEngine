@@ -13,7 +13,7 @@
 
 #define VECTOR3_SERIALIZER
 #define VECTOR2_SERIALIZER
-#define COLOR4_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #define QUATERNION_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
@@ -64,14 +64,14 @@ public:
 			};
 			std::variant<Constant, std::monostate, Random, LookAtAngle> data;
 		} rotation;
-		Randomize<Color4> color;
+		Randomize<ColorRGBA> color;
 
 		u32 debug_gui(string_literal tag);
 	};
 
 	struct ParticleFinal {
 		Randomize<Vector3> size;
-		Randomize<Color4> color;
+		Randomize<ColorRGBA> color;
 
 		u32 debug_gui(string_literal tag);
 	};
@@ -135,13 +135,6 @@ public:
 
 private:
 	void create_draw_system();
-
-public: // Getter/Setter
-
-	//#ifdef DEBUG_FEATURES_ENABLE
-	//public:
-	//	void debug_gui();
-	//#endif // _DEBUG
 
 protected: // Member variable
 	WorldTimer timer;

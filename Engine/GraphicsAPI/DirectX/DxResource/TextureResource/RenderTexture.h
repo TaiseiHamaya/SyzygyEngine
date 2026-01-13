@@ -2,7 +2,7 @@
 
 #include "./ITextureResource.h"
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 
 #include "./IResourceView/RenderTargetView.h"
 #include "./IResourceView/ShaderResourceView.h"
@@ -29,7 +29,7 @@ private:
 	void create_resource(DXGI_FORMAT format);
 
 private:
-	Color4 color;
+	ColorRGBA color;
 	RenderTargetView rtv;
 	ShaderResourceView srv;
 };

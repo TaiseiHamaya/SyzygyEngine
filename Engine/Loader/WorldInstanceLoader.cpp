@@ -22,8 +22,8 @@ using namespace szg;
 
 #define TRANSFORM3D_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
-#define COLOR3_SERIALIZER
-#define COLOR4_SERIALIZER
+#define COLOR_RGB_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void WorldInstanceLoader::setup(Reference<WorldRoot> worldRoot_) {
@@ -204,7 +204,7 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 
 	nlohmann::json materialJson = json.value("Material", nlohmann::json::object());
 	instance->get_material().texture = TextureLibrary::GetTexture(materialJson.value("Texture", ""));
-	instance->get_material().color = materialJson.value("Color", CColor4::WHITE);
+	instance->get_material().color = materialJson.value("Color", CColorRGBA::WHITE);
 	instance->get_material().uvTransform.copy(materialJson.value("UV Transform", Transform2D{}));
 	instance->get_material().lightingType = materialJson.value("LightingType", LighingType::None);
 	instance->get_material().shininess = materialJson.value("Shininess", 50.0f);
@@ -232,7 +232,7 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 	instance->reset_string(json.value("Text", ""));
 	instance->set_layer(json.value("Layer", 0u));
 	instance->set_draw(json.value("IsDraw", true));
-	instance->get_material().color = json.value("Color", CColor4::WHITE);
+	instance->get_material().color = json.value("Color", CColorRGBA::WHITE);
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
@@ -343,7 +343,7 @@ void WorldInstanceLoader::create_directional_light_instance(const nlohmann::json
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
 
-	instance->light_data_mut().color = json.value("Color", CColor3::WHITE);
+	instance->light_data_mut().color = json.value("Color", CColorRGB::WHITE);
 	instance->light_data_mut().intensity = json.value("Intensity", 1.0f);
 	instance->light_data_mut().direction = json.value("Direction", CVector3::DOWN);
 	instance->set_influence_layer(json.value("Influence Layer", 0u));
@@ -363,7 +363,7 @@ void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
 
-	instance->light_data_mut().color = json.value("Color", CColor3::WHITE);
+	instance->light_data_mut().color = json.value("Color", CColorRGB::WHITE);
 	instance->light_data_mut().intensity = json.value("Intensity", 1.0f);
 	instance->light_data_mut().radius = json.value("Radius", 1.0f);
 	instance->light_data_mut().decay = json.value("Decay", 0.0f);

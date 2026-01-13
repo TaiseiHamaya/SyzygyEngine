@@ -6,7 +6,7 @@ using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
 
-#define COLOR4_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteRect3dInstance::setup() {
@@ -154,8 +154,8 @@ void RemoteRect3dInstance::reset_material() {
 	EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
 	material.texture = "Error.png";
 	EditorValueChangeCommandHandler::End();
-	EditorValueChangeCommandHandler::GenCommand<Color4>(material.color.get());
-	material.color = CColor4::WHITE;
+	EditorValueChangeCommandHandler::GenCommand<ColorRGBA>(material.color.get());
+	material.color = CColorRGBA::WHITE;
 	EditorValueChangeCommandHandler::End();
 	material.uvTransform.set(Transform2D{});
 	EditorValueChangeCommandHandler::GenCommand<r32>(material.shininess.get());

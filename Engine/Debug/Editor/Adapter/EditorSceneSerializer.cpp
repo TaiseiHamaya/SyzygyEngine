@@ -24,8 +24,8 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
 
-#define COLOR3_SERIALIZER
-#define COLOR4_SERIALIZER
+#define COLOR_RGB_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
 #define TRANSFORM3D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"

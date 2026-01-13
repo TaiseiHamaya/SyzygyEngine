@@ -50,7 +50,7 @@ private:
 	u32 stringInstanceCounter{ 0 };
 
 	StructuredBuffer<StringBuffer> strings;
-	StructuredBuffer<MaterialDataBuffer4> material;
+	StructuredBuffer<MaterialDataBufferRGBA> material;
 
 	StructuredBuffer<CharBuffer> chars;
 

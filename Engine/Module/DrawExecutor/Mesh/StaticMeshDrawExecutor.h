@@ -14,7 +14,7 @@ namespace szg {
 
 class StaticMeshInstance;
 struct TransformMatrixDataBuffer;
-struct MaterialDataBuffer3;
+struct MaterialDataBufferRGB;
 
 class StaticMeshDrawExecutor final : public BaseDrawExecutor<StaticMeshInstance> {
 public:
@@ -34,7 +34,7 @@ private:
 	std::shared_ptr<const PolygonMesh> asset;
 
 	StructuredBuffer<TransformMatrixDataBuffer> matrices;
-	std::vector<StructuredBuffer<MaterialDataBuffer3>> materials;
+	std::vector<StructuredBuffer<MaterialDataBufferRGB>> materials;
 
 	std::mutex writeBufferMutex;
 };

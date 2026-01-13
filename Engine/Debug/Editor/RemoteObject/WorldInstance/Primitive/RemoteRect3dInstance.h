@@ -6,7 +6,7 @@
 
 #include <string>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
@@ -19,7 +19,7 @@ public:
 
 	struct Material {
 		std::string texture{ "Error.png" };
-		EditorValueField<Color4> color{ "Color", CColor4::WHITE };
+		EditorValueField<ColorRGBA> color{ "Color", CColorRGBA::WHITE };
 		EditorValueField<Transform2D> uvTransform{ "UV Transform" };
 		LighingType lightingType{ LighingType::None };
 		EditorValueField<r32> shininess{ "Shininess", 50 };

@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Vector2.h>
 #include <Library/Utility/template/SingletonInterface.h>
 
@@ -39,7 +39,7 @@ public:
 		u32 srvHeapSize{ 65536 };
 		u32 rtvHeapSize{ 20 };
 		u32 dsvHeapSize{ 1 };
-		Color4 clearColor{ 0.39f, 0.58f, 0.92f, 1.0f };
+		ColorRGBA clearColor{ 0.39f, 0.58f, 0.92f, 1.0f };
 	};
 
 public:

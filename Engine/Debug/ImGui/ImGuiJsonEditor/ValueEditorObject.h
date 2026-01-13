@@ -10,8 +10,8 @@
 
 class Vector2;
 class Vector3;
-class Color3;
-class Color4;
+class ColorRGB;
+class ColorRGBA;
 
 #include <Library/Math/Quaternion.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
@@ -321,16 +321,16 @@ private:
 };
 
 template<>
-struct show_object<Color3> {
+struct show_object<ColorRGB> {
 	inline show_object(const std::string& name_) :
 		name(name_) {
 	};
 	~show_object() = default;
 
-	SZG_CLASS_DEFAULT(show_object<Color3>)
+	SZG_CLASS_DEFAULT(show_object<ColorRGB>)
 
 public:
-	inline std::bitset<2> show_gui(Color3& value) const {
+	inline std::bitset<2> show_gui(ColorRGB& value) const {
 		ImGui::ColorEdit3(name.c_str(), reinterpret_cast<r32*>(&value), ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputRGB);
 		std::bitset<2> result = 0;
 		if (ImGui::IsItemDeactivated()) {
@@ -354,16 +354,16 @@ private:
 };
 
 template<>
-struct show_object<Color4> {
+struct show_object<ColorRGBA> {
 	inline show_object(const std::string& name_) :
 		name(name_) {
 	};
 	~show_object() = default;
 
-	SZG_CLASS_DEFAULT(show_object<Color4>)
+	SZG_CLASS_DEFAULT(show_object<ColorRGBA>)
 
 public:
-	inline std::bitset<2> show_gui(Color4& value) const {
+	inline std::bitset<2> show_gui(ColorRGBA& value) const {
 		ImGui::ColorEdit4(name.c_str(), reinterpret_cast<r32*>(&value), ImGuiColorEditFlags_Float | ImGuiColorEditFlags_AlphaPreview | ImGuiColorEditFlags_InputRGB);
 		std::bitset<2> result = 0;
 		if (ImGui::IsItemDeactivated()) {

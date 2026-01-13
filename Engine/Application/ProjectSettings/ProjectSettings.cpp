@@ -9,7 +9,7 @@ using namespace szg;
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
 
-#define COLOR4_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 constexpr u32 DEFAULT_WINDOW_STYLE = WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME;
@@ -102,7 +102,7 @@ void ProjectSettings::Initialize() {
 		instance.graphicsSettings.rtvHeapSize = graphics.value("RtvHeapSize", 20);
 		instance.graphicsSettings.dsvHeapSize = graphics.value("DsvHeapSize", 1);
 		// クリアカラー
-		instance.graphicsSettings.clearColor = graphics.value("ClearColor", Color4{ 0.39f, 0.58f, 0.92f, 1.0f });
+		instance.graphicsSettings.clearColor = graphics.value("ClearColor", ColorRGBA{ 0.39f, 0.58f, 0.92f, 1.0f });
 	}
 
 	// アプリケーション設定

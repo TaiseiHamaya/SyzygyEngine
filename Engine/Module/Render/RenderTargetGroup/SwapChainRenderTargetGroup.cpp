@@ -12,7 +12,7 @@ void SwapChainRenderTargetGroup::set_resource(Reference<ScreenTexture> texture, 
 	textures[index] = texture;
 }
 
-void SwapChainRenderTargetGroup::set_clear_color(const Color4& color) noexcept {
+void SwapChainRenderTargetGroup::set_clear_color(const ColorRGBA& color) noexcept {
 	clearColor = color;
 }
 
