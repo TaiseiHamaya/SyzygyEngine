@@ -12,7 +12,7 @@
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 namespace szg {
@@ -28,7 +28,7 @@ public:
 public:
 	struct Material {
 		std::string texture;
-		Color3 color;
+		ColorRGB color;
 		Transform2D uvTransform;
 		LighingType lightingType{ LighingType::HalfLambert };
 		r32 shininess;

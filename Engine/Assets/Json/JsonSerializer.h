@@ -66,20 +66,20 @@ struct adl_serializer<Vector2> {
 #endif // VECTOR2_SERIALIZER_DEFINED
 #endif // VECTOR2_SERIALIZER
 
-// Color3 <-> Json Serializer
-#ifdef COLOR3_SERIALIZER
-#ifndef COLOR3_SERIALIZER_DEFINED
-#define COLOR3_SERIALIZER_DEFINED
-#include <Library/Math/Color3.h>
+// ColorRGB <-> Json Serializer
+#ifdef COLOR_RGB_SERIALIZER
+#ifndef COLOR_RGB_SERIALIZER_DEFINED
+#define COLOR_RGB_SERIALIZER_DEFINED
+#include <Library/Math/ColorRGB.h>
 template<>
-struct adl_serializer<Color3> {
-	static void to_json(json& j, const Color3& rhs) {
+struct adl_serializer<ColorRGB> {
+	static void to_json(json& j, const ColorRGB& rhs) {
 		j["R"] = rhs.red;
 		j["G"] = rhs.green;
 		j["B"] = rhs.blue;
 	}
 
-	static void from_json(const json& j, Color3& rhs) {
+	static void from_json(const json& j, ColorRGB& rhs) {
 		if (j.contains("R") && j.at("R").is_number_float()) {
 			rhs.red = j["R"];
 		}
@@ -91,24 +91,24 @@ struct adl_serializer<Color3> {
 		}
 	}
 };
-#endif // COLOR3_SERIALIZER_DEFINED
-#endif // COLOR3_SERIALIZER
+#endif // COLOR_RGB_SERIALIZER_DEFINED
+#endif // COLOR_RGB_SERIALIZER
 
-// Color4 <-> Json Serializer
-#ifdef COLOR4_SERIALIZER
-#ifndef COLOR4_SERIALIZER_DEFINED
-#define COLOR4_SERIALIZER_DEFINED
-#include <Library/Math/Color4.h>
+// ColorRGBA <-> Json Serializer
+#ifdef COLOR_RGBA_SERIALIZER
+#ifndef COLOR_RGBA_SERIALIZER_DEFINED
+#define COLOR_RGBA_SERIALIZER_DEFINED
+#include <Library/Math/ColorRGBA.h>
 template<>
-struct adl_serializer<Color4> {
-	static void to_json(json& j, const Color4& rhs) {
+struct adl_serializer<ColorRGBA> {
+	static void to_json(json& j, const ColorRGBA& rhs) {
 		j["R"] = rhs.red;
 		j["G"] = rhs.green;
 		j["B"] = rhs.blue;
 		j["A"] = rhs.alpha;
 	}
 
-	static void from_json(const json& j, Color4& rhs) {
+	static void from_json(const json& j, ColorRGBA& rhs) {
 		if (j.contains("R") && j.at("R").is_number_float()) {
 			rhs.red = j["R"];
 		}
@@ -123,8 +123,8 @@ struct adl_serializer<Color4> {
 		}
 	}
 };
-#endif // COLOR4_SERIALIZER_DEFINED
-#endif // COLOR4_SERIALIZER
+#endif // COLOR_RGBA_SERIALIZER_DEFINED
+#endif // COLOR_RGBA_SERIALIZER
 
 // Quaternion <-> Json Serializer
 #ifdef QUATERNION_SERIALIZER

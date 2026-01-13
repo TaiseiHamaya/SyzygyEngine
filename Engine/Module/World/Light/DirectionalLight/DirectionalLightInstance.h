@@ -2,12 +2,12 @@
 
 #include "../BaseLightInstance.h"
 
-#include <Library/Math/Color3.h>
+#include <Library/Math/ColorRGB.h>
 
 namespace szg {
 
 struct DirectionalLightData {
-	Color3 color; // 色
+	ColorRGB color; // 色
 	r32 intensity{ 1 }; // 輝度
 	Vector3 direction{ -CVector3::BASIS_Y }; // 向き
 };

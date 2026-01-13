@@ -87,7 +87,7 @@ void StringRectDrawExecutor::write_to_buffer(Reference<const StringRectInstance>
 	strings[stringIndex] = stringBuffer;
 
 	// MaterialDataBuffer4書き込み
-	MaterialDataBuffer4 materialData{
+	MaterialDataBufferRGBA materialData{
 		.color = instance->get_material().color,
 		.lighting = LighingType::None,
 		.shininess = 0.0f,

@@ -24,7 +24,7 @@ void SkinningMeshDrawExecutor::reinitialize(std::shared_ptr<const PolygonMesh> m
 	matrices.initialize(maxInstance);
 	// Material初期化
 	materials.resize(mesh->material_count());
-	for (StructuredBuffer<MaterialDataBuffer3>& material : materials) {
+	for (StructuredBuffer<MaterialDataBufferRGB>& material : materials) {
 		material.initialize(maxInstance);
 	}
 	// Palette初期化

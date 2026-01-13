@@ -6,7 +6,7 @@
 #include <dxgi1_5.h>
 #include <wrl/client.h>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Utility/Template/Reference.h>
 
 namespace szg {
@@ -37,7 +37,7 @@ public:
 	static Reference<SwapChainRenderTargetGroup> GetRenderTarget();
 	static Reference<ScreenTexture> GetWriteBufferTexture();
 
-	static void SetClearColor(const Color4& color_) noexcept;
+	static void SetClearColor(const ColorRGBA& color_) noexcept;
 	static void EndRenderTarget();
 
 private:

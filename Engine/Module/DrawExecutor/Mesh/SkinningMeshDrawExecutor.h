@@ -17,7 +17,7 @@ namespace szg {
 
 class SkinningMeshInstance;
 struct TransformMatrixDataBuffer;
-struct MaterialDataBuffer3;
+struct MaterialDataBufferRGB;
 struct SkeletonMatrixPaletteWellBuffer;
 
 class SkinningMeshDrawExecutor final : public BaseDrawExecutor<SkinningMeshInstance> {
@@ -39,7 +39,7 @@ private:
 	std::shared_ptr<const SkeletonAsset> skeletonData;
 	
 	StructuredBuffer<TransformMatrixDataBuffer> matrices;
-	std::vector<StructuredBuffer<MaterialDataBuffer3>> materials;
+	std::vector<StructuredBuffer<MaterialDataBufferRGB>> materials;
 	std::vector<MdStructuredBuffer<SkeletonMatrixPaletteWellBuffer>> matrixPalettes; // GPU用Matrix
 	std::vector<ConstantBuffer<u32>> paletteSize;
 

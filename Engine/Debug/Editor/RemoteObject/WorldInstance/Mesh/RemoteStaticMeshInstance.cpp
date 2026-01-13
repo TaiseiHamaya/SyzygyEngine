@@ -92,7 +92,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 	ImGui::Separator();
 	// Material
 	ImGui::Text("Materials");
-	ValueEditor::show_object<Color3> colorSO{ "Color" };
+	ValueEditor::show_object<ColorRGB> colorSO{ "Color" };
 	ValueEditor::show_object<r32> shininessSO{ "Shininess" };
 	for (i32 i = 0; auto& meshMaterial : materials) {
 		std::string treeNodeName;
@@ -120,7 +120,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = colorSO.show_gui(meshMaterial.color);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand<Color3>([&, i = i]() -> Color3& { return materials.at(i).color; });
+					EditorValueChangeCommandHandler::GenCommand<ColorRGB>([&, i = i]() -> ColorRGB& { return materials.at(i).color; });
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -256,8 +256,8 @@ void RemoteStaticMeshInstance::default_material() {
 			EditorValueChangeCommandHandler::End();
 		}
 		{
-			EditorValueChangeCommandHandler::GenCommand<Color3>([&, i = i]() -> Color3& { return materials.at(i).color; });
-			meshMaterial.color = CColor3::WHITE;
+			EditorValueChangeCommandHandler::GenCommand<ColorRGB>([&, i = i]() -> ColorRGB& { return materials.at(i).color; });
+			meshMaterial.color = CColorRGB::WHITE;
 			EditorValueChangeCommandHandler::End();
 		}
 		{

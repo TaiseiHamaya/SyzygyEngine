@@ -6,7 +6,7 @@ using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteDirectionalLightInstance::setup() {

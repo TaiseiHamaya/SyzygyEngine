@@ -876,10 +876,10 @@
     <ClCompile Include="Library\Math\Basis.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Math\Color3.cpp">
+    <ClCompile Include="Library\Math\ColorRGB.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Math\Color4.cpp">
+    <ClCompile Include="Library\Math\ColorRGBA.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
     <ClCompile Include="Library\Math\Hierarchy.cpp">
@@ -1488,10 +1488,10 @@
     <ClInclude Include="Library\Math\Basis.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Math\Color3.h">
+    <ClInclude Include="Library\Math\ColorRGB.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Math\Color4.h">
+    <ClInclude Include="Library\Math\ColorRGBA.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
     <ClInclude Include="Library\Math\Definition.h">

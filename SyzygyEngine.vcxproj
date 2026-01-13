@@ -432,8 +432,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\main.cpp" />
     <ClCompile Include="Library\Math\Affine.cpp" />
     <ClCompile Include="Library\Math\Basis.cpp" />
-    <ClCompile Include="Library\Math\Color3.cpp" />
-    <ClCompile Include="Library\Math\Color4.cpp" />
+    <ClCompile Include="Library\Math\ColorRGB.cpp" />
+    <ClCompile Include="Library\Math\ColorRGBA.cpp" />
     <ClCompile Include="Library\Math\Hierarchy.cpp" />
     <ClCompile Include="Library\Math\Matrix3x3.cpp" />
     <ClCompile Include="Library\Math\Matrix4x4.cpp" />
@@ -984,8 +984,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\resource.h" />
     <ClInclude Include="Library\Math\Affine.h" />
     <ClInclude Include="Library\Math\Basis.h" />
-    <ClInclude Include="Library\Math\Color3.h" />
-    <ClInclude Include="Library\Math\Color4.h" />
+    <ClInclude Include="Library\Math\ColorRGB.h" />
+    <ClInclude Include="Library\Math\ColorRGBA.h" />
     <ClInclude Include="Library\Math\Definition.h" />
     <ClInclude Include="Library\Math\Fraction.h" />
     <ClInclude Include="Library\Math\Hierarchy.h" />

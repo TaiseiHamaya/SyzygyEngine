@@ -16,7 +16,7 @@ void StaticMeshDrawExecutor::reinitialize(std::shared_ptr<const PolygonMesh> ass
 	maxInstance = maxInstance_;
 	matrices.initialize(maxInstance);
 	materials.resize(asset->material_count());
-	for (StructuredBuffer<MaterialDataBuffer3>& material : materials) {
+	for (StructuredBuffer<MaterialDataBufferRGB>& material : materials) {
 		material.initialize(maxInstance);
 	}
 }
