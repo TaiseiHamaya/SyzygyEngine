@@ -322,6 +322,7 @@ constexpr Vector2 BASIS_Y{ 0.0f, 1.0f }; // x(0.0f), y(1.0f)
 constexpr Vector2 BASIS{ 1.0f, 1.0f }; // x(1.0f), y(1.0f)
 constexpr Vector2 ONE{ BASIS }; // x(0.0f), y(0.0f)
 constexpr Vector2 ZERO{ 0.0f, 0.0f }; // x(0.0f), y(0.0f)
+constexpr Vector2 HALF{ 0.5f, 0.5f }; // x(0.5f), y(0.5f)
 constexpr Vector2 INFINTY{ std::numeric_limits<r32>::infinity(),std::numeric_limits<r32>::infinity() };
 constexpr Vector2 INFINTY_X{ std::numeric_limits<r32>::infinity(),0 };
 constexpr Vector2 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity() };
