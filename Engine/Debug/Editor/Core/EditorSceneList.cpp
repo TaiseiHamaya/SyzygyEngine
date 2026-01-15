@@ -42,6 +42,10 @@ void EditorSceneList::add_scene(const std::string& sceneName) {
 	sceneList.emplace(sceneName);
 }
 
+const std::set<std::string>& szg::EditorSceneList::scene_list_imm() const noexcept {
+	return sceneList;
+}
+
 void EditorSceneList::export_scene_list() {
 	nlohmann::json json;
 	for (const auto& scene : sceneList) {

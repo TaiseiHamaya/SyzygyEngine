@@ -17,6 +17,8 @@ public:
 
 	void add_scene(const std::string& sceneName);
 
+	const std::set<std::string>& scene_list_imm() const noexcept;
+
 private:
 	void export_scene_list();
 

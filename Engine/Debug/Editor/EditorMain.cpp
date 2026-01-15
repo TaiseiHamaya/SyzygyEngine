@@ -70,14 +70,28 @@ void EditorMain::Setup() {
 	instance.hierarchy.setup(instance.selectObject, instance.sceneView);
 
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
-	JsonAsset json;
-	if (!std::filesystem::exists(filePath)) {
-		instance.isActiveEditor = false;
-		szgWarning("The file required to start the editor was not found.");
+	std::string sceneName;
+	if (std::filesystem::exists(filePath)) {
+		// 直前に開いていたシーン情報がある場合はそれを開く
+		JsonAsset json{ "./Game/DebugData/Editor.json" };
+		sceneName = json.try_emplace<std::string>("LastLoadedScene");
+	}
+	else {
+		// ない場合
+		szgInformation("The file required to start the editor was not found.");
+		// シーン一覧を検索
+		auto sceneListImm = instance.sceneList.scene_list_imm();
+		if (sceneListImm.empty()) {
+			// シーンが一つも登録されていない場合
+			szgWarning("No scenes are registered. Create a scene first.");
+			sceneName = "";
+		}
+		else {
+			// 50音順先頭のシーンが開く
+			sceneName = *sceneListImm.begin();
+		}
 	}
 
-	json.load("./Game/DebugData/Editor.json");
-	std::string sceneName = json.try_emplace<std::string>("LastLoadedScene");
 	instance.hierarchy.load(sceneName);
 	instance.renderDAG.load(sceneName);
 }
@@ -114,7 +128,7 @@ void EditorMain::DrawBase() {
 		// 選択オブジェクトのリセット
 		instance.selectObject.set_item(nullptr);
 		// コマンドのリセット
-		EditorCommandInvoker::ResetHistoryForce();
+		EditorCommandInvoker::ClearHistoryForce();
 		// RenderDAGのロード
 		instance.isHotReload = true;
 		instance.switchSceneName = std::nullopt;

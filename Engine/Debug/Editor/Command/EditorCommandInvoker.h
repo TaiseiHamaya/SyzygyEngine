@@ -19,7 +19,7 @@ public:
 	static void Execute(std::unique_ptr<IEditorCommand> command);
 	static void Redo();
 	static void Undo();
-	static void ResetHistoryForce();
+	static void ClearHistoryForce();
 
 private:
 	std::optional<u64> recent;
