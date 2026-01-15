@@ -20,7 +20,7 @@ void RadialBlurPipeline::initialize() {
 	pipelineState->set_name("RadialBlurPipeline");
 	primitiveTopology = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	*data.data_mut() = Data{
-		Vector2{0.5f, 0.5f},
+		CVector2::HALF,
 		0.4f,
 		0.1f,
 		1
