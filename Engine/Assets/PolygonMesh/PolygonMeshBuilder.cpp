@@ -18,6 +18,8 @@ using namespace szg;
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 
+bool LoadMeshAssimp(const std::filesystem::path& filePath, std::vector<PolygonMesh::MeshData>& meshData, std::unordered_map<std::string, PolygonMesh::MeshMaterialData>& materialData);
+
 PolygonMeshBuilder::PolygonMeshBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_, "Models");
 }
