@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <string>
 #include <vector>
 
 #include <Library/Utility/Template/Reference.h>
