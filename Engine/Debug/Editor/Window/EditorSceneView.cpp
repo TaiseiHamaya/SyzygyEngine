@@ -230,52 +230,6 @@ void EditorSceneView::write_primitive(Reference<const RemoteWorldObject> world, 
 	worldViews.at(world->get_id()).view.register_primitive(primitiveName, affine);
 }
 
-std::optional<u32> EditorSceneView::get_layer(Reference<const RemoteWorldObject> world) const {
-	if (!worldViews.contains(world->get_id())) {
-		return std::nullopt;
-	}
-	return worldViews.at(world->get_id()).layer;
-}
-
-Reference<EditorWorldView> EditorSceneView::get_world_view(Reference<const RemoteWorldObject> world) {
-	if (!worldViews.contains(world->get_id())) {
-		return nullptr;
-	}
-	return worldViews.at(world->get_id()).view;
-}
-
-Reference<EditorWorldView> EditorSceneView::get_current_world_view() {
-	if (worldViews.empty() || !selectWorldId.has_value() || !worldViews.contains(selectWorldId.value())) {
-		return nullptr;
-	}
-	return worldViews[selectWorldId.value()].view;
-}
-
-bool EditorSceneView::is_hovered_window() {
-	return
-		(isActive && isHoverWindow) ||
-		!ImGui::GetIO().WantCaptureMouse;
-}
-
-const Vector2& EditorSceneView::view_origin() const {
-	return origin;
-}
-
-const Vector2& EditorSceneView::view_size() const {
-	return size;
-}
-
-Reference<ImDrawList> EditorSceneView::draw_list() const {
-	return drawList;
-}
-
-Reference<const EditorDebugCamera> EditorSceneView::query_debug_camera() {
-	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
-		return worldViews[selectWorldId.value()].view.get_camera();
-	}
-	return nullptr;
-}
-
 void EditorSceneView::copy_screen() {
 	auto& command = DxCommand::GetCommandList();
 	Reference<ScreenTexture> screen = DxSwapChain::GetWriteBufferTexture();
@@ -295,7 +249,7 @@ void EditorSceneView::set_imgui_command() {
 	}
 
 	screenResultTexture.start_read();
-	ImGui::Begin("Scene", &isActive, ImGuiWindowFlags_NoScrollbar);
+	ImGui::Begin("SceneView", &isActive, ImGuiWindowFlags_NoScrollbar);
 
 	update_focus();
 
@@ -356,6 +310,52 @@ void EditorSceneView::set_imgui_command() {
 
 	ImGui::EndTabBar();
 	ImGui::End();
+}
+
+std::optional<u32> EditorSceneView::get_layer(Reference<const RemoteWorldObject> world) const {
+	if (!worldViews.contains(world->get_id())) {
+		return std::nullopt;
+	}
+	return worldViews.at(world->get_id()).layer;
+}
+
+Reference<EditorWorldView> EditorSceneView::get_world_view(Reference<const RemoteWorldObject> world) {
+	if (!worldViews.contains(world->get_id())) {
+		return nullptr;
+	}
+	return worldViews.at(world->get_id()).view;
+}
+
+Reference<EditorWorldView> EditorSceneView::get_current_world_view() {
+	if (worldViews.empty() || !selectWorldId.has_value() || !worldViews.contains(selectWorldId.value())) {
+		return nullptr;
+	}
+	return worldViews[selectWorldId.value()].view;
+}
+
+bool EditorSceneView::is_hovered_window() {
+	return
+		(isActive && isHoverWindow) ||
+		!ImGui::GetIO().WantCaptureMouse;
+}
+
+const Vector2& EditorSceneView::view_origin() const {
+	return origin;
+}
+
+const Vector2& EditorSceneView::view_size() const {
+	return size;
+}
+
+Reference<ImDrawList> EditorSceneView::draw_list() const {
+	return drawList;
+}
+
+Reference<const EditorDebugCamera> EditorSceneView::query_debug_camera() {
+	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
+		return worldViews[selectWorldId.value()].view.get_camera();
+	}
+	return nullptr;
 }
 
 #endif // DEBUG_FEATURES_ENABLE

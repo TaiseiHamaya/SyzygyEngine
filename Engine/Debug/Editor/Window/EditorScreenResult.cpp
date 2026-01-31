@@ -37,7 +37,7 @@ void EditorScreenResult::set_imgui_command() {
 		return;
 	}
 
-	ImGui::Begin("SceneView", &isActive, ImGuiWindowFlags_NoScrollbar);
+	ImGui::Begin("Screen", &isActive, ImGuiWindowFlags_NoScrollbar);
 
 	update_focus();
 

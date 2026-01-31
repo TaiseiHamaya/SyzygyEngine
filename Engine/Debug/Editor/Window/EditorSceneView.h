@@ -56,6 +56,10 @@ public:
 	void register_directional_light(Reference<const RemoteWorldObject> world, Reference<const DirectionalLightInstance> lightInstance);
 	void write_primitive(Reference<const RemoteWorldObject> world, const std::string& primitiveName, const Affine& affine);
 
+private:
+	void copy_screen();
+	void set_imgui_command();
+
 public:
 	std::optional<u32> get_layer(Reference<const RemoteWorldObject> world) const;
 
@@ -63,16 +67,13 @@ public:
 	Reference<EditorWorldView> get_current_world_view();
 
 	bool is_hovered_window();
+
 	const Vector2& view_origin() const;
 	const Vector2& view_size() const;
 
 	Reference<ImDrawList> draw_list() const;
 
 	Reference<const EditorDebugCamera> query_debug_camera();
-
-private:
-	void copy_screen();
-	void set_imgui_command();
 
 private:
 	bool isHoverWindow{ false };
