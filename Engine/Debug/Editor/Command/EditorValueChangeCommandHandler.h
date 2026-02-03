@@ -40,13 +40,11 @@ public:
 template<typename T>
 	requires std::copyable<T>
 void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
-	EditorValueChangeCommand<T>* command
-		= new EditorValueChangeCommand<T>(target);
-
-	Start([command]() {
+	Start([target]() {
+		std::unique_ptr<EditorValueChangeCommand<T>> command = std::make_unique<EditorValueChangeCommand<T>>(target);
 		command->prepare();
 		EditorCommandInvoker::Execute(
-			std::unique_ptr<EditorValueChangeCommand<T>>(command)
+			std::move(command)
 		);
 	});
 };
@@ -54,13 +52,11 @@ void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
 template<typename T>
 	requires std::copyable<T>
 void EditorValueChangeCommandHandler::GenCommand(std::function<T& ()> function) {
-	EditorValueChangeCommandLambda<T>* command
-		= new EditorValueChangeCommandLambda<T>(function);
-
-	Start([command]() {
+	Start([function]() {
+		std::unique_ptr<EditorValueChangeCommandLambda<T>> command = std::make_unique<EditorValueChangeCommandLambda<T>>(function);
 		command->prepare();
 		EditorCommandInvoker::Execute(
-			std::unique_ptr<EditorValueChangeCommandLambda<T>>(command)
+			std::move(command)
 		);
 	});
 };
