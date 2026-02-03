@@ -2,8 +2,6 @@
 
 using namespace szg;
 
-#include <memory>
-
 #include <dxgidebug.h>
 
 #pragma comment(lib, "d3d12.lib")
@@ -41,7 +39,7 @@ void DxCore::Initialize() {
 	DSVDescriptorHeap::Initialize();
 	// シェーダーコンパイラ初期化
 	DxcManager::Initialize();
-	// Swapchain初期化
+	// SwapChain初期化
 	DxSwapChain::Initialize();
 	// DepthStencilの初期化
 	RenderingSystemValues::Initialize();
