@@ -332,7 +332,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.cpp" />
