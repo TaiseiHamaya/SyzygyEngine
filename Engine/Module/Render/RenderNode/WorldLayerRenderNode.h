@@ -58,6 +58,11 @@ public:
 
 	void stack_command() override;
 
+private:
+	void execute_gbuffer_pass();
+	void execute_lighting_pass();
+	void execute_forward_pass();
+
 public:
 	const Data& data_imm() const;
 

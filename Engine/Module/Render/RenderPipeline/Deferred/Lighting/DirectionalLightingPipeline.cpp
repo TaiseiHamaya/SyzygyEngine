@@ -15,20 +15,6 @@ void DirectionalLightingPipeline::initialize() {
 	create_pipeline_state();
 	pipelineState->set_name("DirectionalLightingPipeline");
 	primitiveTopology = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	depthTexture = RenderingSystemValues::GetDepthStencilTexture();
-}
-
-void DirectionalLightingPipeline::stack_lighting_command() {
-	for (u32 i = 0; i < DeferredAdaptor::NUM_GBUFFER; ++i) {
-		gBufferTextures[i]->start_read();
-		gBufferTextures[i]->get_as_srv()->use(i + 2);
-	}
-	depthTexture->start_read();
-	depthTexture->get_as_srv()->use(4);
-}
-
-void DirectionalLightingPipeline::set_gbuffers(std::array<Reference<RenderTexture>, DeferredAdaptor::NUM_GBUFFER> gBufferTextures_) {
-	gBufferTextures = gBufferTextures_;
 }
 
 void DirectionalLightingPipeline::create_pipeline_state() {
