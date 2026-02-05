@@ -10,7 +10,7 @@ using namespace szg;
 
 void WorldLayerRenderNode::setup(Data&& data_) {
 	data = std::move(data_);
-	subtree.setup(data.gBuffer.texture);
+	subtree.setup();
 }
 
 void WorldLayerRenderNode::stack_command() {
@@ -29,68 +29,84 @@ void WorldLayerRenderNode::stack_command() {
 	auto&& commandList = DxCommand::GetCommandList();
 	Reference<DepthStencilTexture> depthStencilTexture = RenderingSystemValues::GetDepthStencilTexture();
 
-	// RenderTargetの設定
-	// ViewPortの設定
-	commandList->RSSetViewports(1, &data.gBuffer.viewport);
-	// シザー矩形の設定
-	commandList->RSSetScissorRects(1, &data.gBuffer.rect);
-	data.gBuffer.renderTarget->begin_write(true, depthStencilTexture);
-	depthStencilTexture->start_write();
-	if (data.layerData.isClearDepthStencil) {
-		depthStencilTexture->get_as_dsv()->clear();
+	{
+		// ----- GBufferPass -----
+		// RenderTargetの設定
+		// ViewPortの設定
+		commandList->RSSetViewports(1, &data.gBuffer.viewport);
+		// シザー矩形の設定
+		commandList->RSSetScissorRects(1, &data.gBuffer.rect);
+		data.gBuffer.renderTarget->begin_write(true, depthStencilTexture);
+		depthStencilTexture->start_write();
+		if (data.layerData.isClearDepthStencil) {
+			depthStencilTexture->get_as_dsv()->clear();
+		}
+		// StaticMesh
+		subtree.begin_nodes();
+		camera->register_world_projection(2);
+		data.layerData.worldRenderCollection->staticMeshDrawManager.draw_layer(data.layerData.index);
+
+		// SkinningMesh
+		subtree.next_node();
+		camera->register_world_projection(2);
+		data.layerData.worldRenderCollection->skinningMeshDrawManager.draw_layer(data.layerData.index);
 	}
 
-	// ----- GBufferPass -----
-	// StaticMesh
-	subtree.begin_nodes();
-	camera->register_world_projection(2);
-	data.layerData.worldRenderCollection->staticMeshDrawManager.draw_layer(data.layerData.index);
+	{
+		// ----- LightingPass -----
+		// 各種テクスチャのread
+		for (i32 i = 0; i < DeferredAdaptor::NUM_GBUFFER; ++i) {
+			data.gBuffer.texture[i]->start_read();
+		}
+		depthStencilTexture->start_read();
+		// ViewPortの設定
+		commandList->RSSetViewports(1, &data.layerData.viewport);
+		// シザー矩形の設定
+		commandList->RSSetScissorRects(1, &data.layerData.rect);
+		data.outputRenderTargetGroup->begin_write(data.layerData.isClearRenderTarget, depthStencilTexture);
 
-	// SkinningMesh
-	subtree.next_node();
-	camera->register_world_projection(2);
-	data.layerData.worldRenderCollection->skinningMeshDrawManager.draw_layer(data.layerData.index);
+		// NonLightingPixel
+		subtree.next_node();
+		data.gBuffer.texture[0]->get_as_srv()->use(0);
+		commandList->DrawInstanced(3, 1, 0, 0);
 
-	// ----- LightingPass -----
-	// ViewPortの設定
-	commandList->RSSetViewports(1, &data.layerData.viewport);
-	// シザー矩形の設定
-	commandList->RSSetScissorRects(1, &data.layerData.rect);
-	data.outputRenderTargetGroup->begin_write(data.layerData.isClearRenderTarget, depthStencilTexture);
+		// DirectionalLighting
+		subtree.next_node();
+		for (u32 i = 0; i < DeferredAdaptor::NUM_GBUFFER; ++i) {
+			data.gBuffer.texture[i]->get_as_srv()->use(i + 2);
+		}
+		depthStencilTexture->get_as_srv()->use(4);
+		camera->register_world_lighting(1);
+		data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].draw_command();
 
-	data.gBuffer.texture[0]->start_read();
-	data.gBuffer.texture[1]->start_read();
-	depthStencilTexture->start_read();
+		// PointLighting
+		subtree.next_node();
+		for (u32 i = 0; i < DeferredAdaptor::NUM_GBUFFER; ++i) {
+			data.gBuffer.texture[i]->get_as_srv()->use(i + 2);
+		}
+		depthStencilTexture->get_as_srv()->use(4);
+		camera->register_world_projection(1);
+		camera->register_world_lighting(6);
+		data.layerData.outputTextureSize.stack_command(7);
+		data.layerData.worldRenderCollection->pointLightingExecutors[data.layerData.index].draw_command();
+	}
 
-	// NonLightingPixel
-	subtree.next_node(); // 自動実行
+	{
+		// ----- PrimitivePass -----
+		// Rect
+		subtree.next_node();
+		depthStencilTexture->start_write();
+		data.outputRenderTargetGroup->begin_write(false, depthStencilTexture);
+		camera->register_world_projection(3);
+		camera->register_world_lighting(4);
+		data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
+		data.layerData.worldRenderCollection->rect3dDrawManager.draw_layer(data.layerData.index);
 
-	// DirectionalLighting
-	subtree.next_node();
-	camera->register_world_lighting(1);
-	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].draw_command();
-
-	// PointLighting
-	subtree.next_node();
-	camera->register_world_projection(1);
-	camera->register_world_lighting(6);
-	data.layerData.outputTextureSize.stack_command(7);
-	data.layerData.worldRenderCollection->pointLightingExecutors[data.layerData.index].draw_command();
-
-	// ----- PrimitivePass -----
-	// Rect
-	subtree.next_node();
-	depthStencilTexture->start_write();
-	data.outputRenderTargetGroup->begin_write(false, depthStencilTexture);
-	camera->register_world_projection(3);
-	camera->register_world_lighting(4);
-	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
-	data.layerData.worldRenderCollection->rect3dDrawManager.draw_layer(data.layerData.index);
-
-	// StringRect
-	subtree.next_node();
-	camera->register_world_projection(3);
-	data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer(data.layerData.index);
+		// StringRect
+		subtree.next_node();
+		camera->register_world_projection(3);
+		data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer(data.layerData.index);
+	}
 
 	subtree.next_node();
 }

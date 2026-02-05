@@ -19,15 +19,8 @@ public:
 
 	void preprocess() override {};
 
-	void stack_lighting_command();
-
-	void set_gbuffers(Reference<RenderTexture> gBufferColorTexture_);
-
 private:
 	void create_pipeline_state();
-
-private:
-	Reference<RenderTexture> gBufferColorTexture;
 };
 
 }; // szg
