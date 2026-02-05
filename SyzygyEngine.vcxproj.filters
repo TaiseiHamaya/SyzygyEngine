@@ -1714,7 +1714,6 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
