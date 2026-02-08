@@ -138,7 +138,7 @@ void WinApp::Initialize() {
 	// システム使用のアセットをロード
 	// メッシュ
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/ErrorObject/ErrorObject.obj");
-	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Grid/Grid.obj");
+	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Grid/Grid.gltf");
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Camera/CameraAxis.obj");
 	// テクスチャ
 	TextureLibrary::RegisterLoadQue("[[szg]]/White.png");
