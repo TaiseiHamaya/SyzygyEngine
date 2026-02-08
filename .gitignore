@@ -332,3 +332,5 @@ FodyWeavers.xsd
 
 # Ignore imgui settings
 imgui.ini
+
+*.blend1
