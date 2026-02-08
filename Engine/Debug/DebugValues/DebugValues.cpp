@@ -3,7 +3,7 @@
 using namespace szg;
 
 DebugValues::DebugValues() {
-	gridMesh = std::make_unique<StaticMeshInstance>("Grid.obj");
+	gridMesh = std::make_unique<StaticMeshInstance>("Grid.gltf");
 }
 
 DebugValues& DebugValues::GetInstance() {
