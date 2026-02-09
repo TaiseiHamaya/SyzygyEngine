@@ -41,6 +41,8 @@ public:
 
 	static bool IsRuntimeInput();
 
+	static void HandleDropFile(const std::filesystem::path& filePath);
+
 private:
 	void set_imgui_command();
 

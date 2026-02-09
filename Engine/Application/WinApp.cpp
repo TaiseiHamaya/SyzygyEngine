@@ -362,6 +362,7 @@ void WinApp::ShowAppWindow() {
 	if (!ProjectSettings::GetApplicationSettingsImm().hideWindowForce) {
 		ShowWindow(GetInstance().hWnd, SW_SHOW);
 		szgInformation("Show application window.");
+		DragAcceptFiles(GetInstance().hWnd, TRUE); // Drag＆Dropを受け付ける
 	}
 
 #ifdef DEBUG_FEATURES_ENABLE
@@ -388,6 +389,21 @@ void WinApp::ProcessMessage() {
 			return;
 		}
 		switch (instance.msg.message) {
+#ifdef DEBUG_FEATURES_ENABLE
+		case WM_DROPFILES: // ファイルがドロップされた
+			szgInformation("Dropped File.");
+			{
+				wchar_t filePathW[MAX_PATH]{};
+				HDROP hDrop = reinterpret_cast<HDROP>(instance.msg.wParam);
+				UINT fileCount = DragQueryFileW(hDrop, 0xFFFFFFFF, nullptr, 0);
+				for (UINT i = 0; i < fileCount; ++i) {
+					DragQueryFileW(hDrop, i, filePathW, MAX_PATH);
+					EditorMain::HandleDropFile(filePathW);
+				}
+				DragFinish(hDrop);
+			}
+			break;
+#endif // DEBUG_FEATURES_ENABLE
 		case WM_QUIT: // windowの×ボタンが押されたら通知
 			instance.isEndApp = true;
 			break;

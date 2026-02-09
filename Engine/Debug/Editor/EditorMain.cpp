@@ -227,6 +227,11 @@ bool szg::EditorMain::IsRuntimeInput() {
 		!instance.isActiveEditor;
 }
 
+void szg::EditorMain::HandleDropFile(const std::filesystem::path& filePath) {
+	EditorMain& instance = GetInstance();
+	instance.assetBrowser.on_drop_file(filePath);
+}
+
 void EditorMain::set_imgui_command() {
 	r32 menuHight{ 0 };
 
