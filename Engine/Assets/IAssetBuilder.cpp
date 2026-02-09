@@ -27,7 +27,7 @@ std::filesystem::path IAssetBuilder::ResolveFilePath(const std::filesystem::path
 #endif // DEBUG_FEATURES_ENABLE
 	// ファイル名のみor一部ディレクトリの続きの場合
 	else {
-		std::filesystem::path result{ "./Game/Resources/" };
+		std::filesystem::path result{ "./Game/Assets/" };
 		if (!subdirectory.empty()) {
 			result /= subdirectory;
 		}
