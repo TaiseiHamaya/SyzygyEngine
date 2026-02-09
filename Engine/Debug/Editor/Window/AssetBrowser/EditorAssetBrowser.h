@@ -7,7 +7,7 @@
 
 #include <Library/Math/Vector2.h>
 
-#include "./EditorAssetPackageLoader.h"
+#include "./EditorAssetImporter.h"
 
 namespace szg {
 
@@ -36,6 +36,8 @@ private:
 	// ファイルの内容を描画
 	void draw_file_content(const std::string& name, bool isDirectory, i32 idx);
 
+	void update_importer();
+
 private:
 	enum class AssetRootType {
 		UNSELECT,
@@ -52,7 +54,7 @@ private:
 	std::filesystem::path currentDirectory;
 	std::string selectFileName;
 
-	EditorAssetPackageLoader assetPackageLoader;
+	EditorAssetImporter assetImporter;
 
 	Vector2 lastCursorPos;
 	r32 nextLinePosY;

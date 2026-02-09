@@ -184,7 +184,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
@@ -228,7 +229,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorValueField.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandInvoker.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandReparent.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandScope.cpp" />
@@ -376,7 +377,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp" />
     <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
@@ -458,6 +459,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -560,7 +562,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
@@ -633,7 +636,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\DebugValues\DebugValues.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorValueField.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandInvoker.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandReparent.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandResizeContainer.h" />
@@ -785,7 +788,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h" />
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
@@ -1030,6 +1033,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Loader\SceneAssetListLoader.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
     <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">

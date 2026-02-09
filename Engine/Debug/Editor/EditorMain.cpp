@@ -18,10 +18,8 @@ using namespace szg;
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilderManager.h"
+#include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
-
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilder.h"
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();
@@ -33,7 +31,6 @@ void EditorMain::Initialize() {
 	instance.screenResult.initialize(true);
 
 	FontAtlasBuilderManager::Initialize();
-	//FontAtlasBuilder{}.entry_point("./SyzygyEngine/EngineResources/Misc/UDEVGothic35HS-Regular.ttf");
 }
 
 void EditorMain::Finalize() {

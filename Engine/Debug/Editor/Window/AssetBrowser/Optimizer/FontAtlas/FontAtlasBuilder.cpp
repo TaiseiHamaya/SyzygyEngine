@@ -16,14 +16,14 @@ using namespace szg;
 
 using namespace msdf_atlas;
 
-void FontAtlasBuilder::entry_point(const std::filesystem::path& path) {
-	ttfFilePath = path;
+void FontAtlasBuilder::entry_point(const std::filesystem::path& inputFile, const std::filesystem::path& outputPath) {
+	ttfFilePath = inputFile;
 
 	// ロード
 	load_glyphs();
 
-	save_mtsdf_texture();
-	save_atlas_data();
+	save_mtsdf_texture(outputPath);
+	save_atlas_data(outputPath);
 }
 
 void FontAtlasBuilder::load_glyphs() {
@@ -62,7 +62,7 @@ void FontAtlasBuilder::load_glyphs() {
 	destroyFont(font);
 }
 
-void FontAtlasBuilder::save_mtsdf_texture() {
+void FontAtlasBuilder::save_mtsdf_texture(const std::filesystem::path& outputPath) {
 	msdfgen::BitmapConstRef<float, 4> bitmapRef = generator.atlasStorage();
 	HRESULT hr;
 	DirectX::Image image = {}; // 書き込み
@@ -88,15 +88,15 @@ void FontAtlasBuilder::save_mtsdf_texture() {
 	DirectX::TexMetadata metadata = scratchImage.GetMetadata();
 
 	// 保存
-	std::filesystem::path outputPath = ttfFilePath.parent_path() / (ttfFilePath.stem().native() + L".dds");
-	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), metadata, DirectX::DDS_FLAGS_NONE, outputPath.c_str());
+	std::filesystem::path outputFilePath = outputPath.parent_path() / (ttfFilePath.stem().native() + L".dds");
+	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), metadata, DirectX::DDS_FLAGS_NONE, outputFilePath.c_str());
 	assert(SUCCEEDED(hr));
 }
 
-void FontAtlasBuilder::save_atlas_data() {
+void FontAtlasBuilder::save_atlas_data(const std::filesystem::path& outputPath) {
 	JsonAsset json;
-	std::filesystem::path outputPath = ttfFilePath.parent_path() / (ttfFilePath.stem().native() + L".mtsdf");
-	json.load(outputPath);
+	std::filesystem::path outputFilePath = outputPath / (ttfFilePath.stem().native() + L".mtsdf");
+	json.load(outputFilePath);
 	json.get().clear();
 
 	size_t textureWidth = scratchImage.GetMetadata().width;

@@ -31,11 +31,11 @@ void EditorAssetBrowser::draw() {
 	ImGui::End();
 
 	// パッケージ読み込みポップアップ
-	assetPackageLoader.update();
+	update_importer();
 }
 
 void szg::EditorAssetBrowser::on_drop_file(const std::filesystem::path& filePath) {
-	assetPackageLoader.add_package(filePath);
+	assetImporter.add_package(filePath);
 }
 
 void szg::EditorAssetBrowser::draw_header() {
@@ -226,11 +226,28 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 			lastCursorPos.x,
 			lastCursorPos.y + iconSize + padding.y
 		}
-	); 
+	);
 	ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + iconSize);
 	i32 maxLabelLength = static_cast<i32>(iconSize / 2.6f);
 	std::string label = name.size() > maxLabelLength ? name.substr(0, maxLabelLength - 3) + "..." : name;
 	ImGui::Text(label.c_str());
 
 	nextLinePosY = std::max(nextLinePosY, ImGui::GetCursorPosY() + padding.y);
+}
+
+void szg::EditorAssetBrowser::update_importer() {
+	// 保存先ディレクトリの設定
+	auto directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
+
+	if (std::filesystem::is_directory(directory) && rootType == AssetRootType::GAME) {
+		// フォルダの場合ディレクトリを更新
+		assetImporter.import_filepath_mut() = directory;
+	}
+	else {
+		// ファイルの場合、保存できない状態にする
+		assetImporter.import_filepath_mut().reset();
+	}
+
+	// 更新
+	assetImporter.update();
 }

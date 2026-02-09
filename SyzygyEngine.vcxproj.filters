@@ -1724,7 +1724,9 @@
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -1785,7 +1787,9 @@
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
@@ -1806,7 +1810,7 @@
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\TightAtlasPacker.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Contour.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\contour-combiners.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\convergent-curve-ordering.cpp" />
@@ -1839,7 +1843,7 @@
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp" />
     <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
@@ -1880,7 +1884,7 @@
     <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.h" />
     <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utils.hpp" />
     <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h" />
     <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\artery-font.h" />
     <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.h" />
     <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.hpp" />
@@ -2041,7 +2045,7 @@
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h" />
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
