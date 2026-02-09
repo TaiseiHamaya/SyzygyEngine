@@ -108,6 +108,16 @@ void szg::EditorAssetBrowser::draw_assets() {
 
 		// 存在しないディレクトリの場合は親ディレクトリに移動
 		while (!std::filesystem::exists(directory)) {
+			// Rootフォルダまで来ても存在しない場合は作成
+			if (currentDirectory.empty()) {
+				std::error_code ec;
+				std::filesystem::create_directories(ROOT_PATH[static_cast<i32>(rootType)], ec);
+				if (ec) {
+					szgError("Failed to create root asset directory: {}", ec.message());
+				}
+				directory = ROOT_PATH[static_cast<i32>(rootType)];
+				break;
+			}
 			currentDirectory = currentDirectory.parent_path();
 			directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
 		}
@@ -359,7 +369,7 @@ void szg::EditorAssetBrowser::update_importer() {
 }
 
 void szg::EditorAssetBrowser::update_shortcut() {
-		// F2でリネーム開始
+	// F2でリネーム開始
 	if (ImGui::Shortcut(ImGuiKey_F2)) {
 		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::GAME) {
 			isRenaming = true;
