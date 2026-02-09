@@ -163,6 +163,7 @@ void EditorMain::Draw() {
 	instance.hierarchy.draw();
 	instance.inspector.draw();
 	instance.renderDAG.draw();
+	instance.assetBrowser.draw();
 	EditorLogWindow::Draw();
 	if (instance.sceneView.is_active()) {
 		ImGuizmo::SetDrawlist(instance.sceneView.draw_list().ptr());

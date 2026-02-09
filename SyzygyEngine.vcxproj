@@ -184,6 +184,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
@@ -558,6 +560,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetPackageLoader.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />

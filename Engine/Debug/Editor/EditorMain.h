@@ -12,6 +12,7 @@
 #include "./Window/EditorRenderDAG.h"
 #include "./Window/EditorSceneView.h"
 #include "./Window/EditorScreenResult.h"
+#include "./Window/AssetBrowser/EditorAssetBrowser.h"
 #include "RemoteObject/EditorDeletedObjectPool.h"
 
 namespace szg {
@@ -70,6 +71,7 @@ private:
 	EditorDeletedObjectPool deletedPool;
 	EditorSceneList sceneList;
 	EditorRenderDAG renderDAG;
+	EditorAssetBrowser assetBrowser;
 };
 
 }; // szg
