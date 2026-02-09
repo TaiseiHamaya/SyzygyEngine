@@ -359,11 +359,27 @@ void szg::EditorAssetBrowser::update_importer() {
 }
 
 void szg::EditorAssetBrowser::update_shortcut() {
-	if (ImGui::Shortcut(ImGuiKey_F2)) {
 		// F2でリネーム開始
+	if (ImGui::Shortcut(ImGuiKey_F2)) {
 		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::GAME) {
 			isRenaming = true;
 			newFileName = selectFileName;
+		}
+	}
+
+	// Deleteキーで削除
+	if (ImGui::Shortcut(ImGuiKey_Delete)) {
+		if (!selectFileName.empty() && rootType == AssetRootType::GAME) {
+			std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
+			std::error_code ec;
+			std::filesystem::remove_all(directory, ec);
+			if (ec) {
+				szgError("Failed to delete file or directory: {}", ec.message());
+			}
+			else {
+				szgInformation("Deleted file or directory: {}", directory.string());
+				selectFileName.clear();
+			}
 		}
 	}
 }
