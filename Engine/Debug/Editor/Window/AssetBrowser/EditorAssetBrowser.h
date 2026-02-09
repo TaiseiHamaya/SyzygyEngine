@@ -38,6 +38,8 @@ private:
 
 	void update_importer();
 
+	void update_shortcut();
+
 private:
 	enum class AssetRootType {
 		UNSELECT,
@@ -59,6 +61,9 @@ private:
 	Vector2 lastCursorPos;
 	r32 nextLinePosY;
 
+	bool isRenaming{ false };
+	std::string newFileName;
+
 private:
 	static constexpr std::array<string_literal, static_cast<i32>(AssetRootType::MAX)>  ROOT_TAG{
 		"[[Unselect]]",
@@ -68,8 +73,8 @@ private:
 
 	static constexpr std::array<string_literal, static_cast<i32>(AssetRootType::MAX)>  ROOT_PATH{
 		"",
-		"./SyzygyEngine/EngineResources",
-		"./Game/Assets",
+		".\\SyzygyEngine\\EngineResources",
+		".\\Game\\Assets",
 	};
 };
 

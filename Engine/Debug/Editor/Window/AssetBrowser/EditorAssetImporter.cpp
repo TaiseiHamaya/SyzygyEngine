@@ -8,7 +8,7 @@ using namespace szg;
 
 void EditorAssetImporter::add_package(const std::filesystem::path& filePath) {
 	loadAssets.emplace_back(filePath, optimizer.is_support_optimization(filePath.extension()), false);
-	isShowLoadPopup = true;
+	isShowLoadPopup = true; // ポップアップ表示フラグを立てる
 }
 
 void szg::EditorAssetImporter::update() {
@@ -27,6 +27,8 @@ void EditorAssetImporter::show_load_popup() {
 
 	ImGui::Begin("AssetImporter", &isShowLoadPopup, ImGuiWindowFlags_NoDocking);
 
+	// ヘッダー
+	// インポートボタン
 	if (!importFilePath.has_value()) {
 		// 保存できない状態の場合、ボタンを無効化
 		ImGui::BeginDisabled();
@@ -41,6 +43,7 @@ void EditorAssetImporter::show_load_popup() {
 	}
 
 	ImGui::SameLine();
+	// キャンセルボタン
 	if (ImGui::Button("Cancel")) {
 		loadAssets.clear();
 		isShowLoadPopup = false;
@@ -53,6 +56,7 @@ void EditorAssetImporter::show_load_popup() {
 
 	ImGui::Separator();
 
+	// optimize all チェックボックス
 	i32 optimizeState = 0;
 	bool isAllSelected = true;
 	bool isAnySelected = false;
@@ -66,7 +70,7 @@ void EditorAssetImporter::show_load_popup() {
 	optimizeState = isAllSelected ? 0b11 : (isAnySelected ? 0b01 : 0b00);
 	if (ImGui::CheckboxFlags("OptimizeAll", &optimizeState, 0b11)) {
 		if (isAllSelected) {
-			// 全選択解除
+			// 全選択されている場合は全選択解除
 			for (auto& loadInfo : loadAssets) {
 				loadInfo.useOptimization = false;
 			}
@@ -79,13 +83,14 @@ void EditorAssetImporter::show_load_popup() {
 		}
 	}
 
+	// Importするファイルの一覧
 	constexpr i32 columnCount = 2;
 	i32 tableFlags =
-		ImGuiTableFlags_Borders |
-		ImGuiTableFlags_PreciseWidths |
-		ImGuiTableFlags_SizingFixedFit |
-		ImGuiTableFlags_NoHostExtendX |
-		ImGuiTableFlags_RowBg;
+		ImGuiTableFlags_Borders | // 外枠と内枠の表示
+		ImGuiTableFlags_PreciseWidths | // 列幅を正確に指定
+		ImGuiTableFlags_SizingFixedFit | // 列幅の自動調整
+		ImGuiTableFlags_NoHostExtendX | // テーブルの幅をウィンドウ幅に合わせない
+		ImGuiTableFlags_RowBg; // 行の背景色を交互に変更
 
 	ImGui::BeginTable("PackageLoadTable", columnCount, tableFlags);
 	constexpr std::array<string_literal, columnCount> HEADER_NAME = {
@@ -94,7 +99,7 @@ void EditorAssetImporter::show_load_popup() {
 	};
 	ImGui::TableSetupColumn(HEADER_NAME[0], ImGuiTableColumnFlags_PreferSortDescending);
 	ImGui::TableSetupColumn(HEADER_NAME[1]);
-	ImGui::TableHeadersRow();
+	ImGui::TableHeadersRow(); // ヘッダー行の表示
 
 	// TableItem
 	for (auto& loadInfo : loadAssets) {
@@ -109,7 +114,7 @@ void EditorAssetImporter::show_load_popup() {
 		}
 		else {
 			ImGui::TextDisabled("N/A");
-			loadInfo.useOptimization = true;
+			loadInfo.useOptimization = false;
 		}
 
 		// ファイル名
@@ -129,7 +134,11 @@ void szg::EditorAssetImporter::execute_import() {
 		}
 		else {
 			// 最適化しない場合はそのままコピー
-			std::filesystem::copy_file(loadInfo.filePath, importFilePath.value() / loadInfo.filePath.filename(), std::filesystem::copy_options::overwrite_existing);
+			std::filesystem::copy(
+				loadInfo.filePath,
+				importFilePath.value() / loadInfo.filePath.filename(),
+				std::filesystem::copy_options::overwrite_existing
+			);
 		}
 	}
 

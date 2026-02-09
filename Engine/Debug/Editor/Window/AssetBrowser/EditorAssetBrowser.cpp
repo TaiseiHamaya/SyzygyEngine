@@ -3,6 +3,8 @@
 using namespace szg;
 
 #include <imgui.h>
+#include <imgui_stdlib.h>
+#include <Windows.h>
 
 #include "Engine/Application/Logger.h"
 
@@ -20,6 +22,7 @@ void EditorAssetBrowser::draw() {
 
 	ImGui::Separator();
 
+	// フッターの描画
 	draw_footer();
 
 	// 右クリックメニュー
@@ -27,6 +30,9 @@ void EditorAssetBrowser::draw() {
 
 	// Drag＆Drop関連
 	handle_drag_and_drop();
+
+	// ショートカットキーの処理
+	update_shortcut();
 
 	ImGui::End();
 
@@ -39,17 +45,20 @@ void szg::EditorAssetBrowser::on_drop_file(const std::filesystem::path& filePath
 }
 
 void szg::EditorAssetBrowser::draw_header() {
+	// 一つ上のディレクトリに移動ボタン
 	if (ImGui::Button("\ue5d8")) {
-		// ディレクトリを1つ上に移動
 		if (currentDirectory.empty()) {
-			// 未選択状態にする
+			// ルートから更に上に移動しようとした場合はルート未選択状態に戻す
 			rootType = AssetRootType::UNSELECT;
 		}
 		else {
+			// ディレクトリを1つ上に移動
 			currentDirectory = currentDirectory.parent_path();
 		}
+		// 選択ファイルの解除
 		selectFileName.clear();
 	}
+
 	// 現在のディレクトリを表示
 	if (rootType == AssetRootType::UNSELECT) {
 		ImGui::Text(
@@ -71,16 +80,18 @@ void szg::EditorAssetBrowser::draw_assets() {
 	nextLinePosY = 0.0f;
 
 	ImVec2 childSize{ 0.0f, 0.0f };
-	childSize.y = ImGui::GetContentRegionAvail().y - 20;
+	childSize.y = ImGui::GetContentRegionAvail().y - 28; // フッター分を引く
 	ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4{ 0.01f,0.01f,0.01f,1.0f });
 	ImGui::BeginChild("AssetBrowserFolderChild", childSize, ImGuiChildFlags_FrameStyle);
 	ImGui::PopStyleColor();
 
 	// ルートが選択されていない場合は選択肢を表示
 	if (rootType == AssetRootType::UNSELECT) {
+		// エンジン、ゲームのフォルダを表示
 		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::ENGINE)], true, 0);
 		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::GAME)], true, 1);
 
+		// ルートフォルダが選択された場合の処理
 		if (currentDirectory == ROOT_TAG[static_cast<i32>(AssetRootType::ENGINE)]) {
 			rootType = AssetRootType::ENGINE;
 			selectFileName.clear();
@@ -95,6 +106,12 @@ void szg::EditorAssetBrowser::draw_assets() {
 	else {
 		auto directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
 
+		// 存在しないディレクトリの場合は親ディレクトリに移動
+		while (!std::filesystem::exists(directory)) {
+			currentDirectory = currentDirectory.parent_path();
+			directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
+		}
+
 		// ディレクトリ内のファイル一覧を取得してソート
 		std::vector<std::filesystem::directory_entry> entries;
 		for (auto& entry : std::filesystem::directory_iterator{ directory }) {
@@ -102,7 +119,7 @@ void szg::EditorAssetBrowser::draw_assets() {
 		}
 
 		std::ranges::sort(entries, [](const auto& l, const auto& r) {
-			// フォルダ→ファイルの順にソート
+			// フォルダ→ファイルの順になるようソート
 			if (l.is_directory() != r.is_directory()) {
 				return l.is_directory() > r.is_directory();
 			}
@@ -118,8 +135,13 @@ void szg::EditorAssetBrowser::draw_assets() {
 		}
 	}
 
+	// 何もないところをクリックした場合は選択解除
 	if (!ImGui::IsAnyItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
 		selectFileName.clear();
+		if (isRenaming) {
+			isRenaming = false;
+			newFileName.clear();
+		}
 	}
 
 	ImGui::EndChild();
@@ -138,13 +160,60 @@ void szg::EditorAssetBrowser::draw_footer() {
 
 void szg::EditorAssetBrowser::draw_right_click_menu() {
 	// 右クリックメニュー
-	if (ImGui::IsMouseClicked(ImGuiMouseButton_Right) && ImGui::IsWindowHovered()) {
+	if (ImGui::IsMouseClicked(ImGuiMouseButton_Right) && ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows)) {
 		ImGui::OpenPopup("AssetBrowserRightClickMenu");
 	}
 
 	if (ImGui::BeginPopup("AssetBrowserRightClickMenu")) {
+		// エクスプローラーで開く
 		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
+		if (ImGui::MenuItem("Open in Explorer")) {
+			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		}
 
+		if (selectFileName.empty() && rootType == AssetRootType::GAME) {
+			// フォルダーの作成
+			if (ImGui::MenuItem("Create Folder")) {
+				std::filesystem::path newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / "NewFolder";
+				i32 count = 1;
+				while (std::filesystem::exists(newFolderPath)) {
+					newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / std::format("NewFolder({})", count);
+					++count;
+				}
+				std::error_code ec;
+				std::filesystem::create_directory(newFolderPath, ec);
+				if (ec) {
+					szgError("Failed to create folder: {}", ec.message());
+				}
+				else {
+					szgInformation("Created folder: {}", newFolderPath.string());
+					selectFileName = newFolderPath.filename().string();
+					newFileName = selectFileName;
+					isRenaming = true;
+				}
+			}
+		}
+
+		if (!selectFileName.empty() && rootType == AssetRootType::GAME) {
+			// ファイル・フォルダの削除
+			if (ImGui::MenuItem("Delete")) {
+				std::error_code ec;
+				std::filesystem::remove_all(directory, ec);
+				if (ec) {
+					szgError("Failed to delete file or directory: {}", ec.message());
+				}
+				else {
+					szgInformation("Deleted file or directory: {}", directory.string());
+					selectFileName.clear();
+				}
+			}
+
+			// リネーム
+			if (ImGui::MenuItem("Rename")) {
+				isRenaming = true;
+				newFileName = selectFileName;
+			}
+		}
 
 		ImGui::EndPopup();
 	}
@@ -171,7 +240,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 	bool isSelected = (selectFileName == name);
 
 	if (idx % numPerRow != 0) {
-		// 同じ行の場合は同じ行に表示
+		// 同じ行の場合は前回の位置+アイコンサイズ分移動
 		ImGui::SetCursorPos(
 			ImVec2{
 				lastCursorPos.x + (iconSize + padding.x),
@@ -180,20 +249,23 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 		);
 	}
 	else {
+		// 改行
 		ImGui::SetCursorPos(
 			ImVec2{
 				padding.x,
-				nextLinePosY
+				nextLinePosY // 前の行の最大Y位置に移動
 			}
 		);
-		nextLinePosY = 0;
+		nextLinePosY = 0; // リセット
 	}
 
+	// 現在のカーソル位置を保存
 	lastCursorPos = {
 		ImGui::GetCursorPosX(),
 		ImGui::GetCursorPosY()
 	};
 
+	// アイコン表示
 	ImGui::SetNextItemAllowOverlap();
 	i32 flags = ImGuiSelectableFlags_AllowDoubleClick;
 	ImGui::PushFont(ImGui::GetFont(), iconSize);
@@ -221,17 +293,51 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 	}
 
 	// ファイル名表示
-	ImGui::SetCursorPos(
+	ImGui::SetCursorPos( // アイコンの下に移動
 		ImVec2{
 			lastCursorPos.x,
 			lastCursorPos.y + iconSize + padding.y
 		}
 	);
-	ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + iconSize);
-	i32 maxLabelLength = static_cast<i32>(iconSize / 2.6f);
-	std::string label = name.size() > maxLabelLength ? name.substr(0, maxLabelLength - 3) + "..." : name;
-	ImGui::Text(label.c_str());
+	if (isRenaming && isSelected) {
+		// リネーム中
+		ImGui::SetKeyboardFocusHere(); // フォーカスを当てる
+		ImGui::SetNextItemWidth(iconSize); // アイコン幅に合わせる
+		ImGui::InputText(
+			std::format("##Rename{}", selectFileName).c_str(),
+			&newFileName,
+			ImGuiInputTextFlags_AutoSelectAll |
+			ImGuiInputTextFlags_EnterReturnsTrue |
+			ImGuiInputTextFlags_EscapeClearsAll
+		);
 
+		if (ImGui::IsItemDeactivated()) { // フォーカスが外れた場合も確定扱い
+			if (!newFileName.empty() && selectFileName != newFileName) {
+				// リネーム処理
+				std::filesystem::path oldPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / name;
+				std::filesystem::path newPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / newFileName;
+				std::error_code ec;
+				std::filesystem::rename(oldPath, newPath, ec);
+				if (ec) {
+					szgError("Failed to rename file or directory: {}", ec.message());
+				}
+				else {
+					szgInformation("Renamed file or directory: {} -> {}", oldPath.string(), newPath.string());
+					selectFileName = newFileName;
+				}
+			}
+			isRenaming = false;
+			newFileName.clear();
+		}
+	}
+	else {
+		ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + iconSize); // アイコン幅で折り返し
+		i32 maxLabelLength = static_cast<i32>(iconSize / 2.6f);
+		std::string label = name.size() > maxLabelLength ? name.substr(0, maxLabelLength - 3) + "..." : name; // 長すぎる場合は省略
+		ImGui::Text(label.c_str());
+	}
+
+	// 次の行の位置を更新
 	nextLinePosY = std::max(nextLinePosY, ImGui::GetCursorPosY() + padding.y);
 }
 
@@ -250,4 +356,14 @@ void szg::EditorAssetBrowser::update_importer() {
 
 	// 更新
 	assetImporter.update();
+}
+
+void szg::EditorAssetBrowser::update_shortcut() {
+	if (ImGui::Shortcut(ImGuiKey_F2)) {
+		// F2でリネーム開始
+		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::GAME) {
+			isRenaming = true;
+			newFileName = selectFileName;
+		}
+	}
 }
