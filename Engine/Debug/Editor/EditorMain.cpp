@@ -8,7 +8,7 @@ using namespace szg;
 
 #include <imgui.h>
 
-#include "./Core/EditorHierarchyDandD.h"
+#include "./Core/EditorDandDManager.h"
 #include "./Window/EditorLogWindow.h"
 #include "Command/EditorCommandInvoker.h"
 #include "Command/EditorCreateObjectCommand.h"
@@ -167,7 +167,7 @@ void EditorMain::Draw() {
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
 	}
 
-	EditorHierarchyDandD::ExecuteReparent();
+	EditorDandDManager::ExecuteReparent();
 }
 
 void EditorMain::SetActiveEditor(bool isActive) {

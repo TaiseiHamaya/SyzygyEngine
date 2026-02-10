@@ -13,18 +13,18 @@ void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, 
 	if (std::holds_alternative<PerspectiveParameters>(projectionParameters)) {
 		PerspectiveParameters& param = std::get<PerspectiveParameters>(projectionParameters);
 		Vector3 clipBaseScale = {
-			std::tan(param.fovY.cget() * 0.5f) * param.aspectRatio.cget(),
-			std::tan(param.fovY.cget() * 0.5f),
+			std::tan(param.fovY.value_imm() * 0.5f) * param.aspectRatio.value_imm(),
+			std::tan(param.fovY.value_imm() * 0.5f),
 			1.0f,
 		};
 		{ // 遠平面
-			Vector3 scale = clipBaseScale * param.farClip.cget();
+			Vector3 scale = clipBaseScale * param.farClip.value_imm();
 			Affine localAffine = Affine::FromScale(scale);
 			sceneView->write_primitive(world, "Frustum0", localAffine * worldAffine);
 		}
 		{ // 近平面
-			Vector3 scale = clipBaseScale * param.nearClip.cget();
-			Vector3 translate{ 0,0, param.nearClip.cget() };
+			Vector3 scale = clipBaseScale * param.nearClip.value_imm();
+			Vector3 translate{ 0,0, param.nearClip.value_imm() };
 			Affine localAffine = Affine::FromSRT(
 				scale,
 				CQuaternion::IDENTITY,
@@ -36,14 +36,14 @@ void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, 
 	else if (std::holds_alternative<OrthroParameters>(projectionParameters)) {
 		OrthroParameters& orthoParams = std::get<OrthroParameters>(projectionParameters);
 		Vector3 scale = {
-			orthoParams.right.cget() - orthoParams.left.cget(),
-			orthoParams.bottom.cget() - orthoParams.top.cget(),
-			orthoParams.farClip.cget() - orthoParams.nearClip.cget(),
+			orthoParams.right.value_imm() - orthoParams.left.value_imm(),
+			orthoParams.bottom.value_imm() - orthoParams.top.value_imm(),
+			orthoParams.farClip.value_imm() - orthoParams.nearClip.value_imm(),
 		};
 		Vector3 translate = {
-			orthoParams.left.cget(),
-			orthoParams.top.cget(),
-			orthoParams.nearClip.cget(),
+			orthoParams.left.value_imm(),
+			orthoParams.top.value_imm(),
+			orthoParams.nearClip.value_imm(),
 		};
 		Affine localAffine = Affine::FromSRT(scale, CQuaternion::IDENTITY, translate);
 		sceneView->write_primitive(world, "Box", localAffine * worldAffine);

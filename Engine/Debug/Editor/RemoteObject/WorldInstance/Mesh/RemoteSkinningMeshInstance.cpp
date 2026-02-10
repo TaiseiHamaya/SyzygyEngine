@@ -36,7 +36,7 @@ void RemoteSkinningMeshInstance::update_preview(Reference<RemoteWorldObject> wor
 
 	debugVisual->reset_mesh(meshName);
 	debugVisual->localAffine = worldAffine;
-	debugVisual->isDraw = isDraw.cget();
+	debugVisual->isDraw = isDraw.value_imm();
 
 	if (debugVisual->keyID != meshName) {
 		return;

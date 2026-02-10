@@ -8,7 +8,7 @@ using namespace szg;
 
 void RemoteSphereColliderInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<SphereCollider, void*>::update_preview(world, parentAffine);
-	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.cget(), radius.cget(), radius.cget() }) * Affine::FromTranslate(worldAffine.get_origin());
+	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.value_imm(), radius.value_imm(), radius.value_imm() }) * Affine::FromTranslate(worldAffine.get_origin());
 	sceneView->write_primitive(world, "Sphere", primitiveAffine);
 }
 

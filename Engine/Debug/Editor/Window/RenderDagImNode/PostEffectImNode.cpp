@@ -25,9 +25,9 @@ void PostEffectImNode::draw() {
 		data.effectTagName.show_gui();
 	}
 
-	if (ImGui::BeginCombo("Type", postEffectName[data.peType.cget()])) {
+	if (ImGui::BeginCombo("Type", postEffectName[data.peType.value_imm()])) {
 		for (u32 i = 0; i < postEffectName.size(); ++i) {
-			bool isSelected = data.peType.cget() == i;
+			bool isSelected = data.peType.value_imm() == i;
 			if (ImGui::Selectable(postEffectName[i], isSelected)) {
 				if (isSelected) {
 					continue;
@@ -44,7 +44,7 @@ void PostEffectImNode::draw() {
 }
 
 void PostEffectImNode::remove_extra_input_pins() {
-	switch (static_cast<PostEffectType>(data.peType.cget())) {
+	switch (static_cast<PostEffectType>(data.peType.value_imm())) {
 	case PostEffectType::Bloom:
 		dropIN("CombinedTexture");
 		break;
@@ -59,7 +59,7 @@ void PostEffectImNode::remove_extra_input_pins() {
 }
 
 void PostEffectImNode::update_extra_input_pins() {
-	switch (static_cast<PostEffectType>(data.peType.cget())) {
+	switch (static_cast<PostEffectType>(data.peType.value_imm())) {
 	case PostEffectType::Bloom:
 		data.extraInputs.resize(1, 0);
 		addIN<u64>("CombinedTexture", 0ull, ImFlow::ConnectionFilter::SameType());
@@ -85,7 +85,7 @@ void PostEffectImNode::set_data(const Data& data_) {
 }
 
 PostEffectType PostEffectImNode::post_effect_type() const {
-	return static_cast<PostEffectType>(data.peType.cget());
+	return static_cast<PostEffectType>(data.peType.value_imm());
 }
 
 #endif // DEBUG_FEATURES_ENABLE

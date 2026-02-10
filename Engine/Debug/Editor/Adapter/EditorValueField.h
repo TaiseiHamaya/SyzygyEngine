@@ -59,8 +59,8 @@ public:
 		value = value_;
 		EditorValueChangeCommandHandler::End();
 	}
-	T& get() { return value; };
-	const T& cget() const { return value; };
+	T& value_mut() { return value; };
+	const T& value_imm() const { return value; };
 	T copy() const { return value; }
 	std::string_view label() const {
 		return showObject.get_name();

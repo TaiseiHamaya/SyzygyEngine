@@ -32,7 +32,7 @@ void RemoteStringRectInstance::update_preview(Reference<RemoteWorldObject> world
 	debugVisual->isDraw = isDraw;
 	debugVisual->keyID = BlendMode::None;
 
-	debugVisual->reset_string(text.cget());
+	debugVisual->reset_string(text.value_imm());
 	debugVisual->get_material().color = color;
 	if (isChangedValue) {
 		debugVisual->data.pivot = pivot;

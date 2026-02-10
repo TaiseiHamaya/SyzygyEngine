@@ -10,7 +10,7 @@ using namespace szg;
 
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
-#include "../Core/EditorHierarchyDandD.h"
+#include "../Core/EditorDandDManager.h"
 
 void FolderObject::setup() {
 	for (auto& child : children) {
@@ -43,8 +43,8 @@ void FolderObject::draw_hierarchy(Reference<const EditorSelectObject> select) {
 	if (isOpen) {
 		flags |= ImGuiTreeNodeFlags_DefaultOpen;
 	}
-	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.get(), (void*)this).c_str(), flags);
-	EditorHierarchyDandD::CheckDandD(this, parent);
+	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
+	EditorDandDManager::CheckDandDHierarchy(this, parent);
 
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(

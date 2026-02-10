@@ -238,7 +238,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\Command\EditorSelectCommand.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorValueChangeCommandHandler.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorDandDManager.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneList.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSelectObject.cpp" />
     <ClCompile Include="Engine\Debug\Editor\EditorMain.cpp" />
@@ -648,7 +648,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\Command\EditorValueChangeCommandHandler.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\IEditorCommand.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h" />
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.h" />
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorDandDManager.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneList.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSelectObject.h" />
     <ClInclude Include="Engine\Debug\Editor\EditorMain.h" />

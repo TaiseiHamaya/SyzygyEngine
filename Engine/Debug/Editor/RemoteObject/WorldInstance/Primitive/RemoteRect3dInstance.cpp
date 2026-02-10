@@ -154,11 +154,11 @@ void RemoteRect3dInstance::reset_material() {
 	EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
 	material.texture = "Error.png";
 	EditorValueChangeCommandHandler::End();
-	EditorValueChangeCommandHandler::GenCommand<ColorRGBA>(material.color.get());
+	EditorValueChangeCommandHandler::GenCommand<ColorRGBA>(material.color.value_mut());
 	material.color = CColorRGBA::WHITE;
 	EditorValueChangeCommandHandler::End();
 	material.uvTransform.set(Transform2D{});
-	EditorValueChangeCommandHandler::GenCommand<r32>(material.shininess.get());
+	EditorValueChangeCommandHandler::GenCommand<r32>(material.shininess.value_mut());
 	material.shininess = 50.0f;
 	EditorValueChangeCommandHandler::End();
 

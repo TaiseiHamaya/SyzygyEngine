@@ -13,7 +13,7 @@
 #include <Library/Math/Transform3D.h>
 #include <Library/Utility/Template/Reference.h>
 
-#include "../../Core/EditorHierarchyDandD.h"
+#include "../../Core/EditorDandDManager.h"
 #include "Engine/Debug/Editor/Command/EditorCommandInvoker.h"
 #include "Engine/Debug/Editor/Command/EditorSelectCommand.h"
 
@@ -96,8 +96,8 @@ inline void IRemoteInstance<RuntimeType, DebugVisualType>::draw_hierarchy(Refere
 	if (children.empty()) {
 		flags |= ImGuiTreeNodeFlags_Leaf;
 	}
-	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.get(), (void*)this).c_str(), flags);
-	EditorHierarchyDandD::CheckDandD(this, parent);
+	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
+	EditorDandDManager::CheckDandDHierarchy(this, parent);
 
 	// こうすると選択できるらしい
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {

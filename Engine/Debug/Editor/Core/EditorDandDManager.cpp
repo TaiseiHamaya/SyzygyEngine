@@ -1,6 +1,6 @@
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "EditorHierarchyDandD.h"
+#include "EditorDandDManager.h"
 
 using namespace szg;
 
@@ -10,7 +10,7 @@ using namespace szg;
 #include "Engine/Debug/Editor/Command/EditorCommandInvoker.h"
 #include "Engine/Debug/Editor/Command/EditorCommandReparent.h"
 
-void EditorHierarchyDandD::CheckDandD(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
+void EditorDandDManager::CheckDandDHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
 	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
 		BeginDrag(self, parent);
 		ImGui::EndDragDropSource();
@@ -21,7 +21,7 @@ void EditorHierarchyDandD::CheckDandD(Reference<IRemoteObject> self, Reference<I
 	}
 }
 
-void EditorHierarchyDandD::BeginDrag(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
+void EditorDandDManager::BeginDrag(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
 	if (!parent || !self) {
 		return;
 	}
@@ -29,23 +29,23 @@ void EditorHierarchyDandD::BeginDrag(Reference<IRemoteObject> self, Reference<IR
 	instance.dragData.parent = parent;
 	instance.dragData.dragging = self;
 	if (ImGui::GetDragDropPayload() == nullptr) {
-		ImGui::SetDragDropPayload("EditorHierarchyDandD", &instance.dragData, sizeof(DragData), ImGuiCond_Once);
+		ImGui::SetDragDropPayload("EditorDandDManager", &instance.dragData, sizeof(DragDataHierarchy), ImGuiCond_Once);
 		szgInformation("Begin drag&drop.");
 	}
 }
 
-void EditorHierarchyDandD::EndDrag(Reference<IRemoteObject> target) {
+void EditorDandDManager::EndDrag(Reference<IRemoteObject> target) {
 	auto& instance = GetInstance();
 	if (!target) {
 		szgError("Get ImGui drag&drop payload but target is nullptr.");
 		return;
 	}
-	const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("EditorHierarchyDandD");
+	const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("EditorDandDManager");
 	if (!payload) {
 		return;
 	}
-	if (payload->DataSize != sizeof(DragData)) {
-		szgError("Get ImGui drag&drop payload but DragData size is mismatch.");
+	if (payload->DataSize != sizeof(DragDataHierarchy)) {
+		szgError("Get ImGui drag&drop payload but DragDataHierarchy size is mismatch.");
 		return;
 	}
 
@@ -70,7 +70,7 @@ void EditorHierarchyDandD::EndDrag(Reference<IRemoteObject> target) {
 	szgInformation("Successed drag&drop.");
 }
 
-void EditorHierarchyDandD::ExecuteReparent() {
+void EditorDandDManager::ExecuteReparent() {
 	auto& instance = GetInstance();
 	if (!instance.command) {
 		return;

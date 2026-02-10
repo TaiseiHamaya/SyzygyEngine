@@ -24,7 +24,7 @@ void RemotePointLightInstance::setup() {
 void RemotePointLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	RemoteInstanceType::update_preview(world, parentAffine);
 
-	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.cget(), radius.cget(), radius.cget() }) * Affine::FromTranslate(worldAffine.get_origin());
+	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.value_imm(), radius.value_imm(), radius.value_imm() }) * Affine::FromTranslate(worldAffine.get_origin());
 	sceneView->write_primitive(world, "Sphere", primitiveAffine);
 
 	Reference<const EditorDebugCamera> camera = sceneView->query_debug_camera();

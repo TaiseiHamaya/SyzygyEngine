@@ -552,7 +552,7 @@
     <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.cpp">
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorDandDManager.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneList.cpp">
@@ -1092,7 +1092,7 @@
     <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.h">
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorDandDManager.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneList.h">

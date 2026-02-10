@@ -13,24 +13,28 @@ namespace szg {
 
 class EditorCommandReparent;
 
-class EditorHierarchyDandD : public SingletonInterface<EditorHierarchyDandD> {
-	SZG_CLASS_SINGLETON(EditorHierarchyDandD)
+class EditorDandDManager : public SingletonInterface<EditorDandDManager> {
+	SZG_CLASS_SINGLETON(EditorDandDManager)
 
 public:
-	struct DragData {
+	struct DragDataHierarchy {
 		Reference<IRemoteObject> parent;
 		Reference<IRemoteObject> dragging;
 	};
 
+	struct DragDataAsset {
+		std::string filePath;
+	};
+
 public:
-	static void CheckDandD(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
+	static void CheckDandDHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
 	static void BeginDrag(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
 	static void EndDrag(Reference<IRemoteObject> target);
 
 	static void ExecuteReparent();
 
 private:
-	DragData dragData{};
+	DragDataHierarchy dragData{};
 	std::unique_ptr<EditorCommandReparent> command{ nullptr };
 };
 
