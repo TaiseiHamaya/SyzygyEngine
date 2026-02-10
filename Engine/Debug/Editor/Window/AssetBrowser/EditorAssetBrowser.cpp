@@ -49,7 +49,7 @@ void szg::EditorAssetBrowser::draw_header() {
 	if (ImGui::Button("\ue5d8")) {
 		if (currentDirectory.empty()) {
 			// ルートから更に上に移動しようとした場合はルート未選択状態に戻す
-			rootType = AssetRootType::UNSELECT;
+			rootType = AssetRootType::Unselect;
 		}
 		else {
 			// ディレクトリを1つ上に移動
@@ -60,9 +60,9 @@ void szg::EditorAssetBrowser::draw_header() {
 	}
 
 	// 現在のディレクトリを表示
-	if (rootType == AssetRootType::UNSELECT) {
+	if (rootType == AssetRootType::Unselect) {
 		ImGui::Text(
-			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::UNSELECT)], selectFileName).c_str()
+			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::Unselect)], selectFileName).c_str()
 		);
 	}
 	else {
@@ -86,19 +86,19 @@ void szg::EditorAssetBrowser::draw_assets() {
 	ImGui::PopStyleColor();
 
 	// ルートが選択されていない場合は選択肢を表示
-	if (rootType == AssetRootType::UNSELECT) {
+	if (rootType == AssetRootType::Unselect) {
 		// エンジン、ゲームのフォルダを表示
-		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::ENGINE)], true, 0);
-		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::GAME)], true, 1);
+		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::Engine)], true, 0);
+		draw_file_content(ROOT_TAG[static_cast<i32>(AssetRootType::Game)], true, 1);
 
 		// ルートフォルダが選択された場合の処理
-		if (currentDirectory == ROOT_TAG[static_cast<i32>(AssetRootType::ENGINE)]) {
-			rootType = AssetRootType::ENGINE;
+		if (currentDirectory == ROOT_TAG[static_cast<i32>(AssetRootType::Engine)]) {
+			rootType = AssetRootType::Engine;
 			selectFileName.clear();
 			currentDirectory.clear();
 		}
-		if (currentDirectory == ROOT_TAG[static_cast<i32>(AssetRootType::GAME)]) {
-			rootType = AssetRootType::GAME;
+		if (currentDirectory == ROOT_TAG[static_cast<i32>(AssetRootType::Game)]) {
+			rootType = AssetRootType::Game;
 			selectFileName.clear();
 			currentDirectory.clear();
 		}
@@ -181,7 +181,7 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
 		}
 
-		if (selectFileName.empty() && rootType == AssetRootType::GAME) {
+		if (selectFileName.empty() && rootType == AssetRootType::Game) {
 			// フォルダーの作成
 			if (ImGui::MenuItem("Create Folder")) {
 				std::filesystem::path newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / "NewFolder";
@@ -204,7 +204,7 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			}
 		}
 
-		if (!selectFileName.empty() && rootType == AssetRootType::GAME) {
+		if (!selectFileName.empty() && rootType == AssetRootType::Game) {
 			// ファイル・フォルダの削除
 			if (ImGui::MenuItem("Delete")) {
 				std::error_code ec;
@@ -355,7 +355,7 @@ void szg::EditorAssetBrowser::update_importer() {
 	// 保存先ディレクトリの設定
 	auto directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
 
-	if (std::filesystem::is_directory(directory) && rootType == AssetRootType::GAME) {
+	if (std::filesystem::is_directory(directory) && rootType == AssetRootType::Game) {
 		// フォルダの場合ディレクトリを更新
 		assetImporter.import_filepath_mut() = directory;
 	}
@@ -371,7 +371,7 @@ void szg::EditorAssetBrowser::update_importer() {
 void szg::EditorAssetBrowser::update_shortcut() {
 	// F2でリネーム開始
 	if (ImGui::Shortcut(ImGuiKey_F2)) {
-		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::GAME) {
+		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::Game) {
 			isRenaming = true;
 			newFileName = selectFileName;
 		}
@@ -379,7 +379,7 @@ void szg::EditorAssetBrowser::update_shortcut() {
 
 	// Deleteキーで削除
 	if (ImGui::Shortcut(ImGuiKey_Delete)) {
-		if (!selectFileName.empty() && rootType == AssetRootType::GAME) {
+		if (!selectFileName.empty() && rootType == AssetRootType::Game) {
 			std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
 			std::error_code ec;
 			std::filesystem::remove_all(directory, ec);

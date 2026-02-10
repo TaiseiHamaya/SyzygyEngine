@@ -184,6 +184,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetField.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
@@ -226,7 +228,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Assets\Texture\TextureLibrary.cpp" />
     <ClCompile Include="Engine\Debug\DebugValues\DebugValues.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorValueField.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp" />
@@ -562,6 +563,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Assets\AssetRootPath.h" />
+    <ClInclude Include="Engine\Assets\AssetTypeEnum.h" />
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h" />
+    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetField.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />

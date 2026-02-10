@@ -11,8 +11,10 @@
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
 #define COLOR_RGB_SERIALIZER
+#define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 namespace szg {
@@ -58,7 +60,7 @@ private:
 	EditorValueField<bool> isDraw{ "IsDraw", true };
 	EditorValueField<u32> layer{ "Layer", 0 };
 
-	std::string meshName;
+	EditorAssetField meshName{ "Mesh", AssetType::Mesh };
 	std::vector<Material> materials;
 };
 

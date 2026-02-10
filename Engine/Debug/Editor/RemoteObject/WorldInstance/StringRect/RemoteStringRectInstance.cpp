@@ -9,6 +9,7 @@ using namespace szg;
 #include "../../../Window/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
+#define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteStringRectInstance::setup() {

@@ -42,8 +42,6 @@ public:
 	void register_world_lighting(u32 index) const;
 
 public:
-	void set_transform(const Transform3D& transform) noexcept;
-
 	const Matrix4x4& vp_matrix() const;
 
 	const Affine& view_affine() const;

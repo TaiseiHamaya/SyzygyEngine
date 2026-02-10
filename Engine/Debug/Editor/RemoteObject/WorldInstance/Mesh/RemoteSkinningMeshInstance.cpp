@@ -13,7 +13,11 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
+#include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
+
+#define TRANSFORM2D_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
 
 RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() noexcept {
 	debugVisual = std::make_unique<StaticMeshInstance>();
@@ -38,7 +42,7 @@ void RemoteSkinningMeshInstance::update_preview(Reference<RemoteWorldObject> wor
 	debugVisual->localAffine = worldAffine;
 	debugVisual->isDraw = isDraw.value_imm();
 
-	if (debugVisual->keyID != meshName) {
+	if (debugVisual->keyID != meshName.value_imm()) {
 		return;
 	}
 	for (i32 i = 0; i < materials.size(); ++i) {
@@ -46,7 +50,7 @@ void RemoteSkinningMeshInstance::update_preview(Reference<RemoteWorldObject> wor
 		StaticMeshInstance::Material& write = debugVisual->materials[i];
 		write.texture = TextureLibrary::GetTexture(source.texture);
 		write.color = source.color;
-		write.uvTransform.copy(source.uvTransform);
+		write.uvTransform = source.uvTransform;
 		write.lightingType = source.lightingType;
 		write.shininess = source.shininess;
 	};
@@ -70,14 +74,13 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	{
 		std::string cache = meshName;
 		if (PolygonMeshLibrary::MeshListGui(cache)) {
-			if (cache != meshName) {
+			if (cache != meshName.value_imm()) {
 				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 
 				default_material();
 
-				EditorValueChangeCommandHandler::GenCommand<std::string>(meshName);
-				std::swap(cache, meshName);
-				EditorValueChangeCommandHandler::End();
+				EditorValueChangeCommandHandler::GenCommandInstant<std::string>(meshName.value_mut(), cache);
+
 				skeleton = SkeletonLibrary::GetSkeleton(meshName);
 
 				// Editor側のDrawExecutorに登録
@@ -100,8 +103,11 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	ImGui::Separator();
 	// Material
 	ImGui::Text("Materials");
+
+	ValueEditor::show_object<Transform2D> uvTransformSO{ "UVTransform" };
 	ValueEditor::show_object<ColorRGB> colorSO{ "Color" };
 	ValueEditor::show_object<r32> shininessSO{ "Shininess" };
+
 	for (i32 i = 0; auto& meshMaterial : materials) {
 		std::string treeNodeName;
 		auto meshData = PolygonMeshLibrary::GetPolygonMesh(meshName)->mesh_data(i);
@@ -117,18 +123,27 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 				auto result = TextureLibrary::TextureListGui(cache);
 
 				if (result && cache != meshMaterial.texture) {
-					EditorValueChangeCommandHandler::GenCommand<std::string>([&, i = i]() -> std::string& { return materials.at(i).texture; });
+					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::texture);
 					std::swap(cache, meshMaterial.texture);
 					EditorValueChangeCommandHandler::End();
 				}
 			}
 
-			Transform2DShowGuiBody("UVTransform", meshMaterial.uvTransform);
+			{
+				auto result = uvTransformSO.show_gui(meshMaterial.uvTransform);
+				if (result == 0b01) {
+					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::uvTransform);
+				}
+				else if (result == 0b10) {
+					EditorValueChangeCommandHandler::End();
+				}
+
+			}
 
 			{
 				auto result = colorSO.show_gui(meshMaterial.color);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand<ColorRGB>([&, i = i]() -> ColorRGB& { return materials.at(i).color; });
+					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::color);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -137,32 +152,26 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 
 			if (ImGui::RadioButton("None", meshMaterial.lightingType == LighingType::None)) {
 				if (meshMaterial.lightingType != LighingType::None) {
-					EditorValueChangeCommandHandler::GenCommand<LighingType>([&, i = i]() -> LighingType& { return materials.at(i).lightingType; });
-					meshMaterial.lightingType = LighingType::None;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::None);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Lambert", meshMaterial.lightingType == LighingType::Lambert)) {
 				if (meshMaterial.lightingType != LighingType::Lambert) {
-					EditorValueChangeCommandHandler::GenCommand<LighingType>([&, i = i]() -> LighingType& { return materials.at(i).lightingType; });
-					meshMaterial.lightingType = LighingType::Lambert;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::Lambert);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Half lambert", meshMaterial.lightingType == LighingType::HalfLambert)) {
 				if (meshMaterial.lightingType != LighingType::HalfLambert) {
-					EditorValueChangeCommandHandler::GenCommand<LighingType>([&, i = i]() -> LighingType& { return materials.at(i).lightingType; });
-					meshMaterial.lightingType = LighingType::HalfLambert;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::HalfLambert);
 				}
 			}
 
 			{
 				auto result = shininessSO.show_gui(meshMaterial.shininess);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand<r32>([&, i = i]() -> r32& { return materials.at(i).shininess; });
+					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::lightingType);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -242,61 +251,22 @@ void RemoteSkinningMeshInstance::default_material() {
 		materials, mesh->material_count()
 	));
 
-	for (i32 i = 0; auto& meshMaterial : materials) {
+	for (i32 i = 0; i < static_cast<i32>(materials.size()); ++i) {
 		// 色情報のリセット
 		const auto* meshMaterialData = mesh->material_data(i);
 		if (meshMaterialData) {
-			{
-				EditorValueChangeCommandHandler::GenCommand<std::string>([&, i = i]() -> std::string& { return materials.at(i).texture; });
-				meshMaterial.texture = meshMaterialData->textureFileName;
-				EditorValueChangeCommandHandler::End();
-			}
-			EditorValueChangeCommandHandler::GenCommand<Vector2>([&, i = i]() -> Vector2& { return materials.at(i).uvTransform.get_scale(); });
-			meshMaterial.uvTransform.set_scale(meshMaterialData->defaultUV.get_scale());
-			EditorValueChangeCommandHandler::End();
-			EditorValueChangeCommandHandler::GenCommand<r32>([&, i = i]() -> r32& { return materials.at(i).uvTransform.get_rotate(); });
-			meshMaterial.uvTransform.set_rotate(meshMaterialData->defaultUV.get_rotate());
-			EditorValueChangeCommandHandler::End();
-			EditorValueChangeCommandHandler::GenCommand<Vector2>([&, i = i]() -> Vector2& { return materials.at(i).uvTransform.get_translate(); });
-			meshMaterial.uvTransform.set_translate(meshMaterialData->defaultUV.get_translate());
-			EditorValueChangeCommandHandler::End();
-
+			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, meshMaterialData->textureFileName);
+			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::uvTransform, meshMaterialData->defaultUV);
 		}
 		else {
-			{
-				EditorValueChangeCommandHandler::GenCommand<std::string>([&, i = i]() -> std::string& { return materials.at(i).texture; });
-				meshMaterial.texture = "Error.png";
-				EditorValueChangeCommandHandler::End();
-			}
-			EditorValueChangeCommandHandler::GenCommand<Vector2>([&, i = i]() -> Vector2& { return materials.at(i).uvTransform.get_scale(); });
-			meshMaterial.uvTransform.set_scale(CVector2::ONE);
-			EditorValueChangeCommandHandler::End();
-			EditorValueChangeCommandHandler::GenCommand<r32>([&, i = i]() -> r32& { return materials.at(i).uvTransform.get_rotate(); });
-			meshMaterial.uvTransform.set_rotate(0);
-			EditorValueChangeCommandHandler::End();
-			EditorValueChangeCommandHandler::GenCommand<Vector2>([&, i = i]() -> Vector2& { return materials.at(i).uvTransform.get_translate(); });
-			meshMaterial.uvTransform.set_translate(CVector2::ZERO);
-			EditorValueChangeCommandHandler::End();
+			EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, "Error.png");
+			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::uvTransform);
 
 			szgWarning("Material data is not found.");
 		}
-		{
-			EditorValueChangeCommandHandler::GenCommand<LighingType>([&, i = i]() -> LighingType& { return materials.at(i).lightingType; });
-			meshMaterial.lightingType = LighingType::HalfLambert;
-			EditorValueChangeCommandHandler::End();
-		}
-		{
-			EditorValueChangeCommandHandler::GenCommand<ColorRGB>([&, i = i]() -> ColorRGB& { return materials.at(i).color; });
-			meshMaterial.color = CColorRGB::WHITE;
-			EditorValueChangeCommandHandler::End();
-		}
-		{
-			EditorValueChangeCommandHandler::GenCommand<r32>([&, i = i]() -> r32& { return materials.at(i).shininess; });
-			meshMaterial.shininess = 50;
-			EditorValueChangeCommandHandler::End();
-		}
-
-		++i;
+		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::lightingType, LighingType::HalfLambert);
+		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::color, CColorRGB::WHITE);
+		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::shininess, 50.0f);
 	}
 }
 

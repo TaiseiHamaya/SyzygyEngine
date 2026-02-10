@@ -12,6 +12,8 @@ public:
 	~Transform2D() noexcept = default;
 
 public:
+	Transform2D(const Transform2D&) noexcept = default;
+	Transform2D& operator=(const Transform2D&) noexcept = default;
 	Transform2D(Transform2D&&) noexcept = default;
 	Transform2D& operator=(Transform2D&&) noexcept = default;
 
@@ -36,13 +38,6 @@ public:
 	Vector2& get_translate() noexcept;
 
 	void plus_translate(const Vector2& plus)noexcept;
-
-	void copy(const Transform2D& copy) noexcept;
-
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	void debug_gui(string_literal tag = "Transform2D");
-#endif // _DEBUG
 
 private:
 	Vector2 scale;

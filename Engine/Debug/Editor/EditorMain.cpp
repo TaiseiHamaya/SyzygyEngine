@@ -18,6 +18,7 @@ using namespace szg;
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
+#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
 #include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
 
@@ -34,6 +35,8 @@ void EditorMain::Initialize() {
 }
 
 void EditorMain::Finalize() {
+	EditorAssetContentsCollector::Finalize();
+
 	FontAtlasBuilderManager::Finalize();
 
 	EditorMain& instance = GetInstance();
@@ -130,6 +133,8 @@ void EditorMain::DrawBase() {
 		instance.isHotReload = true;
 		instance.switchSceneName = std::nullopt;
 	}
+
+	EditorAssetContentsCollector::Update();
 
 	// HierarchyとSceneViewの同期
 	instance.gizmo.begin_frame(instance.sceneView.view_origin(), instance.sceneView.view_size());

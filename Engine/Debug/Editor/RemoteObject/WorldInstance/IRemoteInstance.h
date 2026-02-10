@@ -17,6 +17,9 @@
 #include "Engine/Debug/Editor/Command/EditorCommandInvoker.h"
 #include "Engine/Debug/Editor/Command/EditorSelectCommand.h"
 
+#define TRANSFORM3D_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
+
 namespace szg {
 
 template<typename RuntimeType, typename DebugVisualType = void*>
@@ -69,7 +72,7 @@ inline void IRemoteInstance<RuntimeType, DebugVisualType>::setup() {
 template<typename RuntimeType, typename DebugVisualType>
 inline void IRemoteInstance<RuntimeType, DebugVisualType>::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	// 行列計算
-	worldAffine = Affine::FromTransform3D(transform.cget());
+	worldAffine = Affine::FromTransform3D(transform.value_imm());
 	if (parentAffine) {
 		worldAffine *= *parentAffine;
 	}
@@ -102,7 +105,7 @@ inline void IRemoteInstance<RuntimeType, DebugVisualType>::draw_hierarchy(Refere
 	// こうすると選択できるらしい
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(
-			std::make_unique<EditorSelectCommand>(this, EditorSelectObjectBody::TransformData{ transform.get(), worldAffine })
+			std::make_unique<EditorSelectCommand>(this, EditorSelectObjectBody::TransformData{ transform.value_mut(), worldAffine })
 		);
 	}
 

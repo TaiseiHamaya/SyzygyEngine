@@ -10,6 +10,9 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 
+#define VECTOR2_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
+
 void RenderDAGImNodeSaver::entry_point(const std::filesystem::path& filePath, const std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	std::unordered_map<u64, bool> seen;
 	for (auto& [id_, _] : nodes) {

@@ -2,12 +2,12 @@
 
 #include "../IEditorWindow.h"
 
-#include <array>
 #include <filesystem>
 
 #include <Library/Math/Vector2.h>
 
 #include "./EditorAssetImporter.h"
+#include "Engine/Assets/AssetRootPath.h"
 
 namespace szg {
 
@@ -20,13 +20,13 @@ public:
 private:
 	// ヘッダー
 	void draw_header();
-	
+
 	// フォルダの描画
 	void draw_assets();
 
 	// フッター
 	void draw_footer();
-	
+
 	// 右クリックメニューの表示
 	void draw_right_click_menu();
 
@@ -41,16 +41,7 @@ private:
 	void update_shortcut();
 
 private:
-	enum class AssetRootType {
-		UNSELECT,
-		ENGINE,
-		GAME,
-
-		MAX,
-	};
-
-private:
-	AssetRootType rootType{ AssetRootType::GAME };
+	AssetRootType rootType{ AssetRootType::Game };
 	r32 iconSize{ 64 };
 
 	std::filesystem::path currentDirectory;
@@ -63,19 +54,6 @@ private:
 
 	bool isRenaming{ false };
 	std::string newFileName;
-
-private:
-	static constexpr std::array<string_literal, static_cast<i32>(AssetRootType::MAX)>  ROOT_TAG{
-		"[[Unselect]]",
-		"[[SZG]]",
-		"[[Game]]",
-	};
-
-	static constexpr std::array<string_literal, static_cast<i32>(AssetRootType::MAX)>  ROOT_PATH{
-		"",
-		".\\SyzygyEngine\\EngineResources",
-		".\\Game\\Assets",
-	};
 };
 
 }; // namespace szg

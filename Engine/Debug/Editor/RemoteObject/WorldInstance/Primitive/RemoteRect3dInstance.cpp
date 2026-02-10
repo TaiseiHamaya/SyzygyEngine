@@ -5,8 +5,10 @@
 using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 
 #define COLOR_RGBA_SERIALIZER
+#define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteRect3dInstance::setup() {
@@ -36,7 +38,7 @@ void RemoteRect3dInstance::update_preview(Reference<RemoteWorldObject> world, Re
 	PrimitiveMaterial& dest = debugVisual->get_material();
 	dest.texture = TextureLibrary::GetTexture(material.texture);
 	dest.color = material.color;
-	dest.uvTransform.copy(material.uvTransform);
+	dest.uvTransform = material.uvTransform;
 	dest.lightingType = material.lightingType;
 	dest.shininess = material.shininess;
 }
@@ -99,9 +101,7 @@ void RemoteRect3dInstance::draw_inspector() {
 		}
 
 		if (temp.has_value()) {
-			EditorValueChangeCommandHandler::GenCommand<LighingType>(material.lightingType);
-			material.lightingType = temp.value();
-			EditorValueChangeCommandHandler::End();
+			EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(material.lightingType, temp.value());
 		}
 	}
 
@@ -151,16 +151,10 @@ void RemoteRect3dInstance::on_destroy() {
 void RemoteRect3dInstance::reset_material() {
 	EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 
-	EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
-	material.texture = "Error.png";
-	EditorValueChangeCommandHandler::End();
-	EditorValueChangeCommandHandler::GenCommand<ColorRGBA>(material.color.value_mut());
-	material.color = CColorRGBA::WHITE;
-	EditorValueChangeCommandHandler::End();
-	material.uvTransform.set(Transform2D{});
-	EditorValueChangeCommandHandler::GenCommand<r32>(material.shininess.value_mut());
-	material.shininess = 50.0f;
-	EditorValueChangeCommandHandler::End();
+	EditorValueChangeCommandHandler::GenCommandInstant<std::string>(material.texture, "Error.png");
+	EditorValueChangeCommandHandler::GenCommandInstant<ColorRGBA>(material.color.value_mut(), CColorRGBA::WHITE);
+	EditorValueChangeCommandHandler::GenCommandInstant<Transform2D>(material.uvTransform.value_mut(), Transform2D{});
+	EditorValueChangeCommandHandler::GenCommandInstant<r32>(material.shininess.value_mut(), 50.0f);
 
 	EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
 }

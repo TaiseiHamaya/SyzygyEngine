@@ -13,6 +13,9 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 
+#define VECTOR2_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
+
 u64 RenderDAGImNodeLoader::entry_point(const std::string& sceneName, Reference<ImFlow::ImNodeFlow> imNodeFlow_, std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	imNodeFlow = imNodeFlow_;
 

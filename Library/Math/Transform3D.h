@@ -12,15 +12,14 @@ public:
 	~Transform3D() noexcept = default;
 
 public:
-	Transform3D(const Transform3D&) = delete;
-	Transform3D& operator=(const Transform3D&) = delete;
+	Transform3D(const Transform3D&) noexcept = default;
+	Transform3D& operator=(const Transform3D&) noexcept = default;
 	Transform3D(Transform3D&&) noexcept = default;
 	Transform3D& operator=(Transform3D&&) noexcept = default;
 
 public:
 	Matrix4x4 create_matrix() const noexcept;
 	void plus_translate(const Vector3& plus) noexcept;
-	void copy(const Transform3D& copy) noexcept;
 
 public:
 	void set_scale(const Vector3& scale_) noexcept;
@@ -36,11 +35,6 @@ public:
 	Vector3& get_scale() noexcept;
 	Quaternion& get_quaternion() noexcept;
 	Vector3& get_translate() noexcept;
-
-#ifdef DEBUG_FEATURES_ENABLE
-	u32 debug_gui(string_literal tag = "Transform3D");
-	//void debug_axis(const Matrix4x4& debug_matrix) const;
-#endif // _DEBUG
 
 private:
 	Vector3 scale;

@@ -203,7 +203,7 @@ void WinApp::Initialize() {
 	);
 
 	// Texture
-	TextureLibrary::RegisterLoadQue("./SyzygyEngine/EditorResources/Texture/EngineIcon_DirectionalLight.png");
+	TextureLibrary::RegisterLoadQue("[[editor]]/EngineIcon_DirectionalLight.png");
 #endif // _DEBUG
 
 	// 待機
