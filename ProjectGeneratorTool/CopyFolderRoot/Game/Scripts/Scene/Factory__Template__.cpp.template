@@ -1,15 +1,6 @@
 #include "Factory__Template__.h"
 
-#include <Engine/Runtime/Scene/BaseScene.h>
 #include <Engine/Runtime/Scene/Scene.h>
-
-std::unique_ptr<szg::BaseScene> Factory__Template__::initialize_scene() {
-	return nullptr;
-}
-
-std::unique_ptr<szg::BaseScene> Factory__Template__::create_scene(i32 next) {
-	return nullptr;
-}
 
 std::unique_ptr<szg::Scene> Factory__Template__::initialize_scene2() {
 	return create_scene2(0);
