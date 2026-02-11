@@ -4,6 +4,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 
@@ -23,6 +24,8 @@ public:
 	/// </summary>
 	/// <param name="filePath">ファイルパス</param>
 	static void RegisterLoadQue(const std::filesystem::path& filePath);
+
+	static void Unload(const std::string& name);
 
 	/// <summary>
 	/// Skeletonの取得
@@ -55,6 +58,8 @@ private:
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<SkeletonAsset>> instanceList;
+
+	static inline std::mutex mutex{};
 };
 
 }; // szg

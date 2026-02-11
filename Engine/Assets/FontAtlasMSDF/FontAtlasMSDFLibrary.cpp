@@ -2,9 +2,6 @@
 
 using namespace szg;
 
-#include <mutex>
-#include <ranges>
-
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./FontAtlasMSDFBuilder.h"
@@ -16,7 +13,7 @@ void FontAtlasMSDFLibrary::Initialize() {
 }
 
 void FontAtlasMSDFLibrary::Finalize() {
-	std::lock_guard lock{ GetInstance().mutex };
+	std::lock_guard lock{ mutex };
 	GetInstance().fontAtlases.clear();
 }
 
@@ -31,8 +28,8 @@ void FontAtlasMSDFLibrary::RegisterLoadQue(const std::filesystem::path& filePath
 }
 
 std::shared_ptr<const FontAtlasMSDFAsset> FontAtlasMSDFLibrary::Get(const std::string& name) noexcept(false) {
+	std::lock_guard lock{ mutex };
 	auto& instance = GetInstance();
-	std::lock_guard lock{ instance.mutex };
 	if (IsRegisteredNonlocking(name)) {
 		return instance.fontAtlases.at(name);
 	}
@@ -43,21 +40,20 @@ std::shared_ptr<const FontAtlasMSDFAsset> FontAtlasMSDFLibrary::Get(const std::s
 }
 
 bool FontAtlasMSDFLibrary::IsRegistered(const std::string& name) noexcept(false) {
-	auto& instance = GetInstance();
-	std::lock_guard lock{ instance.mutex };
+	std::lock_guard lock{ mutex };
 	return IsRegisteredNonlocking(name);
 }
 
 void FontAtlasMSDFLibrary::Unload(const std::string& name) {
-	std::lock_guard lock{ GetInstance().mutex };
+	std::lock_guard lock{ mutex };
 	if (IsRegisteredNonlocking(name)) {
 		GetInstance().fontAtlases.erase(name);
 	}
 }
 
 void FontAtlasMSDFLibrary::Transfer(const std::string& name, std::shared_ptr<FontAtlasMSDFAsset>& fontAtlas) {
+	std::lock_guard lock{ mutex };
 	auto& instance = GetInstance();
-	std::lock_guard lock{ instance.mutex };
 	if (IsRegisteredNonlocking(name)) {
 		return;
 	}

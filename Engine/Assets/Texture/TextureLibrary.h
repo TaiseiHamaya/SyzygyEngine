@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 
@@ -40,6 +41,8 @@ public:
 	/// <param name="filePath">ファイルパス</param>
 	static void RegisterLoadQue(const std::filesystem::path& filePath);
 
+	static void Unload(const std::string& name);
+
 	/// <summary>
 	/// テクスチャデータの取得
 	/// </summary>
@@ -53,12 +56,6 @@ public:
 	/// <param name="textureName">拡張子付きファイル名</param>
 	/// <returns>bool値</returns>
 	static bool IsRegistered(const std::string& textureName) noexcept(false);
-
-	/// <summary>
-	/// 読み込み済みテクスチャのアンロード
-	/// </summary>
-	/// <param name="textureName">テクスチャ名</param>
-	static void UnloadTexture(const std::string& textureName);
 
 	/// <summary>
 	/// 転送[ユーザー使用は基本しないこと]
@@ -77,6 +74,8 @@ private:
 
 private: // メンバ変数
 	std::unordered_map<std::string, std::shared_ptr<TextureAsset>> textureInstanceList; // テクスチャリスト
+
+	static inline std::mutex mutex{};
 };
 
 

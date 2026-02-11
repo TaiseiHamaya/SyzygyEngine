@@ -2,9 +2,9 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
-#include <mutex>
 
 #include <Library/Utility/Template/SingletonInterface.h>
 
@@ -36,9 +36,9 @@ public:
 	static bool IsRegistered(const std::string& name) noexcept(false);
 
 	/// <summary>
-	/// 読み込み済みテクスチャのアンロード
+	/// 読み込み済みフォントのアンロード
 	/// </summary>
-	/// <param name="name">テクスチャ名</param>
+	/// <param name="name">フォント名</param>
 	static void Unload(const std::string& name);
 
 	/// <summary>
@@ -58,7 +58,8 @@ private:
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<const FontAtlasMSDFAsset>> fontAtlases;
-	mutable std::mutex mutex;
+
+	static inline std::mutex mutex{};
 };
 
 }; // szg

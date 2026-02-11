@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 
@@ -30,6 +31,8 @@ public:
 	/// </summary>
 	/// <param name="filePath">ファイルパス</param>
 	static void RegisterLoadQue(const std::filesystem::path& filePath);
+
+	static void Unload(const std::string& name);
 
 	/// <summary>
 	/// オーディオデータの取得
@@ -68,6 +71,8 @@ private:
 
 private:
 	std::unordered_map<std::string, std::unique_ptr<AudioAsset>> audioResources;
+
+	static inline std::mutex mutex{};
 };
 
 }; // szg

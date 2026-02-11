@@ -62,7 +62,9 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	meshName.show_gui();
+	if (meshName.show_gui().any()) {
+		default_material();
+	}
 
 	if (ImGui::Button("ResetMaterialData")) {
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());

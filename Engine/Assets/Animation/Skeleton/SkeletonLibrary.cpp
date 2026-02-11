@@ -2,8 +2,6 @@
 
 using namespace szg;
 
-#include <mutex>
-
 #include "./SkeletonAsset.h"
 #include "./SkeletonAssetBuilder.h"
 #include "Engine/Application/Logger.h"
@@ -15,8 +13,6 @@ using namespace szg;
 #include <imgui.h>
 #endif // _DEBUG
 
-std::mutex skeletonMutex;
-
 void SkeletonLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない
 	if (IsRegistered(filePath.filename().string())) {
@@ -26,8 +22,17 @@ void SkeletonLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	BackgroundLoader::RegisterLoadQue(eps::CreateUnique<SkeletonAssetBuilder>(filePath));
 }
 
+void szg::SkeletonLibrary::Unload(const std::string& name) {
+	std::lock_guard<std::mutex> lock{ mutex };
+	auto& instance = GetInstance();
+	if (IsRegisteredNonlocking(name)) {
+		szgInformation("Unload skeleton Name-\'{:}\'.", name);
+		instance.instanceList.erase(name);
+	}
+}
+
 std::shared_ptr<const SkeletonAsset> SkeletonLibrary::GetSkeleton(const std::string& name) {
-	std::lock_guard<std::mutex> lock{ skeletonMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	if (IsRegisteredNonlocking(name)) {
 		return GetInstance().instanceList.at(name);
 	}
@@ -38,13 +43,13 @@ std::shared_ptr<const SkeletonAsset> SkeletonLibrary::GetSkeleton(const std::str
 }
 
 bool SkeletonLibrary::IsRegistered(const std::string& name) {
-	std::lock_guard<std::mutex> lock{ skeletonMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	return IsRegisteredNonlocking(name);
 
 }
 
 void SkeletonLibrary::Transfer(const std::string& name, std::shared_ptr<SkeletonAsset>& data) {
-	std::lock_guard<std::mutex> lock{ skeletonMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	szgInformation("Transfer new Skeleton. Name-\'{:}\', Address-\'{:016}\'", name, (void*)data.get());
 	GetInstance().instanceList.emplace(name, data);
 }

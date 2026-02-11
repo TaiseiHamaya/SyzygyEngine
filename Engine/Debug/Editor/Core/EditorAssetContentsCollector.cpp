@@ -5,8 +5,15 @@
 #include <imgui.h>
 
 #include "Engine/Assets/AssetRootPath.h"
-
 #include "Engine/Debug/Editor/Core/EditorDandDManager.h"
+
+#include "Engine/Assets/Animation/NodeAnimation/NodeAnimationLibrary.h"
+#include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
+#include "Engine/Assets/Audio/AudioLibrary.h"
+#include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
+#include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
+#include "Engine/Assets/Shader/ShaderLibrary.h"
+#include "Engine/Assets/Texture/TextureLibrary.h"
 
 void szg::EditorAssetContentsCollector::Finalize() {
 	auto& instance = GetInstance();
@@ -71,6 +78,28 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 		}
 	}
 
+	// ロード実行
+	if (result.has_value()) {
+		const std::array<std::function<void(const std::filesystem::path&)>, ASSET_TYPE_MAX> loadFuncs = {
+			nullptr,
+			&TextureLibrary::RegisterLoadQue,
+			&PolygonMeshLibrary::RegisterLoadQue,
+			&SkeletonLibrary::RegisterLoadQue,
+			&NodeAnimationLibrary::RegisterLoadQue,
+			&FontAtlasMSDFLibrary::RegisterLoadQue,
+			nullptr,
+			&AudioLibrary::RegisterLoadQue,
+			&ShaderLibrary::RegisterLoadQue,
+		};
+
+		std::lock_guard<std::mutex> lock(instance.mutex);
+		auto& assetEntry = instance.assetMaps[static_cast<i32>(type)][result.value()];
+		auto loadFunc = loadFuncs[static_cast<i32>(type)];
+		if (loadFunc) {
+			loadFunc(assetEntry.path);
+		}
+	}
+
 	return result;
 }
 
@@ -127,10 +156,10 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 			entry.path = directory.path();
 			entry.loadFunc = nullptr; // TODO: ロード関数の設定
 			assetMap[assetName] = entry;
-			
+
 			// fbxとgltfはMeshだけでなくBoneとAnimationも登録する
 			if (extension == ".fbx" || extension == ".gltf") {
-				instance.assetMaps[static_cast<i32>(AssetType::Bone)][assetName] = entry;
+				instance.assetMaps[static_cast<i32>(AssetType::Skeleton)][assetName] = entry;
 				instance.assetMaps[static_cast<i32>(AssetType::Animation)][assetName] = entry;
 			}
 		}
