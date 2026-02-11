@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorAssetField.h"
 
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
@@ -39,3 +41,5 @@ szg::EditorAssetField& szg::EditorAssetField::operator=(const std::string& rhs) 
 szg::EditorAssetField::operator const std::string& () const noexcept {
 	return value;
 }
+
+#endif // DEBUG_FEATURES_ENABLE

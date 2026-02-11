@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "../IEditorWindow.h"
 
 #include <filesystem>
@@ -57,3 +59,5 @@ private:
 };
 
 }; // namespace szg
+
+#endif // DEBUG_FEATURES_ENABLE

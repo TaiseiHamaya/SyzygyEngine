@@ -25,11 +25,11 @@ void RemoteStaticMeshInstance::setup() {
 		sceneView->register_mesh(query_world(), debugVisual);
 	}
 
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::setup();
+	RemoteInstanceType::setup();
 }
 
 void RemoteStaticMeshInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::update_preview(world, parentAffine);
+	RemoteInstanceType::update_preview(world, parentAffine);
 
 	debugVisual->reset_mesh(meshName);
 	debugVisual->localAffine = worldAffine;
@@ -64,6 +64,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 	layer.show_gui();
 	if (meshName.show_gui().any()) {
 		default_material();
+		sceneView->create_mesh_instancing(query_world(), meshName);
 	}
 
 	if (ImGui::Button("ResetMaterialData")) {

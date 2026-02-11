@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "TextureOptimizer.h"
 
 #include <Windows.h>
@@ -36,3 +38,5 @@ void TextureOptimizer::save_dds_to_file(const std::filesystem::path& path) {
 	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), metadata, DirectX::DDS_FLAGS_NONE, path.native().c_str());
 	assert(SUCCEEDED(hr));
 }
+
+#endif // DEBUG_FEATURES_ENABLE

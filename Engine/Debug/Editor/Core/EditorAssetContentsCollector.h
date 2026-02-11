@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include <array>
 #include <filesystem>
 #include <functional>
@@ -50,3 +52,5 @@ private:
 };
 
 } // namespace szg
+
+#endif // DEBUG_FEATURES_ENABLE

@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorAssetImporter.h"
 
 #include <array>
@@ -144,3 +146,5 @@ void szg::EditorAssetImporter::execute_import() {
 
 	loadAssets.clear();
 }
+
+#endif // DEBUG_FEATURES_ENABLE

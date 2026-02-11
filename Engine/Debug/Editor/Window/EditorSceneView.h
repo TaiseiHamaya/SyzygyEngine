@@ -50,6 +50,7 @@ public:
 	void register_world(Reference<RemoteWorldObject> world);
 
 	void create_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName);
+
 	void register_mesh(Reference<const RemoteWorldObject> world, Reference<const StaticMeshInstance> instance);
 	void register_rect(Reference<const RemoteWorldObject> world, Reference<const Rect3d> rect);
 	void register_string(Reference<const RemoteWorldObject> world, Reference<const StringRectInstance> stringRect);

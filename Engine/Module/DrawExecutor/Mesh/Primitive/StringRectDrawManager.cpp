@@ -3,7 +3,7 @@
 using namespace szg;
 
 void StringRectDrawManager::make_instancing(u32 layer, const BlendMode& blendMode, u32 maxRenderingChar) {
-	make_instancing(layer, blendMode, maxRenderingChar, maxRenderingChar * 128);
+	make_instancing(layer, blendMode, maxRenderingChar, maxRenderingChar);
 }
 
 void StringRectDrawManager::make_instancing(u32 layer, const BlendMode& blendMode, u32 maxRenderingChar, u32 maxInstance) {

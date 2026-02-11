@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorAssetOptimizer.h"
 
 #include <cctype>
@@ -26,3 +28,5 @@ bool szg::EditorAssetOptimizer::is_support_optimization(const std::filesystem::p
 		(ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".tga" || ext == ".bmp") ||
 		(ext == ".ttf");
 }
+
+#endif // DEBUG_FEATURES_ENABLE

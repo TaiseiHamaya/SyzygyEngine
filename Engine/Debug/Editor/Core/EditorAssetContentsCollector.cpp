@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorAssetContentsCollector.h"
 
 #include <ranges>
@@ -14,6 +16,7 @@
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
 
 void szg::EditorAssetContentsCollector::Finalize() {
 	auto& instance = GetInstance();
@@ -98,6 +101,7 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 		if (loadFunc) {
 			loadFunc(assetEntry.path);
 		}
+		BackgroundLoader::WaitEndExecute();
 	}
 
 	return result;
@@ -165,3 +169,5 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 		}
 	}
 }
+
+#endif // DEBUG_FEATURES_ENABLE

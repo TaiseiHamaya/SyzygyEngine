@@ -11,6 +11,7 @@ using namespace szg;
 #include "./EditorSceneView.h"
 #include "../EditorMain.h"
 #include "../Command/EditorCommandInvoker.h"
+#include "../Command/EditorCommandScope.h"
 #include "../Command/EditorCreateObjectCommand.h"
 #include "../Command/EditorDeleteObjectCommand.h"
 #include "../RemoteObject/FolderObject.h"

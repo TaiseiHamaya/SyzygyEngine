@@ -58,10 +58,8 @@ void RemoteStringRectInstance::draw_inspector() {
 	ImGui::Separator();
 
 	isChangedValue = false;
-	if (font.show_gui().any()) {
-		isChangedValue = true;
-	}
 
+	isChangedValue |= font.show_gui().any();
 	isChangedValue |= fontSize.show_gui().any();
 	isChangedValue |= pivot.show_gui().any();
 	isChangedValue |= text.show_gui().any();

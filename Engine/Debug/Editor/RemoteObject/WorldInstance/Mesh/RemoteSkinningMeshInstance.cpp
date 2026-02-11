@@ -72,6 +72,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	layer.show_gui();
 	if (meshName.show_gui().any()) {
 		default_material();
+		sceneView->create_mesh_instancing(query_world(), meshName);
 	}
 
 	if (ImGui::Button("ResetMaterialData")) {

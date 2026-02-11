@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorAssetBrowser.h"
 
 using namespace szg;
@@ -426,3 +428,5 @@ void szg::EditorAssetBrowser::update_shortcut() {
 		}
 	}
 }
+
+#endif // DEBUG_FEATURES_ENABLE
