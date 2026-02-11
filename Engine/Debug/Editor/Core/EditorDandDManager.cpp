@@ -26,10 +26,13 @@ void EditorDandDManager::BeginDrag(Reference<IRemoteObject> self, Reference<IRem
 		return;
 	}
 	auto& instance = GetInstance();
-	instance.dragData.parent = parent;
-	instance.dragData.dragging = self;
+	DragDataHierarchy data{
+		.parent = parent,
+		.dragging = self
+	};
+	instance.currentDragData = data;
 	if (ImGui::GetDragDropPayload() == nullptr) {
-		ImGui::SetDragDropPayload("EditorDandDManager", &instance.dragData, sizeof(DragDataHierarchy), ImGuiCond_Once);
+		ImGui::SetDragDropPayload("EditorDandDManager", &instance.currentDragData, sizeof(instance.currentDragData), ImGuiCond_Once);
 		szgInformation("Begin drag&drop.");
 	}
 }
@@ -44,12 +47,19 @@ void EditorDandDManager::EndDrag(Reference<IRemoteObject> target) {
 	if (!payload) {
 		return;
 	}
-	if (payload->DataSize != sizeof(DragDataHierarchy)) {
+	if (payload->DataSize != sizeof(instance.currentDragData)) {
 		szgError("Get ImGui drag&drop payload but DragDataHierarchy size is mismatch.");
 		return;
 	}
 
-	if (instance.dragData.parent == target) {
+	if (!std::holds_alternative<DragDataHierarchy>(instance.currentDragData)) {
+		szgError("Get ImGui drag&drop payload but currentDragData is not DragDataHierarchy.");
+		return;
+	}
+
+	DragDataHierarchy& data = std::get<DragDataHierarchy>(instance.currentDragData);
+
+	if (data.parent == target) {
 		// 同じ位置にドロップした場合は何もしない
 		szgInformation("Drop to same parent.");
 		return;
@@ -57,7 +67,7 @@ void EditorDandDManager::EndDrag(Reference<IRemoteObject> target) {
 
 	Reference<IRemoteObject> targetParent = target->get_parent();
 	while (targetParent) {
-		if (targetParent == instance.dragData.dragging) {
+		if (targetParent == data.dragging) {
 			// ドロップ先がターゲットの子孫である場合は何もしない
 			szgWarning("Can't drop to target parent.");
 			return;
@@ -66,11 +76,13 @@ void EditorDandDManager::EndDrag(Reference<IRemoteObject> target) {
 	}
 
 	instance.command =
-		std::make_unique<EditorCommandReparent>(instance.dragData.dragging, instance.dragData.parent, target);
-	szgInformation("Successed drag&drop.");
+		std::make_unique<EditorCommandReparent>(data.dragging, data.parent, target);
+	szgInformation("Succussed drag&drop.");
+
+	instance.currentDragData = std::monostate{};
 }
 
-void EditorDandDManager::ExecuteReparent() {
+void EditorDandDManager::ExecuteCommand() {
 	auto& instance = GetInstance();
 	if (!instance.command) {
 		return;

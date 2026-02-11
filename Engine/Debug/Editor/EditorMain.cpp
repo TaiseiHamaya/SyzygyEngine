@@ -172,7 +172,7 @@ void EditorMain::Draw() {
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
 	}
 
-	EditorDandDManager::ExecuteReparent();
+	EditorDandDManager::ExecuteCommand();
 }
 
 void EditorMain::SetActiveEditor(bool isActive) {
