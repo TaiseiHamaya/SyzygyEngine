@@ -51,30 +51,6 @@ void PolygonMeshLibrary::Transfer(const std::string& name, std::shared_ptr<Polyg
 	GetInstance().meshInstanceList.emplace(name, data);
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
-bool PolygonMeshLibrary::MeshListGui(std::string& current) {
-	bool changed = false;
-
-	std::lock_guard<std::mutex> lock{ meshMutex };
-	if (ImGui::BeginCombo("MeshList", current.c_str())) {
-		auto&& list = GetInstance().meshInstanceList;
-		for (auto itr = list.begin(); itr != list.end(); ++itr) {
-			bool is_selected = (current == itr->first);
-			if (ImGui::Selectable(itr->first.c_str(), is_selected)) {
-				current = itr->first;
-				changed = true;
-			}
-			if (is_selected) {
-				ImGui::SetItemDefaultFocus();
-			}
-		}
-		ImGui::EndCombo();
-
-	}
-	return changed;
-}
-#endif // _DEBUG
-
 bool PolygonMeshLibrary::IsRegisteredNonlocking(const std::string& meshName) {
 	return GetInstance().meshInstanceList.contains(meshName);
 }

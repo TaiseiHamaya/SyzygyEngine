@@ -69,15 +69,7 @@ void RemoteRect3dInstance::draw_inspector() {
 	if (ImGui::Button("ResetMaterialData")) {
 		reset_material();
 	}
-	{
-		std::string cache = material.texture;
-		auto result = TextureLibrary::TextureListGui(cache);
-		if (result) {
-			EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
-			material.texture = cache;
-			EditorValueChangeCommandHandler::End();
-		}
-	}
+	material.texture.show_gui();
 	material.color.show_gui();
 	material.uvTransform.show_gui();
 	{
@@ -124,7 +116,7 @@ nlohmann::json RemoteRect3dInstance::serialize() const {
 	result.update(isFlipY);
 
 	nlohmann::json materialJson;
-	materialJson["Texture"] = material.texture;
+	materialJson.update(material.texture);
 	materialJson.update(material.color);
 	materialJson.update(material.uvTransform);
 	materialJson["LightingType"] = material.lightingType;
@@ -151,7 +143,7 @@ void RemoteRect3dInstance::on_destroy() {
 void RemoteRect3dInstance::reset_material() {
 	EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 
-	EditorValueChangeCommandHandler::GenCommandInstant<std::string>(material.texture, "Error.png");
+	EditorValueChangeCommandHandler::GenCommandInstant<std::string>(material.texture.value_mut(), "Error.png");
 	EditorValueChangeCommandHandler::GenCommandInstant<ColorRGBA>(material.color.value_mut(), CColorRGBA::WHITE);
 	EditorValueChangeCommandHandler::GenCommandInstant<Transform2D>(material.uvTransform.value_mut(), Transform2D{});
 	EditorValueChangeCommandHandler::GenCommandInstant<r32>(material.shininess.value_mut(), 50.0f);

@@ -45,15 +45,6 @@ public:
 	/// <param name="data">ロード済みデータ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<NodeAnimationAsset> data);
 
-#ifdef DEBUG_FEATURES_ENABLE
-	/// <summary>
-	/// Animation一覧をComboBoxで表示するImGui(Debugビルドのみ)
-	/// </summary>
-	/// <param name="current">現在選択中のAnimation名</param>
-	/// <returns>currentが変更されたかどうか</returns>
-	static bool AnimationListGui(std::string& current);
-#endif // _DEBUG
-
 private:
 	/// <summary>
 	/// Animationが登録されているか取得(mutexなし)

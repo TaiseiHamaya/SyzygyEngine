@@ -64,7 +64,7 @@ private:
 	EditorAssetField meshName{ "Mesh", AssetType::Mesh };
 	std::vector<Material> materials;
 
-	std::string animationName;
+	EditorAssetField animationName{ "Animation", AssetType::Animation };
 	EditorValueField<bool> isLoop{ "IsLoop" };
 
 	std::shared_ptr<const SkeletonAsset> skeleton;

@@ -12,16 +12,16 @@ using namespace szg;
 
 void EditorDandDManager::CheckDandDHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
 	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
-		BeginDrag(self, parent);
+		BeginDragHierarchy(self, parent);
 		ImGui::EndDragDropSource();
 	}
 	if (ImGui::BeginDragDropTarget()) {
-		EndDrag(self);
+		EndDragHierarchy(self);
 		ImGui::EndDragDropTarget();
 	}
 }
 
-void EditorDandDManager::BeginDrag(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
+void EditorDandDManager::BeginDragHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
 	if (!parent || !self) {
 		return;
 	}
@@ -33,11 +33,11 @@ void EditorDandDManager::BeginDrag(Reference<IRemoteObject> self, Reference<IRem
 	instance.currentDragData = data;
 	if (ImGui::GetDragDropPayload() == nullptr) {
 		ImGui::SetDragDropPayload("EditorDandDManager", &instance.currentDragData, sizeof(instance.currentDragData), ImGuiCond_Once);
-		szgInformation("Begin drag&drop.");
+		szgInformation("Begin drag&drop as hierarchy.");
 	}
 }
 
-void EditorDandDManager::EndDrag(Reference<IRemoteObject> target) {
+void EditorDandDManager::EndDragHierarchy(Reference<IRemoteObject> target) {
 	auto& instance = GetInstance();
 	if (!target) {
 		szgError("Get ImGui drag&drop payload but target is nullptr.");

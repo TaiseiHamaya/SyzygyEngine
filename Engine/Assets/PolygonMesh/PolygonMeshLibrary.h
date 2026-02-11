@@ -45,15 +45,6 @@ public:
 	/// <param name="data">ロード済みデータ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<PolygonMesh>& data);
 
-#ifdef DEBUG_FEATURES_ENABLE
-	/// <summary>
-	/// メッシュ一覧をComboBoxで表示するImGui(Debugビルドのみ)
-	/// </summary>
-	/// <param name="current">現在選択中のメッシュ名</param>
-	/// <returns>currentが変更されたかどうか</returns>
-	static bool MeshListGui(std::string& current);
-#endif // _DEBUG
-
 private:
 	/// <summary>
 	/// メッシュが登録されているか取得(mutexなし)

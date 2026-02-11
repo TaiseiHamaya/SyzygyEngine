@@ -4,8 +4,6 @@
 
 using namespace szg;
 
-#include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
-
 #include "../../../Window/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
@@ -60,15 +58,8 @@ void RemoteStringRectInstance::draw_inspector() {
 	ImGui::Separator();
 
 	isChangedValue = false;
-	{
-		std::string cache = font;
-		bool isChanged = FontAtlasMSDFLibrary::ComboListGui(cache);
-		if (isChanged) {
-			EditorValueChangeCommandHandler::GenCommand<std::string>(font);
-			font = cache;
-			EditorValueChangeCommandHandler::End();
-			isChangedValue = true;
-		}
+	if (font.show_gui().any()) {
+		isChangedValue = true;
 	}
 
 	isChangedValue |= fontSize.show_gui().any();
@@ -93,7 +84,7 @@ nlohmann::json RemoteStringRectInstance::serialize() const {
 	result.update(pivot);
 	result.update(text);
 	result.update(color);
-	result["Font"] = font;
+	result.update(font);
 
 	result["Children"] = nlohmann::json::array();
 	for (const auto& child : children) {

@@ -17,14 +17,6 @@ void szg::EditorAssetContentsCollector::Finalize() {
 
 void szg::EditorAssetContentsCollector::Update() {
 	auto& instance = GetInstance();
-	// 削除された要素を除外
-	std::lock_guard<std::mutex> lock(instance.mutex);
-	for (auto& typeMap : instance.assetMaps) {
-		std::erase_if(typeMap, [](const auto& pair) {
-			return !std::filesystem::exists(pair.second.path);
-		});
-	}
-
 	// 全ファイルの捜査
 	instance.timer.back();
 	if (instance.timer <= 0) {
@@ -36,6 +28,14 @@ void szg::EditorAssetContentsCollector::Update() {
 		});
 		instance.timer.set(1.0f); // 1秒ごとに更新
 	}
+
+	// 削除された要素を除外
+	std::lock_guard<std::mutex> lock(instance.mutex);
+	for (auto& typeMap : instance.assetMaps) {
+		std::erase_if(typeMap, [](const auto& pair) {
+			return !std::filesystem::exists(pair.second.path);
+		});
+}
 }
 
 std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std::string& current, AssetType type, const std::string& label) {
@@ -65,16 +65,7 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 	return result;
 }
 
-void szg::EditorAssetContentsCollector::collect_assets() {
-	auto& instance = GetInstance();
-	for (i32 i = 1; i < ASSET_ROOT_TYPE_MAX; ++i) {
-		std::filesystem::path rootPath = std::filesystem::path(ROOT_PATH[i]);
-
-		for (auto directory : std::filesystem::recursive_directory_iterator(rootPath)) {
-			if (directory.is_directory()) {
-				continue;
-			}
-			std::filesystem::path relativePath = std::filesystem::relative(directory.path(), rootPath);
+szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const std::string& extension) {
 			AssetType assetType = AssetType::Unknown;
 			std::string extension = directory.path().extension().string();
 			// 拡張子からAssetTypeを決定
@@ -84,7 +75,7 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 			else if (extension == ".obj" || extension == ".fbx" || extension == ".gltf") {
 				assetType = AssetType::Mesh;
 			}
-			else if (extension == ".ttf" || extension == ".msdf") {
+	else if (extension == ".ttf" || extension == ".mtsdf") {
 				assetType = AssetType::Font;
 			}
 			else if (extension == ".json") {
@@ -97,6 +88,21 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 				assetType = AssetType::Shader;
 			}
 
+	return assetType;
+}
+
+void szg::EditorAssetContentsCollector::collect_assets() {
+	auto& instance = GetInstance();
+	for (i32 i = 1; i < ASSET_ROOT_TYPE_MAX; ++i) {
+		std::filesystem::path rootPath = std::filesystem::path(ROOT_PATH[i]);
+
+		for (auto directory : std::filesystem::recursive_directory_iterator(rootPath)) {
+			if (directory.is_directory()) {
+				continue;
+			}
+			std::filesystem::path relativePath = std::filesystem::relative(directory.path(), rootPath);
+			std::string extension = directory.path().extension().string();
+			AssetType assetType = GetAssetTypeByExtension(extension);
 			std::lock_guard<std::mutex> lock(instance.mutex);
 			auto& assetMap = instance.assetMaps[static_cast<i32>(assetType)];
 			std::string assetName = relativePath.filename().string();

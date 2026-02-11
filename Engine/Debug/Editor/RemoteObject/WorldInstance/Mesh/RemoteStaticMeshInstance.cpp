@@ -62,27 +62,8 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	{
-		std::string cache = meshName;
-		if (PolygonMeshLibrary::MeshListGui(cache)) {
-			if (cache != meshName.value_imm()) {
-				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
+	meshName.show_gui();
 
-				default_material();
-
-				EditorValueChangeCommandHandler::GenCommandInstant<std::string>(meshName.value_mut(), cache);
-
-				// Editor側のDrawExecutorに登録
-				if (sceneView) {
-					sceneView->create_mesh_instancing(query_world(), meshName);
-				}
-
-				default_material();
-
-				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
-			}
-		}
-	}
 	if (ImGui::Button("ResetMaterialData")) {
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 		default_material();
@@ -181,7 +162,7 @@ nlohmann::json RemoteStaticMeshInstance::serialize() const {
 	json["Type"] = instance_type();
 	json.update(isDraw);
 	json.update(layer);
-	json["MeshName"] = meshName;
+	json.update(meshName);
 	json["Materials"] = nlohmann::json::array();
 	for (const auto& material : materials) {
 		nlohmann::json jMaterial;

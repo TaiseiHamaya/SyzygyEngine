@@ -81,33 +81,6 @@ void TextureLibrary::Transfer(const std::string& name, std::shared_ptr<TextureAs
 	GetInstance().textureInstanceList.emplace(name, data);
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
-bool TextureLibrary::TextureListGui(std::string& current) {
-	bool isChanged = false;
-
-	std::lock_guard<std::mutex> lock{ textureMutex };
-	const std::string& currentName = current.empty() ? "Current texture is nullptr" : current;
-	if (ImGui::BeginCombo("TextureList", currentName.data())) {
-		auto&& list = GetInstance().textureInstanceList;
-		for (const auto& name : list | std::views::keys) {
-			bool isSelected = (currentName == name);
-			if (ImGui::Selectable(name.c_str(), isSelected)) {
-				if (!isSelected) {
-					current = name;
-					isChanged = true;
-				}
-			}
-			if (isSelected) {
-				ImGui::SetItemDefaultFocus();
-			}
-		}
-		ImGui::EndCombo();
-
-	}
-	return isChanged;
-}
-#endif // _DEBUG
-
 bool TextureLibrary::IsRegisteredNonlocking(const std::string& textureName) noexcept(false) {
 	return GetInstance().textureInstanceList.contains(textureName);
 }

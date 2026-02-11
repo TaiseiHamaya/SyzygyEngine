@@ -19,7 +19,7 @@ class EditorAssetField {
 	using GUIFuncType = std::function<bool(std::string&)>;
 
 public:
-	EditorAssetField(const std::string& label_, AssetType type);
+	EditorAssetField(const std::string& label_, AssetType type, std::string init = "");
 	~EditorAssetField() = default;
 
 	SZG_CLASS_DEFAULT(EditorAssetField)

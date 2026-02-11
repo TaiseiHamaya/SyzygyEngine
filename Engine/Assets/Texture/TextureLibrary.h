@@ -67,15 +67,6 @@ public:
 	/// <param name="data">転送データ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<TextureAsset>& data);
 
-#ifdef DEBUG_FEATURES_ENABLE
-	/// <summary>
-	/// 登録済みファイルをImGuiComboで取得
-	/// </summary>
-	/// <param name="current">現在選択中のテクスチャ名</param>
-	/// <returns>current変更フラグ</returns>
-	static bool TextureListGui(std::string& current);
-#endif // _DEBUG
-
 private:
 	/// <summary>
 	/// テクスチャが登録済みか取得(mutexなし)

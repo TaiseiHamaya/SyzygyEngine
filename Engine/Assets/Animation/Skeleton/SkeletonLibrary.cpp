@@ -49,28 +49,6 @@ void SkeletonLibrary::Transfer(const std::string& name, std::shared_ptr<Skeleton
 	GetInstance().instanceList.emplace(name, data);
 }
 
-//bool SkeletonLibrary::SkeletonListGui(std::string& current) {
-//	bool changed = false;
-//
-//	std::lock_guard<std::mutex> lock{ skeletonMutex };
-//	if (ImGui::BeginCombo("SkeletonList", current.c_str())) {
-//		auto&& list = GetInstance().instanceList;
-//		for (auto itr = list.begin(); itr != list.end(); ++itr) {
-//			bool is_selected = (current == itr->first);
-//			if (ImGui::Selectable(itr->first.c_str(), is_selected)) {
-//				current = itr->first;
-//				changed = true;
-//			}
-//			if (is_selected) {
-//				ImGui::SetItemDefaultFocus();
-//			}
-//		}
-//		ImGui::EndCombo();
-//
-//	}
-//	return changed;
-//}
-
 bool SkeletonLibrary::IsRegisteredNonlocking(const std::string& name) {
 	return GetInstance().instanceList.contains(name);
 }

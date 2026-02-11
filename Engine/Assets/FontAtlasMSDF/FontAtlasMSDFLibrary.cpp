@@ -64,34 +64,6 @@ void FontAtlasMSDFLibrary::Transfer(const std::string& name, std::shared_ptr<Fon
 	instance.fontAtlases.emplace(name, fontAtlas);
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
-
-#include <imgui.h>
-
-bool FontAtlasMSDFLibrary::ComboListGui(std::string& current) {
-	auto& instance = GetInstance();
-	std::lock_guard lock{ instance.mutex };
-	bool isChanged = false;
-	if (ImGui::BeginCombo("FontAtlasMSDF", current.c_str())) {
-		for (const auto& name : instance.fontAtlases | std::views::keys) {
-			bool isSelected = (current == name);
-			if (ImGui::Selectable(name.c_str(), isSelected)) {
-				if (!isSelected) {
-					current = name;
-					isChanged = true;
-				}
-			}
-			if (isSelected) {
-				ImGui::SetItemDefaultFocus();
-			}
-		}
-		ImGui::EndCombo();
-	}
-	return isChanged;
-}
-
-#endif // DEBUG_FEATURES_ENABLE
-
 bool FontAtlasMSDFLibrary::IsRegisteredNonlocking(const std::string& name) noexcept(false) {
 	auto& instance = GetInstance();
 	return instance.fontAtlases.contains(name);

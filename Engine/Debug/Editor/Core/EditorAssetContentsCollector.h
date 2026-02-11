@@ -26,6 +26,8 @@ public:
 
 	static std::optional<std::string> ComboGUI(const std::string& current, AssetType type, const std::string& label = "");
 
+	static AssetType GetAssetTypeByExtension(const std::string& extension);
+
 private:
 	void collect_assets();
 

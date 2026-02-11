@@ -95,25 +95,6 @@ void NodeAnimationPlayer::animation_speed(r32 speed) noexcept {
 	animationSpeed = speed;
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
-#include <imgui.h>
-void NodeAnimationPlayer::debug_gui() {
-	if (NodeAnimationLibrary::AnimationListGui(animationName)) {
-		reset_animation(animationName);
-	}
-
-	if (ImGui::TreeNodeEx(animationName.c_str(), ImGuiTreeNodeFlags_DefaultOpen)) {
-		ImGui::Checkbox("Active", &isActive);
-		ImGui::Checkbox("Loop", &isLoop);
-		if (nodeAnimation) {
-			ImGui::SliderFloat("Timer", reinterpret_cast<float*>(&timer), 0, nodeAnimation->duration(), "%.3fs");
-		}
-		ImGui::DragFloat("AnimationSpeed", &animationSpeed, 0.1f);
-		ImGui::TreePop();
-	}
-}
-#endif // _DEBUG
-
 template<typename T, T LerpFunction(const T&, const T&, r32)>
 T CalculateValue(const NodeAnimationAsset::AnimationCurve<T>& animationCurve, r32 time) {
 	const std::map<r32, T>& keyframes = animationCurve.keyframes;

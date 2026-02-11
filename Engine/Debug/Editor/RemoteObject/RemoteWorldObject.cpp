@@ -60,7 +60,7 @@ void RemoteWorldObject::draw_hierarchy(Reference<const EditorSelectObject> selec
 	}
 	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
 	if (ImGui::BeginDragDropTarget()) {
-		EditorDandDManager::EndDrag(this);
+		EditorDandDManager::EndDragHierarchy(this);
 		ImGui::EndDragDropTarget();
 	}
 

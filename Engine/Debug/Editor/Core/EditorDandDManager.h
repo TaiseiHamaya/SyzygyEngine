@@ -31,8 +31,9 @@ public:
 
 public:
 	static void CheckDandDHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
-	static void BeginDrag(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
-	static void EndDrag(Reference<IRemoteObject> target);
+
+	static void BeginDragHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
+	static void EndDragHierarchy(Reference<IRemoteObject> target);
 
 	static void ExecuteCommand();
 

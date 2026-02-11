@@ -6,15 +6,14 @@ using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/Animation/NodeAnimation/NodeAnimationLibrary.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonAsset.h"
-#include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
+#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
 
 #define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
@@ -71,29 +70,8 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	{
-		std::string cache = meshName;
-		if (PolygonMeshLibrary::MeshListGui(cache)) {
-			if (cache != meshName.value_imm()) {
-				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
+	meshName.show_gui();
 
-				default_material();
-
-				EditorValueChangeCommandHandler::GenCommandInstant<std::string>(meshName.value_mut(), cache);
-
-				skeleton = SkeletonLibrary::GetSkeleton(meshName);
-
-				// Editor側のDrawExecutorに登録
-				if (sceneView) {
-					sceneView->create_mesh_instancing(query_world(), meshName);
-				}
-
-				default_material();
-
-				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
-			}
-		}
-	}
 	if (ImGui::Button("ResetMaterialData")) {
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 		default_material();
@@ -119,13 +97,10 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 		}
 		if (ImGui::TreeNodeEx(treeNodeName.c_str(), ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_SpanAllColumns)) {
 			{
-				std::string cache = meshMaterial.texture;
-				auto result = TextureLibrary::TextureListGui(cache);
+				auto result = EditorAssetContentsCollector::ComboGUI(meshMaterial.texture, AssetType::Texture);
 
-				if (result && cache != meshMaterial.texture) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::texture);
-					std::swap(cache, meshMaterial.texture);
-					EditorValueChangeCommandHandler::End();
+				if (result.has_value()) {
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, result.value());
 				}
 			}
 
@@ -184,17 +159,8 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 	}
 	ImGui::Separator();
 
-	//ここからAnimation専用処理
-	{
-		std::string cache = animationName;
-		auto result = NodeAnimationLibrary::AnimationListGui(cache);
-
-		if (result && cache != animationName) {
-			EditorValueChangeCommandHandler::GenCommand<std::string>(animationName);
-			std::swap(cache, animationName);
-			EditorValueChangeCommandHandler::End();
-		}
-	}
+	// Animation
+	animationName.show_gui();
 	isLoop.show_gui();
 	ImGui::Separator();
 
@@ -216,7 +182,7 @@ nlohmann::json RemoteSkinningMeshInstance::serialize() const {
 	result["Type"] = instance_type();
 	result.update(isDraw);
 	result.update(layer);
-	result["MeshName"] = meshName;
+	result.update(meshName);
 	result["Materials"] = nlohmann::json::array();
 	for (const auto& material : materials) {
 		nlohmann::json jMaterial;
@@ -228,7 +194,7 @@ nlohmann::json RemoteSkinningMeshInstance::serialize() const {
 		result["Materials"].emplace_back(std::move(jMaterial));
 	}
 
-	result["AnimationName"] = animationName;
+	result.update(animationName);
 	result.update(isLoop);
 
 	return result;

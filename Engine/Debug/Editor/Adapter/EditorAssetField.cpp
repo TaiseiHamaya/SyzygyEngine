@@ -3,8 +3,9 @@
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
 
-szg::EditorAssetField::EditorAssetField(const std::string& label_, AssetType type) :
+szg::EditorAssetField::EditorAssetField(const std::string& label_, AssetType type, std::string init) :
 	label(label_),
+	value(init),
 	assetType(type) {
 }
 
