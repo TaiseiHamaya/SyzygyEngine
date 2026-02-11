@@ -87,7 +87,7 @@ bool LoadMeshAssimp(const std::filesystem::path& filePath, std::vector<PolygonMe
 			if (material->GetTexture(aiTextureType_DIFFUSE, 0, &textureFilePath) == AI_SUCCESS) {
 				newMaterial.textureFileName = textureFilePath.C_Str();
 				std::filesystem::path directory{ filePath.parent_path() };
-				TextureLibrary::RegisterLoadQue(directory / newMaterial.textureFileName);
+				TextureLibrary::RegisterLoadQue(L".\\" / directory / newMaterial.textureFileName);
 			}
 
 			// UVTransformの取得

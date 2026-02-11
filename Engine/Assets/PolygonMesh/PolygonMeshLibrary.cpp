@@ -2,8 +2,6 @@
 
 using namespace szg;
 
-#include <mutex>
-
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./PolygonMesh.h"
@@ -14,8 +12,6 @@ using namespace szg;
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>
 #endif // _DEBUG
-
-std::mutex meshMutex;
 
 void PolygonMeshLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない
@@ -28,8 +24,17 @@ void PolygonMeshLibrary::RegisterLoadQue(const std::filesystem::path& filePath) 
 	);
 }
 
+void szg::PolygonMeshLibrary::Unload(const std::string& name) {
+	auto& instance = GetInstance();
+	std::lock_guard<std::mutex> lock{ mutex };
+	if (IsRegisteredNonlocking(name)) {
+		szgInformation("Unload texture Name-\'{:}\'.", name);
+		instance.meshInstanceList.erase(name);
+	}
+}
+
 std::shared_ptr<const PolygonMesh> PolygonMeshLibrary::GetPolygonMesh(const std::string& meshName) {
-	std::lock_guard<std::mutex> lock{ meshMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	if (IsRegisteredNonlocking(meshName)) {
 		return GetInstance().meshInstanceList.at(meshName);
 	}
@@ -41,39 +46,15 @@ std::shared_ptr<const PolygonMesh> PolygonMeshLibrary::GetPolygonMesh(const std:
 }
 
 bool PolygonMeshLibrary::IsRegistered(const std::string& meshName) {
-	std::lock_guard<std::mutex> lock{ meshMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	return IsRegisteredNonlocking(meshName);
 }
 
 void PolygonMeshLibrary::Transfer(const std::string& name, std::shared_ptr<PolygonMesh>& data) {
-	std::lock_guard<std::mutex> lock{ meshMutex };
+	std::lock_guard<std::mutex> lock{ mutex };
 	szgInformation("Transfer new PolygonMesh. Name-\'{:}\', Address-\'{:016}\'", name, (void*)data.get());
 	GetInstance().meshInstanceList.emplace(name, data);
 }
-
-#ifdef DEBUG_FEATURES_ENABLE
-bool PolygonMeshLibrary::MeshListGui(std::string& current) {
-	bool changed = false;
-
-	std::lock_guard<std::mutex> lock{ meshMutex };
-	if (ImGui::BeginCombo("MeshList", current.c_str())) {
-		auto&& list = GetInstance().meshInstanceList;
-		for (auto itr = list.begin(); itr != list.end(); ++itr) {
-			bool is_selected = (current == itr->first);
-			if (ImGui::Selectable(itr->first.c_str(), is_selected)) {
-				current = itr->first;
-				changed = true;
-			}
-			if (is_selected) {
-				ImGui::SetItemDefaultFocus();
-			}
-		}
-		ImGui::EndCombo();
-
-	}
-	return changed;
-}
-#endif // _DEBUG
 
 bool PolygonMeshLibrary::IsRegisteredNonlocking(const std::string& meshName) {
 	return GetInstance().meshInstanceList.contains(meshName);

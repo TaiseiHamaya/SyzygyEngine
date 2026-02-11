@@ -8,7 +8,7 @@ using namespace szg;
 
 void RemoteAABBColliderInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<AABBCollider, void*>::update_preview(world, parentAffine);
-	Affine primitiveAffine = Affine::FromSRT(size.cget(), CQuaternion::IDENTITY, Vector3::Multiply(-offset.cget(), size.cget()) + worldAffine.get_origin());
+	Affine primitiveAffine = Affine::FromSRT(size.value_imm(), CQuaternion::IDENTITY, Vector3::Multiply(-offset.value_imm(), size.value_imm()) + worldAffine.get_origin());
 	sceneView->write_primitive(world, "Box", primitiveAffine);
 }
 

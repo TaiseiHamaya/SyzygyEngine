@@ -94,9 +94,6 @@ private:
 	std::shared_ptr<const FontAtlasMSDFAsset> fontAtlas;
 	std::string string;
 	std::vector<GlyphRenderingData> charRenderingData;
-
-public:
-	void debug_gui();
 };
 
 }; // szg

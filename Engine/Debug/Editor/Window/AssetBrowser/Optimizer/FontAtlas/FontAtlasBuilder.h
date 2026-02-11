@@ -12,7 +12,7 @@ namespace szg {
 
 class FontAtlasBuilder final {
 public:
-	void entry_point(const std::filesystem::path& path);
+	void entry_point(const std::filesystem::path& inputFile, const std::filesystem::path& outputPath);
 
 private:
 	/// <summary>
@@ -23,12 +23,12 @@ private:
 	/// <summary>
 	/// mtsdfテクスチャをdds形式で保存
 	/// </summary>
-	void save_mtsdf_texture();
+	void save_mtsdf_texture(const std::filesystem::path& outputPath);
 
 	/// <summary>
 	/// mtsdfテクスチャのatlasデータの保存
 	/// </summary>
-	void save_atlas_data();
+	void save_atlas_data(const std::filesystem::path& outputPath);
 
 private:
 	std::filesystem::path ttfFilePath;

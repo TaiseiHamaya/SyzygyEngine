@@ -11,6 +11,7 @@
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
 #define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
@@ -60,10 +61,10 @@ private:
 	EditorValueField<bool> isDraw{ "IsDraw" };
 	EditorValueField<u32> layer{ "Layer" };
 
-	std::string meshName;
+	EditorAssetField meshName{ "Mesh", AssetType::Mesh };
 	std::vector<Material> materials;
 
-	std::string animationName;
+	EditorAssetField animationName{ "Animation", AssetType::Animation };
 	EditorValueField<bool> isLoop{ "IsLoop" };
 
 	std::shared_ptr<const SkeletonAsset> skeleton;

@@ -97,11 +97,11 @@ void SkinningMeshInstance::default_material() {
 			// テクスチャ情報の取得
 			meshMaterial.texture = TextureLibrary::GetTexture(meshMaterialData->textureFileName);
 			// uv情報のリセット
-			meshMaterial.uvTransform.copy(meshMaterialData->defaultUV);
+			meshMaterial.uvTransform = meshMaterialData->defaultUV;
 		}
 		else {
 			meshMaterial.texture = TextureLibrary::GetTexture("Error.png");
-			meshMaterial.uvTransform.copy(Transform2D{});
+			meshMaterial.uvTransform = Transform2D();
 			szgWarning("Material data is not found.");
 		}
 		++i;

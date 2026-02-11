@@ -72,7 +72,7 @@ void RemoteDirectionalLightInstance::draw_inspector() {
 
 	ImGui::Text("Direction");
 	Vector3 rotate = CVector3::ZERO;
-	ImGui::Text(std::format("X : {:.3}, Y : {:.3}, Z : {:.3}", direction.get().x, direction.get().y, direction.get().z).c_str());
+	ImGui::Text(std::format("X : {:.3}, Y : {:.3}, Z : {:.3}", direction.value_mut().x, direction.value_mut().y, direction.value_mut().z).c_str());
 	if (ImGui::DragFloat3("World", &rotate.x, 1.0f, -180.0f, 180.0f)) {
 		if (rotate.x != 0.0f || rotate.y != 0.0f || rotate.z != 0.0f) {
 			direction = direction * Quaternion::EulerDegree(rotate);

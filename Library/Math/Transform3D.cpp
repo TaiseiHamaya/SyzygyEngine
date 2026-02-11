@@ -26,12 +26,6 @@ void Transform3D::plus_translate(const Vector3& plus) noexcept {
 	translate += plus;
 }
 
-void Transform3D::copy(const Transform3D& copy) noexcept {
-	scale = copy.scale;
-	rotate = copy.rotate;
-	translate = copy.translate;
-}
-
 void Transform3D::set_scale(const Vector3& scale_) noexcept {
 	scale = scale_;
 }
@@ -79,73 +73,6 @@ Quaternion& Transform3D::get_quaternion() noexcept {
 Vector3& Transform3D::get_translate() noexcept {
 	return translate;
 }
-
-#ifdef DEBUG_FEATURES_ENABLE
-#include <imgui.h>
-#include <format>
-u32 Transform3D::debug_gui(string_literal tag) {
-	u32 result = false;
-	ImGui::SetNextItemOpen(true, ImGuiCond_Once);
-	if (ImGui::TreeNode(std::format("{}##{:}", tag, (void*)this).c_str())) {
-		// ---------- Scale ----------
-		// リセットボタン
-		if (ImGui::Button("\ue5d5##Scale")) {
-			scale = CVector3::BASIS;
-		}
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		ImGui::DragFloat3("Scale", &scale.x, 0.01f);
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-		
-		// ---------- Rotate ----------
-		// リセットボタン
-		if (ImGui::Button("\ue5d5##Rotate")) {
-			rotate = CQuaternion::IDENTITY;
-		}
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-
-		Vector3 rotationL = CVector3::ZERO;
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		if (ImGui::DragFloat3("RotateLocal", &rotationL.x, 1.0f, -180.0f, 180.0f, "")) {
-			rotate = (rotate * Quaternion::EulerDegree(rotationL)).normalize();
-		}
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-		
-		Vector3 rotationW = CVector3::ZERO;
-		ImGui::Indent(29.f);
-		ImGui::SetNextItemWidth(150);
-		if (ImGui::DragFloat3("RotateWorld", &rotationW.x, 1.0f, -180.0f, 180.0f, "")) {
-			rotate *= Quaternion::EulerDegree(rotationW);
-			rotate = rotate.normalize();
-		}
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-
-		ImGui::Unindent(29.f);
-		// ---------- Translate ----------
-		// リセットボタン
-		if (ImGui::Button("\ue5d5##Translate")) {
-			translate = CVector3::ZERO;
-		}
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		ImGui::DragFloat3("Translate", &translate.x, 0.1f);
-		result |= ImGui::IsItemDeactivated() << 1;
-		result |= ImGui::IsItemActivated() << 0;
-
-		ImGui::TreePop();
-	}
-	return result;
-}
-#endif // _DEBUG
 
 constexpr Matrix4x4 Transform3D::MakeIdentityMatrix() noexcept {
 	return CMatrix4x4::IDENTITY;

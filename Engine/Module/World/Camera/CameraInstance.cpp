@@ -49,10 +49,6 @@ void CameraInstance::register_world_lighting(u32 index) const {
 	);
 }
 
-void CameraInstance::set_transform(const Transform3D& transform_) noexcept {
-	transform.copy(transform_);
-}
-
 const Matrix4x4& CameraInstance::vp_matrix() const {
 	return vpBuffers.data_imm()->viewProjection;
 }

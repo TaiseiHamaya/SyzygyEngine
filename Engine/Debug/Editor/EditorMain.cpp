@@ -8,7 +8,7 @@ using namespace szg;
 
 #include <imgui.h>
 
-#include "./Core/EditorHierarchyDandD.h"
+#include "./Core/EditorDandDManager.h"
 #include "./Window/EditorLogWindow.h"
 #include "Command/EditorCommandInvoker.h"
 #include "Command/EditorCreateObjectCommand.h"
@@ -18,10 +18,9 @@ using namespace szg;
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilderManager.h"
+#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+#include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
-
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilder.h"
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();
@@ -33,10 +32,11 @@ void EditorMain::Initialize() {
 	instance.screenResult.initialize(true);
 
 	FontAtlasBuilderManager::Initialize();
-	//FontAtlasBuilder{}.entry_point("./SyzygyEngine/EngineResources/Misc/UDEVGothic35HS-Regular.ttf");
 }
 
 void EditorMain::Finalize() {
+	EditorAssetContentsCollector::Finalize();
+
 	FontAtlasBuilderManager::Finalize();
 
 	EditorMain& instance = GetInstance();
@@ -134,6 +134,8 @@ void EditorMain::DrawBase() {
 		instance.switchSceneName = std::nullopt;
 	}
 
+	EditorAssetContentsCollector::Update();
+
 	// HierarchyとSceneViewの同期
 	instance.gizmo.begin_frame(instance.sceneView.view_origin(), instance.sceneView.view_size());
 	instance.sceneView.update();
@@ -163,13 +165,14 @@ void EditorMain::Draw() {
 	instance.hierarchy.draw();
 	instance.inspector.draw();
 	instance.renderDAG.draw();
+	instance.assetBrowser.draw();
 	EditorLogWindow::Draw();
 	if (instance.sceneView.is_active()) {
 		ImGuizmo::SetDrawlist(instance.sceneView.draw_list().ptr());
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
 	}
 
-	EditorHierarchyDandD::ExecuteReparent();
+	EditorDandDManager::ExecuteCommand();
 }
 
 void EditorMain::SetActiveEditor(bool isActive) {
@@ -224,6 +227,11 @@ bool szg::EditorMain::IsRuntimeInput() {
 	return
 		instance.screenResult.is_focus() ||
 		!instance.isActiveEditor;
+}
+
+void szg::EditorMain::HandleDropFile(const std::filesystem::path& filePath) {
+	EditorMain& instance = GetInstance();
+	instance.assetBrowser.on_drop_file(filePath);
 }
 
 void EditorMain::set_imgui_command() {

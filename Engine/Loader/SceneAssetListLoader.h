@@ -5,6 +5,7 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "Engine/Runtime/Scene/SceneAssetCollection.h"
+#include "Engine/Assets/AssetTypeEnum.h"
 
 namespace szg {
 

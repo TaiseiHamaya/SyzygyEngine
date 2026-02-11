@@ -10,6 +10,7 @@
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
 namespace szg {
 
@@ -18,7 +19,7 @@ public:
 	friend class EditorSceneSerializer;
 
 	struct Material {
-		std::string texture{ "Error.png" };
+		EditorAssetField texture{ "Texture", AssetType::Texture, "Error.png"};
 		EditorValueField<ColorRGBA> color{ "Color", CColorRGBA::WHITE };
 		EditorValueField<Transform2D> uvTransform{ "UV Transform" };
 		LighingType lightingType{ LighingType::None };

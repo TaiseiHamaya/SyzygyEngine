@@ -13,9 +13,12 @@
 #include <Library/Math/Transform3D.h>
 #include <Library/Utility/Template/Reference.h>
 
-#include "../../Core/EditorHierarchyDandD.h"
+#include "../../Core/EditorDandDManager.h"
 #include "Engine/Debug/Editor/Command/EditorCommandInvoker.h"
 #include "Engine/Debug/Editor/Command/EditorSelectCommand.h"
+
+#define TRANSFORM3D_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
 
 namespace szg {
 
@@ -69,7 +72,7 @@ inline void IRemoteInstance<RuntimeType, DebugVisualType>::setup() {
 template<typename RuntimeType, typename DebugVisualType>
 inline void IRemoteInstance<RuntimeType, DebugVisualType>::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	// 行列計算
-	worldAffine = Affine::FromTransform3D(transform.cget());
+	worldAffine = Affine::FromTransform3D(transform.value_imm());
 	if (parentAffine) {
 		worldAffine *= *parentAffine;
 	}
@@ -96,13 +99,13 @@ inline void IRemoteInstance<RuntimeType, DebugVisualType>::draw_hierarchy(Refere
 	if (children.empty()) {
 		flags |= ImGuiTreeNodeFlags_Leaf;
 	}
-	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.get(), (void*)this).c_str(), flags);
-	EditorHierarchyDandD::CheckDandD(this, parent);
+	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
+	EditorDandDManager::CheckDandDHierarchy(this, parent);
 
 	// こうすると選択できるらしい
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(
-			std::make_unique<EditorSelectCommand>(this, EditorSelectObjectBody::TransformData{ transform.get(), worldAffine })
+			std::make_unique<EditorSelectCommand>(this, EditorSelectObjectBody::TransformData{ transform.value_mut(), worldAffine })
 		);
 	}
 

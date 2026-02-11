@@ -67,7 +67,7 @@ void RemoteSceneObject::draw_hierarchy(Reference<const EditorSelectObject> selec
 	if (isOpen) {
 		flags |= ImGuiTreeNodeFlags_DefaultOpen;
 	}
-	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.get(), (void*)this).c_str(), flags);
+	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
 
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(

@@ -83,43 +83,6 @@ void Transform2D::plus_translate(const Vector2& plus) noexcept {
 	translate += plus;
 }
 
-void Transform2D::copy(const Transform2D& copy) noexcept {
-	scale = copy.scale;
-	rotate = copy.rotate;
-	translate = copy.translate;
-}
-
-
-#ifdef DEBUG_FEATURES_ENABLE
-#include <imgui.h>
-#include <format>
-
-void Transform2D::debug_gui(string_literal tag) {
-	ImGui::SetNextItemOpen(true, ImGuiCond_Once);
-	if (ImGui::TreeNode(std::format("{}##{:}", tag, (void*)this).c_str())) {
-		if (ImGui::Button("\ue5d5##Scale")) {
-			scale = CVector2::BASIS;
-		}
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		ImGui::DragFloat2("Scale", &scale.x, 0.01f);
-		if (ImGui::Button("\ue5d5##Rotate")) {
-			rotate = 0;
-		}
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		ImGui::DragFloat("Rotate", &rotate, 0.02f);
-		if (ImGui::Button("\ue5d5##Translate")) {
-			translate = CVector2::ZERO;
-		}
-		ImGui::SameLine();
-		ImGui::SetNextItemWidth(150);
-		ImGui::DragFloat2("Translate", &translate.x, 0.1f);
-		ImGui::TreePop();
-	}
-}
-#endif // _DEBUG
-
 Matrix3x3 Transform2D::MakeRotateMatrix(const r32 theta) noexcept {
 	return MakeRotateMatrix(std::sin(theta), std::cos(theta));
 }
