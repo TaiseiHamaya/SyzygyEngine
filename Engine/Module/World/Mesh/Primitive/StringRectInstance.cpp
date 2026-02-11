@@ -145,28 +145,6 @@ std::optional<u32> StringRectInstance::glyph_bindless_index() const {
 	return fontAtlas->glyph_bindless_index();
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
-
-#include <imgui.h>
-#include <imgui_stdlib.h>
-
-void StringRectInstance::debug_gui() {
-	transform.debug_gui();
-
-	ImGui::Separator();
-
-	material.color.debug_gui();
-
-	ImGui::Separator();
-
-	ImGui::DragFloat("Font Size", &data.fontSize, 0.1f, 0.0f, 100000.0f);
-	if (ImGui::DragFloat2("Pivot", &data.pivot.x, 0.1f, -1000.0f, 1000.0f)) {
-		data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
-	}
-	if (ImGui::InputTextMultiline("String", &string)) {
-		charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
-		data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
-	}
+std::shared_ptr<const FontAtlasMSDFAsset> szg::StringRectInstance::font_atlas_asset() const noexcept {
+	return fontAtlas;
 }
-
-#endif // DEBUG_FEATURES_ENABLE

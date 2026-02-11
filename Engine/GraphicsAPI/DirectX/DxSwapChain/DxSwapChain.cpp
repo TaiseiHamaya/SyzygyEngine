@@ -44,7 +44,7 @@ Reference<ScreenTexture> DxSwapChain::GetWriteBufferTexture() {
 	return GetInstance().textures[RenderingSystemValues::NowBackbufferIndex()];
 }
 
-void DxSwapChain::SetClearColor(const Color4& color_) noexcept {
+void DxSwapChain::SetClearColor(const ColorRGBA& color_) noexcept {
 	GetInstance().renderTargetGroup->set_clear_color(color_);
 }
 

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <optional>
-#include <string>
-
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "./BaseRenderPipeline.h"
@@ -17,12 +14,7 @@ public:
 	SZG_CLASS_MOVE_ONLY(IPostEffectPipeline)
 
 public:
-	void setup(const std::optional<std::string>& groupName_);
-
 	virtual void execute_effect_command() = 0;
-
-protected:
-	std::optional<std::string> groupName;
 };
 
 }; // szg

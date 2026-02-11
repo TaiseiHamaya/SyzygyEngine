@@ -327,3 +327,5 @@ imgui.ini
 # Ignore DirectXTex compiled shader
 /Library/Externals/DirectXTex/Shaders/Compiled
 /Log/*
+
+*.blend1

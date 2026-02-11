@@ -4,7 +4,7 @@
 
 #include <variant>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/Runtime/Clock/WorldTimer.h"
@@ -37,7 +37,7 @@ public: // Constructor/Destructor
 		const Vector3& translate,
 		r32 lifetime_,
 		const Vector3& velocity_, const Vector3& acceleration_,
-		const Color4& startColor_, const Color4& endColor_,
+		const ColorRGBA& startColor_, const ColorRGBA& endColor_,
 		const Vector3& startSize_, const Vector3& endSize_,
 		RotationType rotationType, std::variant<Constant, std::monostate, Random, LookAtAngle> rotationData
 	);
@@ -52,7 +52,7 @@ public: // Member function
 	void update() override;
 
 public: // Getter/Setter
-	const Color4& get_color() const { return color; };
+	const ColorRGBA& get_color() const { return color; };
 	bool is_ended() const { return isEnded; };
 
 	const Matrix4x4 create_uv_matrix() const;
@@ -66,9 +66,9 @@ protected: // Member variable
 	Vector3 velocity;
 	Vector3 acceleration;
 
-	Color4 color;
-	Color4 startColor;
-	Color4 endColor;
+	ColorRGBA color;
+	ColorRGBA startColor;
+	ColorRGBA endColor;
 
 	Vector3 startSize;
 	Vector3 endSize;

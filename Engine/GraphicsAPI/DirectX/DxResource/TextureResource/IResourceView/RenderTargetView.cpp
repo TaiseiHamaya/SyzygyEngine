@@ -27,7 +27,7 @@ void RenderTargetView::create(Reference<ITextureResource> resource, DXGI_FORMAT 
 	DxDevice::GetDevice()->CreateRenderTargetView(resource->get_resource().Get(), &rtvDesc, _handle);
 }
 
-void RenderTargetView::clear(const Color4& color) const {
+void RenderTargetView::clear(const ColorRGBA& color) const {
 	auto&& commandList = DxCommand::GetCommandList();
 	commandList->ClearRenderTargetView(
 		_handle,

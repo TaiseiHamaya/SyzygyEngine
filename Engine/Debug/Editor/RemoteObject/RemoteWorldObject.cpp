@@ -10,8 +10,7 @@ using namespace szg;
 
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
-#include "../Core/EditorHierarchyDandD.h"
-#include "../Window/EditorWorldView/EditorWorldView.h"
+#include "../Core/EditorDandDManager.h"
 #include "../Window/EditorSceneView.h"
 
 RemoteWorldObject::RemoteWorldObject() = default;
@@ -59,9 +58,9 @@ void RemoteWorldObject::draw_hierarchy(Reference<const EditorSelectObject> selec
 	if (isOpen) {
 		flags |= ImGuiTreeNodeFlags_DefaultOpen;
 	}
-	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.get(), (void*)this).c_str(), flags);
+	isOpen = ImGui::TreeNodeEx(std::format("{}##{}", hierarchyName.value_mut(), (void*)this).c_str(), flags);
 	if (ImGui::BeginDragDropTarget()) {
-		EditorHierarchyDandD::EndDrag(this);
+		EditorDandDManager::EndDragHierarchy(this);
 		ImGui::EndDragDropTarget();
 	}
 
@@ -142,7 +141,7 @@ Reference<const RemoteWorldObject> RemoteWorldObject::query_world() const {
 }
 
 const std::string& RemoteWorldObject::world_name() const {
-	return hierarchyName.cget();
+	return hierarchyName.value_imm();
 }
 
 u32 RemoteWorldObject::get_id() const {

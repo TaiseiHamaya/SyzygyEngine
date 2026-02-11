@@ -29,7 +29,7 @@ public:
 
 private:
 	EditorValueField<Vector3> size{ "Size", CVector3::ONE * 2 };
-	EditorValueField<Vector3> offset{ "Offset", CVector3::ONE * 0.5f };
+	EditorValueField<Vector3> offset{ "Offset", CVector3::HALF };
 };
 
 }; // szg

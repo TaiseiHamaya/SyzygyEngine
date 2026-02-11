@@ -31,7 +31,7 @@ private:
 
 	StructuredBuffer<TransformMatrixDataBuffer> matrices;
 	StructuredBuffer<RectData> rectData;
-	StructuredBuffer<MaterialDataBuffer4> material;
+	StructuredBuffer<MaterialDataBufferRGBA> material;
 
 	std::mutex writeBufferMutex;
 };

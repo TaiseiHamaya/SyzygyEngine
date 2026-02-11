@@ -23,8 +23,9 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCore.h"
 #include "Engine/Runtime/Clock/WorldClock.h"
 #include "Engine/Runtime/Input/Input.h"
+#include "Engine/Runtime/Input/InputTextFrame.h"
+#include "Engine/Runtime/Input/InputVKeyState.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
-#include "Engine/Runtime/Input/TextInput.h"
 
 #pragma comment(lib, "Dbghelp.lib") // Symとか
 #pragma comment(lib, "Oleacc.lib") // GetProcessHandleFromHwnd
@@ -86,7 +87,7 @@ void WinApp::Initialize() {
 	// chrono時間精度の設定
 	timeBeginPeriod(1);
 
-	szgErrorIf(isInitialized, "WinApp is already initialized.");
+	szgCriticalIf(isInitialized, "WinApp is already initialized.");
 	isInitialized = true;
 
 	// アプリケーション内のwstring charsetをutf-8にする
@@ -137,8 +138,10 @@ void WinApp::Initialize() {
 	// システム使用のアセットをロード
 	// メッシュ
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/ErrorObject/ErrorObject.obj");
-	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Grid/Grid.obj");
+	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Grid/Grid.gltf");
 	PolygonMeshLibrary::RegisterLoadQue("[[szg]]/Camera/CameraAxis.obj");
+	// テクスチャ
+	TextureLibrary::RegisterLoadQue("[[szg]]/White.png");
 	// Primitive
 	PrimitiveGeometryLibrary::Transfer(
 		"Ico3",
@@ -174,6 +177,9 @@ void WinApp::Initialize() {
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Forward.PS.hlsl");
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Misc/PrimitiveGeometry/PrimitiveGeometry.PS.hlsl");
 
+	ShaderLibrary::RegisterLoadQue("[[editor]]/Grid/Grid.VS.hlsl");
+	ShaderLibrary::RegisterLoadQue("[[editor]]/Grid/Grid.PS.hlsl");
+
 	// primitive
 	PrimitiveGeometryLibrary::Transfer(
 		"Sphere",
@@ -188,12 +194,16 @@ void WinApp::Initialize() {
 		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Line.json")
 	);
 	PrimitiveGeometryLibrary::Transfer(
-		"Frustum",
-		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum.json")
+		"Frustum0",
+		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum0.json")
+	);
+	PrimitiveGeometryLibrary::Transfer(
+		"Frustum1",
+		std::make_shared<PrimitiveGeometryAsset>("[[szg]]/PrimitiveGeometry/Frustum1.json")
 	);
 
 	// Texture
-	TextureLibrary::RegisterLoadQue("./SyzygyEngine/EditorResources/Texture/EngineIcon_DirectionalLight.png");
+	TextureLibrary::RegisterLoadQue("[[editor]]/EngineIcon_DirectionalLight.png");
 #endif // _DEBUG
 
 	// 待機
@@ -206,25 +216,27 @@ void WinApp::Initialize() {
 		EditorMain::SetActiveEditor(false);
 	}
 	EditorMain::Initialize();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	szgInformation("Complete initialize application.");
 }
 
 void WinApp::BeginFrame() {
+#ifdef DEBUG_FEATURES_ENABLE
 	Logger::SyncErrorWindow();
 
-#ifdef DEBUG_FEATURES_ENABLE
 	auto& instance = GetInstance();
 	instance.profiler.clear_timestamps();
 	instance.profiler.timestamp("BeginFrame");
-#endif // _DEBUG
 
 	WorldClock::Update();
-	Input::Update();
+
+	if (EditorMain::IsRuntimeInput()) {
+		Input::Update();
+	}
+
 	DxCore::BeginFrame(); // SetDescriptorHeapsやる
 
-#ifdef DEBUG_FEATURES_ENABLE
 	ImGuiManager::BeginFrame();
 
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "EditorScene");
@@ -232,9 +244,19 @@ void WinApp::BeginFrame() {
 	EditorMain::DrawBase(); // Editorのベース描画
 
 	PIXEndEvent(DxCommand::GetCommandList().Get());
-#endif // _DEBUG
 
 	SceneManager2::BeginFrame();
+#else
+	Logger::SyncErrorWindow();
+
+	WorldClock::Update();
+
+	Input::Update();
+
+	DxCore::BeginFrame(); // SetDescriptorHeapsやる
+
+	SceneManager2::BeginFrame();
+#endif // DEBUG_FEATURES_ENABLE
 }
 
 void WinApp::Update() {
@@ -254,6 +276,8 @@ void WinApp::Draw() {
 #ifdef DEBUG_FEATURES_ENABLE
 	auto& instance = GetInstance();
 	instance.profiler.timestamp("PreDraw");
+
+#else
 
 #endif // DEBUG_FEATURES_ENABLE
 
@@ -297,7 +321,7 @@ void WinApp::EndFrame() {
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "ImGui");
 	ImGuiManager::EndFrame();
 	PIXEndEvent(DxCommand::GetCommandList().Get());
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	// 描画実行とWait
 	DxCore::EndFrame();
@@ -322,7 +346,7 @@ void WinApp::Finalize() {
 	// ImGui
 	EditorMain::Finalize();
 	ImGuiManager::Finalize();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	BackgroundLoader::Finalize();
 
@@ -338,11 +362,12 @@ void WinApp::ShowAppWindow() {
 	if (!ProjectSettings::GetApplicationSettingsImm().hideWindowForce) {
 		ShowWindow(GetInstance().hWnd, SW_SHOW);
 		szgInformation("Show application window.");
+		DragAcceptFiles(GetInstance().hWnd, TRUE); // Drag＆Dropを受け付ける
 	}
 
 #ifdef DEBUG_FEATURES_ENABLE
 	EditorMain::Setup();
-#endif // _DEBUG
+#endif // DEBUG_FEATURES_ENABLE
 
 	// 時計初期化
 	WorldClock::Initialize();
@@ -350,7 +375,10 @@ void WinApp::ShowAppWindow() {
 
 void WinApp::ProcessMessage() {
 	auto& instance = GetInstance();
-	TextInput::BeginFrame();
+	// 入力のリセット
+	InputTextFrame::BeginFrame();
+	InputVKeyState::BeginFrame();
+
 	while (true) {
 		// windowにメッセージが来たら最優先で処理
 		if (PeekMessage(&instance.msg, NULL, 0, 0, PM_REMOVE)) {
@@ -361,15 +389,40 @@ void WinApp::ProcessMessage() {
 			return;
 		}
 		switch (instance.msg.message) {
+#ifdef DEBUG_FEATURES_ENABLE
+		case WM_DROPFILES: // ファイルがドロップされた
+			szgInformation("Dropped File.");
+			{
+				wchar_t filePathW[MAX_PATH]{};
+				HDROP hDrop = reinterpret_cast<HDROP>(instance.msg.wParam);
+				UINT fileCount = DragQueryFileW(hDrop, 0xFFFFFFFF, nullptr, 0);
+				for (UINT i = 0; i < fileCount; ++i) {
+					DragQueryFileW(hDrop, i, filePathW, MAX_PATH);
+					EditorMain::HandleDropFile(filePathW);
+				}
+				DragFinish(hDrop);
+			}
+			break;
+#endif // DEBUG_FEATURES_ENABLE
 		case WM_QUIT: // windowの×ボタンが押されたら通知
 			instance.isEndApp = true;
 			break;
 		case WM_CHAR:
-			TextInput::ProssesInput(
+			InputTextFrame::ProssesInputChar(
 				static_cast<wchar_t>(instance.msg.wParam),
 				static_cast<u32>(instance.msg.lParam)
 			);
 			break;
+		case WM_KEYDOWN:
+			InputVKeyState::OnKeyDown(
+				static_cast<VirtualKeyID>(instance.msg.wParam),
+				static_cast<u32>(instance.msg.lParam)
+			);
+			break;
+		case WM_IME_COMPOSITION:
+			if (instance.msg.lParam & GCS_RESULTSTR) {
+				InputTextFrame::SetImmEnter();
+			}
 		}
 	}
 }

@@ -8,7 +8,7 @@ using namespace szg;
 
 #include <imgui.h>
 
-#include "./Core/EditorHierarchyDandD.h"
+#include "./Core/EditorDandDManager.h"
 #include "./Window/EditorLogWindow.h"
 #include "Command/EditorCommandInvoker.h"
 #include "Command/EditorCreateObjectCommand.h"
@@ -18,10 +18,9 @@ using namespace szg;
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilderManager.h"
+#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+#include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
-
-#include "Engine/Debug/Editor/Asset/FontAtlas/FontAtlasBuilder.h"
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();
@@ -32,13 +31,12 @@ void EditorMain::Initialize() {
 	instance.renderDAG.initialize();
 	instance.screenResult.initialize(true);
 
-	instance.input.initialize({ KeyID::F6, KeyID::LControl, KeyID::LShift, KeyID::Z, KeyID::S });
-
 	FontAtlasBuilderManager::Initialize();
-	//FontAtlasBuilder{}.entry_point("./SyzygyEngine/EngineResources/Misc/UDEVGothic35HS-Regular.ttf");
 }
 
 void EditorMain::Finalize() {
+	EditorAssetContentsCollector::Finalize();
+
 	FontAtlasBuilderManager::Finalize();
 
 	EditorMain& instance = GetInstance();
@@ -72,20 +70,38 @@ void EditorMain::Setup() {
 	instance.hierarchy.setup(instance.selectObject, instance.sceneView);
 
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
-	JsonAsset json;
-	if (!std::filesystem::exists(filePath)) {
-		instance.isActiveEditor = false;
-		szgWarning("The file required to start the editor was not found.");
+	std::string sceneName;
+	if (std::filesystem::exists(filePath)) {
+		// 直前に開いていたシーン情報がある場合はそれを開く
+		JsonAsset json{ "./Game/DebugData/Editor.json" };
+		sceneName = json.try_emplace<std::string>("LastLoadedScene");
+	}
+	else {
+		// ない場合
+		szgInformation("The file required to start the editor was not found.");
+		// シーン一覧を検索
+		auto sceneListImm = instance.sceneList.scene_list_imm();
+		if (sceneListImm.empty()) {
+			// シーンが一つも登録されていない場合
+			szgWarning("No scenes are registered. Create a scene first.");
+			sceneName = "";
+		}
+		else {
+			// 50音順先頭のシーンが開く
+			sceneName = *sceneListImm.begin();
+		}
 	}
 
-	json.load("./Game/DebugData/Editor.json");
-	std::string sceneName = json.try_emplace<std::string>("LastLoadedScene");
 	instance.hierarchy.load(sceneName);
 	instance.renderDAG.load(sceneName);
 }
 
 void EditorMain::DrawBase() {
 	EditorMain& instance = GetInstance();
+	if (ImGui::IsKeyPressed(ImGuiKey_F6, false)) {
+		instance.isActiveEditor ^= 1;
+	}
+
 	if (!instance.isActiveEditor) {
 		return;
 	}
@@ -107,15 +123,18 @@ void EditorMain::DrawBase() {
 		instance.sceneView.reset_force();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
-		instance.hierarchy.setup(instance.selectObject, instance.sceneView);
+		// DAG Editorのリセット
+		instance.renderDAG.load(instance.switchSceneName.value());
 		// 選択オブジェクトのリセット
 		instance.selectObject.set_item(nullptr);
 		// コマンドのリセット
-		EditorCommandInvoker::ResetHistoryForce();
+		EditorCommandInvoker::ClearHistoryForce();
 		// RenderDAGのロード
 		instance.isHotReload = true;
 		instance.switchSceneName = std::nullopt;
 	}
+
+	EditorAssetContentsCollector::Update();
 
 	// HierarchyとSceneViewの同期
 	instance.gizmo.begin_frame(instance.sceneView.view_origin(), instance.sceneView.view_size());
@@ -123,31 +142,14 @@ void EditorMain::DrawBase() {
 	instance.hierarchy.update_preview();
 	instance.sceneView.draw_scene();
 
-	instance.input.update();
-	if (instance.input.trigger(KeyID::F6)) {
-		instance.isActiveEditor ^= 1;
-	}
-
 	if (!instance.isActiveEditor) {
 		return;
 	}
 
 	instance.set_imgui_command();
 
-	// Undo / Redo
-	if (instance.input.trigger(KeyID::Z) && instance.input.press(KeyID::LControl)) {
-		if (instance.input.press(KeyID::LShift)) {
-			EditorCommandInvoker::Redo();
-		}
-		else {
-			EditorCommandInvoker::Undo();
-		}
-	}
-	// 保存
-	if (instance.input.trigger(KeyID::S) && instance.input.press(KeyID::LControl)) {
-		instance.sceneList.add_scene(instance.hierarchy.current_scene_name());
-		SeveScene();
-	}
+	// ショートカット
+	instance.execute_shortcut();
 
 	instance.deletedPool.solution_sequence();
 }
@@ -163,13 +165,14 @@ void EditorMain::Draw() {
 	instance.hierarchy.draw();
 	instance.inspector.draw();
 	instance.renderDAG.draw();
+	instance.assetBrowser.draw();
 	EditorLogWindow::Draw();
 	if (instance.sceneView.is_active()) {
 		ImGuizmo::SetDrawlist(instance.sceneView.draw_list().ptr());
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
 	}
 
-	EditorHierarchyDandD::ExecuteReparent();
+	EditorDandDManager::ExecuteCommand();
 }
 
 void EditorMain::SetActiveEditor(bool isActive) {
@@ -195,6 +198,8 @@ bool EditorMain::SeveScene() {
 		return false;
 	}
 
+	instance.sceneList.add_scene(sceneName);
+
 	std::filesystem::path sceneDirectory = std::format("./Game/Core/Scene/{}/", sceneName);
 	instance.hierarchy.save(sceneDirectory);
 
@@ -214,9 +219,31 @@ void EditorMain::SetHotReload() {
 	instance.isHotReload = true;
 }
 
+bool szg::EditorMain::IsRuntimeInput() {
+	// エディターのシーンビューがフォーカスされている
+	// or
+	// エディターが無効の場合のみ受け取る
+	EditorMain& instance = GetInstance();
+	return
+		instance.screenResult.is_focus() ||
+		!instance.isActiveEditor;
+}
+
+void szg::EditorMain::HandleDropFile(const std::filesystem::path& filePath) {
+	EditorMain& instance = GetInstance();
+	instance.assetBrowser.on_drop_file(filePath);
+}
+
 void EditorMain::set_imgui_command() {
-	// メニューバーの表示
 	r32 menuHight{ 0 };
+
+	draw_menu_bar(menuHight);
+
+	draw_dock_space(menuHight);
+}
+
+void szg::EditorMain::draw_menu_bar(r32& menuHight) {
+	// メニューバーの表示
 	if (ImGui::BeginMainMenuBar()) {
 		// Windowメニュー
 		bool isOpen;
@@ -235,6 +262,8 @@ void EditorMain::set_imgui_command() {
 			ImGui::EndMenu();
 		}
 		ImGui::PushFont(nullptr, menuHight * 0.5f);
+
+		// Editメニュー
 		isOpen = ImGui::BeginMenu("Edit");
 		ImGui::PopFont();
 		if (isOpen) {
@@ -248,58 +277,65 @@ void EditorMain::set_imgui_command() {
 			ImGui::EndMenu();
 		}
 
-		ImGui::PushFont(nullptr, menuHight * 0.75f);
-		ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0f);
-		ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetStyleColorVec4(ImGuiCol_WindowBg));
-
-		// 最小化
-		ImGui::SameLine();
-		ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight * 2 , 0.0f });
-		if (ImGui::Button("\ue931")) {
-			ShowWindow(WinApp::GetWndHandle(), SW_MINIMIZE);
-		}
-
-		// 最大化
-		ImGui::SameLine();
-		ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight, 0.0f });
-		if (ImGui::Button("\ue5cd")) {
-			ImGui::OpenPopup("未保存の項目があります");
-		}
-
-		ImGui::PopStyleColor();
-		ImGui::PopStyleVar();
-		ImGui::PopFont();
-
-		// 終了確認ポップアップ
-		ImVec2 center = ImGui::GetMainViewport()->GetCenter();
-		ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-		if (ImGui::BeginPopupModal("未保存の項目があります", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.235f, 0.471f, 0.847f, 0.5f });
-			ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.067f, 0.333f, 0.8f, 0.5f });
-			if (ImGui::Button("保存して終了")) {
-				if (SeveScene()) {
-					isEndApplicationForce = true;
-				}
-			}
-			ImGui::PopStyleColor(2);
-			ImGui::SameLine();
-			if (ImGui::Button("保存しないで終了")) {
-				isEndApplicationForce = true;
-			}
-			ImGui::SameLine();
-			if (ImGui::Button("キャンセル")) {
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::EndPopup();
-		}
+		draw_window_buttons(menuHight);
 
 		ImGui::EndMainMenuBar();
 	}
+}
 
+void szg::EditorMain::draw_window_buttons(r32 menuHight) {
+	ImGui::PushFont(nullptr, menuHight * 0.75f);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0f);
+	ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetStyleColorVec4(ImGuiCol_WindowBg));
+
+	// 最小化
+	ImGui::SameLine();
+	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight * 2 , 0.0f });
+	if (ImGui::Button("\ue931")) {
+		ShowWindow(WinApp::GetWndHandle(), SW_MINIMIZE);
+	}
+
+	// 最大化
+	ImGui::SameLine();
+	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight, 0.0f });
+	if (ImGui::Button("\ue5cd")) {
+		ImGui::OpenPopup("未保存の項目があります");
+	}
+
+	ImGui::PopStyleColor();
+	ImGui::PopStyleVar();
+	ImGui::PopFont();
+
+	// 終了確認ポップアップ
+	ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+	ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+	if (ImGui::BeginPopupModal("未保存の項目があります", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.235f, 0.471f, 0.847f, 0.5f });
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.067f, 0.333f, 0.8f, 0.5f });
+		if (ImGui::Button("保存して終了")) {
+			if (SeveScene()) {
+				isEndApplicationForce = true;
+			}
+		}
+		ImGui::PopStyleColor(2);
+		ImGui::SameLine();
+		if (ImGui::Button("保存しないで終了")) {
+			isEndApplicationForce = true;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("キャンセル")) {
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+}
+
+void szg::EditorMain::draw_dock_space(r32 menuHight) {
 	i32 flags =
 		ImGuiWindowFlags_MenuBar | // メニューバーを表示
 		ImGuiWindowFlags_NoDocking | // ドッキングしない
 		ImGuiWindowFlags_NoTitleBar | // タイトルバーなし
+		ImGuiWindowFlags_NoNavFocus | // フォーカスしない
 		ImGuiWindowFlags_NoMove | // 移動しない
 		ImGuiWindowFlags_NoScrollWithMouse | // スクロールしない
 		ImGuiWindowFlags_NoResize | // リサイズしない
@@ -313,11 +349,29 @@ void EditorMain::set_imgui_command() {
 
 	// メインのドックスペースを追加
 	ImGuiID dockSpaceId = ImGui::GetID("EditorMain");
-	ImGui::SetCursorPos({ 0.0f, menuHight });
-	ImVec2 editorSize = { ProjectSettings::ClientSize().x, ProjectSettings::ClientSize().y - menuHight };
+	ImVec2 one = { 1.0f, 1.0f };
+	ImVec2 cursorPos = ImVec2{ 0.0f, menuHight } + one;
+	ImGui::SetCursorPos(cursorPos);
+	ImVec2 baseSize = ImVec2{ ProjectSettings::ClientSize().x, ProjectSettings::ClientSize().y };
+	ImVec2 editorSize = baseSize - cursorPos - one;
 	ImGui::DockSpace(dockSpaceId, editorSize, ImGuiDockNodeFlags_PassthruCentralNode);
 
 	ImGui::End();
+}
+
+void szg::EditorMain::execute_shortcut() {
+	// Undo
+	if (ImGui::Shortcut(ImGuiKey_Z | ImGuiMod_Ctrl, ImGuiInputFlags_RouteAlways | ImGuiInputFlags_Repeat)) {
+		EditorCommandInvoker::Undo();
+	}
+	// Redo
+	if (ImGui::Shortcut(ImGuiKey_Z | ImGuiMod_Ctrl | ImGuiMod_Shift, ImGuiInputFlags_RouteAlways | ImGuiInputFlags_Repeat)) {
+		EditorCommandInvoker::Redo();
+	}
+	// 保存
+	if (ImGui::Shortcut(ImGuiKey_S | ImGuiMod_Ctrl, ImGuiInputFlags_RouteAlways)) {
+		SeveScene();
+	}
 }
 
 #endif // DEBUG_FEATURES_ENABLE

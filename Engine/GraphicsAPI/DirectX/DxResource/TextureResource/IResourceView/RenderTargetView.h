@@ -4,7 +4,7 @@
 
 #include <d3d12.h>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 
 namespace szg {
 
@@ -20,7 +20,7 @@ public:
 	void create(Reference<ITextureResource> resource, DXGI_FORMAT format) override;
 	D3D12_RESOURCE_STATES use_state() const override { return D3D12_RESOURCE_STATE_RENDER_TARGET; };
 
-	void clear(const Color4& color = CColor4::BLACK) const;
+	void clear(const ColorRGBA& color = CColorRGBA::BLACK) const;
 
 private:
 

@@ -48,11 +48,6 @@ public:
 	
 	void animation_speed(r32 speed = 1.0f) noexcept;
 
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	void debug_gui();
-#endif // _DEBUG
-
 private:
 	bool isLoop{ false };
 	bool isActive{ true };

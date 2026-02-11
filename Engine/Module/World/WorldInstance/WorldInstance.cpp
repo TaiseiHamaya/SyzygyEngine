@@ -2,13 +2,18 @@
 
 using namespace szg;
 
-#include "../WorldManager.h"
+#include "Engine/Module/Manager/World/WorldRoot.h"
 
 void WorldInstance::update_affine() {
 	if (!isActive) {
 		return;
 	}
+	fixed_update();
 	affine = create_world_affine();
+
+	for (auto& [_, child] : hierarchy.children_mut()) {
+		child->update_affine();
+	}
 }
 
 Affine WorldInstance::create_world_affine() const {
@@ -97,12 +102,16 @@ void WorldInstance::reparent(Reference<WorldInstance> parent, bool isKeepPose) {
 	recalculate_depth();
 }
 
+void szg::WorldInstance::destroy_self() {
+	worldRoot->destroy(this);
+}
+
 void WorldInstance::mark_destroy() {
 	isDestroy = true;
 	on_mark_destroy();
 	// 子も削除予定にする
 	for (auto& [_, child] : hierarchy.children_mut()) {
-		child->mark_destroy();
+		child->destroy_self();
 	}
 }
 
@@ -132,7 +141,7 @@ void WorldInstance::attach_child(Reference<WorldInstance> child) {
 
 void WorldInstance::recalculate_depth() {
 	if (hierarchy.has_parent()) {
-		hierarchyDepth = hierarchy.parent_imm()->depth() + 1;
+		hierarchyDepth = hierarchy.parent_imm()->hierarchy_depth() + 1;
 	}
 	else {
 		hierarchyDepth = 0;

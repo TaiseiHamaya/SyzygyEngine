@@ -29,6 +29,7 @@ EditorRenderDAG::EditorRenderDAG() {
 
 void EditorRenderDAG::initialize() {
 	imNodeFlow = std::make_unique<ImFlow::ImNodeFlow>();
+	nodes.clear();
 	imNodeFlow->rightClickPopUpContent([&](ImFlow::BaseNode* node) {
 		if (node) { // ノードにホバー時
 			if (ImGui::MenuItem("Delete")) {
@@ -107,6 +108,7 @@ void EditorRenderDAG::initialize() {
 }
 
 void EditorRenderDAG::load(const std::string& sceneName) {
+	initialize();
 	nodeCounter = RenderDAGImNodeLoader{}.entry_point(sceneName, imNodeFlow, nodes);
 }
 
@@ -122,6 +124,8 @@ void EditorRenderDAG::draw() {
 	int flags = 0;
 	ImGui::Begin("Render DAG Editor", &isActive, flags);
 
+	update_focus();
+
 	if (!nodes.contains(0)) {
 		szgWarning("Don't delete ScreenOutNode!");
 		generate_result_node();
@@ -132,7 +136,9 @@ void EditorRenderDAG::draw() {
 	});
 
 	imNodeFlow->setSize(ImGui::GetContentRegionAvail());
+	ImGui::PushStyleColor(ImGuiCol_BorderSelected, ImVec4{});
 	imNodeFlow->update();
+	ImGui::PopStyleColor();
 
 	ImGui::End();
 }

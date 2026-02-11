@@ -7,12 +7,14 @@
 #include <string>
 #include <vector>
 
-#include <Library/Math/Color3.h>
+#include <Library/Math/ColorRGB.h>
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
+#define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 namespace szg {
@@ -26,7 +28,7 @@ public:
 public:
 	struct Material {
 		std::string texture;
-		Color3 color;
+		ColorRGB color;
 		Transform2D uvTransform;
 		LighingType lightingType{ LighingType::HalfLambert };
 		r32 shininess;
@@ -58,7 +60,7 @@ private:
 	EditorValueField<bool> isDraw{ "IsDraw", true };
 	EditorValueField<u32> layer{ "Layer", 0 };
 
-	std::string meshName;
+	EditorAssetField meshName{ "Mesh", AssetType::Mesh };
 	std::vector<Material> materials;
 };
 

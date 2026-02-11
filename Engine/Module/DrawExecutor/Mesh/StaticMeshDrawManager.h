@@ -19,11 +19,6 @@ public:
 
 public:
 	void make_instancing(u32 layer, const std::string& meshName, u32 maxInstance);
-
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	void debug_gui() override;
-#endif // _DEBUG
 };
 
 }; // szg

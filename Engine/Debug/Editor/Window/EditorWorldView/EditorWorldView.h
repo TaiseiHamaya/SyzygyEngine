@@ -11,6 +11,7 @@
 
 namespace szg {
 
+class EditorWorldGridBuffer;
 class RemoteWorldObject;
 class DirectionalLightInstance;
 class StaticMeshInstance;
@@ -19,8 +20,8 @@ class PrimitiveGeometryDrawExecutor;
 
 class EditorWorldView final {
 public:
-	EditorWorldView() = default;
-	~EditorWorldView() = default;
+	EditorWorldView();
+	~EditorWorldView();
 
 	SZG_CLASS_MOVE_ONLY(EditorWorldView)
 
@@ -28,16 +29,17 @@ public:
 	void initialize();
 	void setup(Reference<RemoteWorldObject> remoteWorld_);
 
-	void register_mesh(Reference<StaticMeshInstance> meshInstance);
 	void register_primitive(const std::string& name, const Affine& affine);
 
 	void update();
+	void transfer();
+
 	void register_world_projection(u32 index);
 	void register_world_lighting(u32 index);
 	void draw_lines();
+	void draw_grid();
 	std::tuple<bool, Vector2, Vector2> draw_editor(const TempTexture& texture);
 
-	void camera_gui();
 	Reference<const EditorDebugCamera> get_camera() const;
 
 	bool is_select_tab() const;
@@ -48,6 +50,7 @@ private:
 	Reference<RemoteWorldObject> remoteWorld;
 
 	std::unique_ptr<EditorDebugCamera> cameraInstance;
+	std::unique_ptr<EditorWorldGridBuffer> worldGrid;
 	std::unordered_map<std::string, std::unique_ptr<PrimitiveGeometryDrawExecutor>> primitive;
 };
 

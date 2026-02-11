@@ -15,17 +15,6 @@ void NonLightingPixelPipeline::initialize() {
 	primitiveTopology = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
 
-void NonLightingPixelPipeline::stack_lighting_command() {
-	gBufferColorTexture->start_read();
-	auto& command = DxCommand::GetCommandList();
-	gBufferColorTexture->get_as_srv()->use(0);
-	command->DrawInstanced(3, 1, 0, 0);
-}
-
-void NonLightingPixelPipeline::set_gbuffers(Reference<RenderTexture> gBufferColorTexture_) {
-	gBufferColorTexture = gBufferColorTexture_;
-}
-
 void NonLightingPixelPipeline::create_pipeline_state() {
 	RootSignatureBuilder rootSignatureBuilder;
 	rootSignatureBuilder.add_texture(D3D12_SHADER_VISIBILITY_PIXEL, 0); // 0 : Albedo

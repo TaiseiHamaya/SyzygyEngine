@@ -63,7 +63,7 @@ inline void MultiRenderTarget<NumRenderTarget>::start_render_target(Reference<De
 	auto&& commandList = DxCommand::GetCommandList();
 	commandList->OMSetRenderTargets(
 		static_cast<UINT>(renderTargetsHandles.size()), renderTargetsHandles.data(),
-		depthStencil ? 1 : 0,
+		false,
 		depthStencil ? &depthStencil->get_as_dsv()->handle() : nullptr
 	);
 }

@@ -5,8 +5,10 @@
 using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 
-#define COLOR4_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
+#define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteRect3dInstance::setup() {
@@ -36,7 +38,7 @@ void RemoteRect3dInstance::update_preview(Reference<RemoteWorldObject> world, Re
 	PrimitiveMaterial& dest = debugVisual->get_material();
 	dest.texture = TextureLibrary::GetTexture(material.texture);
 	dest.color = material.color;
-	dest.uvTransform.copy(material.uvTransform);
+	dest.uvTransform = material.uvTransform;
 	dest.lightingType = material.lightingType;
 	dest.shininess = material.shininess;
 }
@@ -67,16 +69,8 @@ void RemoteRect3dInstance::draw_inspector() {
 	if (ImGui::Button("ResetMaterialData")) {
 		reset_material();
 	}
-	{
-		std::string cache = material.texture;
-		auto result = TextureLibrary::TextureListGui(cache);
-		if (result) {
-			EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
-			material.texture = cache;
-			EditorValueChangeCommandHandler::End();
-		}
-	}
-
+	material.texture.show_gui();
+	material.color.show_gui();
 	material.uvTransform.show_gui();
 	{
 		std::optional<LighingType> temp;
@@ -99,9 +93,7 @@ void RemoteRect3dInstance::draw_inspector() {
 		}
 
 		if (temp.has_value()) {
-			EditorValueChangeCommandHandler::GenCommand<LighingType>(material.lightingType);
-			material.lightingType = temp.value();
-			EditorValueChangeCommandHandler::End();
+			EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(material.lightingType, temp.value());
 		}
 	}
 
@@ -124,7 +116,7 @@ nlohmann::json RemoteRect3dInstance::serialize() const {
 	result.update(isFlipY);
 
 	nlohmann::json materialJson;
-	materialJson["Texture"] = material.texture;
+	materialJson.update(material.texture);
 	materialJson.update(material.color);
 	materialJson.update(material.uvTransform);
 	materialJson["LightingType"] = material.lightingType;
@@ -151,16 +143,10 @@ void RemoteRect3dInstance::on_destroy() {
 void RemoteRect3dInstance::reset_material() {
 	EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
 
-	EditorValueChangeCommandHandler::GenCommand<std::string>(material.texture);
-	material.texture = "Error.png";
-	EditorValueChangeCommandHandler::End();
-	EditorValueChangeCommandHandler::GenCommand<Color4>(material.color.get());
-	material.color = CColor4::WHITE;
-	EditorValueChangeCommandHandler::End();
-	material.uvTransform.set(Transform2D{});
-	EditorValueChangeCommandHandler::GenCommand<r32>(material.shininess.get());
-	material.shininess = 50.0f;
-	EditorValueChangeCommandHandler::End();
+	EditorValueChangeCommandHandler::GenCommandInstant<std::string>(material.texture.value_mut(), "Error.png");
+	EditorValueChangeCommandHandler::GenCommandInstant<ColorRGBA>(material.color.value_mut(), CColorRGBA::WHITE);
+	EditorValueChangeCommandHandler::GenCommandInstant<Transform2D>(material.uvTransform.value_mut(), Transform2D{});
+	EditorValueChangeCommandHandler::GenCommandInstant<r32>(material.shininess.value_mut(), 50.0f);
 
 	EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
 }

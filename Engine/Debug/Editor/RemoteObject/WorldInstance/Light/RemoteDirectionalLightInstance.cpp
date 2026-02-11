@@ -6,17 +6,20 @@ using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteDirectionalLightInstance::setup() {
 	RemoteInstanceType::setup();
 	debugVisual = std::make_unique<Rect3d>();
-	debugVisual->initialize(CVector2::ONE * 0.5f, Vector2{ 0.5f, 0.5f });
+	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
 	debugVisual->get_material().lightingType = LighingType::None;
 	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
 
 	instance = std::make_unique<DirectionalLightInstance>();
+
+	on_spawn();
+	
 	sceneView->register_directional_light(query_world(), instance);
 	sceneView->register_rect(query_world(), debugVisual);
 }
@@ -24,29 +27,31 @@ void RemoteDirectionalLightInstance::setup() {
 void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	RemoteInstanceType::update_preview(world, parentAffine);
 
+	// ライト方向の線
 	Affine affine;
 	affine = Affine::FromSRT(
 		Vector3{ intensity, intensity, intensity },
 		Quaternion::LookForward(direction),
 		worldAffine.get_origin()
 	);
-
 	sceneView->write_primitive(world, "Line", affine);
 
+	// ライト情報の更新
 	instance->light_data_mut().color = color;
 	instance->light_data_mut().direction = direction;
 	instance->light_data_mut().intensity = intensity;
 
-	instance->get_transform().set_scale(worldAffine.get_basis().to_scale());
-	instance->get_transform().set_quaternion(worldAffine.get_basis().to_quaternion());
-	instance->get_transform().set_translate(worldAffine.get_origin());
+	instance->transform_mut().set_scale(worldAffine.get_basis().to_scale());
+	instance->transform_mut().set_quaternion(worldAffine.get_basis().to_quaternion());
+	instance->transform_mut().set_translate(worldAffine.get_origin());
 	instance->update_affine();
 
+	// ライトアイコンの更新
 	Reference<const EditorDebugCamera> camera = sceneView->query_debug_camera();
 	if (camera) {
 		debugVisual->look_at(camera);
 	}
-	debugVisual->get_transform().set_translate(worldAffine.get_origin());
+	debugVisual->transform_mut().set_translate(worldAffine.get_origin());
 	debugVisual->update_affine();
 }
 
@@ -67,7 +72,7 @@ void RemoteDirectionalLightInstance::draw_inspector() {
 
 	ImGui::Text("Direction");
 	Vector3 rotate = CVector3::ZERO;
-	ImGui::Text(std::format("X : {:.3}, Y : {:.3}, Z : {:.3}", direction.get().x, direction.get().y, direction.get().z).c_str());
+	ImGui::Text(std::format("X : {:.3}, Y : {:.3}, Z : {:.3}", direction.value_mut().x, direction.value_mut().y, direction.value_mut().z).c_str());
 	if (ImGui::DragFloat3("World", &rotate.x, 1.0f, -180.0f, 180.0f)) {
 		if (rotate.x != 0.0f || rotate.y != 0.0f || rotate.z != 0.0f) {
 			direction = direction * Quaternion::EulerDegree(rotate);
@@ -141,12 +146,14 @@ nlohmann::json RemoteDirectionalLightInstance::serialize() const {
 }
 
 void RemoteDirectionalLightInstance::on_spawn() {
-	debugVisual->set_active(true);
+	auto world = query_world();
+	auto result = sceneView->get_layer(world);
+	debugVisual->set_layer(result.value_or(-1));
 	instance->set_active(true);
 }
 
 void RemoteDirectionalLightInstance::on_destroy() {
-	debugVisual->set_active(false);
+	debugVisual->set_layer(std::numeric_limits<u32>::max());
 	instance->set_active(false);
 }
 

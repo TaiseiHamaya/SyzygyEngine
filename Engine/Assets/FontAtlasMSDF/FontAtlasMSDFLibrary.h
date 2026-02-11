@@ -2,9 +2,9 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
-#include <mutex>
 
 #include <Library/Utility/Template/SingletonInterface.h>
 
@@ -36,9 +36,9 @@ public:
 	static bool IsRegistered(const std::string& name) noexcept(false);
 
 	/// <summary>
-	/// 読み込み済みテクスチャのアンロード
+	/// 読み込み済みフォントのアンロード
 	/// </summary>
-	/// <param name="name">テクスチャ名</param>
+	/// <param name="name">フォント名</param>
 	static void Unload(const std::string& name);
 
 	/// <summary>
@@ -47,15 +47,6 @@ public:
 	/// <param name="name">転送時の名前</param>
 	/// <param name="data">転送データ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<FontAtlasMSDFAsset>& data);
-
-#ifdef DEBUG_FEATURES_ENABLE
-	/// <summary>
-	/// 登録済みファイルをImGuiComboで取得
-	/// </summary>
-	/// <param name="current">現在選択中のテクスチャ名</param>
-	/// <returns>current変更フラグ</returns>
-	static bool ComboListGui(std::string& current);
-#endif // _DEBUG
 
 private:
 	/// <summary>
@@ -67,7 +58,8 @@ private:
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<const FontAtlasMSDFAsset>> fontAtlases;
-	mutable std::mutex mutex;
+
+	static inline std::mutex mutex{};
 };
 
 }; // szg

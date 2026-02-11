@@ -184,6 +184,15 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetField.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp" />
     <ClCompile Include="Engine\Application\ArgumentParser.cpp" />
     <ClCompile Include="Engine\Application\CrashHandler.cpp" />
@@ -219,10 +228,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Assets\Texture\TextureLibrary.cpp" />
     <ClCompile Include="Engine\Debug\DebugValues\DebugValues.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorValueField.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandInvoker.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandReparent.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandScope.cpp" />
@@ -231,7 +239,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\Command\EditorSelectCommand.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorValueChangeCommandHandler.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorDandDManager.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneList.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSelectObject.cpp" />
     <ClCompile Include="Engine\Debug\Editor\EditorMain.cpp" />
@@ -328,7 +336,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.cpp" />
@@ -343,8 +350,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.cpp" />
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.cpp" />
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp" />
-    <ClCompile Include="Engine\Module\World\Camera\Camera2D.cpp" />
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\BaseCollider.cpp" />
     <ClCompile Include="Engine\Module\World\Collision\Collider\SphereCollider.cpp" />
@@ -362,23 +368,24 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.cpp" />
     <ClCompile Include="Engine\Module\World\Particle\ParticleEmitterInstance.cpp" />
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp" />
-    <ClCompile Include="Engine\Module\World\Sprite\SpriteInstance.cpp" />
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp" />
-    <ClCompile Include="Engine\Module\World\WorldManager.cpp" />
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp" />
     <ClCompile Include="Engine\Runtime\Clock\WorldTimer.cpp" />
     <ClCompile Include="Engine\Runtime\Input\Input.cpp" />
-    <ClCompile Include="Engine\Runtime\Scene\BaseScene.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp" />
     <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp" />
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp" />
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp" />
@@ -428,8 +435,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\main.cpp" />
     <ClCompile Include="Library\Math\Affine.cpp" />
     <ClCompile Include="Library\Math\Basis.cpp" />
-    <ClCompile Include="Library\Math\Color3.cpp" />
-    <ClCompile Include="Library\Math\Color4.cpp" />
+    <ClCompile Include="Library\Math\ColorRGB.cpp" />
+    <ClCompile Include="Library\Math\ColorRGBA.cpp" />
     <ClCompile Include="Library\Math\Hierarchy.cpp" />
     <ClCompile Include="Library\Math\Matrix3x3.cpp" />
     <ClCompile Include="Library\Math\Matrix4x4.cpp" />
@@ -452,7 +459,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp" />
     <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
-    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
+    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
+    <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
@@ -550,6 +563,18 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Assets\AssetRootPath.h" />
+    <ClInclude Include="Engine\Assets\AssetTypeEnum.h" />
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h" />
+    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetField.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h" />
     <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
@@ -616,7 +641,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\DebugValues\DebugValues.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorValueField.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandInvoker.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandReparent.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandResizeContainer.h" />
@@ -628,7 +653,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\Command\EditorValueChangeCommandHandler.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\IEditorCommand.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h" />
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.h" />
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorDandDManager.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneList.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSelectObject.h" />
     <ClInclude Include="Engine\Debug\Editor\EditorMain.h" />
@@ -732,8 +757,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SingleRenderTarget.h" />
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.h" />
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h" />
-    <ClInclude Include="Engine\Module\World\Camera\Camera2D.h" />
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h" />
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\BaseCollider.h" />
     <ClInclude Include="Engine\Module\World\Collision\Collider\SphereCollider.h" />
@@ -756,15 +780,12 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.h" />
     <ClInclude Include="Engine\Module\World\Particle\ParticleEmitterInstance.h" />
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h" />
-    <ClInclude Include="Engine\Module\World\Sprite\SpriteInstance.h" />
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h" />
-    <ClInclude Include="Engine\Module\World\WorldManager.h" />
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h" />
     <ClInclude Include="Engine\Runtime\Clock\WorldTimer.h" />
     <ClInclude Include="Engine\Runtime\Input\Input.h" />
     <ClInclude Include="Engine\Runtime\Input\InputEnum.h" />
     <ClInclude Include="Engine\Runtime\Input\InputHandler.h" />
-    <ClInclude Include="Engine\Runtime\Scene\BaseScene.h" />
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h" />
     <ClInclude Include="Engine\Runtime\Scene\Scene.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h" />
@@ -772,10 +793,14 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h" />
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextController.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h" />
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h" />
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h" />
@@ -970,8 +995,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\resource.h" />
     <ClInclude Include="Library\Math\Affine.h" />
     <ClInclude Include="Library\Math\Basis.h" />
-    <ClInclude Include="Library\Math\Color3.h" />
-    <ClInclude Include="Library\Math\Color4.h" />
+    <ClInclude Include="Library\Math\ColorRGB.h" />
+    <ClInclude Include="Library\Math\ColorRGBA.h" />
     <ClInclude Include="Library\Math\Definition.h" />
     <ClInclude Include="Library\Math\Fraction.h" />
     <ClInclude Include="Library\Math\Hierarchy.h" />
@@ -1012,7 +1037,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h" />
     <ClInclude Include="Engine\Loader\SceneAssetListLoader.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
-    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
+    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -1023,6 +1049,16 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.PS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.VS.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.PS.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Library/Math/Affine.h>
-#include <Library/Math/Color3.h>
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGB.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Matrix3x3.h>
 #include <Library/Math/Matrix4x4.h>
 #include <Library/Math/Vector2.h>
@@ -46,8 +46,8 @@ struct TransformMatrixDataBuffer {
 /// MaterialBuffer
 /// Color3バージョン
 /// </summary>
-struct MaterialDataBuffer3 {
-	Color3 color;
+struct MaterialDataBufferRGB {
+	ColorRGB color;
 	LighingType lighting{ LighingType::HalfLambert };
 	r32 shininess = 50;
 	u32 textureIndex{ 0 };
@@ -58,8 +58,8 @@ struct MaterialDataBuffer3 {
 /// MaterialBuffer
 /// Color4バージョン
 /// </summary>
-struct MaterialDataBuffer4 {
-	Color4 color;
+struct MaterialDataBufferRGBA {
+	ColorRGBA color;
 	LighingType lighting{ LighingType::HalfLambert };
 	r32 shininess = 50;
 	u32 textureIndex{ 0 };

@@ -4,13 +4,32 @@
 
 #include "../IRemoteInstance.h"
 
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include <variant>
+
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 namespace szg {
 
-class RemoteCamera3dInstance final : public IRemoteInstance<Camera3D, void*> {
+class RemoteCamera3dInstance final : public IRemoteInstance<CameraInstance> {
 public:
 	friend class EditorSceneSerializer;
+
+public:
+	struct PerspectiveParameters {
+		EditorValueField<r32> fovY{ "FOV Y", 0.45f };
+		EditorValueField<r32> aspectRatio{ "AspectRatio", 1.7777f };
+		EditorValueField<r32> nearClip{ "NearClip", 0.1f };
+		EditorValueField<r32> farClip{ "FarClip", 1000.0f };
+	};
+
+	struct OrthroParameters {
+		EditorValueField<r32> left{ "Left", -1.0f };
+		EditorValueField<r32> right{ "Right", 1.0f };
+		EditorValueField<r32> bottom{ "Bottom", -1.0f };
+		EditorValueField<r32> top{ "Top", 1.0f };
+		EditorValueField<r32> nearClip{ "NearClip", 0.0f };
+		EditorValueField<r32> farClip{ "FarClip", 1000.0f };
+	};
 
 public:
 	RemoteCamera3dInstance() = default;
@@ -28,10 +47,7 @@ public:
 	constexpr InstanceType instance_type() const { return InstanceType::CameraInstance; }
 
 private:
-	EditorValueField<r32> fovY{ "FOV Y", 0.45f };
-	EditorValueField<r32> aspectRatio{ "AspectRatio", 1.7777f };
-	EditorValueField<r32> nearClip{ "NearClip", 0.1f };
-	EditorValueField<r32> farClip{ "FarClip", 1000.0f };
+	std::variant<PerspectiveParameters, OrthroParameters> projectionParameters{ PerspectiveParameters{} };
 };
 
 }; // szg

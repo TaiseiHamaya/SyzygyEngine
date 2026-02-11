@@ -32,6 +32,8 @@ void WorldLayerRenderImNode::draw() {
 
 	ImGui::Text("Rendering");
 
+	data.isClearDepthStencil.show_gui();
+
 	if (ImGui::TreeNodeEx("Viewport", treeNodeFlags)) {
 		data.gBufferViewport.left.show_gui();
 		data.gBufferViewport.top.show_gui();

@@ -22,11 +22,10 @@ using namespace szg;
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
 
-#include <Library/Utility/Template/string_hashed.h>
-
-#define COLOR3_SERIALIZER
-#define COLOR4_SERIALIZER
+#define COLOR_RGB_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
 #define TRANSFORM3D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
@@ -157,9 +156,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStaticMeshInst
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
 	json.get_to(result->isDraw);
-	if (json.contains("MeshName")) {
-		json["MeshName"].get_to(result->meshName);
-	}
+	json.get_to(result->meshName);
 	json.get_to(result->layer);
 	if (json.contains("Materials") && json["Materials"].is_array()) {
 		for (const nlohmann::json& jMaterial : json["Materials"]) {
@@ -196,9 +193,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
 	json.get_to(result->isDraw);
-	if (json.contains("MeshName")) {
-		json["MeshName"].get_to(result->meshName);
-	}
+	json.get_to(result->meshName);
 	result->skeleton = SkeletonLibrary::GetSkeleton(result->meshName);
 	json.get_to(result->layer);
 	if (json.contains("Materials") && json["Materials"].is_array()) {
@@ -221,9 +216,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 			}
 		}
 	}
-	if (json.contains("AnimationName")) {
-		json["AnimationName"].get_to(result->animationName);
-	}
+	json.get_to(result->animationName);
 	json.get_to(result->isLoop);
 
 	return result;
@@ -251,7 +244,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstanc
 	json.get_to(result->isFlipY);
 
 	nlohmann::json jMaterial = json.value("Material", nlohmann::json::object());
-	result->material.texture = jMaterial.value("Texture", "Error.png");
+	jMaterial.get_to(result->material.texture);
 	jMaterial.get_to(result->material.color);
 	jMaterial.get_to(result->material.uvTransform);
 	result->material.lightingType = jMaterial.value("LightingType", LighingType::None);
@@ -276,9 +269,9 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStringRectInst
 	json.get_to(result->isDraw);
 	json.get_to(result->layer);
 
-	result->font = json.value("Font", "");
+	json.get_to(result->font);
 	json.get_to(result->pivot);
-	result->text = json.value("Text", "Sample Text");
+	result->text.set_weak(json.value("Text", "Sample Text"));
 	json.get_to(result->fontSize);
 	json.get_to(result->color);
 
@@ -296,10 +289,34 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteCamera3DInstan
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
 
-	json.get_to(result->fovY);
-	json.get_to(result->aspectRatio);
-	json.get_to(result->nearClip);
-	json.get_to(result->farClip);
+	nlohmann::json projectionJson = json.value("Projection", nlohmann::json::object());
+	CameraProjectionTypeEnum projectionType = projectionJson.value("Type", szg::CameraProjectionTypeEnum::Undefined);
+	switch (projectionType) {
+	case szg::CameraProjectionTypeEnum::Perspective:
+	{
+		RemoteCamera3dInstance::PerspectiveParameters perspectiveParams;
+		projectionJson.get_to(perspectiveParams.fovY);
+		projectionJson.get_to(perspectiveParams.aspectRatio);
+		projectionJson.get_to(perspectiveParams.nearClip);
+		projectionJson.get_to(perspectiveParams.farClip);
+		result->projectionParameters = perspectiveParams;
+	}
+	break;
+	case szg::CameraProjectionTypeEnum::Orthographic:
+	{
+		RemoteCamera3dInstance::OrthroParameters orthroParams;
+		projectionJson.get_to(orthroParams.left);
+		projectionJson.get_to(orthroParams.right);
+		projectionJson.get_to(orthroParams.bottom);
+		projectionJson.get_to(orthroParams.top);
+		projectionJson.get_to(orthroParams.nearClip);
+		projectionJson.get_to(orthroParams.farClip);
+		result->projectionParameters = orthroParams;
+	}
+	break;
+	default:
+		break;
+	}
 
 	return result;
 }

@@ -12,8 +12,6 @@
 
 #include "Engine/Application/Logger.h"
 
-struct ImVec4;
-
 namespace szg {
 
 class EditorLogWindow : public IEditorWindow, SingletonInterface<EditorLogWindow> {
@@ -48,11 +46,11 @@ private:
 	bool isBottomScroll{ true };
 	std::list<LogBody> logs;
 
+	mutable std::mutex mutex;
+
 private:
 	static constexpr u64 MAX_LOG_SIZE = 4089;
 };
-
-
 
 }; // szg
 

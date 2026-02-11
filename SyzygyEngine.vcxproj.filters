@@ -1,428 +1,536 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="EditorResources">
+      <UniqueIdentifier>{CAF4C7C5-DF9F-4C39-878F-55FADB317C01}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Engine">
-      <UniqueIdentifier>{BD94D18F-2881-4FD6-AA8D-936558120F62}</UniqueIdentifier>
+      <UniqueIdentifier>{CB85FE2A-B562-474F-A977-F0E7C74A6882}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources">
-      <UniqueIdentifier>{CE200E13-3E9E-4967-BD3B-686A0298C273}</UniqueIdentifier>
+      <UniqueIdentifier>{C5BFCD0A-D816-4A8E-AFCF-35CB5692BDFA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library">
-      <UniqueIdentifier>{7E2F3EEE-00EF-4A65-BFD9-55BD7C74EF24}</UniqueIdentifier>
+      <UniqueIdentifier>{698C720E-5232-4915-B641-AFBF72AB8983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorResources\HLSL">
+      <UniqueIdentifier>{890254A7-D22A-4038-913A-9215FF60894D}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL">
-      <UniqueIdentifier>{77B60EAC-58C2-4493-962B-853F2E98A766}</UniqueIdentifier>
+      <UniqueIdentifier>{D4273FBB-E4F0-4B4A-A4FD-F55ED780F271}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Application">
-      <UniqueIdentifier>{732A1EB1-4BA2-4B1B-9C88-4C3BC6ABD15F}</UniqueIdentifier>
+      <UniqueIdentifier>{2443765B-0CC4-4A17-B507-A7FF8ABD4642}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets">
-      <UniqueIdentifier>{37488B87-8CBD-48CA-BEA0-CAD3AB874E45}</UniqueIdentifier>
+      <UniqueIdentifier>{C3A88EDD-5B3B-44D1-8FD7-CF5E22C204D6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug">
-      <UniqueIdentifier>{C49A5460-2608-4406-B845-F271DC9C0447}</UniqueIdentifier>
+      <UniqueIdentifier>{4E67D6D6-F900-42DC-A4DA-B468A1A4945F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI">
-      <UniqueIdentifier>{3F49ABDD-199F-4D7E-BC57-6B81C09BB600}</UniqueIdentifier>
+      <UniqueIdentifier>{47ADF3DC-48C2-4502-BC8E-C8783417437D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Loader">
+      <UniqueIdentifier>{BCDF8109-5E93-4BF7-8819-AFC212EDDB50}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module">
-      <UniqueIdentifier>{34D5C7A3-D8E1-49F5-9D0F-18C22CDFD84E}</UniqueIdentifier>
+      <UniqueIdentifier>{2FCE375F-6D3A-4A84-84F4-81AB1EB8B31E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime">
-      <UniqueIdentifier>{18BC6F52-2270-4DB4-8813-083FF406EE47}</UniqueIdentifier>
+      <UniqueIdentifier>{D2BFF2F9-73C9-46FA-A827-00A76C3967EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals">
+      <UniqueIdentifier>{6BE1199C-4061-412C-9123-128D69ACD613}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Math">
-      <UniqueIdentifier>{3BB6960D-54FB-4439-AE3F-59153F0FE8C7}</UniqueIdentifier>
+      <UniqueIdentifier>{3C2A86D0-C382-482F-9145-C965FEB29BCA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility">
-      <UniqueIdentifier>{DA43F3EE-40AF-4F78-81B2-196DB49819DA}</UniqueIdentifier>
+      <UniqueIdentifier>{CB7B4E7C-A090-4767-A943-21821629CB24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorResources\HLSL\Grid">
+      <UniqueIdentifier>{0E99067D-CA56-416A-B625-CFF67BCB1943}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Debug">
-      <UniqueIdentifier>{209A2D56-41F5-43DE-84C2-65093E629B85}</UniqueIdentifier>
+      <UniqueIdentifier>{34B1F981-97D1-473F-836D-A61299039CCE}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Deferred">
-      <UniqueIdentifier>{37C20D89-3286-438F-AB02-E4DA18A74826}</UniqueIdentifier>
+      <UniqueIdentifier>{FA32190C-1837-4052-BB5F-B1ECC9AE9AAA}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward">
-      <UniqueIdentifier>{0E026757-E1D3-4881-8088-1C677023786F}</UniqueIdentifier>
+      <UniqueIdentifier>{A6554353-A42D-4BD8-A72B-D4387E87CBBF}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Misc">
-      <UniqueIdentifier>{9C42B8C2-DF7B-4CFF-8530-27C5D1E2E715}</UniqueIdentifier>
+      <UniqueIdentifier>{BFAE8FA0-B050-4ABC-8858-9B96A55E4815}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineResources\HLSL\Posteffect">
-      <UniqueIdentifier>{7B55E3D8-CBC5-4E84-947D-B50BC21686E1}</UniqueIdentifier>
+    <Filter Include="EngineResources\HLSL\PostEffect">
+      <UniqueIdentifier>{BD18BCB1-2EC6-4FC0-9095-0C8D1FCECD15}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Sprite">
-      <UniqueIdentifier>{1177770A-7845-4C52-B24B-7F20E8A803BA}</UniqueIdentifier>
+      <UniqueIdentifier>{78960B08-D662-4222-A370-59C9D36C1AF4}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Tools">
-      <UniqueIdentifier>{F6C94573-0884-427B-8F86-29F1A047A1B0}</UniqueIdentifier>
+      <UniqueIdentifier>{691782E7-1A48-4A03-942C-882BFD4E25BA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Application\ProjectSettings">
-      <UniqueIdentifier>{86ED7204-9713-4E78-ABC4-72518EA0D34B}</UniqueIdentifier>
+      <UniqueIdentifier>{3C237217-D68E-4F23-908F-00B0740BD02C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation">
-      <UniqueIdentifier>{26018DA9-C313-4EAE-83E7-6E86A91CA347}</UniqueIdentifier>
+      <UniqueIdentifier>{921A4A6E-A2E2-438C-98DD-B7639C06279C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Audio">
-      <UniqueIdentifier>{99CF5FD5-FBA3-480A-B56B-F7D0EDB4C6AB}</UniqueIdentifier>
+      <UniqueIdentifier>{98BE85D3-8578-4123-B52E-E5E277C7462C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\BackgroundLoader">
-      <UniqueIdentifier>{0C7FDB0E-6168-4E55-BF99-D30162602B43}</UniqueIdentifier>
+      <UniqueIdentifier>{6A4D2AD6-657E-4EE7-8748-81FA38B33135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Assets\FontAtlasMSDF">
+      <UniqueIdentifier>{A24131B9-FFB1-4664-91B6-71452B70F995}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Json">
-      <UniqueIdentifier>{33615255-6A09-4277-A176-A0D7D408CE13}</UniqueIdentifier>
+      <UniqueIdentifier>{4CD690B5-876A-4366-9E00-C9594385BBDB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\PolygonMesh">
-      <UniqueIdentifier>{070F1931-8E7E-479F-8B0E-91549DA02CBF}</UniqueIdentifier>
+      <UniqueIdentifier>{9C3B62F9-26DB-4329-84AF-3D46B7E2D686}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\PrimitiveGeometry">
-      <UniqueIdentifier>{997FD395-1CF3-4D48-BC4D-3628DA516805}</UniqueIdentifier>
+      <UniqueIdentifier>{9EDE6C18-FF4F-4A25-9253-BB068BC52041}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Shader">
-      <UniqueIdentifier>{34C782EF-E4CF-4058-978B-9504A2F9AE08}</UniqueIdentifier>
+      <UniqueIdentifier>{93580617-83DE-4BF5-B3D9-DCB68DF43D52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Texture">
-      <UniqueIdentifier>{83B97D3C-F915-417F-879B-3206C1E0B05A}</UniqueIdentifier>
+      <UniqueIdentifier>{35DE475A-CA08-438C-B6AC-5B4CDDA79DD0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\DebugValues">
-      <UniqueIdentifier>{3EF8F760-A93D-4C24-ADF7-E405F991F558}</UniqueIdentifier>
+      <UniqueIdentifier>{99530409-0794-42A7-B67D-FD0ED05C0935}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor">
-      <UniqueIdentifier>{4FE72B4D-1AB2-453A-AC6B-D7649CC60A2D}</UniqueIdentifier>
+      <UniqueIdentifier>{1F48A18D-AB8A-4BFA-B0C9-71BD40DBF37D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui">
-      <UniqueIdentifier>{2051DF2B-4D9C-409A-9A6E-5489CE1D48B0}</UniqueIdentifier>
+      <UniqueIdentifier>{BC6F26E2-0D76-4C23-AD58-E5CE3D40B91C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Profiler">
-      <UniqueIdentifier>{140FF9C2-3AE7-4409-BF37-748C312DB70A}</UniqueIdentifier>
+      <UniqueIdentifier>{D9B610FE-4D5B-4B98-AE76-31B816335FC1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX">
-      <UniqueIdentifier>{27702700-00FC-4C1F-933A-67ACB4BBAD24}</UniqueIdentifier>
+      <UniqueIdentifier>{E90AC985-0D9B-496C-A8DC-FB2C00B740B4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Loader\RenderPath">
+      <UniqueIdentifier>{46775E53-FC54-4C97-B49B-0374119A0A2A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor">
-      <UniqueIdentifier>{F3F1E247-479A-476E-8FDA-5BDF73A0B573}</UniqueIdentifier>
+      <UniqueIdentifier>{287E98AC-E567-489B-A139-B830CD4FF4B2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Manager">
-      <UniqueIdentifier>{4C37E3BA-F268-4BED-81A4-DF468863D892}</UniqueIdentifier>
+      <UniqueIdentifier>{C75A66D8-A4E6-4DE2-B717-1EBFD365B309}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render">
-      <UniqueIdentifier>{84C1BEAD-812F-43C4-986C-5247055E707F}</UniqueIdentifier>
+      <UniqueIdentifier>{5C93D878-7FB3-4B8B-8B84-DB25C5816EA1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World">
-      <UniqueIdentifier>{AB23BA6A-2D41-4638-8930-DAF69759F88B}</UniqueIdentifier>
+      <UniqueIdentifier>{3EF94AB9-7F27-4A59-9B97-0B57167D945E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Clock">
-      <UniqueIdentifier>{A6B16E1C-9E6E-4EBD-90F8-1087908AC86E}</UniqueIdentifier>
+      <UniqueIdentifier>{AB434760-826C-4AE0-A5BB-CE38177C3BA0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Input">
-      <UniqueIdentifier>{8F153099-D183-4208-AA0A-F1DD0A1FAF52}</UniqueIdentifier>
+      <UniqueIdentifier>{82964E5A-8163-484A-9E06-F428D96D721D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Scene">
-      <UniqueIdentifier>{6E68415C-B9D1-45E9-80D3-15EBE65C98FE}</UniqueIdentifier>
+      <UniqueIdentifier>{14491493-FAF1-4187-893B-82853A1D6FC8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype">
+      <UniqueIdentifier>{FDA746C3-5075-43DB-8CE2-A24B18EA9C8D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen">
+      <UniqueIdentifier>{E4981FA1-68DA-49BC-918D-BC5F836F9B59}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility\Template">
-      <UniqueIdentifier>{2C522220-94A5-414F-9523-B2E28D1517D9}</UniqueIdentifier>
+      <UniqueIdentifier>{1CE897FA-2D8E-4D90-82AD-2843DCCADDE8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility\Tools">
-      <UniqueIdentifier>{891426BF-819D-4581-ACCB-B42D59D10C42}</UniqueIdentifier>
+      <UniqueIdentifier>{D4895583-1881-4AC5-9DD8-FDACDE137F5D}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Debug\NormalColor">
-      <UniqueIdentifier>{BA3CF187-472D-42C3-AF4B-7D6AC15EC28C}</UniqueIdentifier>
+      <UniqueIdentifier>{2EA94620-9EA5-4F02-B8ED-A2433B79E366}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Debug\Wireframe">
-      <UniqueIdentifier>{1A479070-BF6B-4D7E-9041-73A36ED60E4C}</UniqueIdentifier>
+      <UniqueIdentifier>{5234BB90-276B-4259-B8EA-95821CE7DEDD}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Deferred\Lighting">
-      <UniqueIdentifier>{BB59C6AA-4893-42C4-A3AB-883364EA78F2}</UniqueIdentifier>
+      <UniqueIdentifier>{9FF48DAA-8339-42EC-B2A0-4C0B2C27FEB0}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Deferred\Mesh">
-      <UniqueIdentifier>{8727CED6-8B06-44C6-99FD-6556B0CB394C}</UniqueIdentifier>
+      <UniqueIdentifier>{9ADD64EE-4403-4AB6-A7CB-2F8608422F7E}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward\Mesh">
-      <UniqueIdentifier>{FDDA2BCF-C6DE-42ED-BF42-3F2080E800EE}</UniqueIdentifier>
+      <UniqueIdentifier>{EE470672-1BAD-4F53-B8E9-FDE3DCEBCFD6}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward\Particle">
-      <UniqueIdentifier>{7EE914EA-FFD4-48A3-8A60-4A77E8B8EA6B}</UniqueIdentifier>
+      <UniqueIdentifier>{261CE3DC-BAD2-4FAF-A065-D65C35EB3051}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward\Primitive">
-      <UniqueIdentifier>{58879FD1-6D43-4FCE-A217-4515A004A92A}</UniqueIdentifier>
+      <UniqueIdentifier>{88DC0698-37C6-40F4-9015-45A2E9A72A49}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Misc\PrimitiveGeometry">
-      <UniqueIdentifier>{CEF527BF-F80C-4EAC-976E-86DB46B4A4F3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineResources\HLSL\Posteffect\ChromaticAberration">
-      <UniqueIdentifier>{5A9F116F-A1D5-4895-8434-39B4858A3D59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineResources\HLSL\Posteffect\Grayscale">
-      <UniqueIdentifier>{57BC9B0B-712B-4739-AF3C-99683F237C90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineResources\HLSL\Posteffect\Outline">
-      <UniqueIdentifier>{CCF28B1F-C48C-45DB-9C73-D0D34B2FD22C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineResources\HLSL\Posteffect\RadialBlur">
-      <UniqueIdentifier>{04C9E2D3-AE73-45DF-A480-19253DB483C7}</UniqueIdentifier>
+      <UniqueIdentifier>{ACE250AD-9A67-4E7C-A7D6-1C4F2DC2BBB6}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Tools\Lighing">
-      <UniqueIdentifier>{24451D4F-3893-40B1-AA8A-77FEE1DC4A50}</UniqueIdentifier>
+      <UniqueIdentifier>{A3448CFB-B19F-43B7-9A98-9DE4F46B863D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation\NodeAnimation">
-      <UniqueIdentifier>{FC665B1B-FDD6-453B-BA59-27C6AB5DBF9E}</UniqueIdentifier>
+      <UniqueIdentifier>{DDCE1707-BCF7-46B4-9ECA-FED162FF5B55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation\Skeleton">
-      <UniqueIdentifier>{32710813-06FD-459A-9142-D4C364E5F367}</UniqueIdentifier>
+      <UniqueIdentifier>{638B1216-EBD3-407A-A45D-034055A47C74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Adapter">
-      <UniqueIdentifier>{0ED68FEA-F4DC-4996-B4C4-949AD651453C}</UniqueIdentifier>
+      <UniqueIdentifier>{87AEFD54-6BC0-40B5-B36F-A56C8793C708}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Command">
-      <UniqueIdentifier>{DB5308E4-7E95-45B6-8E17-0E1D36335396}</UniqueIdentifier>
+      <UniqueIdentifier>{81F233E0-9859-45AA-9F9D-6ADFC47F6D76}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Core">
-      <UniqueIdentifier>{E0DD3B99-9AA5-48A7-BEC9-6E200842DF2F}</UniqueIdentifier>
+      <UniqueIdentifier>{4E4F7CD6-6532-45C8-A227-85824E74BBEC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject">
-      <UniqueIdentifier>{43C639D8-D710-4C33-B8C4-464ED2C88484}</UniqueIdentifier>
+      <UniqueIdentifier>{D5817877-4E4A-4857-903F-ABD2CDC903B1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window">
-      <UniqueIdentifier>{B9F8E6F6-670A-41A2-96E4-9177C7E343CE}</UniqueIdentifier>
+      <UniqueIdentifier>{2DEA010D-3725-4925-AFEF-FD34D6D06138}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiJsonEditor">
-      <UniqueIdentifier>{37A4C600-42C9-44C2-9B5B-DF729D68EDD1}</UniqueIdentifier>
+      <UniqueIdentifier>{88F7E701-8E73-4303-9D83-DF0C8E369059}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiLoadManager">
-      <UniqueIdentifier>{6C58D478-9C4D-49B6-8BAD-E9E84185E82D}</UniqueIdentifier>
+      <UniqueIdentifier>{C43FB868-D0AB-4962-A523-73BF7D23DFA1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiManager">
-      <UniqueIdentifier>{4738838A-8015-4C35-898C-DFA72BE71050}</UniqueIdentifier>
+      <UniqueIdentifier>{B3D1AB2B-DE4C-4ACF-A3AA-031443DFB5B0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiTK">
-      <UniqueIdentifier>{C9146D9F-FF73-4B3B-9231-455959B4601B}</UniqueIdentifier>
+      <UniqueIdentifier>{1D72A325-9783-4289-A896-30370CF5CCE5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxCommand">
-      <UniqueIdentifier>{70794334-C696-482F-9BC5-70DE2585A9D3}</UniqueIdentifier>
+      <UniqueIdentifier>{C58205D5-A222-4718-8FB8-38AAA17149C0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxCompiler">
-      <UniqueIdentifier>{8013F480-8118-4788-9AD0-ECD8AF29EFED}</UniqueIdentifier>
+      <UniqueIdentifier>{B9A29EB1-D8C7-41D6-93D9-72DAD4866B90}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap">
-      <UniqueIdentifier>{FF1344F2-3BF5-49E0-BDEC-436EE24ECB57}</UniqueIdentifier>
+      <UniqueIdentifier>{BA1BD9F7-7552-46B9-8FB5-36B95217363A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDevice">
-      <UniqueIdentifier>{EC9E6F67-8A0D-4AFA-AB3F-5248632A0727}</UniqueIdentifier>
+      <UniqueIdentifier>{3688179D-850B-457C-B480-9755EB1CD66C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxPipelineState">
-      <UniqueIdentifier>{C570A1EB-60FC-4AA7-BA61-7E455CE50645}</UniqueIdentifier>
+      <UniqueIdentifier>{4939DE99-8E30-461B-973A-08538E6E1362}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource">
-      <UniqueIdentifier>{8F744BCB-9100-42C5-948A-0C66A08FA920}</UniqueIdentifier>
+      <UniqueIdentifier>{CEFFF473-76AE-433F-A240-388AB1A7C4D3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxSwapChain">
-      <UniqueIdentifier>{0BA0E57B-D66B-4BD2-B07E-F8949E9A7634}</UniqueIdentifier>
+      <UniqueIdentifier>{18713C36-0622-4BAF-B55D-F370B14A3FEA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\LightingExecutor">
-      <UniqueIdentifier>{413935F9-BAA0-457B-8B5B-C618E23E75B0}</UniqueIdentifier>
+      <UniqueIdentifier>{E50E6BA9-EA45-44D7-B018-4AC8326D9CA8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh">
-      <UniqueIdentifier>{942C73C8-FA3B-4ED4-816B-BEEE58E478F4}</UniqueIdentifier>
+      <UniqueIdentifier>{BCE42292-DCB7-4F85-82B4-9CACB1B30CF0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor">
-      <UniqueIdentifier>{6A710A55-E96A-400D-A469-5CEFA5C5A524}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Manager\Camera">
-      <UniqueIdentifier>{736888D6-176C-422A-9831-795021C3EB1C}</UniqueIdentifier>
+      <UniqueIdentifier>{858E2275-0D44-4DCF-934C-5FA98BBB03C2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Manager\RuntimeStorage">
-      <UniqueIdentifier>{C7E87BD8-11B3-4919-876F-0359A963FED2}</UniqueIdentifier>
+      <UniqueIdentifier>{7D2B34DE-D0D0-4F4E-BEDC-F0FFD04B41F7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Manager\SceneScript">
-      <UniqueIdentifier>{E38FFF7F-A701-4035-8D3F-8CF0486EE980}</UniqueIdentifier>
+      <UniqueIdentifier>{D84CEBBF-2E25-4181-BC0D-85BBCDB4C724}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Manager\World">
-      <UniqueIdentifier>{33B18106-F36D-4430-88CA-361CE8637D14}</UniqueIdentifier>
+      <UniqueIdentifier>{8E261E59-1DFF-4483-A0C9-55994C258517}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderNode">
-      <UniqueIdentifier>{6029D39A-24F8-45F5-99D2-56B28F1AE56F}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO">
-      <UniqueIdentifier>{E7A57334-AAEF-42F6-A6FB-84EF6377A297}</UniqueIdentifier>
+      <UniqueIdentifier>{4E2D1AE9-18F9-42B6-BCE7-5B0C4E91E87D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPath">
-      <UniqueIdentifier>{EEB67638-155F-4845-B14A-B8D57D59E00C}</UniqueIdentifier>
+      <UniqueIdentifier>{E921C64F-36E7-49AF-B61D-924EFEB07B16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline">
+      <UniqueIdentifier>{AB8A219E-5D11-456D-B8D3-AEA87E9259A1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderSubtree">
-      <UniqueIdentifier>{F32E23A1-377E-44F8-8B78-5C37876CAFC1}</UniqueIdentifier>
+      <UniqueIdentifier>{BDE2BDB8-ED27-4401-948C-1D2B3AFF003D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderTargetCollection">
-      <UniqueIdentifier>{9095116B-4CF6-4F49-BD4A-1DE22E1351E6}</UniqueIdentifier>
+      <UniqueIdentifier>{5A67D795-22CA-49F5-AB20-7592DDAB1E93}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderTargetGroup">
-      <UniqueIdentifier>{49B1065B-E283-4476-9ADC-AE494A91C505}</UniqueIdentifier>
+      <UniqueIdentifier>{96FC6880-96EF-43E9-9271-6DF22D882CB2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Camera">
-      <UniqueIdentifier>{08A77245-EBAE-43B5-82D2-0393FDBE6874}</UniqueIdentifier>
+      <UniqueIdentifier>{78A442E0-ABE7-4E3E-B938-C8BA080081C8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Collision">
-      <UniqueIdentifier>{985C2A48-DA7A-4C12-8E03-636C582C0F32}</UniqueIdentifier>
+      <UniqueIdentifier>{8AABF3B2-ED8A-4B9A-A25C-B031884AA804}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light">
-      <UniqueIdentifier>{84CFDB8F-D433-4C5E-B7DB-329A52EEC156}</UniqueIdentifier>
+      <UniqueIdentifier>{71BD3F4E-733D-4A4A-B3ED-6441F7769968}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Mesh">
-      <UniqueIdentifier>{B3530568-20A2-4262-B1B1-E992EB96F3DF}</UniqueIdentifier>
+      <UniqueIdentifier>{2A7EC725-D259-4EE1-824C-49AE3B203963}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Particle">
-      <UniqueIdentifier>{B71F8534-DE09-469D-BEBB-2A60D81CBA04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\World\Sprite">
-      <UniqueIdentifier>{F3EFE754-2163-4E11-BF10-673353704602}</UniqueIdentifier>
+      <UniqueIdentifier>{CEA2807E-E912-418C-8854-D5B17B72FE5F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\WorldInstance">
-      <UniqueIdentifier>{47768937-A8AD-430E-98E9-C6CA6C1851E6}</UniqueIdentifier>
+      <UniqueIdentifier>{F2F02F70-1FD5-4E25-925E-AC4F645D3FD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype\include">
+      <UniqueIdentifier>{448243CB-8B8C-44A1-B9EF-A5D2FD5949F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\artery-font-format">
+      <UniqueIdentifier>{795E0EA5-AAF4-46F6-AC98-9066A7FAB393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen">
+      <UniqueIdentifier>{351A3CF7-AC18-4264-AF98-D32EC2AA39A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen">
+      <UniqueIdentifier>{5FAECED0-1E8D-4D1F-A4BB-3C43569ED327}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward\Particle\ParticleBillboard">
-      <UniqueIdentifier>{0B542212-C94D-429A-920A-D70ED0FDE8AD}</UniqueIdentifier>
+      <UniqueIdentifier>{FD224369-D316-4A77-A3E7-F59A5B7948E9}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineResources\HLSL\Forward\Particle\ParticleMesh">
-      <UniqueIdentifier>{A546F5AB-1031-4A06-84C6-C0FC76924D58}</UniqueIdentifier>
+      <UniqueIdentifier>{801F61D5-8DA5-47EF-B51B-5613B33F3195}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance">
-      <UniqueIdentifier>{ADA846FA-352C-4A42-8F52-AD9E318D56AD}</UniqueIdentifier>
+      <UniqueIdentifier>{DAA56E6D-342D-4C18-ABFC-473D4F8F59E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\AssetBrowser">
+      <UniqueIdentifier>{1F0D683D-E146-446A-8139-3165E1E3C3BD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\EditorWorldView">
-      <UniqueIdentifier>{E30CD8BF-62A6-4B92-A85E-551C900BBAD9}</UniqueIdentifier>
+      <UniqueIdentifier>{B8145AF3-AAEF-4231-AEC1-1E8321FE562C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\RenderDagImNode">
+      <UniqueIdentifier>{CE9F2508-3D91-45AA-8E56-632644ABEBD2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\DSVDescroptorHeap">
-      <UniqueIdentifier>{729E0D4E-18C0-4005-9014-A1DE4A626CBB}</UniqueIdentifier>
+      <UniqueIdentifier>{1B260608-7275-44EB-9153-D5FB3639AC9C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\RTVDescriptorHeap">
-      <UniqueIdentifier>{5B3A77AB-D965-4C82-BF7E-9042E362CEBD}</UniqueIdentifier>
+      <UniqueIdentifier>{EF34C07F-E8F7-46A9-B880-73B538F098ED}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\SRVDescriptorHeap">
-      <UniqueIdentifier>{BD504EF1-501D-4B0F-B253-8A5280570F98}</UniqueIdentifier>
+      <UniqueIdentifier>{818E9937-D14B-409C-84CE-CB269D44635C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxPipelineState\PSOBuilder">
-      <UniqueIdentifier>{D29F6EF2-926F-4355-B951-EEB639B8E6F9}</UniqueIdentifier>
+      <UniqueIdentifier>{09F52CE6-9BDA-4E9B-BDC3-5F21ECE0603F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\ConstantBuffer">
-      <UniqueIdentifier>{C19991F1-8AF7-48CD-A3A2-78439B7930B5}</UniqueIdentifier>
+      <UniqueIdentifier>{D6DF094C-9929-46FF-9E95-DB6057889607}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\IndexBuffer">
-      <UniqueIdentifier>{574E4DEA-154C-4749-B547-652123ABC12C}</UniqueIdentifier>
+      <UniqueIdentifier>{1E34BC2C-7AAC-4F21-8156-623CAA6241CB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\StructuredBuffer">
-      <UniqueIdentifier>{BC9EBBE8-9491-40B3-9208-5F6DA03B4DCD}</UniqueIdentifier>
+      <UniqueIdentifier>{27EE99EF-ACB7-4B67-9AF0-754A44B5A1C5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\TextureResource">
-      <UniqueIdentifier>{45487841-73CF-49EF-ABC9-338704781785}</UniqueIdentifier>
+      <UniqueIdentifier>{0FC499C1-C5AC-4076-946F-AFA9D782FEFC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\VertexBuffer">
-      <UniqueIdentifier>{B937FFBA-AC35-4F26-9471-3041B6B69CCB}</UniqueIdentifier>
+      <UniqueIdentifier>{0AA56880-A74B-4568-8F06-869F5BA84A90}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh\Forward">
-      <UniqueIdentifier>{B9EFE2F0-D495-4956-AC78-23D341F0EE6D}</UniqueIdentifier>
+      <UniqueIdentifier>{9BA2D5E7-B57D-426D-B2C3-1EB5E418742E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh\Primitive">
-      <UniqueIdentifier>{EB5D7ECA-8270-49C2-9F71-810F0A3044A7}</UniqueIdentifier>
+      <UniqueIdentifier>{2D4D7472-E03D-40DC-98E7-97383378CDEC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderNode\Loader">
-      <UniqueIdentifier>{5854B763-0573-40F6-A571-F4324EB1C126}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Debug">
+      <UniqueIdentifier>{9204ECB1-2DBE-403C-AEE4-3C9244683F09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\2D">
-      <UniqueIdentifier>{195DA38D-02F3-4BF4-A0C0-C80C47917C24}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Deferred">
+      <UniqueIdentifier>{8AF8CF0D-2437-4A0B-8F92-BF975979F240}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Debug">
-      <UniqueIdentifier>{1229CCFA-0099-4ED5-8112-497C4AFA3BD3}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward">
+      <UniqueIdentifier>{AC57FC59-6F86-49F5-9A58-287B9361D22E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Deferred">
-      <UniqueIdentifier>{F8908711-B84F-4C69-AA92-C7AA74802423}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect">
+      <UniqueIdentifier>{2BDD86D6-46A5-4A7A-8520-71DBFEEB61E2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward">
-      <UniqueIdentifier>{F730E4DE-4C7A-48C9-8504-7F70D287A8FB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Posteffect">
-      <UniqueIdentifier>{B853E875-1F03-4543-8CAA-2F6916F2A9D8}</UniqueIdentifier>
+    <Filter Include="Engine\Module\World\Camera\ProjectionAdapter">
+      <UniqueIdentifier>{6EFB1C2F-AA28-4991-8921-0C08341B7C72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Collision\Collider">
-      <UniqueIdentifier>{E06C96BD-82AF-45C8-94DC-2C272D470587}</UniqueIdentifier>
+      <UniqueIdentifier>{07388C5F-4B6C-460E-88C6-AA2B8DD87390}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\DirectionalLight">
-      <UniqueIdentifier>{93538B66-5496-4221-9625-AC81A31112A8}</UniqueIdentifier>
+      <UniqueIdentifier>{3CDFB629-5CB2-46A0-A9E7-81DE40F2492E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\PointLight">
-      <UniqueIdentifier>{84FD3EBF-74BF-456C-BBCE-7D7AD3D9E902}</UniqueIdentifier>
+      <UniqueIdentifier>{054414EF-BD9B-4F5F-9745-D164726931C7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\SpotLight">
-      <UniqueIdentifier>{CE76198D-83BA-45D3-A5EF-1281304303B7}</UniqueIdentifier>
+      <UniqueIdentifier>{322D9129-5242-4DAC-983A-0BBC673BE81D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Mesh\Primitive">
-      <UniqueIdentifier>{5DD900F4-4442-4630-A031-6C2FC46B90B0}</UniqueIdentifier>
+      <UniqueIdentifier>{EFFCF88B-9576-4B41-A9B4-FB0DBD05B1D7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Particle\DrawSystem">
-      <UniqueIdentifier>{9C5E820E-C3D2-4274-8099-5852EF84EF1F}</UniqueIdentifier>
+      <UniqueIdentifier>{56B2BE41-F99B-49C8-8229-0BB5FD3D808E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Particle\Particle">
-      <UniqueIdentifier>{09E84219-EC07-4E9A-98C4-3AFB0E1B2A7B}</UniqueIdentifier>
+      <UniqueIdentifier>{BA59AF75-9377-401E-BE3A-D89D6F65CFF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype\include\freetype">
+      <UniqueIdentifier>{CCCD08A1-8CA4-4214-8151-8B8DAC09DA6B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font">
+      <UniqueIdentifier>{B47F9B24-D4F3-4745-A2A0-F07B1F6A318C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen\core">
+      <UniqueIdentifier>{8A9A391D-AA3F-479A-8BF5-591174A71CBF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen\ext">
+      <UniqueIdentifier>{3A69D02C-D9D0-4913-89D7-2B83BCFB3E0F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera">
-      <UniqueIdentifier>{EF2D9ED3-C05E-44D5-9C5C-C519A36E1189}</UniqueIdentifier>
+      <UniqueIdentifier>{5A83C72A-F776-43FB-828D-9AC90A05D1C8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider">
-      <UniqueIdentifier>{3E071FDF-7EEE-4A0A-86AF-5CCB298B6B50}</UniqueIdentifier>
+      <UniqueIdentifier>{BD2E27C8-08E3-49D9-AE07-2D4FB661ED39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light">
+      <UniqueIdentifier>{BAD85393-E17A-4CF7-9E14-F9CD0898C302}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh">
-      <UniqueIdentifier>{D48DD67D-C3E1-4E8F-B291-1DA63B8EAD6A}</UniqueIdentifier>
+      <UniqueIdentifier>{364564D5-DF24-4E9B-BA66-74C3A1CB94B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive">
+      <UniqueIdentifier>{4F9D3AD9-8E45-4819-B70D-2075EE262A5A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect">
+      <UniqueIdentifier>{F3489528-2183-46A0-A492-EE63B83BA71B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer">
+      <UniqueIdentifier>{A458C5AD-9E1D-4460-8B44-9C7C19A6D566}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\TextureResource\IResourceView">
-      <UniqueIdentifier>{4A8C9471-2354-451F-98C6-2EA0CB69C660}</UniqueIdentifier>
+      <UniqueIdentifier>{FC9EA0FE-5BCC-4315-9783-8CDA60A7CFD5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\2D\Sprite">
-      <UniqueIdentifier>{BFA5D836-5ABD-4F76-99F2-18510981BA2E}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Debug\Grid">
+      <UniqueIdentifier>{48DDEF8C-095A-4D17-A5F9-BE210D90ECC3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Debug\Line">
-      <UniqueIdentifier>{BF02C1D9-C23B-4F2C-8480-A4ED13649820}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Debug\Line">
+      <UniqueIdentifier>{4F405A36-095D-42F1-AF53-87E084AD65D7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Debug\PrimitiveLine">
-      <UniqueIdentifier>{56BB738A-C9BC-49BF-BA58-31EBD7D9594D}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine">
+      <UniqueIdentifier>{421859EA-E91B-4F64-80BD-0E07CD3F5C33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Deferred\Lighting">
-      <UniqueIdentifier>{52A05DB1-37C0-4505-957F-C4EFD54E6D7B}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting">
+      <UniqueIdentifier>{572798A8-FC93-4001-8EB6-09C6AF7616B6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Deferred\Mesh">
-      <UniqueIdentifier>{D1E5B0BB-627D-4F52-A911-48BD5328B6B8}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh">
+      <UniqueIdentifier>{6E4DC015-1E65-4278-B7E3-AD2E48A61BEE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Mesh">
-      <UniqueIdentifier>{A57D756C-779C-4CC6-8D1A-72AA6DD6D73F}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode">
+      <UniqueIdentifier>{F5AB981C-FB17-4B66-91A8-5234220CD002}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Particle">
-      <UniqueIdentifier>{CD008E49-8E5B-4FBB-8D46-5945F4EECC7E}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Mesh">
+      <UniqueIdentifier>{290BC5D5-C3D5-4231-84AB-EB176FC5BA9F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Primitive">
-      <UniqueIdentifier>{33F34F61-9AB4-4D7C-A033-48C59B4E0E79}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle">
+      <UniqueIdentifier>{2F9B15DF-72BA-4AA3-AD04-4301B6202B75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Posteffect\ChromaticAberration">
-      <UniqueIdentifier>{CEF39BA3-A912-4DBA-9DFE-920675DC7C35}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Primitive">
+      <UniqueIdentifier>{E1FE51CC-DE46-4E15-8CA0-74959EF2269E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Posteffect\Grayscale">
-      <UniqueIdentifier>{5B3A6DC0-697F-472B-8F04-4D519A5C2A96}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom">
+      <UniqueIdentifier>{007B89A2-5377-441B-9356-D0BAEA3A555B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Posteffect\Outline">
-      <UniqueIdentifier>{D5298CEF-A00F-4F2A-ABEC-BEC68D1ED707}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration">
+      <UniqueIdentifier>{AD068571-3829-47CC-8B10-7440168440A6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Posteffect\RadialBlur">
-      <UniqueIdentifier>{06158890-B78E-454D-A1C6-7F7E70FD9F73}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur">
+      <UniqueIdentifier>{25CA7323-FA7F-4C96-8F65-37D7262DE50B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Particle\ParticleBillboardNode">
-      <UniqueIdentifier>{C623A21F-BBD6-46EA-83D7-86376BE0D1AA}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale">
+      <UniqueIdentifier>{966D32EB-D371-4F93-8DA7-DDDD5D781F3F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Particle\ParticleMeshNode">
-      <UniqueIdentifier>{EAC85C4D-5E20-4556-8E7B-353EEAC87ADA}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction">
+      <UniqueIdentifier>{8A2EEABB-81E9-46AA-8963-6BD5C4EBE4C8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\Render\RenderPSO\Forward\Particle\ParticleSpriteNode">
-      <UniqueIdentifier>{4A975718-EAA9-4F03-89DE-BE233F103029}</UniqueIdentifier>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4">
+      <UniqueIdentifier>{2C64D44D-79E3-4E4C-A298-CEFF0755BA8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline">
+      <UniqueIdentifier>{72E1CACB-C478-47B5-ABB2-5FAF14F3D759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur">
+      <UniqueIdentifier>{EE9A0D86-B5E2-4F7A-93E3-60995AD8B9F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype\include\freetype\config">
+      <UniqueIdentifier>{0FE2F5BA-D9DE-4AF7-A740-FCD0972E4A13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype\include\freetype\internal">
+      <UniqueIdentifier>{BAB97FC4-08AC-4C43-A3C0-1F82D2B4CA3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas">
+      <UniqueIdentifier>{8005C277-4A3E-4EC8-9AA7-3BA0EBD85C4F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture">
+      <UniqueIdentifier>{4B0272BF-3A30-4C7C-9825-F094AF1EEAB1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode">
+      <UniqueIdentifier>{E92CD098-A83F-43C2-9B97-7EAB7D66C5C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode">
+      <UniqueIdentifier>{1A16D358-C04E-4E7B-8DBC-A52B18496256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode">
+      <UniqueIdentifier>{E13C0FB2-F9DE-44A3-825B-7D13AB87E69C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Externals\freetype\include\freetype\internal\services">
+      <UniqueIdentifier>{DFD05730-D2A5-4E6A-9D2A-5017CA4BB2A8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetField.cpp">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp">
+      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Application\ArgumentParser.cpp">
       <Filter>Engine\Application</Filter>
     </ClCompile>
@@ -525,8 +633,14 @@
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorValueField.cpp">
+    <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandInvoker.cpp">
       <Filter>Engine\Debug\Editor\Command</Filter>
@@ -552,7 +666,7 @@
     <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.cpp">
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorDandDManager.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneList.cpp">
@@ -609,7 +723,13 @@
     <ClCompile Include="Engine\Debug\Editor\Window\EditorLogWindow.cpp">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorRenderDAG.cpp">
+      <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\EditorSceneView.cpp">
+      <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\EditorScreenResult.cpp">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorDebugCamera.cpp">
@@ -620,6 +740,18 @@
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\IEditorWindow.cpp">
       <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.cpp">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -766,10 +898,10 @@
       <Filter>Engine\Module\Render\RenderNode</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Loader\RenderPath\PostEffectPSOLoader.cpp">
-      <Filter>Engine\Module\Render\RenderNode\Loader</Filter>
+      <Filter>Engine\Loader\RenderPath</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Loader\RenderPath\RenderNodeLoader.cpp">
-      <Filter>Engine\Module\Render\RenderNode\Loader</Filter>
+      <Filter>Engine\Loader\RenderPath</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderNode\PostEffectNode.cpp">
       <Filter>Engine\Module\Render\RenderNode</Filter>
@@ -779,6 +911,75 @@
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderPath\RenderPath.cpp">
       <Filter>Engine\Module\Render\RenderPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Bloom</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Grayscale</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Outline</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderSubtree\LayerRenderSubtree.cpp">
       <Filter>Engine\Module\Render\RenderSubtree</Filter>
@@ -798,10 +999,7 @@
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera2D.cpp">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\Camera3D.cpp">
+    <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp">
@@ -855,14 +1053,8 @@
     <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Sprite\SpriteInstance.cpp">
-      <Filter>Engine\Module\World\Sprite</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
       <Filter>Engine\Module\World\WorldInstance</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\WorldManager.cpp">
-      <Filter>Engine\Module\World</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp">
       <Filter>Engine\Runtime\Clock</Filter>
@@ -873,14 +1065,188 @@
     <ClCompile Include="Engine\Runtime\Input\Input.cpp">
       <Filter>Engine\Runtime\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\BaseScene.cpp">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Runtime\Scene\Scene.cpp">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp">
       <Filter>Engine\Runtime\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Charset.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\csv-export.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\FontGeometry.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\glyph-generators.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphGeometry.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GridAtlasPacker.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-encode.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\json-export.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Padding.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\RectanglePacker.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\shadron-preview-generator.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\size-selectors.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\TightAtlasPacker.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\contour-combiners.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Contour.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\convergent-curve-ordering.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\DistanceMapping.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-coloring.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-segments.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-selectors.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeHolder.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\equation-solver.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\export-svg.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdf-error-correction.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\MSDFErrorCorrection.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdfgen.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Projection.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\rasterization.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\render-sdf.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-bmp.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-fl32.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-rgba.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-tiff.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Scanline.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\sdf-error-estimation.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\shape-description.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Shape.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-font.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-svg.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\resolve-shape-geometry.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\save-png.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\main.cpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen</Filter>
     </ClCompile>
     <ClCompile Include="Library\Math\Affine.cpp">
       <Filter>Library\Math</Filter>
@@ -888,10 +1254,10 @@
     <ClCompile Include="Library\Math\Basis.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Math\Color3.cpp">
+    <ClCompile Include="Library\Math\ColorRGB.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Math\Color4.cpp">
+    <ClCompile Include="Library\Math\ColorRGBA.cpp">
       <Filter>Library\Math</Filter>
     </ClCompile>
     <ClCompile Include="Library\Math\Hierarchy.cpp">
@@ -939,6 +1305,36 @@
     <ClCompile Include="Library\Utility\Tools\RandomEngine.cpp">
       <Filter>Library\Utility\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Loader\WorldInstanceLoader.cpp">
+      <Filter>Engine\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp">
+      <Filter>Engine\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
+    </ClCompile>
+    <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
+      <Filter>EditorResources\HLSL\Grid</Filter>
+    </None>
     <None Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.hlsli">
       <Filter>EngineResources\HLSL\Debug\NormalColor</Filter>
     </None>
@@ -954,12 +1350,171 @@
     <None Include="EngineResources\HLSL\Forward\Particle\ParticleMesh\ParticleMesh.hlsli">
       <Filter>EngineResources\HLSL\Forward\Particle\ParticleMesh</Filter>
     </None>
+    <None Include="EngineResources\HLSL\FullscreenShader.hlsli">
+      <Filter>EngineResources\HLSL</Filter>
+    </None>
     <None Include="EngineResources\HLSL\Misc\PrimitiveGeometry\PrimitiveGeometry.hlsli">
       <Filter>EngineResources\HLSL\Misc\PrimitiveGeometry</Filter>
     </None>
     <None Include="EngineResources\HLSL\Sprite\Sprite.hlsli">
       <Filter>EngineResources\HLSL\Sprite</Filter>
     </None>
+    <None Include="EngineResources\HLSL\Tools\Pixel.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\Lighing\CalcLighting.hlsli">
+      <Filter>EngineResources\HLSL\Tools\Lighing</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\Lighing\DirectionalLighting.hlsli">
+      <Filter>EngineResources\HLSL\Tools\Lighing</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\Lighing\PointLighting.hlsli">
+      <Filter>EngineResources\HLSL\Tools\Lighing</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\Lighing\SpotLighting.hlsli">
+      <Filter>EngineResources\HLSL\Tools\Lighing</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\MathTool.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\PackA2.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\PackNormalV2.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\PackShininess.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\ToLinearZBuffer.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <None Include="EngineResources\HLSL\Tools\UnormNormal.hlsli">
+      <Filter>EngineResources\HLSL\Tools</Filter>
+    </None>
+    <ClInclude Include="Engine\Assets\AssetRootPath.h">
+      <Filter>Engine\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\AssetTypeEnum.h">
+      <Filter>Engine\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetField.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h">
+      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\DeferredAdaptor.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Bloom</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Grayscale</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Outline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\WorldInstanceType.h">
+      <Filter>Engine\Module\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorScreenResult.h">
+      <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Application\ArgumentParser.h">
       <Filter>Engine\Application</Filter>
     </ClInclude>
@@ -1071,6 +1626,9 @@
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorValueField.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandInvoker.h">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClInclude>
@@ -1104,7 +1662,7 @@
     <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorHierarchyDandD.h">
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorDandDManager.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneList.h">
@@ -1164,6 +1722,9 @@
     <ClInclude Include="Engine\Debug\Editor\Window\EditorLogWindow.h">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\EditorRenderDAG.h">
+      <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\EditorSceneView.h">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClInclude>
@@ -1175,6 +1736,18 @@
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\IEditorWindow.h">
       <Filter>Engine\Debug\Editor\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.h">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -1317,6 +1890,9 @@
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Forward\StaticMeshDrawExecutorForward.h">
       <Filter>Engine\Module\DrawExecutor\Mesh\Forward</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Module\World\Mesh\Primitive\CharRectStruct.h">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\Rect3dDrawExecutor.h">
       <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
     </ClInclude>
@@ -1363,10 +1939,10 @@
       <Filter>Engine\Module\Render\RenderNode</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Loader\RenderPath\PostEffectPSOLoader.h">
-      <Filter>Engine\Module\Render\RenderNode\Loader</Filter>
+      <Filter>Engine\Loader\RenderPath</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Loader\RenderPath\RenderNodeLoader.h">
-      <Filter>Engine\Module\Render\RenderNode\Loader</Filter>
+      <Filter>Engine\Loader\RenderPath</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderNode\PostEffectNode.h">
       <Filter>Engine\Module\Render\RenderNode</Filter>
@@ -1398,10 +1974,7 @@
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera2D.h">
-      <Filter>Engine\Module\World\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\Camera3D.h">
+    <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h">
@@ -1470,14 +2043,8 @@
     <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h">
       <Filter>Engine\Module\World\Particle\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Sprite\SpriteInstance.h">
-      <Filter>Engine\Module\World\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h">
       <Filter>Engine\Module\World\WorldInstance</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\WorldManager.h">
-      <Filter>Engine\Module\World</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h">
       <Filter>Engine\Runtime\Clock</Filter>
@@ -1494,9 +2061,6 @@
     <ClInclude Include="Engine\Runtime\Input\InputHandler.h">
       <Filter>Engine\Runtime\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\BaseScene.h">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
@@ -1506,16 +2070,628 @@
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputTextController.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftoption.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftstdlib.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\integer-types.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\mac-support.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\config\public-macros.h">
+      <Filter>Library\Externals\freetype\include\freetype\config</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\freetype.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftadvanc.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbbox.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbdf.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbitmap.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbzip2.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcache.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftchapters.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcid.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcolor.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftdriver.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\fterrdef.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\fterrors.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftfntfmt.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgasp.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftglyph.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgxval.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgzip.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftimage.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftincrem.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlcdfil.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlist.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlogging.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlzw.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmac.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmm.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmodapi.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmoderr.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftotval.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftoutln.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftparams.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftpfr.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftrender.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsizes.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsnames.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftstroke.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsynth.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsystem.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\fttrigon.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\fttypes.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ftwinfnt.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\autohint.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\cffotypes.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\cfftypes.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\compiler-macros.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftcalc.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftdebug.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftdrv.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftgloadr.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\fthash.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftmemory.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftmmtypes.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftobjs.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftpsprop.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftrfork.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftserv.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftstream.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\fttrace.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftvalid.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\psaux.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\pshints.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svbdf.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svcfftl.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svcid.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svfntfmt.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svgldict.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svgxval.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svkern.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svmetric.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svmm.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svotval.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpfr.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpostnm.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svprop.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpscmap.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpsinfo.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svsfnt.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svttcmap.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svtteng.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svttglyf.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svwinfnt.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal\services</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\sfnt.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\svginterface.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\t1types.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\tttypes.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\wofftypes.h">
+      <Filter>Library\Externals\freetype\include\freetype\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\otsvg.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\t1tables.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\ttnameid.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\tttables.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\freetype\tttags.h">
+      <Filter>Library\Externals\freetype\include\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\freetype\include\ft2build.h">
+      <Filter>Library\Externals\freetype\include</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\artery-font.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\enums.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\serialization.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\serialization.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\std-artery-font.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\stdio-serialization.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\stdio-serialization.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\structures.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\types.h">
+      <Filter>Library\Externals\msdf-atlas-gen\artery-font-format\artery-font</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\AtlasGenerator.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\AtlasStorage.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\BitmapAtlasStorage.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\BitmapAtlasStorage.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Charset.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\csv-export.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\DynamicAtlas.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\DynamicAtlas.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\FontGeometry.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\glyph-generators.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphBox.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphGeometry.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GridAtlasPacker.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-encode.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-save.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-save.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\ImmediateAtlasGenerator.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\ImmediateAtlasGenerator.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\json-export.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\msdf-atlas-gen.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Padding.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\rectangle-packing.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\rectangle-packing.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Rectangle.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\RectanglePacker.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Remap.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\shadron-preview-generator.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\size-selectors.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\TightAtlasPacker.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\types.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utils.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\arithmetics.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\base.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\bitmap-interpolation.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Bitmap.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Bitmap.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\BitmapRef.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\contour-combiners.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Contour.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\convergent-curve-ordering.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\DistanceMapping.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-coloring.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-segments.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-selectors.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeColor.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeHolder.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\equation-solver.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\export-svg.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\generator-config.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdf-error-correction.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\MSDFErrorCorrection.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\pixel-conversion.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Projection.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Range.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\rasterization.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\render-sdf.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-bmp.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-fl32.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-rgba.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-tiff.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Scanline.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\sdf-error-estimation.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\SDFTransformation.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\shape-description.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Shape.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\ShapeDistanceFinder.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\ShapeDistanceFinder.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\SignedDistance.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Vector2.hpp">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-font.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-svg.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\resolve-shape-geometry.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\save-png.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen-config.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen-ext.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\resource.h">
+      <Filter>Library\Externals\msdf-atlas-gen\msdfgen</Filter>
+    </ClInclude>
     <ClInclude Include="Library\Math\Affine.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
     <ClInclude Include="Library\Math\Basis.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Math\Color3.h">
+    <ClInclude Include="Library\Math\ColorRGB.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Math\Color4.h">
+    <ClInclude Include="Library\Math\ColorRGBA.h">
       <Filter>Library\Math</Filter>
     </ClInclude>
     <ClInclude Include="Library\Math\Definition.h">
@@ -1611,6 +2787,45 @@
     <ClInclude Include="Library\Utility\Tools\SmartPointer.h">
       <Filter>Library\Utility\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\WorldInstanceLoader.h">
+      <Filter>Engine\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\SceneAssetListLoader.h">
+      <Filter>Engine\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
+    </ClInclude>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.PS.hlsl">
+      <Filter>EditorResources\HLSL\Grid</Filter>
+    </FxCompile>
+    <FxCompile Include="EditorResources\HLSL\Grid\Grid.VS.hlsl">
+      <Filter>EditorResources\HLSL\Grid</Filter>
+    </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Debug\NormalColor\NormalColor.PS.hlsl">
       <Filter>EngineResources\HLSL\Debug\NormalColor</Filter>
     </FxCompile>
@@ -1674,23 +2889,38 @@
     <FxCompile Include="EngineResources\HLSL\Forward\Primitive\Rect3d.VS.hlsl">
       <Filter>EngineResources\HLSL\Forward\Primitive</Filter>
     </FxCompile>
+    <FxCompile Include="EngineResources\HLSL\FullscreenShader.VS.hlsl">
+      <Filter>EngineResources\HLSL</Filter>
+    </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Misc\PrimitiveGeometry\PrimitiveGeometry.PS.hlsl">
       <Filter>EngineResources\HLSL\Misc\PrimitiveGeometry</Filter>
     </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Misc\PrimitiveGeometry\PrimitiveGeometry.VS.hlsl">
       <Filter>EngineResources\HLSL\Misc\PrimitiveGeometry</Filter>
     </FxCompile>
+    <FxCompile Include="EngineResources\HLSL\PostEffect\Bloom.PS.hlsl">
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
+    </FxCompile>
     <FxCompile Include="EngineResources\HLSL\PostEffect\ChromaticAberration.PS.hlsl">
-      <Filter>EngineResources\HLSL\Posteffect\ChromaticAberration</Filter>
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
+    </FxCompile>
+    <FxCompile Include="EngineResources\HLSL\PostEffect\GaussianBlur.PS.hlsl">
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
     </FxCompile>
     <FxCompile Include="EngineResources\HLSL\PostEffect\Grayscale.PS.hlsl">
-      <Filter>EngineResources\HLSL\Posteffect\Grayscale</Filter>
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
+    </FxCompile>
+    <FxCompile Include="EngineResources\HLSL\PostEffect\LuminanceExtraction.PS.hlsl">
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
+    </FxCompile>
+    <FxCompile Include="EngineResources\HLSL\PostEffect\MargeTexture4.PS.hlsl">
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
     </FxCompile>
     <FxCompile Include="EngineResources\HLSL\PostEffect\Outline.PS.hlsl">
-      <Filter>EngineResources\HLSL\Posteffect\Outline</Filter>
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
     </FxCompile>
     <FxCompile Include="EngineResources\HLSL\PostEffect\RadialBlur.PS.hlsl">
-      <Filter>EngineResources\HLSL\Posteffect\RadialBlur</Filter>
+      <Filter>EngineResources\HLSL\PostEffect</Filter>
     </FxCompile>
     <FxCompile Include="EngineResources\HLSL\Sprite\Sprite.PS.hlsl">
       <Filter>EngineResources\HLSL\Sprite</Filter>
@@ -1698,378 +2928,5 @@
     <FxCompile Include="EngineResources\HLSL\Sprite\Sprite.VS.hlsl">
       <Filter>EngineResources\HLSL\Sprite</Filter>
     </FxCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorRenderDAG.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp" />
-    <ClCompile Include="Engine\Loader\WorldInstanceLoader.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorScreenResult.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp" />
-    <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp" />
-    <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp" />
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.cpp" />
-    <ClCompile Include="Engine\Runtime\Input\TextInput.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="EngineResources\HLSL\Document.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorRenderDAG.h" />
-    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.h" />
-    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.h" />
-    <ClInclude Include="Engine\Loader\WorldInstanceLoader.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorScreenResult.h" />
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.h" />
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.h" />
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.h" />
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h" />
-    <ClInclude Include="Engine\Module\World\WorldInstanceType.h" />
-    <ClInclude Include="Engine\Loader\SceneAssetListLoader.h" />
-    <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
-    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h" />
-    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\DeferredAdaptor.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h" />
-    <ClInclude Include="Engine\Runtime\Input\TextInput.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Charset.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\charset-parser.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\csv-export.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\FontGeometry.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\glyph-generators.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphGeometry.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GridAtlasPacker.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-encode.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\json-export.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Padding.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\RectanglePacker.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\shadron-preview-generator.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\size-selectors.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\TightAtlasPacker.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Contour.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\contour-combiners.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\convergent-curve-ordering.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\DistanceMapping.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-coloring.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeHolder.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-segments.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-selectors.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\equation-solver.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\export-svg.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdf-error-correction.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\MSDFErrorCorrection.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdfgen.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Projection.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\rasterization.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\render-sdf.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-bmp.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-fl32.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-rgba.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-tiff.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Scanline.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\sdf-error-estimation.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Shape.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\core\shape-description.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-font.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-svg.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\resolve-shape-geometry.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\save-png.cpp" />
-    <ClCompile Include="Library\Externals\msdf-atlas-gen\msdfgen\main.cpp" />
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp" />
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp" />
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.cpp" />
-    <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp" />
-    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp" />
-    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\AtlasGenerator.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\AtlasStorage.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\BitmapAtlasStorage.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\BitmapAtlasStorage.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\bitmap-blit.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Charset.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\csv-export.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\DynamicAtlas.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\DynamicAtlas.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\FontGeometry.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphBox.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\glyph-generators.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GlyphGeometry.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\GridAtlasPacker.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-encode.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-save.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\image-save.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\ImmediateAtlasGenerator.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\ImmediateAtlasGenerator.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\json-export.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\msdf-atlas-gen.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Padding.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Rectangle.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\RectanglePacker.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\rectangle-packing.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\rectangle-packing.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Remap.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\shadron-preview-generator.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\size-selectors.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\TightAtlasPacker.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\types.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utf8.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\utils.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\Workload.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilder.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\artery-font.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\crc32.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\enums.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\serialization.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\serialization.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\std-artery-font.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\stdio-serialization.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\stdio-serialization.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\structures.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font\types.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\arithmetics.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\base.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Bitmap.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Bitmap.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\bitmap-interpolation.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\BitmapRef.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Contour.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\contour-combiners.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\convergent-curve-ordering.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\DistanceMapping.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeColor.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-coloring.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\EdgeHolder.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-segments.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\edge-selectors.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\equation-solver.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\export-svg.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\generator-config.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\msdf-error-correction.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\MSDFErrorCorrection.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\pixel-conversion.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Projection.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Range.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\rasterization.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\render-sdf.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-bmp.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-fl32.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-rgba.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\save-tiff.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Scanline.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\sdf-error-estimation.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\SDFTransformation.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Shape.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\shape-description.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\ShapeDistanceFinder.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\ShapeDistanceFinder.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\SignedDistance.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\core\Vector2.hpp" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-font.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\import-svg.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\resolve-shape-geometry.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\ext\save-png.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen-ext.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\resource.h" />
-    <ClInclude Include="Library\Externals\msdf-atlas-gen\msdfgen\msdfgen-config.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftheader.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftmodule.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftoption.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftstdlib.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\integer-types.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\mac-support.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\config\public-macros.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svbdf.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svcfftl.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svcid.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svfntfmt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svgldict.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svgxval.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svkern.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svmetric.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svmm.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svotval.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpfr.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpostnm.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svprop.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpscmap.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svpsinfo.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svsfnt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svttcmap.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svtteng.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svttglyf.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\services\svwinfnt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\autohint.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\cffotypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\cfftypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\compiler-macros.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftcalc.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftdebug.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftdrv.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftgloadr.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\fthash.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftmemory.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftmmtypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftobjs.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftpsprop.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftrfork.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftserv.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftstream.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\fttrace.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\ftvalid.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\psaux.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\pshints.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\sfnt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\svginterface.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\t1types.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\tttypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\internal\wofftypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\freetype.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftadvanc.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbbox.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbdf.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbitmap.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftbzip2.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcache.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftchapters.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcid.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftcolor.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftdriver.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\fterrdef.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\fterrors.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftfntfmt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgasp.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftglyph.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgxval.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftgzip.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftimage.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftincrem.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlcdfil.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlist.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlogging.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftlzw.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmac.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmm.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmodapi.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftmoderr.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftotval.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftoutln.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftparams.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftpfr.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftrender.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsizes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsnames.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftstroke.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsynth.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftsystem.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\fttrigon.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\fttypes.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ftwinfnt.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\otsvg.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\t1tables.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\ttnameid.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\tttables.h" />
-    <ClInclude Include="Library\Externals\freetype\include\freetype\tttags.h" />
-    <ClInclude Include="Library\Externals\freetype\include\ft2build.h" />
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h" />
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h" />
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h" />
-    <ClInclude Include="Engine\Debug\Editor\Asset\FontAtlas\FontAtlasBuilderManager.h" />
-    <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h" />
-    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h" />
-    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h" />
-    <ClInclude Include="Engine\Module\World\Mesh\Primitive\CharRectStruct.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="EngineResources\HLSL\PostEffect\MargeTexture4.PS.hlsl" />
-    <FxCompile Include="EngineResources\HLSL\PostEffect\LuminanceExtraction.PS.hlsl" />
-    <FxCompile Include="EngineResources\HLSL\PostEffect\GaussianBlur.PS.hlsl" />
-    <FxCompile Include="EngineResources\HLSL\PostEffect\Bloom.PS.hlsl" />
-    <FxCompile Include="EngineResources\HLSL\FullscreenShader.VS.hlsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="EngineResources\HLSL\Tools\Lighing\CalcLighting.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\Lighing\DirectionalLighting.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\Lighing\PointLighting.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\Lighing\SpotLighting.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\Pixel.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\MathTool.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\PackA2.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\PackNormalV2.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\PackShininess.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\ToLinearZBuffer.hlsli" />
-    <None Include="EngineResources\HLSL\Tools\UnormNormal.hlsli" />
-    <None Include="EngineResources\HLSL\FullscreenShader.hlsli" />
   </ItemGroup>
 </Project>

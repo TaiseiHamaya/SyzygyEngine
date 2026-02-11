@@ -50,11 +50,16 @@ public:
 	void register_world(Reference<RemoteWorldObject> world);
 
 	void create_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName);
+
 	void register_mesh(Reference<const RemoteWorldObject> world, Reference<const StaticMeshInstance> instance);
 	void register_rect(Reference<const RemoteWorldObject> world, Reference<const Rect3d> rect);
 	void register_string(Reference<const RemoteWorldObject> world, Reference<const StringRectInstance> stringRect);
 	void register_directional_light(Reference<const RemoteWorldObject> world, Reference<const DirectionalLightInstance> lightInstance);
 	void write_primitive(Reference<const RemoteWorldObject> world, const std::string& primitiveName, const Affine& affine);
+
+private:
+	void copy_screen();
+	void set_imgui_command();
 
 public:
 	std::optional<u32> get_layer(Reference<const RemoteWorldObject> world) const;
@@ -63,6 +68,7 @@ public:
 	Reference<EditorWorldView> get_current_world_view();
 
 	bool is_hovered_window();
+
 	const Vector2& view_origin() const;
 	const Vector2& view_size() const;
 
@@ -71,11 +77,8 @@ public:
 	Reference<const EditorDebugCamera> query_debug_camera();
 
 private:
-	void copy_screen();
-	void set_imgui_command();
-
-private:
 	bool isHoverWindow{ false };
+	bool isActiveGrid{ true };
 	u32 layerSize;
 
 	Vector2 origin;
@@ -91,8 +94,10 @@ private:
 
 	// 描画用データ
 	TempTexture screenResultTexture;
-	
+
 	RenderPath renderPath;
+
+	std::unique_ptr<StaticMeshInstance> axisMesh;
 
 	DirectionalLightingExecutor directionalLightingExecutor;
 	StaticMeshDrawManager staticMeshDrawManager;

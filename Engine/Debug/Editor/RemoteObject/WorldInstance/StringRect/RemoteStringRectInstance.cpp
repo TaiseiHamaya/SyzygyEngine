@@ -4,11 +4,10 @@
 
 using namespace szg;
 
-#include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
-
 #include "../../../Window/EditorSceneView.h"
 
-#define COLOR4_SERIALIZER
+#define COLOR_RGBA_SERIALIZER
+#define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteStringRectInstance::setup() {
@@ -32,7 +31,7 @@ void RemoteStringRectInstance::update_preview(Reference<RemoteWorldObject> world
 	debugVisual->isDraw = isDraw;
 	debugVisual->keyID = BlendMode::None;
 
-	debugVisual->reset_string(text.cget());
+	debugVisual->reset_string(text.value_imm());
 	debugVisual->get_material().color = color;
 	if (isChangedValue) {
 		debugVisual->data.pivot = pivot;
@@ -59,17 +58,8 @@ void RemoteStringRectInstance::draw_inspector() {
 	ImGui::Separator();
 
 	isChangedValue = false;
-	{
-		std::string cache = font;
-		bool isChanged = FontAtlasMSDFLibrary::ComboListGui(cache);
-		if (isChanged) {
-			EditorValueChangeCommandHandler::GenCommand<std::string>(font);
-			font = cache;
-			EditorValueChangeCommandHandler::End();
-			isChangedValue = true;
-		}
-	}
 
+	isChangedValue |= font.show_gui().any();
 	isChangedValue |= fontSize.show_gui().any();
 	isChangedValue |= pivot.show_gui().any();
 	isChangedValue |= text.show_gui().any();
@@ -92,7 +82,7 @@ nlohmann::json RemoteStringRectInstance::serialize() const {
 	result.update(pivot);
 	result.update(text);
 	result.update(color);
-	result["Font"] = font;
+	result.update(font);
 
 	result["Children"] = nlohmann::json::array();
 	for (const auto& child : children) {

@@ -88,13 +88,12 @@ public:
 	/// <returns></returns>
 	std::optional<u32> glyph_bindless_index() const;
 
+	std::shared_ptr<const FontAtlasMSDFAsset> font_atlas_asset() const noexcept;
+
 private:
 	std::shared_ptr<const FontAtlasMSDFAsset> fontAtlas;
 	std::string string;
 	std::vector<GlyphRenderingData> charRenderingData;
-
-public:
-	void debug_gui();
 };
 
 }; // szg

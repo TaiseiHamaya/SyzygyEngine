@@ -15,12 +15,10 @@ using namespace szg;
 #include "../RemoteObject/IRemoteObject.h"
 #include "../RemoteObject/RemoteWorldObject.h"
 #include "../Window/EditorWorldView/EditorWorldView.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
-EditorGizmo::EditorGizmo() {
-	gizmoKeyHandler.initialize({ KeyID::LControl });
-}
-EditorGizmo::~EditorGizmo() = default;
+EditorGizmo::EditorGizmo() noexcept = default;
+EditorGizmo::~EditorGizmo() noexcept = default;
 
 void EditorGizmo::begin_frame(const Vector2& origin, const Vector2& size) {
 	ImGuizmo::SetRect(origin.x, origin.y, size.x, size.y);
@@ -69,7 +67,6 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 	Affine parentAffine =
 		Affine::FromTransform3D(*item.transformData.transform).inverse() * *item.transformData.affine;
 
-	gizmoKeyHandler.update();
 	std::array<float, 3> snap = { 0.0f, 0.0f, 0.0f };
 	switch (operation) {
 	case ImGuizmo::OPERATION::SCALEU:
@@ -86,7 +83,12 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 	}
 	// manipulate
 	gizmoState <<= 1;
-	ImGuizmo::Manipulate(&view[0][0], &proj[0][0], operation, mode, &matrix[0][0], nullptr, gizmoKeyHandler.press(KeyID::LControl) ? snap.data() : nullptr);
+	ImGuizmo::Manipulate(
+		&view[0][0], &proj[0][0],
+		operation, mode,
+		&matrix[0][0], nullptr,
+		ImGui::IsKeyDown(ImGuiMod_Ctrl) ? snap.data() : nullptr
+	);
 	gizmoState.set(0, ImGuizmo::IsUsing());
 	if (gizmoState == 0b01) {
 		switch (operation) {
@@ -121,33 +123,15 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 }
 
 void EditorGizmo::scene_header() {
-	if (ImGui::BeginChild("##EditorGizmoHeader", ImVec2{ 0,30 })) {
-		ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
-		ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0], 18);
-		// SRTのボタン
-		std::array<string_literal, 3> labels = { "\uf655", "\ue577", "\uf393" };
-		std::array<ImGuizmo::OPERATION, 3> operations = {
-			ImGuizmo::OPERATION::SCALEU,
-			ImGuizmo::OPERATION::ROTATE,
-			ImGuizmo::OPERATION::TRANSLATE
-		};
-		for (u32 i = 0; i < 3; ++i) {
-			if (operation == operations[i]) {
-				ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.10f, 0.60f, 0.12f, 1.00f });
-				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.22f, 0.23f, 0.40f });
-			}
-			else {
-				ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
-				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
-			}
-			if (ImGui::Button(std::format("{}##SRTButton", labels[i]).c_str())) {
-				operation = operations[i];
-			}
-			ImGui::PopStyleColor(2);
-			ImGui::SameLine();
-		}
-
-		if (mode == ImGuizmo::MODE::WORLD) {
+	// SRTのボタン
+	std::array<string_literal, 3> labels = { "\uf655", "\ue577", "\uf393" };
+	std::array<ImGuizmo::OPERATION, 3> operations = {
+		ImGuizmo::OPERATION::SCALEU,
+		ImGuizmo::OPERATION::ROTATE,
+		ImGuizmo::OPERATION::TRANSLATE
+	};
+	for (u32 i = 0; i < 3; ++i) {
+		if (operation == operations[i]) {
 			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.10f, 0.60f, 0.12f, 1.00f });
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.22f, 0.23f, 0.40f });
 		}
@@ -155,22 +139,38 @@ void EditorGizmo::scene_header() {
 			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
 		}
-
-		ImGui::TextColored(ImColor{ 0.2f, 0.2f, 0.2f }, "|");
-		ImGui::SameLine();
-
-		if (ImGui::Button("\ue64c")) {
-			mode = mode == ImGuizmo::MODE::WORLD ? ImGuizmo::MODE::LOCAL : ImGuizmo::MODE::WORLD;
+		if (ImGui::Button(std::format("{}##SRTButton", labels[i]).c_str())) {
+			operation = operations[i];
 		}
 		ImGui::PopStyleColor(2);
-		if (ImGui::IsItemHovered()) {
-			ImGui::SetTooltip("Use global transform");
-		}
-
-		ImGui::PopStyleVar(1);
-		ImGui::PopFont();
+		ImGui::SameLine();
 	}
-	ImGui::EndChild();
+
+	ImGui::TextColored(ImColor{ 0.2f, 0.2f, 0.2f }, "|");
+	ImGui::SameLine();
+
+	// グローバル/ローカル切り替えボタン
+	std::string tooptip;
+	if (mode == ImGuizmo::MODE::WORLD) {
+		ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.10f, 0.60f, 0.12f, 1.00f });
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.22f, 0.23f, 0.40f });
+		if (ImGui::Button("\ue64c")) {
+			mode = ImGuizmo::MODE::LOCAL;
+		}
+		tooptip = "World transform";
+	}
+	else {
+		ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
+		if (ImGui::Button("\uf1ca")) {
+			mode = ImGuizmo::MODE::WORLD;
+		}
+		tooptip = "Local transform";
+	}
+	ImGui::PopStyleColor(2);
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip(tooptip.c_str());
+	}
 }
 
 #endif // DEBUG_FEATURES_ENABLE

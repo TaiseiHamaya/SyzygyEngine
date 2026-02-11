@@ -10,7 +10,7 @@ Particle::Particle(
 	const Vector3& translate,
 	r32 lifetime_,
 	const Vector3& velocity_, const Vector3& acceleration_,
-	const Color4& startColor_, const Color4& endColor_,
+	const ColorRGBA& startColor_, const ColorRGBA& endColor_,
 	const Vector3& startSize_, const Vector3& endSize_,
 	RotationType rotationType_, std::variant<Constant, std::monostate, Random, LookAtAngle> rotationData_
 ) :
@@ -20,7 +20,6 @@ Particle::Particle(
 	startColor(startColor_), endColor(endColor_),
 	startSize(startSize_), endSize(endSize_),
 	rotationType(rotationType_), rotationData(rotationData_) {
-	isDestroy = false;
 	timer.set(0.0f);
 	transform.set_translate(translate);
 	transform.set_scale(startSize_);
@@ -72,7 +71,7 @@ void Particle::update() {
 	velocity += acceleration * WorldClock::DeltaSeconds();
 	transform.plus_translate(velocity * WorldClock::DeltaSeconds());
 
-	color = Color4::Lerp(startColor, endColor, parametric);
+	color = ColorRGBA::Lerp(startColor, endColor, parametric);
 
 	transform.set_scale(Vector3::Lerp(startSize, endSize, parametric));
 

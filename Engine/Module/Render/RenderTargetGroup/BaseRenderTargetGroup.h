@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Utility/Template/Reference.h>
 
 namespace szg {

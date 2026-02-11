@@ -13,7 +13,7 @@
 
 namespace szg {
 
-class Camera3D;
+class CameraInstance;
 class WorldRenderCollection;
 
 class WorldLayerRenderNode final : public IRenderNode {
@@ -36,6 +36,7 @@ public:
 		ConstantBuffer<Vector2> outputTextureSize;
 
 		bool isClearRenderTarget;
+		bool isClearDepthStencil;
 	};
 
 	struct Data {
@@ -56,6 +57,11 @@ public:
 	void setup(Data&& data_);
 
 	void stack_command() override;
+
+private:
+	void execute_gbuffer_pass();
+	void execute_lighting_pass();
+	void execute_forward_pass();
 
 public:
 	const Data& data_imm() const;

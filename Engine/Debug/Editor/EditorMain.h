@@ -12,7 +12,7 @@
 #include "./Window/EditorRenderDAG.h"
 #include "./Window/EditorSceneView.h"
 #include "./Window/EditorScreenResult.h"
-#include "Engine/Runtime/Input/InputHandler.h"
+#include "./Window/AssetBrowser/EditorAssetBrowser.h"
 #include "RemoteObject/EditorDeletedObjectPool.h"
 
 namespace szg {
@@ -39,8 +39,20 @@ public:
 
 	static void SetHotReload();
 
+	static bool IsRuntimeInput();
+
+	static void HandleDropFile(const std::filesystem::path& filePath);
+
 private:
 	void set_imgui_command();
+
+	void draw_menu_bar(r32& menuHight);
+
+	void draw_window_buttons(r32 menuHight);
+
+	void draw_dock_space(r32 menuHight);
+
+	void execute_shortcut();
 
 private:
 	bool isActiveEditor{ true };
@@ -52,8 +64,6 @@ private:
 
 	std::optional<std::string> switchSceneName;
 
-	InputHandler<KeyID> input;
-
 	EditorSceneView sceneView;
 	EditorScreenResult screenResult;
 	EditorHierarchy hierarchy;
@@ -63,6 +73,7 @@ private:
 	EditorDeletedObjectPool deletedPool;
 	EditorSceneList sceneList;
 	EditorRenderDAG renderDAG;
+	EditorAssetBrowser assetBrowser;
 };
 
 }; // szg

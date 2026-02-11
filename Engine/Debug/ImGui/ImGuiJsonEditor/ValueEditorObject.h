@@ -8,12 +8,12 @@
 #include <bitset>
 #include <string>
 
-class Vector2;
-class Vector3;
-class Color3;
-class Color4;
+class ColorRGB;
+class ColorRGBA;
 
 #include <Library/Math/Quaternion.h>
+#include <Library/Math/Transform2D.h>
+#include <Library/Math/Transform3D.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 namespace szg {
@@ -321,16 +321,16 @@ private:
 };
 
 template<>
-struct show_object<Color3> {
+struct show_object<ColorRGB> {
 	inline show_object(const std::string& name_) :
 		name(name_) {
 	};
 	~show_object() = default;
 
-	SZG_CLASS_DEFAULT(show_object<Color3>)
+	SZG_CLASS_DEFAULT(show_object<ColorRGB>)
 
 public:
-	inline std::bitset<2> show_gui(Color3& value) const {
+	inline std::bitset<2> show_gui(ColorRGB& value) const {
 		ImGui::ColorEdit3(name.c_str(), reinterpret_cast<r32*>(&value), ImGuiColorEditFlags_Float | ImGuiColorEditFlags_InputRGB);
 		std::bitset<2> result = 0;
 		if (ImGui::IsItemDeactivated()) {
@@ -354,16 +354,16 @@ private:
 };
 
 template<>
-struct show_object<Color4> {
+struct show_object<ColorRGBA> {
 	inline show_object(const std::string& name_) :
 		name(name_) {
 	};
 	~show_object() = default;
 
-	SZG_CLASS_DEFAULT(show_object<Color4>)
+	SZG_CLASS_DEFAULT(show_object<ColorRGBA>)
 
 public:
-	inline std::bitset<2> show_gui(Color4& value) const {
+	inline std::bitset<2> show_gui(ColorRGBA& value) const {
 		ImGui::ColorEdit4(name.c_str(), reinterpret_cast<r32*>(&value), ImGuiColorEditFlags_Float | ImGuiColorEditFlags_AlphaPreview | ImGuiColorEditFlags_InputRGB);
 		std::bitset<2> result = 0;
 		if (ImGui::IsItemDeactivated()) {
@@ -375,6 +375,197 @@ public:
 		else if (ImGui::IsItemActive()) {
 			result = 0b11;
 		}
+		return result;
+	};
+
+	std::string_view get_name() const {
+		return name;
+	}
+
+private:
+	std::string name;
+};
+
+template<>
+struct show_object<Transform2D> {
+	inline show_object(const std::string& name_) :
+		name(name_) {
+	};
+	~show_object() = default;
+
+	SZG_CLASS_DEFAULT(show_object<Transform2D>)
+
+public:
+	inline std::bitset<2> show_gui(Transform2D& value) const {
+		const ValueEditor::show_object<Vector2> scaleObj{ "Scale" };
+		const ValueEditor::show_object<r32> rotateObj{ "Rotate" };
+		const ValueEditor::show_object<Vector2> translateObj{ "Translate" };
+		ImGui::SetNextItemOpen(true, ImGuiCond_Once);
+		std::bitset<2> result = 0;
+		if (ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_SpanAllColumns)) {
+			{
+				// ---------- Scale ----------
+				Vector2& scale = value.get_scale();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Scale")) {
+					scale = CVector2::BASIS;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(150);
+				result |= scaleObj.show_gui(scale);
+			}
+
+			{
+				// ---------- Rotate ----------
+				r32& rotate = value.get_rotate();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Rotate")) {
+					rotate = 0;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(150);
+				result |= rotateObj.show_gui(rotate);
+			}
+
+			{
+				// ---------- Translate ----------
+				Vector2& translate = value.get_translate();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Translate")) {
+					translate = CVector2::ZERO;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(150);
+				result |= translateObj.show_gui(translate);
+			}
+
+			ImGui::TreePop();
+		}
+
+		return result;
+	};
+
+	std::string_view get_name() const {
+		return name;
+	}
+
+private:
+	std::string name;
+};
+
+template<>
+struct show_object<Transform3D> {
+public:
+	inline show_object(const std::string& name_) :
+		name(name_) {
+	};
+	~show_object() = default;
+
+	SZG_CLASS_DEFAULT(show_object<Transform3D>)
+
+public:
+	inline std::bitset<2> show_gui(Transform3D& value) const {
+		const ValueEditor::show_object<Vector3> scaleObj{ "Scale" };
+		const ValueEditor::show_object<Quaternion> rotateObj{ "Rotate" };
+		const ValueEditor::show_object<Vector3> translateObj{ "Translate" };
+		ImGui::SetNextItemOpen(true, ImGuiCond_Once);
+		std::bitset<2> result = 0;
+		if (ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_SpanAllColumns)) {
+			{
+				// ---------- Scale ----------
+				Vector3& scale = value.get_scale();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Scale")) {
+					scale = CVector3::BASIS;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(150);
+				result |= scaleObj.show_gui(scale);
+			}
+
+			{
+				// ---------- Rotate ----------
+				Quaternion& rotate = value.get_quaternion();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Rotate")) {
+					rotate = CQuaternion::IDENTITY;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+
+				ImGui::SameLine();
+				ImGui::Indent(29.f);
+				result |= rotateObj.show_gui(rotate);
+				ImGui::Unindent(29.f);
+			}
+
+			{
+				// ---------- Translate ----------
+				Vector3& translate = value.get_translate();
+				// リセットボタン
+				if (ImGui::Button("\ue5d5##Translate")) {
+					translate = CVector3::ZERO;
+				}
+				if (ImGui::IsItemDeactivated()) {
+					result |= 0b10;
+				}
+				else if (ImGui::IsItemActivated()) {
+					result |= 0b01;
+				}
+				else if (ImGui::IsItemActive()) {
+					result |= 0b11;
+				}
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(150);
+				result |= translateObj.show_gui(translate);
+			}
+
+			ImGui::TreePop();
+		}
+
 		return result;
 	};
 

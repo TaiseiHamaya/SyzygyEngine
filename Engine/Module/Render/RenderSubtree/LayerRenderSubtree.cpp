@@ -10,7 +10,7 @@ using namespace szg;
 #include "Engine/Module/Render/RenderPipeline/Forward/FontRenderingNode/FontRenderingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Primitive/Rect3dPipeline.h"
 
-void LayerRenderSubtree::setup(std::array<Reference<RenderTexture>, DeferredAdaptor::NUM_GBUFFER> gBuffer) {
+void LayerRenderSubtree::setup() {
 	std::vector<std::shared_ptr<BaseRenderPipeline>> nodes;
 	//// WriteGBuffer
 	{
@@ -26,21 +26,22 @@ void LayerRenderSubtree::setup(std::array<Reference<RenderTexture>, DeferredAdap
 	// ライティングパス
 	{
 		{
+
+			std::shared_ptr<NonLightingPixelPipeline> nonLightingPixelNode;
 			nonLightingPixelNode = std::make_shared<NonLightingPixelPipeline>();
 			nonLightingPixelNode->initialize();
-			nonLightingPixelNode->set_gbuffers(gBuffer[0]);
 			nodes.emplace_back(nonLightingPixelNode);
 		}
 		{
+			std::shared_ptr<DirectionalLightingPipeline> directionalLightingNode;
 			directionalLightingNode = std::make_shared<DirectionalLightingPipeline>();
 			directionalLightingNode->initialize();
-			directionalLightingNode->set_gbuffers(gBuffer);
 			nodes.emplace_back(directionalLightingNode);
 		}
 		{
+			std::shared_ptr<PointLightingPipeline> pointLightingNode;
 			pointLightingNode = std::make_shared<PointLightingPipeline>();
 			pointLightingNode->initialize();
-			pointLightingNode->set_gbuffers(gBuffer);
 			nodes.emplace_back(pointLightingNode);
 		}
 	}
@@ -61,23 +62,8 @@ void LayerRenderSubtree::setup(std::array<Reference<RenderTexture>, DeferredAdap
 
 void LayerRenderSubtree::begin_nodes() {
 	renderSubtree.begin();
-	counter = 1;
 }
 
 void LayerRenderSubtree::next_node() {
 	renderSubtree.next();
-	switch (counter) {
-	case 2:
-		nonLightingPixelNode->stack_lighting_command();
-		break;
-	case 3:
-		directionalLightingNode->stack_lighting_command();
-		break;
-	case 4:
-		pointLightingNode->stack_lighting_command();
-		break;
-	default:
-		break;
-	}
-	++counter;
 }

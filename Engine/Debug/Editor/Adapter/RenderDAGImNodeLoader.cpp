@@ -13,6 +13,9 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 
+#define VECTOR2_SERIALIZER
+#include "Engine/Assets/Json/JsonSerializer.h"
+
 u64 RenderDAGImNodeLoader::entry_point(const std::string& sceneName, Reference<ImFlow::ImNodeFlow> imNodeFlow_, std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	imNodeFlow = imNodeFlow_;
 
@@ -108,6 +111,8 @@ std::shared_ptr<WorldLayerRenderImNode> RenderDAGImNodeLoader::load_as_world_ren
 	json.get_to(data.worldIndex);
 	json.get_to(data.layerIndex);
 	json.get_to(data.cameraId);
+	json.get_to(data.isClearDepthStencil);
+
 	json.get_to(data.gBufferSize);
 	json.get_to(data.gBufferViewport.left);
 	json.get_to(data.gBufferViewport.top);
@@ -115,8 +120,10 @@ std::shared_ptr<WorldLayerRenderImNode> RenderDAGImNodeLoader::load_as_world_ren
 	json.get_to(data.gBufferViewport.height);
 	json.get_to(data.gBufferViewport.minDepth);
 	json.get_to(data.gBufferViewport.maxDepth);
+	
 	json.get_to(data.layerScissor.topLeft);
 	json.get_to(data.layerScissor.bottomRight);
+	
 	result->set_data(data);
 	result->set_node_id(counter);
 	return result;

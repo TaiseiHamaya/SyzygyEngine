@@ -43,8 +43,6 @@ private:
 
 	Reference<EditorSelectObject> select{ nullptr };
 	Reference<EditorSceneView> sceneView{ nullptr };
-
-	bool savedTrigger;
 };
 
 }; // szg

@@ -2,31 +2,28 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "Engine/Module/World/Camera/Camera3D.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
-#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
-#include "Engine/Runtime/Input/InputHandler.h"
+#include "Engine/Module/World/WorldInstance/WorldInstance.h"
 
 namespace szg {
 
 class EditorSceneView;
 
-class EditorDebugCamera final : public Camera3D {
+class EditorDebugCamera final : public CameraInstance {
 public:
-	void initialize() override;
+	void initialize();
 	void update();
 	void update_affine() override;
 
-private:
-	std::unique_ptr<StaticMeshInstance> constraint;
-	r32 offset{ -5.0f };
-	InputHandler<MouseID> mouseInputHandler;
-
-private:
-	static inline Reference<EditorSceneView> sceneView{ nullptr };
-
 public:
-	static void Setup(Reference<EditorSceneView> sceneView_);
+	Vector3 view_point() const;
+	r32 offset_imm() const;
+	Reference<WorldInstance> constraint_mut() noexcept;
+
+private:
+	std::unique_ptr<WorldInstance> constraint;
+	r32 offset{ -5.0f };
 };
 
 }; // szg

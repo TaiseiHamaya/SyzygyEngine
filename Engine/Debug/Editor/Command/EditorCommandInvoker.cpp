@@ -59,7 +59,7 @@ void EditorCommandInvoker::Undo() {
 	instance.history[value]->undo();
 }
 
-void EditorCommandInvoker::ResetHistoryForce() {
+void EditorCommandInvoker::ClearHistoryForce() {
 	auto& instance = GetInstance();
 	instance.history.clear();
 	instance.recent = std::nullopt;

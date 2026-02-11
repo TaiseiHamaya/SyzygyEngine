@@ -7,6 +7,7 @@
 
 #include <concepts>
 #include <functional>
+#include <vector>
 
 #include "EditorCommandInvoker.h"
 #include "EditorValueChangeCommand.h"
@@ -30,37 +31,61 @@ private:
 public:
 	template<typename T>
 		requires std::copyable<T>
-	static void GenCommand(Reference<T> target);
-
+	static void GenCommandInstant(Reference<T> target, const T& value = {});
+	
 	template<typename T>
 		requires std::copyable<T>
-	static void GenCommand(std::function<T&()> function);
+	static void GenCommand(Reference<T> target);
+
+	template<typename T, typename Struct>
+		requires std::copyable<T>
+	static void GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value = {});
+
+	template<typename T, typename Struct>
+		requires std::copyable<T>
+	static void GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member);
 };
+
+template<typename T>
+	requires std::copyable<T>
+inline void EditorValueChangeCommandHandler::GenCommandInstant(Reference<T> target, const T& value) {
+	GenCommand<T>(target);
+	*target = value;
+	End();
+}
 
 template<typename T>
 	requires std::copyable<T>
 void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
-	EditorValueChangeCommand<T>* command
-		= new EditorValueChangeCommand<T>(target);
-
-	Start([command]() {
+	Start([target]() {
+		std::unique_ptr<EditorValueChangeCommand<T>> command = std::make_unique<EditorValueChangeCommand<T>>(target);
 		command->prepare();
 		EditorCommandInvoker::Execute(
-			std::unique_ptr<EditorValueChangeCommand<T>>(command)
+			std::move(command)
 		);
 	});
+}
+
+template<typename T, typename Struct>
+	requires std::copyable<T>
+inline void EditorValueChangeCommandHandler::GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value) {
+	GenCommand(container, index, member);
+	container.at(index).*member = value;
+	End();
 };
 
-template<typename T>
+template<typename T, typename Struct>
 	requires std::copyable<T>
-void EditorValueChangeCommandHandler::GenCommand(std::function<T& ()> function) {
-	EditorValueChangeCommandLambda<T>* command
-		= new EditorValueChangeCommandLambda<T>(function);
+void EditorValueChangeCommandHandler::GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member) {
+	auto lambda = [&container, index, member]() -> T& {
+		return container.at(index).*member;
+	};
 
-	Start([command]() {
+	Start([lambda]() {
+		std::unique_ptr<EditorValueChangeCommandLambda<T>> command = std::make_unique<EditorValueChangeCommandLambda<T>>(lambda);
 		command->prepare();
 		EditorCommandInvoker::Execute(
-			std::unique_ptr<EditorValueChangeCommandLambda<T>>(command)
+			std::move(command)
 		);
 	});
 };

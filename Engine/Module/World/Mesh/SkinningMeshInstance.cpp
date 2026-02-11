@@ -12,8 +12,6 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 
-#include "./StaticMeshInstance.h"
-
 SkinningMeshInstance::SkinningMeshInstance() noexcept :
 	IMultiMeshInstance() {
 	nodeAnimation = eps::CreateUnique<NodeAnimationPlayer>();
@@ -32,13 +30,13 @@ void SkinningMeshInstance::update() {
 }
 
 void SkinningMeshInstance::update_animation() {
-	if (!isActive || !skeletonResrouce) {
+	if (!is_active() || !skeletonAsset) {
 		return;
 	}
 	nodeAnimation->update();
 
 	// Skeletonの行列計算
-	const Skeleton& skeleton = skeletonResrouce->skeleton();
+	const Skeleton& skeleton = skeletonAsset->skeleton();
 	for (u32 jointIndex = 0; jointIndex < jointInstances.size(); ++jointIndex) {
 		SkeletonSpaceInstance& jointInstance = jointInstances[jointIndex];
 		const Joint& joint = skeleton.joints[jointIndex];
@@ -69,7 +67,7 @@ void SkinningMeshInstance::reset_animated_mesh(const std::string& meshName_, con
 	}
 
 	default_material();
-	skeletonResrouce = SkeletonLibrary::GetSkeleton(keyID);
+	skeletonAsset = SkeletonLibrary::GetSkeleton(keyID);
 	reset_animation(keyID, animationName, isLoop);
 	create_skeleton();
 }
@@ -84,7 +82,7 @@ NodeAnimationPlayer* const SkinningMeshInstance::get_animation() {
 }
 
 bool SkinningMeshInstance::is_draw() const {
-	return IMultiMeshInstance::is_draw() && skeletonResrouce;
+	return IMultiMeshInstance::is_draw() && skeletonAsset;
 }
 
 void SkinningMeshInstance::default_material() {
@@ -99,11 +97,11 @@ void SkinningMeshInstance::default_material() {
 			// テクスチャ情報の取得
 			meshMaterial.texture = TextureLibrary::GetTexture(meshMaterialData->textureFileName);
 			// uv情報のリセット
-			meshMaterial.uvTransform.copy(meshMaterialData->defaultUV);
+			meshMaterial.uvTransform = meshMaterialData->defaultUV;
 		}
 		else {
 			meshMaterial.texture = TextureLibrary::GetTexture("Error.png");
-			meshMaterial.uvTransform.copy(Transform2D{});
+			meshMaterial.uvTransform = Transform2D();
 			szgWarning("Material data is not found.");
 		}
 		++i;
@@ -112,36 +110,18 @@ void SkinningMeshInstance::default_material() {
 
 void SkinningMeshInstance::create_skeleton() {
 	// Skeletonが取得できない場合何もしない
-	if (!skeletonResrouce) {
+	if (!skeletonAsset) {
 		return;
 	}
 
-	u32 jointSize = static_cast<u32>(skeletonResrouce->joint_size());
+	u32 jointSize = static_cast<u32>(skeletonAsset->joint_size());
 
 	// Jointがのサイズが0の場合おかしいので強制終了
 	if (jointSize == 0) {
-		skeletonResrouce = nullptr;
+		skeletonAsset = nullptr;
 		return;
 	}
 
 	// Jointの配列を作成
 	jointInstances.resize(jointSize);
-
-#ifdef DEBUG_FEATURES_ENABLE
-	// ボーン描画用(削除予定)
-	const Skeleton skeleton = skeletonResrouce->skeleton();
-	boneMeshTest.resize(jointSize);
-	for (u32 i = 0; i < jointSize; ++i) {
-		StaticMeshInstance& boneMesh = boneMeshTest[i];
-		const Joint& joint = skeleton.joints[i];
-		boneMesh.reset_mesh("bone.obj");
-
-		if (joint.parent) {
-			boneMesh.reparent(boneMeshTest[joint.parent.value()]);
-		}
-		else {
-			boneMesh.reparent(*this);
-		}
-	}
-#endif // _DEBUG
 }

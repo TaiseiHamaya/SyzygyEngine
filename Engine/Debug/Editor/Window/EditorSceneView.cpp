@@ -14,6 +14,7 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ScreenTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxSwapChain/DxSwapChain.h"
+#include "Engine/Module/Render/RenderPipeline/Debug/Grid/GridPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Debug/PrimitiveLine/PrimitiveLinePipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/FontRenderingNode/FontRenderingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Mesh/StaticMeshForwardPipeline.h"
@@ -36,16 +37,17 @@ void EditorSceneView::initialize(bool isActive_) {
 	std::shared_ptr<PrimitiveLinePipeline> primitiveLineNode = std::make_shared<PrimitiveLinePipeline>();
 	primitiveLineNode->initialize();
 
-	staticMeshDrawManager.initialize(1);
-	rect3dDrawManager.initialize(1);
-	stringRectDrawManager.initialize(1);
+	std::shared_ptr<GridPipeline> gridPipeline = std::make_shared<GridPipeline>();
+	gridPipeline->initialize();
+
 	directionalLightingExecutor.reinitialize(3);
 	renderPath.initialize(
-		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode }
+		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode, gridPipeline }
 	);
 	directionalLights.resize(32);
 
-	EditorDebugCamera::Setup(this);
+	axisMesh = std::make_unique<StaticMeshInstance>("CameraAxis.obj");
+	axisMesh->get_materials()[0].lightingType = LighingType::None;
 }
 
 void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const EditorHierarchy> hierarchy_) {
@@ -55,9 +57,26 @@ void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const Edito
 
 void EditorSceneView::update() {
 	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
+		u32 layer = worldViews[selectWorldId.value()].layer;
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
 
-		view.update();
+		// Windowがフォーカスされている場合のみ更新
+		if (is_focus()) {
+			view.update();
+		}
+		view.transfer();
+		// デバッグカメラの注視点に描画する
+		axisMesh->transform_mut().set_translate(view.get_camera()->view_point());
+		axisMesh->set_layer(layer);
+		axisMesh->update_affine();
+		// カメラが近すぎる場合は非表示にする
+		if (view.get_camera()->offset_imm() < 0.1f) {
+			axisMesh->set_active(false);
+		}
+		else {
+			axisMesh->set_active(true);
+		}
+
 		directionalLightingExecutor.begin();
 		for (auto& lightInstance : directionalLights[selectWorldId.value()]) {
 			if (!lightInstance->is_active()) {
@@ -125,6 +144,11 @@ void EditorSceneView::draw_scene() {
 		view.draw_lines();
 
 		renderPath.next();
+		if (isActiveGrid) {
+			view.draw_grid();
+		}
+
+		renderPath.next();
 	}
 	copy_screen();
 }
@@ -137,6 +161,8 @@ void EditorSceneView::reset_force() {
 	selectWorldId.reset();
 	worldViews.clear();
 	staticMeshDrawManager = StaticMeshDrawManager{};
+	rect3dDrawManager = Rect3dDrawManager{};
+	stringRectDrawManager = StringRectDrawManager{};
 	layerSize = 0;
 }
 
@@ -154,6 +180,13 @@ void EditorSceneView::register_world(Reference<RemoteWorldObject> world) {
 	tmp.layer = layerSize;
 	++layerSize;
 	staticMeshDrawManager.initialize(layerSize);
+	rect3dDrawManager.initialize(layerSize);
+	stringRectDrawManager.initialize(layerSize);
+
+	staticMeshDrawManager.make_instancing(tmp.layer, "CameraAxis.obj", 1024);
+	if (layerSize == 1) {
+		staticMeshDrawManager.register_instance(axisMesh);
+	}
 }
 
 void EditorSceneView::create_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName) {
@@ -195,6 +228,88 @@ void EditorSceneView::write_primitive(Reference<const RemoteWorldObject> world, 
 		return;
 	}
 	worldViews.at(world->get_id()).view.register_primitive(primitiveName, affine);
+}
+
+void EditorSceneView::copy_screen() {
+	auto& command = DxCommand::GetCommandList();
+	Reference<ScreenTexture> screen = DxSwapChain::GetWriteBufferTexture();
+
+	screenResultTexture.start_copy_dest();
+	screen->start_read();
+
+	command->CopyResource(screenResultTexture.get_resource().Get(), screen->get_resource().Get());
+}
+
+void EditorSceneView::set_imgui_command() {
+	if (!isActive) {
+		return;
+	}
+	if (isHoverWindow && (ImGui::GetIO().MouseDown[1] || ImGui::GetIO().MouseDown[2])) {
+		ImGui::SetNextWindowFocus();
+	}
+
+	screenResultTexture.start_read();
+	ImGui::Begin("SceneView", &isActive, ImGuiWindowFlags_NoScrollbar);
+
+	update_focus();
+
+	// Gizmo用ヘッダー描画
+	if (ImGui::BeginChild("SceneViewHeader", ImVec2{ 0,30 })) {
+		ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+		ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0], 18);
+
+		gizmo->scene_header();
+
+		ImGui::SameLine();
+		ImGui::TextColored(ImColor{ 0.2f, 0.2f, 0.2f }, "|");
+		ImGui::SameLine();
+
+		// グリッド表示切替
+		if (isActiveGrid) {
+			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.10f, 0.60f, 0.12f, 1.00f });
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.22f, 0.23f, 0.40f });
+			if (ImGui::Button("\ue3ec###GridActive")) {
+				isActiveGrid = !isActiveGrid;
+			}
+		}
+		else {
+			ImGui::PushStyleColor(ImGuiCol_Border, ImVec4{ 0.05f, 0.05f, 0.05f, 0.0f });
+			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.02f, 0.02f, 0.02f, 1.00f });
+			if (ImGui::Button("\ue3eb###GridActive")) {
+				isActiveGrid = !isActiveGrid;
+			}
+		}
+		ImGui::PopStyleColor(2);
+
+		ImGui::PopStyleVar(1);
+		ImGui::PopFont();
+	}
+	ImGui::EndChild();
+
+	ImGui::Separator();
+
+	ImGui::BeginTabBar("WorldViewTabBar", ImGuiTabBarFlags_DrawSelectedOverline);
+
+	// Guizmoのために必要
+	drawList = ImGui::GetWindowDrawList();
+	isHoverWindow = ImGui::IsWindowHovered();
+
+	// 各WorldViewをImGuiに描画
+	auto& worldList = hierarchy->world_list();
+	for (u32 i = 0; i < worldList.size(); ++i) {
+		u32 world = worldList[i]->get_id();
+		if (worldViews.contains(world)) {
+			auto [result, pos, size_] = worldViews.at(world).view.draw_editor(screenResultTexture);
+			if (result) {
+				selectWorldId = world;
+				origin = pos;
+				size = size_;
+			}
+		}
+	}
+
+	ImGui::EndTabBar();
+	ImGui::End();
 }
 
 std::optional<u32> EditorSceneView::get_layer(Reference<const RemoteWorldObject> world) const {
@@ -241,54 +356,6 @@ Reference<const EditorDebugCamera> EditorSceneView::query_debug_camera() {
 		return worldViews[selectWorldId.value()].view.get_camera();
 	}
 	return nullptr;
-}
-
-void EditorSceneView::copy_screen() {
-	auto& command = DxCommand::GetCommandList();
-	Reference<ScreenTexture> screen = DxSwapChain::GetWriteBufferTexture();
-
-	screenResultTexture.start_copy_dest();
-	screen->start_read();
-
-	command->CopyResource(screenResultTexture.get_resource().Get(), screen->get_resource().Get());
-}
-
-void EditorSceneView::set_imgui_command() {
-	if (!isActive) {
-		return;
-	}
-	if (isHoverWindow && (ImGui::GetIO().MouseDown[1] || ImGui::GetIO().MouseDown[2])) {
-		ImGui::SetNextWindowFocus();
-	}
-
-	screenResultTexture.start_read();
-	ImGui::Begin("Scene", &isActive, ImGuiWindowFlags_NoScrollbar);
-
-	// Gizmo用ヘッダー描画
-	gizmo->scene_header();
-	ImGui::Separator();
-	ImGui::BeginTabBar("WorldViewTabBar", ImGuiTabBarFlags_DrawSelectedOverline);
-
-	// Guizmoのために必要
-	drawList = ImGui::GetWindowDrawList();
-	isHoverWindow = ImGui::IsWindowHovered();
-
-	// 各WorldViewをImGuiに描画
-	auto& worldList = hierarchy->world_list();
-	for (u32 i = 0; i < worldList.size(); ++i) {
-		u32 world = worldList[i]->get_id();
-		if (worldViews.contains(world)) {
-			auto [result, pos, size_] = worldViews.at(world).view.draw_editor(screenResultTexture);
-			if (result) {
-				selectWorldId = world;
-				origin = pos;
-				size = size_;
-			}
-		}
-	}
-
-	ImGui::EndTabBar();
-	ImGui::End();
 }
 
 #endif // DEBUG_FEATURES_ENABLE

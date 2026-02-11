@@ -35,7 +35,7 @@ public:
 	constexpr InstanceType instance_type() const { return InstanceType::PointLightInstance; }
 
 private:
-	EditorValueField<Color3> color{ "Color", CColor3::WHITE };
+	EditorValueField<ColorRGB> color{ "Color", CColorRGB::WHITE };
 	EditorValueField<r32> intensity{ "Intensity", 1.0f };
 	EditorValueField<r32> radius{ "Radius", 1.0f };
 	EditorValueField<r32> decay{ "Decay", 0.0f };

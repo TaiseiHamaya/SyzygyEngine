@@ -10,14 +10,15 @@
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 namespace szg {
 
 class SkinningMeshInstance;
-class StaticMeshInstance;
 
 class SkeletonAsset;
 
@@ -28,15 +29,15 @@ public:
 public:
 	struct Material {
 		std::string texture;
-		Color3 color;
+		ColorRGB color;
 		Transform2D uvTransform;
 		LighingType lightingType{ LighingType::HalfLambert };
 		r32 shininess;
 	};
 
 public:
-	RemoteSkinningMeshInstance();
-	~RemoteSkinningMeshInstance() = default;
+	RemoteSkinningMeshInstance() noexcept;
+	~RemoteSkinningMeshInstance() noexcept;
 
 public:
 	void setup() override;
@@ -60,10 +61,10 @@ private:
 	EditorValueField<bool> isDraw{ "IsDraw" };
 	EditorValueField<u32> layer{ "Layer" };
 
-	std::string meshName;
+	EditorAssetField meshName{ "Mesh", AssetType::Mesh };
 	std::vector<Material> materials;
 
-	std::string animationName;
+	EditorAssetField animationName{ "Animation", AssetType::Animation };
 	EditorValueField<bool> isLoop{ "IsLoop" };
 
 	std::shared_ptr<const SkeletonAsset> skeleton;

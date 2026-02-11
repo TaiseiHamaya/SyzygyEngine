@@ -4,6 +4,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 
@@ -23,6 +24,8 @@ public:
 	/// </summary>
 	/// <param name="filePath">ファイルパス</param>
 	static void RegisterLoadQue(const std::filesystem::path& filePath);
+
+	static void Unload(const std::string& name);
 
 	/// <summary>
 	/// Animationの取得
@@ -45,15 +48,6 @@ public:
 	/// <param name="data">ロード済みデータ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<NodeAnimationAsset> data);
 
-#ifdef DEBUG_FEATURES_ENABLE
-	/// <summary>
-	/// Animation一覧をComboBoxで表示するImGui(Debugビルドのみ)
-	/// </summary>
-	/// <param name="current">現在選択中のAnimation名</param>
-	/// <returns>currentが変更されたかどうか</returns>
-	static bool AnimationListGui(std::string& current);
-#endif // _DEBUG
-
 private:
 	/// <summary>
 	/// Animationが登録されているか取得(mutexなし)
@@ -64,6 +58,8 @@ private:
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<NodeAnimationAsset>> instanceList;
+
+	static inline std::mutex mutex{};
 };
 
 

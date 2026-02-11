@@ -6,10 +6,11 @@
 
 #include <string>
 
-#include <Library/Math/Color4.h>
+#include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Vector2.h>
 
 #include "Engine/Module/World/Mesh/Primitive/StringRectInstance.h"
+#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
 namespace szg {
 
@@ -42,11 +43,11 @@ private:
 	EditorValueField<bool> isDraw{ "IsDraw", true };
 	EditorValueField<u32> layer{ "Layer", 0 };
 
-	std::string font;
+	EditorAssetField font{ "Font", AssetType::Font };
 	EditorValueField<r32> fontSize{ "Size", 16.0f };
 	EditorValueField<Vector2> pivot{ "Pivot", CVector2::ZERO };
 	EditorValueField<std::string> text{ "Text", "Sample Text" };
-	EditorValueField<Color4> color{ "Color", CColor4::WHITE };
+	EditorValueField<ColorRGBA> color{ "Color", CColorRGBA::WHITE };
 
 	bool isChangedValue{ false };
 };

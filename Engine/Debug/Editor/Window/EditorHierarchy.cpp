@@ -8,9 +8,10 @@ using namespace szg;
 #include <imgui_stdlib.h>
 
 #include "../Adapter/EditorSceneSerializer.h"
-#include "EditorSceneView.h"
-
+#include "./EditorSceneView.h"
+#include "../EditorMain.h"
 #include "../Command/EditorCommandInvoker.h"
+#include "../Command/EditorCommandScope.h"
 #include "../Command/EditorCreateObjectCommand.h"
 #include "../Command/EditorDeleteObjectCommand.h"
 #include "../RemoteObject/FolderObject.h"
@@ -40,7 +41,6 @@ void EditorHierarchy::update_preview() {
 }
 
 void EditorHierarchy::load(const std::string& sceneName) {
-	savedTrigger = false;
 	isActive = true;
 
 	scene = EditorSceneSerializer::CreateRemoteScene(sceneName);
@@ -64,7 +64,8 @@ void EditorHierarchy::draw() {
 
 	int flags = 0;
 	ImGui::Begin("Hierarchy", &isActive, flags);
-	savedTrigger = false;
+
+	update_focus();
 
 	// 検索ボックス
 	ImGui::InputText("##HierarchySearch", &searchString); ImGui::SameLine();
@@ -150,7 +151,7 @@ void EditorHierarchy::draw() {
 			}
 
 			ImGui::SeparatorText("Camera");
-			if (ImGui::MenuItem("Camera3D")) {
+			if (ImGui::MenuItem("CameraInstance")) {
 				if (select->get_item_mut().object) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
@@ -229,6 +230,8 @@ void EditorHierarchy::draw() {
 			}
 		}
 
+		ImGui::Separator();
+
 		if (ImGui::MenuItem("Delete")) {
 			if (select->get_item_mut().object && select->get_item_mut().object.ptr() != scene.get()) {
 				EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
@@ -238,9 +241,8 @@ void EditorHierarchy::draw() {
 			}
 		}
 
-		ImGui::SetNextItemShortcut(ImGuiKey_S | ImGuiMod_Ctrl, ImGuiInputFlags_RouteFromRootWindow);
 		if (ImGui::MenuItem("SaveScene")) {
-			savedTrigger = true;
+			EditorMain::SeveScene();
 		}
 
 		ImGui::EndPopup();

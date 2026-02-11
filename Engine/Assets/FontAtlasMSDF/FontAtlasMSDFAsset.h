@@ -58,6 +58,13 @@ public:
 	std::vector<GlyphRenderingData> calculate_glyph(std::string_view string, r32 fontSize) const;
 
 	/// <summary>
+	/// 文字列の幅を計算する
+	/// </summary>
+	/// <param name="glyph"></param>
+	/// <returns></returns>
+	r32 calculate_advance(const std::vector<GlyphRenderingData>& glyph) const;
+
+	/// <summary>
 	/// 描画のオフセットを計算する
 	/// </summary>
 	/// <param name="glyph">文字列データ</param>

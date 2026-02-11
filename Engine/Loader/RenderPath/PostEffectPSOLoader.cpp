@@ -38,7 +38,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->set_base_texture(immediateData->at(linkJson["Base"]).renderTexture);
 		temp->set_blur_texture(immediateData->at(linkJson["CombinedTexture"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);
@@ -50,7 +49,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->initialize();
 		temp->set_shader_texture(immediateData->at(linkJson["Base"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);
@@ -62,7 +60,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->initialize();
 		temp->set_base_texture(immediateData->at(linkJson["Base"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);
@@ -74,7 +71,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->initialize();
 		temp->set_shader_texture(immediateData->at(linkJson["Base"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);
@@ -86,7 +82,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->initialize();
 		temp->set_texture_resource(immediateData->at(linkJson["Base"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);
@@ -125,7 +120,6 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 		temp->initialize();
 		temp->set_shader_texture(immediateData->at(linkJson["Base"]).renderTexture);
 		if (!dataJson["EffectTag"].is_null()) {
-			temp->setup(dataJson.value("EffectTag", ""));
 			value = temp->data_mut();
 		}
 		node = std::move(temp);

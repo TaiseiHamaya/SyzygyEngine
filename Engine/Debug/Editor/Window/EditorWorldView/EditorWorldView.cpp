@@ -4,22 +4,31 @@
 
 using namespace szg;
 
+#include "./EditorWorldGridBuffer.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
-#include "Engine/Module/World/Camera/Camera3D.h"
-#include "Engine/Module/World/Mesh/StaticMeshInstance.h"
+#include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 
 #include <imgui.h>
 
 using namespace std::string_literals;
 
+EditorWorldView::EditorWorldView() = default;
+EditorWorldView::~EditorWorldView() = default;
+
 void EditorWorldView::initialize() {
 	cameraInstance = std::make_unique<EditorDebugCamera>();
 	cameraInstance->initialize();
 
-	primitive.emplace("Frustum", std::make_unique<PrimitiveGeometryDrawExecutor>(
-		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum"), 16
+	worldGrid = std::make_unique<EditorWorldGridBuffer>();
+
+	primitive.emplace("Frustum0", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum0"), 16
+	));
+	primitive.emplace("Frustum1", std::make_unique<PrimitiveGeometryDrawExecutor>(
+		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Frustum1"), 16
 	));
 	primitive.emplace("Box", std::make_unique<PrimitiveGeometryDrawExecutor>(
 		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Box"), 1024
@@ -36,9 +45,6 @@ void EditorWorldView::setup(Reference<RemoteWorldObject> remoteWorld_) {
 	remoteWorld = remoteWorld_;
 }
 
-void EditorWorldView::register_mesh(Reference<StaticMeshInstance>) {
-}
-
 void EditorWorldView::register_primitive(const std::string& name, const Affine& affine) {
 	if (primitive.contains(name)) {
 		primitive.at(name)->write_to_buffer(affine.to_matrix());
@@ -50,12 +56,23 @@ void EditorWorldView::update() {
 		return;
 	}
 
+	cameraInstance->update();
+}
+
+void szg::EditorWorldView::transfer() {
+	if (!isSelectTab) {
+		return;
+	}
 	for (auto& executor : primitive | std::views::values) {
 		executor->begin();
 	}
-	cameraInstance->update();
-	cameraInstance->update_affine();
+	cameraInstance->constraint_mut()->update_affine();
 	cameraInstance->transfer();
+
+	worldGrid->transfer(
+		cameraInstance->view_point(),
+		std::max(cameraInstance->world_position().y, cameraInstance->offset_imm())
+	);
 }
 
 void EditorWorldView::register_world_projection(u32 index) {
@@ -71,6 +88,11 @@ void EditorWorldView::draw_lines() {
 	for (auto& executor : primitive | std::views::values) {
 		executor->draw_command();
 	}
+}
+
+void EditorWorldView::draw_grid() {
+	cameraInstance->register_world_projection(1);
+	worldGrid->stack_command();
 }
 
 std::tuple<bool, Vector2, Vector2> EditorWorldView::draw_editor(const TempTexture& texture) {
@@ -109,10 +131,6 @@ std::tuple<bool, Vector2, Vector2> EditorWorldView::draw_editor(const TempTextur
 	}
 
 	return { isSelectTab, resultPos, resultSize };
-}
-
-void EditorWorldView::camera_gui() {
-	cameraInstance->debug_gui();
 }
 
 Reference<const EditorDebugCamera> EditorWorldView::get_camera() const {

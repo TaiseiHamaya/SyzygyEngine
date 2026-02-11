@@ -6,15 +6,17 @@ using namespace szg;
 
 #include "../../../Window/EditorSceneView.h"
 
-#define COLOR3_SERIALIZER
+#define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemotePointLightInstance::setup() {
 	RemoteInstanceType::setup();
 	debugVisual = std::make_unique<Rect3d>();
-	debugVisual->initialize(CVector2::ONE * 0.5f, Vector2{ 0.5f, 0.5f });
+	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
 	debugVisual->get_material().lightingType = LighingType::None;
 	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
+
+	on_spawn();
 
 	sceneView->register_rect(query_world(), debugVisual);
 }
@@ -22,14 +24,14 @@ void RemotePointLightInstance::setup() {
 void RemotePointLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	RemoteInstanceType::update_preview(world, parentAffine);
 
-	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.cget(), radius.cget(), radius.cget() }) * Affine::FromTranslate(worldAffine.get_origin());
+	Affine primitiveAffine = Affine::FromScale(Vector3{ radius.value_imm(), radius.value_imm(), radius.value_imm() }) * Affine::FromTranslate(worldAffine.get_origin());
 	sceneView->write_primitive(world, "Sphere", primitiveAffine);
 
 	Reference<const EditorDebugCamera> camera = sceneView->query_debug_camera();
 	if (camera) {
 		debugVisual->look_at(camera);
 	}
-	debugVisual->get_transform().set_translate(worldAffine.get_origin());
+	debugVisual->transform_mut().set_translate(worldAffine.get_origin());
 	debugVisual->update_affine();
 }
 
@@ -91,11 +93,13 @@ nlohmann::json RemotePointLightInstance::serialize() const {
 }
 
 void RemotePointLightInstance::on_spawn() {
-	debugVisual->set_active(true);
+	auto world = query_world();
+	auto result = sceneView->get_layer(world);
+	debugVisual->set_layer(result.value_or(-1));
 }
 
 void RemotePointLightInstance::on_destroy() {
-	debugVisual->set_active(false);
+	debugVisual->set_layer(std::numeric_limits<u32>::max());
 }
 
 #endif // DEBUG_FEATURES_ENABLE
