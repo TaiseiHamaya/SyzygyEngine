@@ -3,6 +3,8 @@
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include <memory>
+#include <optional>
+#include <string>
 #include <variant>
 
 #include <Library/Utility/Template/Reference.h>
@@ -34,6 +36,9 @@ public:
 
 	static void BeginDragHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent);
 	static void EndDragHierarchy(Reference<IRemoteObject> target);
+
+	static void BeginDragAsset(AssetType assetType, const std::string& filePath);
+	static std::optional<DragDataAsset> AcceptAssetDrop();
 
 	static void ExecuteCommand();
 

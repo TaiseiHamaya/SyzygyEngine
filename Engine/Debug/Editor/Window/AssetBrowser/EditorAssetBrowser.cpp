@@ -8,6 +8,9 @@ using namespace szg;
 
 #include "Engine/Application/Logger.h"
 
+#include "Engine/Debug/Editor/Core/EditorDandDManager.h"
+#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+
 void EditorAssetBrowser::draw() {
 	ImGui::Begin("Asset", &isActive);
 	update_focus();
@@ -139,8 +142,7 @@ void szg::EditorAssetBrowser::draw_assets() {
 
 		// 描画
 		for (i32 i = 0; auto file : entries) {
-			std::string filename = file.path().filename().string();
-			draw_file_content(filename, file.is_directory(), i);
+			draw_file_content(file.path().filename(), file.is_directory(), i);
 			++i;
 		}
 	}
@@ -232,10 +234,11 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 void szg::EditorAssetBrowser::handle_drag_and_drop() {
 }
 
-void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool isDirectory, i32 idx) {
+void szg::EditorAssetBrowser::draw_file_content(const std::filesystem::path& fileName, bool isDirectory, i32 idx) {
 	// ファイル一覧の表示
 	ImGuiStyle& style = ImGui::GetStyle();
 	ImVec2 padding = style.ItemSpacing;
+	const std::string fileNameString = fileName.string();
 
 	// 1行の個数を計算
 	i32 numPerRow = static_cast<i32>(ImGui::GetContentRegionAvail().x / (iconSize + padding.x));
@@ -247,7 +250,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 	string_literal icon = isDirectory ? "\ue2c7" : "\ue66d";
 	ImVec4 color = isDirectory ? ImVec4{ 0.8f, 0.8f, 0.2f, 1.0f } : ImVec4{ 0.5f, 0.5f, 0.5f, 1.0f };
 
-	bool isSelected = (selectFileName == name);
+	bool isSelected = (selectFileName == fileNameString);
 
 	if (idx % numPerRow != 0) {
 		// 同じ行の場合は前回の位置+アイコンサイズ分移動
@@ -280,25 +283,55 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 	i32 flags = ImGuiSelectableFlags_AllowDoubleClick;
 	ImGui::PushFont(ImGui::GetFont(), iconSize);
 	ImGui::PushStyleColor(ImGuiCol_Text, color);
-	ImGui::Selectable(std::format("{}##{}", icon, name).c_str(), &isSelected, flags, ImVec2{ iconSize, iconSize });
+	ImGui::Selectable(std::format("{}##{}", icon, fileNameString).c_str(), &isSelected, flags, ImVec2{ iconSize, iconSize });
 	ImGui::PopStyleColor();
 	ImGui::PopFont();
 
+	// Drag source
+	if (rootType != AssetRootType::Unselect) {
+		bool canDrag = !isDirectory || rootType == AssetRootType::Game;
+		if (canDrag && ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
+			AssetType assetType = isDirectory ? AssetType::Unknown : EditorAssetContentsCollector::GetAssetTypeByExtension(fileName.extension().string());
+			EditorDandDManager::BeginDragAsset(assetType, fileNameString);
+			ImGui::Text(fileNameString.c_str());
+			ImGui::EndDragDropSource();
+		}
+	}
+
+	// Drop target（ディレクトリへの移動）
+	if (isDirectory && rootType == AssetRootType::Game) {
+		if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
+			std::filesystem::path srcPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / dropData->filePath;
+			std::filesystem::path dstPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileNameString / dropData->filePath;
+			std::error_code ec;
+			std::filesystem::rename(srcPath, dstPath, ec);
+			if (ec) {
+				szgError("Failed to move: {}", ec.message());
+			}
+			else {
+				szgInformation("Moved: {} -> {}", srcPath.string(), dstPath.string());
+				if (selectFileName == dropData->filePath) {
+					selectFileName.clear();
+				}
+			}
+		}
+	}
+
 	// シングルクリックで選択
 	if (isSelected) {
-		selectFileName = name;
+		selectFileName = fileNameString;
 	}
 
 	// ダブルクリックでフォルダ移動またはファイルオープン
 	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left)) {
 		if (isDirectory) {
 			// フォルダの場合は移動
-			currentDirectory /= name;
+			currentDirectory /= fileName;
 			selectFileName.clear();
 		}
 		else {
 			// ファイルの場合は開く
-			szgInformation("Open Asset File: {}", name);
+			szgInformation("Open Asset File: {}", fileNameString);
 		}
 	}
 
@@ -324,7 +357,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 		if (ImGui::IsItemDeactivated()) { // フォーカスが外れた場合も確定扱い
 			if (!newFileName.empty() && selectFileName != newFileName) {
 				// リネーム処理
-				std::filesystem::path oldPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / name;
+				std::filesystem::path oldPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileName;
 				std::filesystem::path newPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / newFileName;
 				std::error_code ec;
 				std::filesystem::rename(oldPath, newPath, ec);
@@ -343,7 +376,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::string& name, bool is
 	else {
 		ImGui::PushTextWrapPos(ImGui::GetCursorPosX() + iconSize); // アイコン幅で折り返し
 		i32 maxLabelLength = static_cast<i32>(iconSize / 2.6f);
-		std::string label = name.size() > maxLabelLength ? name.substr(0, maxLabelLength - 3) + "..." : name; // 長すぎる場合は省略
+		std::string label = fileNameString.size() > maxLabelLength ? fileNameString.substr(0, maxLabelLength - 3) + "..." : fileNameString; // 長すぎる場合は省略
 		ImGui::Text(label.c_str());
 	}
 

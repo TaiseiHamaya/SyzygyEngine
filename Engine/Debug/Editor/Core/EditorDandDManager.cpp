@@ -82,6 +82,39 @@ void EditorDandDManager::EndDragHierarchy(Reference<IRemoteObject> target) {
 	instance.currentDragData = std::monostate{};
 }
 
+void szg::EditorDandDManager::BeginDragAsset(AssetType assetType, const std::string& filePath) {
+	auto& instance = GetInstance();
+	DragDataAsset data{
+		.assetType = assetType,
+		.filePath = filePath
+	};
+	instance.currentDragData = data;
+	if (ImGui::GetDragDropPayload() == nullptr) {
+		ImGui::SetDragDropPayload("EditorDandDManager", &instance.currentDragData, sizeof(instance.currentDragData), ImGuiCond_Once);
+		szgInformation("Begin drag&drop as asset.");
+	}
+}
+
+std::optional<EditorDandDManager::DragDataAsset> EditorDandDManager::AcceptAssetDrop() {
+	if (!ImGui::BeginDragDropTarget()) {
+		return std::nullopt;
+	}
+	const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("EditorDandDManager");
+	if (!payload) {
+		ImGui::EndDragDropTarget();
+		return std::nullopt;
+	}
+	auto& instance = GetInstance();
+	if (!std::holds_alternative<DragDataAsset>(instance.currentDragData)) {
+		ImGui::EndDragDropTarget();
+		return std::nullopt;
+	}
+	DragDataAsset result = std::get<DragDataAsset>(instance.currentDragData);
+	instance.currentDragData = std::monostate{};
+	ImGui::EndDragDropTarget();
+	return result;
+}
+
 void EditorDandDManager::ExecuteCommand() {
 	auto& instance = GetInstance();
 	if (!instance.command) {

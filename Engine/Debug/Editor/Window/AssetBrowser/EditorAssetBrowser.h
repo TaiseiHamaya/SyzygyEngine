@@ -34,7 +34,7 @@ private:
 	void handle_drag_and_drop();
 
 	// ファイルの内容を描画
-	void draw_file_content(const std::string& name, bool isDirectory, i32 idx);
+	void draw_file_content(const std::filesystem::path& fileName, bool isDirectory, i32 idx);
 
 	void update_importer();
 

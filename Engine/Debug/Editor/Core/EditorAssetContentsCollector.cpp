@@ -6,7 +6,7 @@
 
 #include "Engine/Assets/AssetRootPath.h"
 
-#include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
+#include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 
 void szg::EditorAssetContentsCollector::Finalize() {
 	auto& instance = GetInstance();
@@ -35,7 +35,7 @@ void szg::EditorAssetContentsCollector::Update() {
 		std::erase_if(typeMap, [](const auto& pair) {
 			return !std::filesystem::exists(pair.second.path);
 		});
-}
+	}
 }
 
 std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std::string& current, AssetType type, const std::string& label) {
@@ -62,31 +62,39 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 		ImGui::EndCombo();
 
 	}
+
+	// DragDrop target
+	if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
+		std::lock_guard<std::mutex> lock(instance.mutex);
+		if (instance.assetMaps[static_cast<i32>(type)].contains(dropData->filePath)) {
+			result = dropData->filePath;
+		}
+	}
+
 	return result;
 }
 
 szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const std::string& extension) {
-			AssetType assetType = AssetType::Unknown;
-			std::string extension = directory.path().extension().string();
-			// 拡張子からAssetTypeを決定
-			if (extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".bmp" || extension == ".dds") {
-				assetType = AssetType::Texture;
-			}
-			else if (extension == ".obj" || extension == ".fbx" || extension == ".gltf") {
-				assetType = AssetType::Mesh;
-			}
+	AssetType assetType = AssetType::Unknown;
+	// 拡張子からAssetTypeを決定
+	if (extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".bmp" || extension == ".dds") {
+		assetType = AssetType::Texture;
+	}
+	else if (extension == ".obj" || extension == ".fbx" || extension == ".gltf") {
+		assetType = AssetType::Mesh;
+	}
 	else if (extension == ".ttf" || extension == ".mtsdf") {
-				assetType = AssetType::Font;
-			}
-			else if (extension == ".json") {
-				assetType = AssetType::Json;
-			}
-			else if (extension == ".wav" || extension == ".mp3") {
-				assetType = AssetType::Audio;
-			}
-			else if (extension == ".hlsl") {
-				assetType = AssetType::Shader;
-			}
+		assetType = AssetType::Font;
+	}
+	else if (extension == ".json") {
+		assetType = AssetType::Json;
+	}
+	else if (extension == ".wav" || extension == ".mp3") {
+		assetType = AssetType::Audio;
+	}
+	else if (extension == ".hlsl") {
+		assetType = AssetType::Shader;
+	}
 
 	return assetType;
 }
