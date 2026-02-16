@@ -18,14 +18,11 @@ using namespace szg;
 #define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
-RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() noexcept {
-	debugVisual = std::make_unique<StaticMeshInstance>();
-}
-
+szg::RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() noexcept = default;
 szg::RemoteSkinningMeshInstance::~RemoteSkinningMeshInstance() noexcept = default;
 
 void RemoteSkinningMeshInstance::setup() {
-	on_spawn();
+	debugVisual = std::make_unique<StaticMeshInstance>();
 	debugVisual->reset_mesh(meshName);
 	if (sceneView) {
 		sceneView->register_mesh(query_world(), debugVisual);
@@ -103,7 +100,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 				auto result = EditorAssetContentsCollector::ComboGUI(meshMaterial.texture, AssetType::Texture);
 
 				if (result.has_value()) {
-					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, result.value());
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, result.value().fileName);
 				}
 			}
 
@@ -207,10 +204,16 @@ void RemoteSkinningMeshInstance::on_spawn() {
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
+
+	meshName.on_activated();
+	RemoteInstanceType::on_spawn();
 }
 
 void RemoteSkinningMeshInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
+
+	meshName.on_deactivated();
+	RemoteInstanceType::on_destroy();
 }
 
 void RemoteSkinningMeshInstance::default_material() {

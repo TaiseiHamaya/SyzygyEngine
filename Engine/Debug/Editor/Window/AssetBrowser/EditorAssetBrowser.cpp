@@ -258,8 +258,8 @@ void szg::EditorAssetBrowser::handle_drag_and_drop(bool isDirectory, const std::
 	// Drop target（ディレクトリへの移動）
 	if (isDirectory && rootType == AssetRootType::Game) {
 		if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
-			std::filesystem::path srcPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / dropData->filePath;
-			std::filesystem::path dstPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileNameString / dropData->filePath;
+			std::filesystem::path srcPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / dropData->fileName;
+			std::filesystem::path dstPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileNameString / dropData->fileName;
 			std::error_code ec;
 			std::filesystem::rename(srcPath, dstPath, ec);
 			if (ec) {
@@ -267,7 +267,7 @@ void szg::EditorAssetBrowser::handle_drag_and_drop(bool isDirectory, const std::
 			}
 			else {
 				szgInformation("Moved: {} -> {}", srcPath.string(), dstPath.string());
-				if (selectFileName == dropData->filePath) {
+				if (selectFileName == dropData->fileName) {
 					selectFileName.clear();
 				}
 			}

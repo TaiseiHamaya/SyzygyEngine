@@ -82,11 +82,11 @@ void EditorDandDManager::EndDragHierarchy(Reference<IRemoteObject> target) {
 	instance.currentDragData = std::monostate{};
 }
 
-void szg::EditorDandDManager::BeginDragAsset(AssetType assetType, const std::string& filePath) {
+void szg::EditorDandDManager::BeginDragAsset(AssetType assetType, const std::string& fileName) {
 	auto& instance = GetInstance();
 	DragDataAsset data{
 		.assetType = assetType,
-		.filePath = filePath
+		.fileName = fileName
 	};
 	instance.currentDragData = data;
 	if (ImGui::GetDragDropPayload() == nullptr) {

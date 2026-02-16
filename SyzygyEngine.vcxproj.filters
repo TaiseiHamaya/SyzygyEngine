@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="EditorResources">
@@ -515,9 +515,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp">
       <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp">
       <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
@@ -2928,5 +2925,22 @@
     <FxCompile Include="EngineResources\HLSL\Sprite\Sprite.VS.hlsl">
       <Filter>EngineResources\HLSL\Sprite</Filter>
     </FxCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp">
+      <Filter>Engine\Debug\Editor\Command</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="EngineResources\HLSL\Document.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h">
+      <Filter>Engine\Debug\Editor\Command</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

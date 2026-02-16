@@ -5,23 +5,40 @@
 using namespace szg;
 
 #include <memory>
+#include <ranges>
 
 #include "../Window/RenderDagImNode/PostEffectImNode.h"
 #include "Engine/Assets/Json/JsonAsset.h"
-#include "Engine/Debug/Editor/RemoteObject/RemoteSceneObject.h"
 #include "Engine/Debug/Editor/Window/EditorRenderDAG.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
-#include "Engine/Loader/SceneAssetListLoader.h"
+#include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
 
-void EditorAssetSaver::setup(Reference<const EditorRenderDAG> dagEditor_, Reference<const RemoteSceneObject> scene_) {
+void EditorAssetSaver::setup(Reference<const EditorRenderDAG> dagEditor_) {
 	dagEditor = dagEditor_;
-	scene = scene_;
 }
 
 void EditorAssetSaver::save(const std::filesystem::path& filePath) {
+	collect_assets();
+
 	collect_shaders();
 
 	save_to_json(filePath);
+}
+
+void szg::EditorAssetSaver::collect_assets() {
+	auto& assets = EditorSceneAssetCollection::AssetsImm();
+	auto& isLazy = EditorSceneAssetCollection::IsLazyLoadAssetsImm();
+	for (i32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {
+		for (const auto& asset : assets[i] | std::views::keys) {
+			std::string filename = asset.filename().string();
+			if (isLazy[i].contains(filename) && isLazy[i].at(filename)) {
+				sceneAssetCollection.lazyLoadAssets[i].emplace(asset);
+			}
+			else {
+				sceneAssetCollection.assets[i].emplace(asset);
+			}
+		}
+	}
 }
 
 void EditorAssetSaver::collect_shaders() {
@@ -70,7 +87,7 @@ void EditorAssetSaver::collect_shaders() {
 			break;
 		}
 
-		sceneAssetCollection.assets[SceneAssetCollection::AssetType::Shader].emplace(pixelShaderFile.string());
+		sceneAssetCollection.assets[static_cast<i32>(AssetType::Shader) - 1].emplace(pixelShaderFile.string());
 	}
 }
 
@@ -78,13 +95,13 @@ void EditorAssetSaver::save_to_json(const std::filesystem::path& filePath) {
 	JsonAsset json{ filePath / "Assets.json" };
 
 	nlohmann::json assets = nlohmann::json::object();
-	for (u32 i = 0; i < SceneAssetCollection::AssetType::Max; ++i) {
+	for (u32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {
 		const std::unordered_set<std::filesystem::path>& assetList = sceneAssetCollection.assets[i];
 		nlohmann::json assetArray = nlohmann::json::array();
 		for (const auto& asset : assetList) {
 			assetArray.emplace_back(asset);
 		}
-		assets[SceneAssetListLoader::AssetTypeNames[i]] = assetArray;
+		assets[ASSET_TYPE_NAME[i + 1]] = assetArray;
 	}
 
 	json.get().clear();

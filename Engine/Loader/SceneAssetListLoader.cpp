@@ -3,6 +3,7 @@
 using namespace szg;
 
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Assets/AssetTypeEnum.h"
 
 SceneAssetCollection SceneAssetListLoader::load(const std::string& sceneName) {
 	SceneAssetCollection::AssetListType assets{};
@@ -23,10 +24,10 @@ SceneAssetCollection SceneAssetListLoader::load(const std::string& sceneName) {
 }
 
 void SceneAssetListLoader::load_asset_list(SceneAssetCollection::AssetListType& assets, const nlohmann::json& json) {
-	for (i32 i = 0; i < SceneAssetCollection::AssetType::Max; ++i) {
+	for (i32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {
 		auto& assetSet = assets[i];
 
-		const nlohmann::json& assetArray = json.value(AssetTypeNames[i], nlohmann::json::array());
+		const nlohmann::json& assetArray = json.value(ASSET_TYPE_NAME[i + 1], nlohmann::json::array());
 		for (const std::filesystem::path& assetPath : assetArray.get<std::vector<std::filesystem::path>>()) {
 			assetSet.emplace(assetPath);
 		}

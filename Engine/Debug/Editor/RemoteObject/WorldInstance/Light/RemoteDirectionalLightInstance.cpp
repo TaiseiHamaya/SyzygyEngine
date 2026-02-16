@@ -10,7 +10,6 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 void RemoteDirectionalLightInstance::setup() {
-	RemoteInstanceType::setup();
 	debugVisual = std::make_unique<Rect3d>();
 	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
 	debugVisual->get_material().lightingType = LighingType::None;
@@ -18,10 +17,10 @@ void RemoteDirectionalLightInstance::setup() {
 
 	instance = std::make_unique<DirectionalLightInstance>();
 
-	on_spawn();
-	
 	sceneView->register_directional_light(query_world(), instance);
 	sceneView->register_rect(query_world(), debugVisual);
+
+	RemoteInstanceType::setup();
 }
 
 void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {

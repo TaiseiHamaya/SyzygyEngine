@@ -20,6 +20,8 @@ FontAtlasMSDFBuilder::FontAtlasMSDFBuilder(const std::filesystem::path& filePath
 FontAtlasMSDFBuilder::~FontAtlasMSDFBuilder() = default;
 
 bool FontAtlasMSDFBuilder::run() {
+	szgInformation(L"Start load font mtsdf atlas file-\'{}\'", filePath.native());
+
 	JsonAsset json;
 	json.load(filePath);
 	nlohmann::json glyphsJson = json.get()["Glyphs"];
