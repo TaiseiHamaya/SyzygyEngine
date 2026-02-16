@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorSceneAssetCollection.h"
 
 void szg::EditorSceneAssetCollection::RegisterAsset(AssetType type, const std::filesystem::path& assetFilePath, bool isLazy) {
@@ -50,3 +52,5 @@ const std::array<std::unordered_map<std::filesystem::path, i32>, szg::SceneAsset
 const std::array<std::unordered_map<std::string, bool>, szg::SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX>& szg::EditorSceneAssetCollection::IsLazyLoadAssetsImm() noexcept {
 	return GetInstance().isLazyLoadAsset;
 }
+
+#endif // DEBUG_FEATURES_ENABLE

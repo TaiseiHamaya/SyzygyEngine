@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorCommandRegisterAsset.h"
 
 #include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
@@ -29,3 +31,5 @@ void szg::EditorCommandUnregisterAsset::execute() {
 void szg::EditorCommandUnregisterAsset::undo() {
 	szg::EditorSceneAssetCollection::RegisterAsset(type, assetFilePath, isLazy);
 }
+
+#endif // DEBUG_FEATURES_ENABLE
