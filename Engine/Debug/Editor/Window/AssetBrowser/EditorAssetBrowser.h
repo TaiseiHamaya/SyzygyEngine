@@ -47,7 +47,7 @@ private:
 	r32 iconSize{ 64 };
 
 	std::filesystem::path currentDirectory;
-	std::string selectFileName;
+	std::filesystem::path selectFileName;
 
 	EditorAssetImporter assetImporter;
 
