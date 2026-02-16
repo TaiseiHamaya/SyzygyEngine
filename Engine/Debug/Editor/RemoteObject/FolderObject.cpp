@@ -26,6 +26,10 @@ void FolderObject::update_preview(Reference<RemoteWorldObject> world, Reference<
 
 void FolderObject::draw_inspector() {
 	hierarchyName.show_gui();
+
+	ImGui::Separator();
+
+	ImGui::TextColored(ImVec4{ 0.5f, 0.5f, 0.5f, 1.0f }, "\ue88e Only editor");
 }
 
 void FolderObject::draw_hierarchy(Reference<const EditorSelectObject> select) {

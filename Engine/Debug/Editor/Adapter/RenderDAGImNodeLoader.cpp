@@ -135,7 +135,7 @@ std::shared_ptr<PostEffectImNode> RenderDAGImNodeLoader::load_as_post_effect(con
 	json.get_to(data.outputSize);
 	json.get_to(data.peType);
 	if (json.value("EffectTag", nlohmann::json{ nullptr }).is_null()) {
-		data.isUseRuntime = false;
+		data.isUseRuntime.set_weak(false);
 	}
 	else {
 		json.get_to(data.effectTagName);

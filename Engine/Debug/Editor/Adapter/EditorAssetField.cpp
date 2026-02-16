@@ -14,7 +14,7 @@ szg::EditorAssetField::EditorAssetField(const std::string& label_, AssetType typ
 	assetType(type) {
 }
 
-std::bitset<2> szg::EditorAssetField::show_gui() {
+std::bitset<2> szg::EditorAssetField::show_gui(std::function<void(void)> preprocess, std::function<void(void)> postporcess) {
 	auto result = EditorAssetContentsCollector::ComboGUI(value, assetType, label);
 
 	if (result.has_value()) {
@@ -24,6 +24,11 @@ std::bitset<2> szg::EditorAssetField::show_gui() {
 		auto path = EditorAssetContentsCollector::GetAssetPath(assetType, value);
 
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
+		
+		if (preprocess) {
+			preprocess();
+		}
+
 		// 古いAssetの登録を解除
 		if (path) {
 			EditorCommandInvoker::Execute(std::make_unique<EditorCommandUnregisterAsset>(assetType, path.value()));
@@ -32,6 +37,10 @@ std::bitset<2> szg::EditorAssetField::show_gui() {
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandRegisterAsset>(assetType, result.value().path));
 		// 値の変更
 		EditorValueChangeCommandHandler::GenCommandInstant<std::string>(value, result.value().fileName);
+
+		if (postporcess) {
+			postporcess();
+		}
 
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
 		return 0b10;

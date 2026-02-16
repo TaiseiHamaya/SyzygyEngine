@@ -21,7 +21,7 @@ public:
 	SZG_CLASS_DEFAULT(EditorAssetField)
 
 public:
-	std::bitset<2> show_gui();
+	std::bitset<2> show_gui(std::function<void(void)> preprocess = nullptr, std::function<void(void)> postporcess = nullptr);
 
 public:
 	void set_weak(const std::string& value_);
