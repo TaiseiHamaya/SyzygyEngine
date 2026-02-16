@@ -13,12 +13,8 @@ using namespace szg;
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
 
-RemoteStaticMeshInstance::RemoteStaticMeshInstance() {
-	debugVisual = std::make_unique<StaticMeshInstance>();
-}
-
 void RemoteStaticMeshInstance::setup() {
-	on_spawn();
+	debugVisual = std::make_unique<StaticMeshInstance>();
 	debugVisual->reset_mesh(meshName);
 	// Editor側でDrawExecutorに登録
 	if (sceneView) {
@@ -92,7 +88,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = EditorAssetContentsCollector::ComboGUI(meshMaterial.texture, AssetType::Texture);
 				if (result.has_value()) {
-					EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, result.value());
+					EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, result.value().fileName);
 				}
 			}
 
@@ -185,13 +181,15 @@ void RemoteStaticMeshInstance::on_spawn() {
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
 
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::on_spawn();
+	meshName.on_activated();
+	RemoteInstanceType::on_spawn();
 }
 
 void RemoteStaticMeshInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
 
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::on_destroy();
+	meshName.on_deactivated();
+	RemoteInstanceType::on_destroy();
 }
 
 void RemoteStaticMeshInstance::default_material() {

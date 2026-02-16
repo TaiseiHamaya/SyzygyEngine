@@ -12,7 +12,6 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
 
 SceneAssetCollection::SceneAssetCollection(const AssetListType& assets_, const AssetListType& lazyLoadAssets_) {
 	assets = assets_;
@@ -29,20 +28,23 @@ void SceneAssetCollection::load_lazy_assets() const {
 
 void SceneAssetCollection::RegisterLoadQueue(const AssetListType& assets) {
 	// 関数オブジェクトの配列
-	const std::array<std::function<void(const std::filesystem::path&)>, AssetType::Max> loadFunc{
+	const std::array<std::function<void(const std::filesystem::path&)>, SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX> loadFunc{
 		TextureLibrary::RegisterLoadQue,
 		PolygonMeshLibrary::RegisterLoadQue,
 		SkeletonLibrary::RegisterLoadQue,
 		NodeAnimationLibrary::RegisterLoadQue,
+		FontAtlasMSDFLibrary::RegisterLoadQue,
+		nullptr,
 		AudioLibrary::RegisterLoadQue,
 		ShaderLibrary::RegisterLoadQue,
-		FontAtlasMSDFLibrary::RegisterLoadQue,
 	};
 
-	for (u32 i = 0; i < AssetType::Max; ++i) {
+	for (u32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {
 		const std::unordered_set<std::filesystem::path>& assetSet = assets[i];
 		for (const std::filesystem::path& assetPath : assetSet) {
-			loadFunc[i](assetPath);
+			if (loadFunc[i]) {
+				loadFunc[i](assetPath);
+			}
 		}
 	}
 }

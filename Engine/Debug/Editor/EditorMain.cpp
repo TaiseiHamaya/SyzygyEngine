@@ -9,6 +9,7 @@ using namespace szg;
 #include <imgui.h>
 
 #include "./Core/EditorDandDManager.h"
+#include "./Core/EditorSceneAssetCollection.h"
 #include "./Window/EditorLogWindow.h"
 #include "Command/EditorCommandInvoker.h"
 #include "Command/EditorCreateObjectCommand.h"
@@ -69,6 +70,8 @@ void EditorMain::Setup() {
 	instance.inspector.setup(instance.selectObject);
 	instance.hierarchy.setup(instance.selectObject, instance.sceneView);
 
+	EditorAssetContentsCollector::Setup();
+
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
 	std::string sceneName;
 	if (std::filesystem::exists(filePath)) {
@@ -121,6 +124,8 @@ void EditorMain::DrawBase() {
 	if (instance.switchSceneName.has_value()) {
 		// シーンビューを未設定に設定
 		instance.sceneView.reset_force();
+		// AssetCollectionのリセット
+		EditorSceneAssetCollection::Clear();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
 		// DAG Editorのリセット
@@ -206,7 +211,7 @@ bool EditorMain::SeveScene() {
 	instance.renderDAG.save(sceneDirectory);
 
 	EditorAssetSaver saver;
-	saver.setup(instance.renderDAG, instance.hierarchy.scene_imm());
+	saver.setup(instance.renderDAG);
 	saver.save(sceneDirectory);
 
 	szgInformation("Scene file saved. ({})", sceneName);

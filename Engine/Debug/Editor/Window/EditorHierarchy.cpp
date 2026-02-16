@@ -46,6 +46,7 @@ void EditorHierarchy::load(const std::string& sceneName) {
 	scene = EditorSceneSerializer::CreateRemoteScene(sceneName);
 
 	scene->setup();
+	scene->on_spawn();
 }
 
 void EditorHierarchy::save(const std::filesystem::path& path) const {

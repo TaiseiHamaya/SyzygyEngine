@@ -12,7 +12,6 @@ using namespace szg;
 
 void RemoteStringRectInstance::setup() {
 	debugVisual = std::make_unique<StringRectInstance>();
-	on_spawn();
 	debugVisual->initialize(font, fontSize, pivot);
 	debugVisual->set_draw(true);
 	debugVisual->keyID = BlendMode::None;
@@ -21,11 +20,11 @@ void RemoteStringRectInstance::setup() {
 		sceneView->register_string(query_world(), debugVisual);
 	}
 
-	IRemoteInstance<StringRectInstance, StringRectInstance>::setup();
+	RemoteInstanceType::setup();
 }
 
 void RemoteStringRectInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
-	IRemoteInstance<StringRectInstance, StringRectInstance>::update_preview(world, parentAffine);
+	RemoteInstanceType::update_preview(world, parentAffine);
 
 	debugVisual->localAffine = worldAffine;
 	debugVisual->isDraw = isDraw;
@@ -95,10 +94,16 @@ void RemoteStringRectInstance::on_spawn() {
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
+
+	font.on_activated();
+	RemoteInstanceType::on_spawn();
 }
 
 void RemoteStringRectInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
+
+	font.on_deactivated();
+	RemoteInstanceType::on_destroy();
 }
 
 #endif // DEBUG_FEATURES_ENABLE

@@ -2,8 +2,8 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include <string>
 #include <bitset>
+#include <string>
 
 #include <json.hpp>
 
@@ -14,10 +14,6 @@
 namespace szg {
 
 class EditorAssetField {
-	friend struct ::nlohmann::adl_serializer<EditorAssetField>;
-
-	using GUIFuncType = std::function<bool(std::string&)>;
-
 public:
 	EditorAssetField(const std::string& label_, AssetType type, std::string init = "");
 	~EditorAssetField() = default;
@@ -29,15 +25,15 @@ public:
 
 public:
 	void set_weak(const std::string& value_);
-	void set(const std::string& value_);
 	std::string& value_mut() { return value; };
 	const std::string& value_imm() const { return value; };
 	std::string copy() const { return value; }
 	std::string_view label_name() const { return label; }
 
-	EditorAssetField& operator=(const std::string& rhs);
-
 	operator const std::string& () const noexcept;
+
+	void on_activated();
+	void on_deactivated();
 
 private:
 	std::string label;
@@ -53,12 +49,12 @@ namespace nlohmann {
 template<>
 struct adl_serializer<szg::EditorAssetField> {
 	static inline void to_json(nlohmann::json& j, const szg::EditorAssetField& p) {
-		j[p.label] = p.value;
+		j[p.label_name()] = p.value_imm();
 	}
 
 	static inline void from_json(const nlohmann::json& j, szg::EditorAssetField& p) {
-		if (j.contains(p.label)) {
-			j[p.label].get_to(p.value);
+		if (j.contains(p.label_name())) {
+			j[p.label_name()].get_to(p.value_mut());
 		}
 	}
 };

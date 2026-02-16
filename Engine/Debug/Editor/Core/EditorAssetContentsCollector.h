@@ -21,30 +21,36 @@ namespace szg {
 class EditorAssetContentsCollector final : public SingletonInterface<EditorAssetContentsCollector> {
 	SZG_CLASS_SINGLETON(EditorAssetContentsCollector)
 
-public:
-	static void Finalize();
-
-	static void Update();
-
-	static std::optional<std::string> ComboGUI(const std::string& current, AssetType type, const std::string& label = "");
-
-	static AssetType GetAssetTypeByExtension(const std::string& extension);
-
-private:
-	void collect_assets();
-
 private:
 	struct AssetEntry {
 		AssetType type{ AssetType::Unknown };
-		std::string name;
+		std::string fileName;
 		std::string extension;
 		std::filesystem::path path;
 
 		std::function<void(const std::string&)> loadFunc;
 	};
 
+public:
+	static void Setup();
+
+	static void Finalize();
+
+	static void Update();
+
+	static std::optional<AssetEntry> ComboGUI(const std::string& current, AssetType type, const std::string& label = "");
+
+	static AssetType GetAssetTypeByExtension(const std::string& extension);
+
+	static std::optional<std::filesystem::path> GetAssetPath(AssetType type, const std::string& fileName);
+
 private:
-	std::mutex mutex;
+	void collect_assets();
+
+private:
+	static inline std::mutex mutex{};
+
+private:
 	std::array<std::map<std::string, AssetEntry>, ASSET_TYPE_MAX> assetMaps{};
 
 	std::thread thread;

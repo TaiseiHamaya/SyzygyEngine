@@ -35,7 +35,7 @@ public:
 	};
 
 public:
-	RemoteStaticMeshInstance();
+	RemoteStaticMeshInstance() = default;
 	~RemoteStaticMeshInstance() = default;
 
 public:
