@@ -33,7 +33,7 @@ private:
 	void draw_right_click_menu();
 
 	// Drag＆Dropの処理
-	void handle_drag_and_drop();
+	void handle_drag_and_drop(bool isDirectory, const std::string& fileNameString, const std::string& extension);
 
 	// ファイルの内容を描画
 	void draw_file_content(const std::filesystem::path& fileName, bool isDirectory, i32 idx);
