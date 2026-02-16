@@ -2,6 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
+#include <bitset>
 #include <concepts>
 #include <string>
 

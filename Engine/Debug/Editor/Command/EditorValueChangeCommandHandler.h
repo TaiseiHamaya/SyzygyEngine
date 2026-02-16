@@ -32,7 +32,7 @@ public:
 	template<typename T>
 		requires std::copyable<T>
 	static void GenCommandInstant(Reference<T> target, const T& value = {});
-	
+
 	template<typename T>
 		requires std::copyable<T>
 	static void GenCommand(Reference<T> target);
@@ -57,8 +57,8 @@ inline void EditorValueChangeCommandHandler::GenCommandInstant(Reference<T> targ
 template<typename T>
 	requires std::copyable<T>
 void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
-	Start([target]() {
-		std::unique_ptr<EditorValueChangeCommand<T>> command = std::make_unique<EditorValueChangeCommand<T>>(target);
+	Start([target, recent = *target]() {
+		std::unique_ptr<EditorValueChangeCommand<T>> command = std::make_unique<EditorValueChangeCommand<T>>(target, recent);
 		command->prepare();
 		EditorCommandInvoker::Execute(
 			std::move(command)
@@ -81,8 +81,8 @@ void EditorValueChangeCommandHandler::GenCommand(std::vector<Struct>& container,
 		return container.at(index).*member;
 	};
 
-	Start([lambda]() {
-		std::unique_ptr<EditorValueChangeCommandLambda<T>> command = std::make_unique<EditorValueChangeCommandLambda<T>>(lambda);
+	Start([lambda, recent = lambda()]() {
+		std::unique_ptr<EditorValueChangeCommandLambda<T>> command = std::make_unique<EditorValueChangeCommandLambda<T>>(lambda, recent);
 		command->prepare();
 		EditorCommandInvoker::Execute(
 			std::move(command)

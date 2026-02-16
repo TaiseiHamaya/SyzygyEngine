@@ -67,8 +67,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	if (meshName.show_gui().any()) {
-		default_material();
+	if (meshName.show_gui(std::bind(&RemoteSkinningMeshInstance::default_material, this), std::bind(&RemoteSkinningMeshInstance::default_material, this)).any()) {
 		sceneView->create_mesh_instancing(query_world(), meshName);
 	}
 
