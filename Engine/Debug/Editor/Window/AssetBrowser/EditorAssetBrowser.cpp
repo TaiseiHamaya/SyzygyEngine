@@ -64,7 +64,7 @@ void szg::EditorAssetBrowser::draw_header() {
 	// 現在のディレクトリを表示
 	if (rootType == AssetRootType::Unselect) {
 		ImGui::Text(
-			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::Unselect)], selectFileName).c_str()
+			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::Unselect)], selectFileName.string()).c_str()
 		);
 	}
 	else {
@@ -177,18 +177,24 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 
 	if (ImGui::BeginPopup("AssetBrowserRightClickMenu")) {
 		// エクスプローラーで開く
-		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
+		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
+		std::filesystem::path filePath = directory / selectFileName;
 		if (ImGui::MenuItem("Open in Explorer")) {
-			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		}
+
+		// パスのコピー
+		if (ImGui::MenuItem("Copy Path")) {
+			ImGui::SetClipboardText(filePath.string().c_str());
 		}
 
 		if (selectFileName.empty() && rootType == AssetRootType::Game) {
 			// フォルダーの作成
 			if (ImGui::MenuItem("Create Folder")) {
-				std::filesystem::path newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / "NewFolder";
+				std::filesystem::path newFolderPath = directory / "NewFolder";
 				i32 count = 1;
 				while (std::filesystem::exists(newFolderPath)) {
-					newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / std::format("NewFolder({})", count);
+					newFolderPath = directory / std::format("NewFolder({})", count);
 					++count;
 				}
 				std::error_code ec;
@@ -199,7 +205,7 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 				else {
 					szgInformation("Created folder: {}", newFolderPath.string());
 					selectFileName = newFolderPath.filename().string();
-					newFileName = selectFileName;
+					newFileName = selectFileName.string();
 					isRenaming = true;
 				}
 			}
@@ -209,12 +215,12 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			// ファイル・フォルダの削除
 			if (ImGui::MenuItem("Delete")) {
 				std::error_code ec;
-				std::filesystem::remove_all(directory, ec);
+				std::filesystem::remove_all(filePath, ec);
 				if (ec) {
 					szgError("Failed to delete file or directory: {}", ec.message());
 				}
 				else {
-					szgInformation("Deleted file or directory: {}", directory.string());
+					szgInformation("Deleted file or directory: {}", filePath.string());
 					selectFileName.clear();
 				}
 			}
@@ -222,7 +228,14 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			// リネーム
 			if (ImGui::MenuItem("Rename")) {
 				isRenaming = true;
-				newFileName = selectFileName;
+				newFileName = selectFileName.string();
+			}
+
+			// 最適化をする
+			if (assetImporter.optimizer_mut()->is_support_optimization(selectFileName.extension())) {
+				if (ImGui::MenuItem("Optimize")) {
+					assetImporter.optimizer_mut()->optimize_asset(filePath, directory);
+				}
 			}
 		}
 
@@ -347,7 +360,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::filesystem::path& fil
 		ImGui::SetKeyboardFocusHere(); // フォーカスを当てる
 		ImGui::SetNextItemWidth(iconSize); // アイコン幅に合わせる
 		ImGui::InputText(
-			std::format("##Rename{}", selectFileName).c_str(),
+			std::format("##Rename{}", selectFileName.string()).c_str(),
 			&newFileName,
 			ImGuiInputTextFlags_AutoSelectAll |
 			ImGuiInputTextFlags_EnterReturnsTrue |
@@ -406,7 +419,7 @@ void szg::EditorAssetBrowser::update_shortcut() {
 	if (ImGui::Shortcut(ImGuiKey_F2)) {
 		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::Game) {
 			isRenaming = true;
-			newFileName = selectFileName;
+			newFileName = selectFileName.string();
 		}
 	}
 
