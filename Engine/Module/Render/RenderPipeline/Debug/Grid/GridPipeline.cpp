@@ -1,10 +1,10 @@
-#include "GridPipeline.h"
-
-using namespace szg;
+﻿#include "GridPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 void szg::GridPipeline::initialize() {
 	create_pipeline_state();

@@ -22,12 +22,12 @@ private:
 	void create_skinning_mesh_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 	void create_rect3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 	void create_string_rect_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
-	
+
 	void create_camera3d_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
-	
+
 	void create_sphere_collider_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 	void create_aabb_collider_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
-	
+
 	void create_directional_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 	void create_point_light_instance(const nlohmann::json& json, Reference<WorldInstance> parent);
 

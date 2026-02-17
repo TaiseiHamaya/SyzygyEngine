@@ -1,6 +1,4 @@
-#include "SkeletonAssetBuilder.h"
-
-using namespace szg;
+﻿#include "SkeletonAssetBuilder.h"
 
 #include "./SkeletonAsset.h"
 #include "./SkeletonLibrary.h"
@@ -12,6 +10,8 @@ using namespace szg;
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
+
+using namespace szg;
 
 // 前方宣言
 static Affine ToAffine(const aiMatrix4x4& aiMatrix);

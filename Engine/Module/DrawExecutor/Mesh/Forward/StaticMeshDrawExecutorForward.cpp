@@ -1,11 +1,11 @@
-#include "StaticMeshDrawExecutorForward.h"
-
-using namespace szg;
+﻿#include "StaticMeshDrawExecutorForward.h"
 
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
+
+using namespace szg;
 
 StaticMeshDrawExecutorForward::StaticMeshDrawExecutorForward(std::shared_ptr<const PolygonMesh> asset_, u32 maxInstance) {
 	reinitialize(asset_, maxInstance);

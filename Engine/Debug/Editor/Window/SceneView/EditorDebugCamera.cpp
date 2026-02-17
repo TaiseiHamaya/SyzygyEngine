@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorDebugCamera.h"
-
-using namespace szg;
 
 #include <Library/Math/VectorConverter.h>
 
@@ -10,6 +8,8 @@ using namespace szg;
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraPerspectiveProjection.h"
 
 #include <imgui.h>
+
+using namespace szg;
 
 void EditorDebugCamera::initialize() {
 	auto projectionTemp = std::make_unique<CameraPerspectiveProjection>();

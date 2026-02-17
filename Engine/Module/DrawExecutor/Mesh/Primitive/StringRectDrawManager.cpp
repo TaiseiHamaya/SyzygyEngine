@@ -1,4 +1,4 @@
-#include "StringRectDrawManager.h"
+﻿#include "StringRectDrawManager.h"
 
 using namespace szg;
 

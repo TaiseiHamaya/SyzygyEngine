@@ -2,14 +2,14 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IEditorWindow.h"
+#include "../IEditorWindow.h"
 
 #include <memory>
 #include <string>
 
 #include <Library/Utility/Template/Reference.h>
 
-#include "../RemoteObject/RemoteSceneObject.h"
+#include "../../RemoteObject/RemoteSceneObject.h"
 
 namespace szg {
 

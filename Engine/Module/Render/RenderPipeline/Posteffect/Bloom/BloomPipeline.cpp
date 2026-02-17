@@ -1,10 +1,10 @@
 #include "BloomPipeline.h"
 
-using namespace szg;
-
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
+
+using namespace szg;
 
 void BloomPipeline::initialize() {
 	create_pipeline_state();
@@ -47,7 +47,7 @@ void BloomPipeline::create_pipeline_state() {
 		D3D12_FILTER_MIN_MAG_MIP_LINEAR,
 		D3D12_TEXTURE_ADDRESS_MODE_CLAMP
 	);
-	
+
 	std::unique_ptr<PSOBuilder> psoBuilder = std::make_unique<PSOBuilder>();
 	psoBuilder->blendstate();
 	psoBuilder->rasterizerstate();

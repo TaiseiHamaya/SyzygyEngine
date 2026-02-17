@@ -26,7 +26,7 @@ public:
 		std::optional<r32> fixDeltaSeconds{ std::nullopt };
 
 		std::optional<u32> maxFrameRate{ std::nullopt };
-	
+
 		bool hideWindowForce{ false };
 	};
 

@@ -60,7 +60,7 @@ public:
 		return *this;
 	}
 
-	operator const T&() const noexcept {
+	operator const T& () const noexcept {
 		return value;
 	}
 

@@ -2,7 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IEditorWindow.h"
+#include "../IEditorWindow.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 

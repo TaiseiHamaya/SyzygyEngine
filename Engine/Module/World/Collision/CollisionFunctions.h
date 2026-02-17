@@ -5,6 +5,8 @@
 #include "Engine/Module/World/Collision/Collider/AABBCollider.h"
 #include "Engine/Module/World/Collision/Collider/SphereCollider.h"
 
+namespace szg {
+
 bool Collision(Reference<SphereCollider> lhs, Reference<SphereCollider> rhs) {
 	Vector3 distance = lhs->world_position() - rhs->world_position();
 	r32 range = lhs->get_radius() + rhs->get_radius();
@@ -40,3 +42,5 @@ bool Collision(Reference<AABBCollider> aabb, Reference<SphereCollider> sphere) {
 bool Collision(Reference<SphereCollider> sphere, Reference<AABBCollider> aabb) {
 	return Collision(aabb, sphere);
 }
+
+} // namespace szg

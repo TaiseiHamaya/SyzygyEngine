@@ -1,10 +1,10 @@
-#include "ParticleBillboardPipeline.h"
-
-using namespace szg;
+﻿#include "ParticleBillboardPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 ParticleBillboardPipeline::ParticleBillboardPipeline() = default;
 

@@ -1,10 +1,10 @@
-#include "CameraOrthroProjection.h"
-
-using namespace szg;
+﻿#include "CameraOrthroProjection.h"
 
 #include <cstdlib>
 
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 void CameraOrthroProjection::initialize(r32 left_, r32 right_, r32 bottom_, r32 top_, r32 nearClip_, r32 farClip_) noexcept {
 	left = left_;

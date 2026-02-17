@@ -1,11 +1,11 @@
-#include "DxShaderReflection.h"
-
-using namespace szg;
+﻿#include "DxShaderReflection.h"
 
 #pragma warning(push, 0)
 
 #include "./DxcManager.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
+
+using namespace szg;
 
 //void DxShaderReflection::initialize(const ShaderBuilder& shader) {
 //	DxcBuffer vsBuffer = shader.vs_buffer();

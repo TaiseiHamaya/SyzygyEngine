@@ -1,8 +1,8 @@
-#include "InputTextFrame.h"
-
-using namespace szg;
+﻿#include "InputTextFrame.h"
 
 #include "Engine/Debug/Editor/EditorMain.h"
+
+using namespace szg;
 
 void szg::InputTextFrame::BeginFrame() noexcept {
 	auto& instance = GetInstance();

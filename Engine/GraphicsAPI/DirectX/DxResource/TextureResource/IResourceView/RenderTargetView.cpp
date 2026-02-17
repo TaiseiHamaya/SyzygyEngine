@@ -1,11 +1,11 @@
-#include "RenderTargetView.h"
-
-using namespace szg;
+﻿#include "RenderTargetView.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxDescriptorHeap/RTVDescriptorHeap/RTVDescriptorHeap.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ITextureResource.h"
+
+using namespace szg;
 
 void RenderTargetView::release() {
 	if (index.has_value()) {

@@ -1,6 +1,4 @@
-#include "LayerRenderSubtree.h"
-
-using namespace szg;
+﻿#include "LayerRenderSubtree.h"
 
 #include "Engine/Module/Render/RenderPipeline/Deferred/Lighting/DirectionalLightingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Deferred/Lighting/NonLightingPixelPipeline.h"
@@ -9,6 +7,8 @@ using namespace szg;
 #include "Engine/Module/Render/RenderPipeline/Deferred/Mesh/StaticMeshDeferredPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/FontRenderingNode/FontRenderingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Primitive/Rect3dPipeline.h"
+
+using namespace szg;
 
 void LayerRenderSubtree::setup() {
 	std::vector<std::shared_ptr<BaseRenderPipeline>> nodes;

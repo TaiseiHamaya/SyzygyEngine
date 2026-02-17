@@ -1,10 +1,10 @@
-#include "StaticMeshForwardPipeline.h"
-
-using namespace szg;
+﻿#include "StaticMeshForwardPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 StaticMeshForwardPipeline::StaticMeshForwardPipeline() = default;
 StaticMeshForwardPipeline::~StaticMeshForwardPipeline() noexcept = default;

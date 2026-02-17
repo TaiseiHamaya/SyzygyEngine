@@ -1,9 +1,9 @@
-#include "WorldCluster.h"
-
-using namespace szg;
+﻿#include "WorldCluster.h"
 
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/WorldInstanceLoader.h"
+
+using namespace szg;
 
 void WorldCluster::initialize() {
 	worldRoot.initialize();

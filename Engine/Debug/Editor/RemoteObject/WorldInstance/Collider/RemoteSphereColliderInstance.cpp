@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteSphereColliderInstance.h"
 
-using namespace szg;
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
-#include "../../../Window/EditorSceneView.h"
+using namespace szg;
 
 void RemoteSphereColliderInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<SphereCollider, void*>::update_preview(world, parentAffine);

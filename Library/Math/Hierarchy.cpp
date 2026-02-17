@@ -43,7 +43,7 @@ const Affine& Hierarchy::parent_affine_safe() const noexcept {
 }
 
 void Hierarchy::add_child(Reference<WorldInstance> instance) {
-	if(instance.is_null()) {
+	if (instance.is_null()) {
 		return;
 	}
 	children.emplace(instance->instance_id(), instance);

@@ -1,11 +1,11 @@
-#include "BaseRenderPipeline.h"
-
-using namespace szg;
+﻿#include "BaseRenderPipeline.h"
 
 #include <d3d12.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
+
+using namespace szg;
 
 BaseRenderPipeline::BaseRenderPipeline() = default;
 BaseRenderPipeline::~BaseRenderPipeline() noexcept = default;

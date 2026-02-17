@@ -1,6 +1,4 @@
-#include "StringRectDrawExecutor.h"
-
-using namespace szg;
+﻿#include "StringRectDrawExecutor.h"
 
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -8,6 +6,8 @@ using namespace szg;
 #include "Engine/Module/World/Mesh/Primitive/StringRectInstance.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
+
+using namespace szg;
 
 void StringRectDrawExecutor::reinitialize(BlendMode type_, u32 maxRenderingChar_, u32 maxInstance_) {
 	type = type_;

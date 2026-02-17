@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "FontAtlasBuilder.h"
-
-using namespace szg;
 
 #include <thread>
 
@@ -15,6 +13,8 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 using namespace msdf_atlas;
+
+using namespace szg;
 
 void FontAtlasBuilder::entry_point(const std::filesystem::path& inputFile, const std::filesystem::path& outputPath) {
 	ttfFilePath = inputFile;

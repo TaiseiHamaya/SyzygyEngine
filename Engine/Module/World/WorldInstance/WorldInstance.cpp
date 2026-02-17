@@ -1,8 +1,8 @@
-#include "WorldInstance.h"
-
-using namespace szg;
+﻿#include "WorldInstance.h"
 
 #include "Engine/Module/Manager/World/WorldRoot.h"
+
+using namespace szg;
 
 void WorldInstance::update_affine() {
 	if (!isActive) {

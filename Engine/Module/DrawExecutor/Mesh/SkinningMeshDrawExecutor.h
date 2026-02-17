@@ -26,7 +26,7 @@ public:
 	~SkinningMeshDrawExecutor() noexcept = default;
 
 	SkinningMeshDrawExecutor(std::shared_ptr<const PolygonMesh> mesh, std::shared_ptr<const SkeletonAsset> skeleton, u32 maxInstance);
-	
+
 	SZG_CLASS_MOVE_ONLY(SkinningMeshDrawExecutor)
 
 public:
@@ -37,7 +37,7 @@ public:
 private:
 	std::shared_ptr<const PolygonMesh> mesh;
 	std::shared_ptr<const SkeletonAsset> skeletonData;
-	
+
 	StructuredBuffer<TransformMatrixDataBuffer> matrices;
 	std::vector<StructuredBuffer<MaterialDataBufferRGB>> materials;
 	std::vector<MdStructuredBuffer<SkeletonMatrixPaletteWellBuffer>> matrixPalettes; // GPU用Matrix

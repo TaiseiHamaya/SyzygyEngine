@@ -1,6 +1,4 @@
-#include "Rect3dDrawExecutor.h"
-
-using namespace szg;
+﻿#include "Rect3dDrawExecutor.h"
 
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
@@ -8,6 +6,8 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
+
+using namespace szg;
 
 void Rect3dDrawExecutor::reinitialize(BlendMode type_, u32 maxInstance_) {
 	type = type_;
@@ -73,4 +73,3 @@ void Rect3dDrawExecutor::write_to_buffer(Reference<const Rect3d> instance) {
 		material[next].textureIndex = source.texture->index();
 	}
 }
-

@@ -1,6 +1,4 @@
-#include "WorldInstanceLoader.h"
-
-using namespace szg;
+﻿#include "WorldInstanceLoader.h"
 
 #include "Engine/Assets/AssetTypeEnum.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
@@ -26,6 +24,8 @@ using namespace szg;
 #define COLOR_RGB_SERIALIZER
 #define COLOR_RGBA_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void WorldInstanceLoader::setup(Reference<WorldRoot> worldRoot_) {
 	worldRoot = worldRoot_;

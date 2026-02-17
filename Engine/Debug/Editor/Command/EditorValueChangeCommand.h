@@ -51,7 +51,7 @@ void EditorValueChangeCommand<T>::undo() {
 template<typename T>
 class EditorValueChangeCommandLambda final : public IEditorCommand {
 public:
-	EditorValueChangeCommandLambda(std::function<T&()> function_, const T& recent_);
+	EditorValueChangeCommandLambda(std::function<T& ()> function_, const T& recent_);
 	~EditorValueChangeCommandLambda() = default;
 
 public:

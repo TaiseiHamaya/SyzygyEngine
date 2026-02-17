@@ -1,8 +1,8 @@
-#include "IAssetBuilder.h"
-
-using namespace szg;
+﻿#include "IAssetBuilder.h"
 
 #include "./AssetRootPath.h"
+
+using namespace szg;
 
 std::filesystem::path IAssetBuilder::ResolveFilePath(const std::filesystem::path& filePath, const std::string& subdirectory) {
 	// 正規化

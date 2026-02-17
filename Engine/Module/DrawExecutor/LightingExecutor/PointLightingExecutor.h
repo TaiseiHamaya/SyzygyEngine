@@ -16,7 +16,7 @@ public:
 	~PointLightingExecutor() = default;
 
 	PointLightingExecutor(u32 maxInstance);
-	
+
 	SZG_CLASS_MOVE_ONLY(PointLightingExecutor)
 
 public:

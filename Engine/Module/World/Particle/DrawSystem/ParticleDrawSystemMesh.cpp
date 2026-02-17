@@ -1,12 +1,12 @@
-#include "ParticleDrawSystemMesh.h"
-
-using namespace szg;
+﻿#include "ParticleDrawSystemMesh.h"
 
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 ParticleDrawSystemMesh::ParticleDrawSystemMesh(const std::string& meshName) {
 	set_mesh(meshName);

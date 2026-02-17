@@ -14,14 +14,14 @@ namespace EngineSettings {
 /// <summary>
 /// ログファイル名
 /// </summary>
-extern inline const std::filesystem::path LogFileName {
+extern inline const std::filesystem::path LogFileName{
 	std::format(L"{:%F-%H%M%S}.log", ChronoUtility::NowLocalSecond())
 };
 
 /// <summary>
 /// ログファイルディレクトリ
 /// </summary>
-extern inline const std::filesystem::path LogFilePath {
+extern inline const std::filesystem::path LogFilePath{
 	std::format(L"./Log/{}", EngineSettings::LogFileName.native())
 };
 

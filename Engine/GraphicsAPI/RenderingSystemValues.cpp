@@ -1,4 +1,4 @@
-#include "RenderingSystemValues.h"
+﻿#include "RenderingSystemValues.h"
 
 using namespace szg;
 

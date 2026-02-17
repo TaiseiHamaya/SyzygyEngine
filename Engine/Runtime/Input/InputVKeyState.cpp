@@ -1,8 +1,8 @@
-#include "InputVKeyState.h"
-
-using namespace szg;
+﻿#include "InputVKeyState.h"
 
 #include "Engine/Debug/Editor/EditorMain.h"
+
+using namespace szg;
 
 void szg::InputVKeyState::BeginFrame() noexcept {
 	auto& instance = GetInstance();

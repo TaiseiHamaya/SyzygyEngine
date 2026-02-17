@@ -2,7 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IEditorWindow.h"
+#include "../IEditorWindow.h"
 
 #include <Library/Utility/Template/Reference.h>
 

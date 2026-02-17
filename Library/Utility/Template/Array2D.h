@@ -35,5 +35,5 @@ private:
 
 template<typename T, size_t ROW, size_t COLUMN>
 constexpr Array2D<T, ROW, COLUMN>::Array2D() noexcept(std::is_nothrow_default_constructible<T>::value) {
-	data_ = {0};
+	data_ = { 0 };
 }

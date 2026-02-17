@@ -1,10 +1,8 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteSkinningMeshInstance.h"
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonAsset.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
@@ -17,6 +15,8 @@ using namespace szg;
 
 #define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 szg::RemoteSkinningMeshInstance::RemoteSkinningMeshInstance() noexcept = default;
 szg::RemoteSkinningMeshInstance::~RemoteSkinningMeshInstance() noexcept = default;

@@ -1,10 +1,10 @@
-#include "AudioManager.h"
-
-using namespace szg;
+﻿#include "AudioManager.h"
 
 #pragma comment(lib, "xaudio2.lib")
 
 #include "./AudioLibrary.h" 
+
+using namespace szg;
 
 void AudioManager::Initialize() {
 	auto& instance = GetInstance();

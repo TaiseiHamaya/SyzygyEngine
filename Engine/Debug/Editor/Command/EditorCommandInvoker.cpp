@@ -1,11 +1,11 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorCommandInvoker.h"
 
-using namespace szg;
-
 #include "IEditorCommand.h"
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 void EditorCommandInvoker::Execute(std::unique_ptr<IEditorCommand> command) {
 	auto& instance = GetInstance();

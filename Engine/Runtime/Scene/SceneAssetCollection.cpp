@@ -1,6 +1,4 @@
-#include "SceneAssetCollection.h"
-
-using namespace szg;
+﻿#include "SceneAssetCollection.h"
 
 #include <filesystem>
 #include <functional>
@@ -12,6 +10,8 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 SceneAssetCollection::SceneAssetCollection(const AssetListType& assets_, const AssetListType& lazyLoadAssets_) {
 	assets = assets_;

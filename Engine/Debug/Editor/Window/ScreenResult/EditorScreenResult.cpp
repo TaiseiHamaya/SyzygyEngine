@@ -1,14 +1,14 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorScreenResult.h"
-
-using namespace szg;
 
 #include <imgui.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxSwapChain/DxSwapChain.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ScreenTexture.h"
+
+using namespace szg;
 
 void EditorScreenResult::initialize(bool isActive_) {
 	isActive = isActive_;

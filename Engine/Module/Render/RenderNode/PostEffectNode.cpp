@@ -1,8 +1,8 @@
-#include "PostEffectNode.h"
-
-using namespace szg;
+﻿#include "PostEffectNode.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 void PostEffectNode::stack_command() {
 	data.postEffectPSO->preprocess();

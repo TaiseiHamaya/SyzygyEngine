@@ -77,7 +77,7 @@ public:// static関数
 	/// <param name="z">Z軸回転量</param>
 	/// <returns></returns>
 	static Matrix4x4 MakeRotateMatrix(const r32 x, const r32 y, const r32 z) noexcept;
-	
+
 	static Matrix4x4 MakeRotateMatrix(const Vector3& rotate) noexcept;
 
 	/// <summary>
@@ -120,7 +120,7 @@ public:// static関数
 	/// <param name="translate">移動</param>
 	/// <returns></returns>
 	static Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Quaternion& rotate, const Vector3& translate) noexcept;
-	
+
 	static Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate) noexcept;
 
 	/// <summary>

@@ -1,14 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneView.h"
 
-using namespace szg;
-
 #include <imgui.h>
 
-#include "../Core/EditorGizmo.h"
-#include "../RemoteObject/RemoteWorldObject.h"
-#include "EditorHierarchy.h"
+#include "../../Core/EditorGizmo.h"
+#include "../../RemoteObject/RemoteWorldObject.h"
+#include "../Hierarchy/EditorHierarchy.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -20,6 +18,8 @@ using namespace szg;
 #include "Engine/Module/Render/RenderPipeline/Forward/Mesh/StaticMeshForwardPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Primitive/Rect3dPipeline.h"
 #include "Engine/Module/Render/RenderTargetGroup/SwapChainRenderTargetGroup.h"
+
+using namespace szg;
 
 void EditorSceneView::initialize(bool isActive_) {
 	isActive = isActive_;

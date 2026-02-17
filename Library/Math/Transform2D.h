@@ -21,10 +21,10 @@ public:
 	void set_scale(const Vector2& scale_) noexcept;
 	void set_rotate(r32 rotate_) noexcept;
 	void set_translate(const Vector2& translate_) noexcept;
-	
+
 	void set_translate_x(r32 x) noexcept;
 	void set_translate_y(r32 y) noexcept;
-	
+
 	Matrix3x3 get_matrix() const noexcept;
 	Matrix4x4 get_matrix4x4_transform() const noexcept;
 	Matrix4x4 get_matrix4x4_padding() const;

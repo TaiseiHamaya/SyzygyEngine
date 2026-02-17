@@ -1,10 +1,10 @@
-#include "StringRectInstance.h"
-
-using namespace szg;
+﻿#include "StringRectInstance.h"
 
 #include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
 
 #include <Library/Utility/Tools/ConvertString.h>
+
+using namespace szg;
 
 StringRectInstance::StringRectInstance() noexcept = default;
 

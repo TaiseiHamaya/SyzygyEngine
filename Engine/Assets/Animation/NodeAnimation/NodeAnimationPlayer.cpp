@@ -1,11 +1,11 @@
-#include "NodeAnimationPlayer.h"
-
-using namespace szg;
+﻿#include "NodeAnimationPlayer.h"
 
 #include <cmath>
 
 #include "NodeAnimationAsset.h"
 #include "NodeAnimationLibrary.h"
+
+using namespace szg;
 
 template<typename T, T LerpFunction(const T&, const T&, r32) = std::lerp>
 T CalculateValue(const NodeAnimationAsset::AnimationCurve<T>& animationCurve, r32 time);

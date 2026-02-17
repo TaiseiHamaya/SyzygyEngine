@@ -1,6 +1,4 @@
-#include "TextureAssetBuilder.h"
-
-using namespace szg;
+﻿#include "TextureAssetBuilder.h"
 
 #include <comdef.h>
 #include <d3dx12.h>
@@ -11,6 +9,8 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/DxResource.h"
+
+using namespace szg;
 
 TextureAssetBuilder::TextureAssetBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_, "Texture");

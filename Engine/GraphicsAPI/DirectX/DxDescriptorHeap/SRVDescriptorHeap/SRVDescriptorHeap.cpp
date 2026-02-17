@@ -1,6 +1,4 @@
-#include "SRVDescriptorHeap.h"
-
-using namespace szg;
+﻿#include "SRVDescriptorHeap.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -10,6 +8,8 @@ using namespace szg;
 #include <mutex>
 
 std::mutex srvHeapMutex;
+
+using namespace szg;
 
 SRVDescriptorHeap& SRVDescriptorHeap::GetInstance() noexcept {
 	static SRVDescriptorHeap instance{};

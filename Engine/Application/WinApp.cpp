@@ -1,7 +1,5 @@
 #include "WinApp.h"
 
-using namespace szg;
-
 #include <dbghelp.h>
 #include <timeapi.h>
 
@@ -19,7 +17,7 @@ using namespace szg;
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
-#include "Engine/Debug/Editor/Window/EditorLogWindow.h"
+#include "Engine/Debug/Editor/Window/Logger/EditorLogWindow.h"
 #include "Engine/GraphicsAPI/DirectX/DxCore.h"
 #include "Engine/Runtime/Clock/WorldClock.h"
 #include "Engine/Runtime/Input/Input.h"
@@ -41,11 +39,15 @@ extern "C" HANDLE WINAPI GetProcessHandleFromHwnd(_In_ HWND hwnd);
 #include <pix_win.h>
 
 #include <imgui.h>
+
+using namespace szg;
+
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #endif // DEBUG_FEATURES_ENABLE
 
 // ウィンドウプロシージャ
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
 #ifdef DEBUG_FEATURES_ENABLE
 	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))

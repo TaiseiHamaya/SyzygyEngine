@@ -1,10 +1,10 @@
-#include "SkinningMeshForwardPipeline.h"
-
-using namespace szg;
+﻿#include "SkinningMeshForwardPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 SkinningMeshForwardPipeline::SkinningMeshForwardPipeline() = default;
 SkinningMeshForwardPipeline::~SkinningMeshForwardPipeline() noexcept = default;

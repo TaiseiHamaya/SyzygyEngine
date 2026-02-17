@@ -19,7 +19,7 @@ protected:
 	using CollisionRecentKeyType = SortedPair<CallbackTarget>; // 衝突管理キー
 	using CallbackMapKey = SortedPair<const std::string>; //  
 	// コールバック関数
-	struct CallbackFunctions { 
+	struct CallbackFunctions {
 		std::function<void(CallbackTarget, CallbackTarget)> onContinue;
 		std::function<void(CallbackTarget, CallbackTarget)> onEnter;
 		std::function<void(CallbackTarget, CallbackTarget)> onExit;

@@ -7,11 +7,11 @@
 #include <filesystem>
 #include <unordered_map>
 
-#include "../Window/RenderDagImNode/PostEffectImNode.h"
-#include "../Window/RenderDagImNode/ResultImNode.h"
-#include "../Window/RenderDagImNode/StaticTextureImNode.h"
-#include "../Window/RenderDagImNode/WorldLayerRenderImNode.h"
-#include "Engine/Debug/Editor/Window/EditorRenderDAG.h"
+#include "../Window/RenderDAG/EditorRenderDAG.h"
+#include "../Window/RenderDAG/PostEffectImNode.h"
+#include "../Window/RenderDAG/ResultImNode.h"
+#include "../Window/RenderDAG/StaticTextureImNode.h"
+#include "../Window/RenderDAG/WorldLayerRenderImNode.h"
 
 /// <summary>
 /// RenderPath保存用関数オブジェクト

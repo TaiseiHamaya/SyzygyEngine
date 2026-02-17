@@ -1,15 +1,15 @@
-#include "RemoteRect3dInstance.h"
+﻿#include "RemoteRect3dInstance.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 
 #define COLOR_RGBA_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void RemoteRect3dInstance::setup() {
 	debugVisual = std::make_unique<Rect3d>();

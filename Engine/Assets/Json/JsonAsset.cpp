@@ -1,12 +1,12 @@
-#include "JsonAsset.h"
-
-using namespace szg;
+﻿#include "JsonAsset.h"
 
 #include <fstream>
 
 #include "Engine/Application/Logger.h"
 
 #include "../IAssetBuilder.h"
+
+using namespace szg;
 
 JsonAsset::JsonAsset(const std::filesystem::path& file) {
 	load(file);

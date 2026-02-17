@@ -1,12 +1,12 @@
-#include "DxPipelineState.h"
-
-using namespace szg;
+﻿#include "DxPipelineState.h"
 
 #include <Library/Utility/Tools/ConvertString.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 
 #include <format>
+
+using namespace szg;
 
 void DxPipelineState::initialize(Microsoft::WRL::ComPtr<ID3D12RootSignature> rootSignature_, Microsoft::WRL::ComPtr<ID3D12PipelineState> graphicsPipelineState_) {
 	rootSignature = rootSignature_;

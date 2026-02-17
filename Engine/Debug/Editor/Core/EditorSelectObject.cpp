@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSelectObject.h"
 
-using namespace szg;
-
 #include "../RemoteObject/IRemoteObject.h"
+
+using namespace szg;
 
 void EditorSelectObject::set_item(Reference<IRemoteObject> object_, EditorSelectObjectBody::TransformData transform_) {
 	select.object = object_;

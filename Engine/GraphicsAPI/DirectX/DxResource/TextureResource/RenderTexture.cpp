@@ -1,11 +1,11 @@
-#include "RenderTexture.h"
-
-using namespace szg;
+﻿#include "RenderTexture.h"
 
 #include <format>
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
+
+using namespace szg;
 
 RenderTexture::~RenderTexture() {
 	srv.release();

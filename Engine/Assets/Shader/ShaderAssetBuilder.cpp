@@ -1,6 +1,4 @@
-#include "ShaderAssetBuilder.h"
-
-using namespace szg;
+﻿#include "ShaderAssetBuilder.h"
 
 #include "./ShaderAsset.h"
 #include "./ShaderLibrary.h"
@@ -14,6 +12,8 @@ constexpr wstring_literal extension[] = {
 	L"CS.hlsl",
 	L"MS.hlsl",
 };
+
+using namespace szg;
 
 ShaderAssetBuilder::ShaderAssetBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_, "HLSL");

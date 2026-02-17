@@ -1,11 +1,11 @@
-#include "DxCommand.h"
-
-using namespace szg;
+﻿#include "DxCommand.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 
 #include <d3dx12.h>
+
+using namespace szg;
 
 void DxCommand::Initialize() {
 	GetInstance();
@@ -96,26 +96,21 @@ void DxCommand::create_command() {
 	hr = device->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(commandQueue.GetAddressOf()));
 	szgCriticalIf(FAILED(hr), "Failed create command queue.");
 
-
 	// ----------コマンドアロケータの生成----------
 	hr = device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(commandAllocator.GetAddressOf()));
 	szgCriticalIf(FAILED(hr), "Failed create command allocator.");
-
 
 	// ----------コマンドリストを生成する----------
 	hr = device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, commandAllocator.Get(), nullptr, IID_PPV_ARGS(commandList.GetAddressOf()));
 	szgCriticalIf(FAILED(hr), "Failed create command list.");
 
-
 	// ----------コマンドキューの生成----------
 	hr = device->CreateCommandQueue(&commandQueueDesc, IID_PPV_ARGS(commandQueueTexture.GetAddressOf()));
 	szgCriticalIf(FAILED(hr), "Failed create command queue.");
 
-
 	// ----------テクスチャ用コマンドアロケータの生成----------
 	hr = device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&commandAllocatorTexture));
 	szgCriticalIf(FAILED(hr), "Failed create command allocator");
-
 
 	// ----------テクスチャ用コマンドリストを生成する----------
 	hr = device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, commandAllocatorTexture.Get(), nullptr, IID_PPV_ARGS(commandListTexture.GetAddressOf()));

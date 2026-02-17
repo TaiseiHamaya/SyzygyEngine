@@ -1,6 +1,4 @@
-#include "ParticleEmitterInstance.h"
-
-using namespace szg;
+﻿#include "ParticleEmitterInstance.h"
 
 #include <Library/Math/Definition.h>
 #include <Library/Utility/Tools/RandomEngine.h>
@@ -11,6 +9,8 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 ParticleEmitterInstance::ParticleEmitterInstance(std::filesystem::path jsonFile, u32 MaxParticle) :
 	WorldInstance(),

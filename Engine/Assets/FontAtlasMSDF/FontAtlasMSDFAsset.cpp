@@ -1,11 +1,11 @@
-#include "FontAtlasMSDFAsset.h"
-
-using namespace szg;
+﻿#include "FontAtlasMSDFAsset.h"
 
 #include <Library/Externals/msdf-atlas-gen/msdf-atlas-gen/msdf-atlas-gen.h>
 
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/Module/World/Mesh/Primitive/CharRectStruct.h"
+
+using namespace szg;
 
 FontAtlasMSDFAsset::FontAtlasMSDFAsset(Data data_, std::vector<std::pair<GlyphData, GlyphDataGpu>>&& glyphsData_, std::unordered_map<u32, u32>&& glyphMap_, std::shared_ptr<const TextureAsset> texture_) :
 	data(data_),

@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorWorldView.h"
-
-using namespace szg;
 
 #include "./EditorWorldGridBuffer.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
@@ -14,6 +12,8 @@ using namespace szg;
 #include <imgui.h>
 
 using namespace std::string_literals;
+
+using namespace szg;
 
 EditorWorldView::EditorWorldView() = default;
 EditorWorldView::~EditorWorldView() = default;

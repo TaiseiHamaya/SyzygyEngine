@@ -1,11 +1,11 @@
-#include "DepthStencilView.h"
-
-using namespace szg;
+﻿#include "DepthStencilView.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxDescriptorHeap/DSVDescroptorHeap/DSVDescriptorHeap.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ITextureResource.h"
+
+using namespace szg;
 
 void DepthStencilView::release() {
 	if (index.has_value()) {

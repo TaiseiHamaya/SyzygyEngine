@@ -1,4 +1,4 @@
-#include "DebugValues.h"
+﻿#include "DebugValues.h"
 
 using namespace szg;
 

@@ -1,10 +1,10 @@
-#include "DxcManager.h"
-
-using namespace szg;
+﻿#include "DxcManager.h"
 
 #include "Engine/Application/Logger.h"
 
 #pragma comment(lib, "dxcompiler.lib")
+
+using namespace szg;
 
 void DxcManager::Initialize() {
 	GetInstance().initialize();

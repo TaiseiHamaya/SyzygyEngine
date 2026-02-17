@@ -2,19 +2,19 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-using namespace szg;
-
 #include <vector>
 
-#include "../Window/RenderDagImNode/PostEffectImNode.h"
-#include "../Window/RenderDagImNode/ResultImNode.h"
-#include "../Window/RenderDagImNode/StaticTextureImNode.h"
-#include "../Window/RenderDagImNode/WorldLayerRenderImNode.h"
+#include "../Window/RenderDAG/PostEffectImNode.h"
+#include "../Window/RenderDAG/ResultImNode.h"
+#include "../Window/RenderDAG/StaticTextureImNode.h"
+#include "../Window/RenderDAG/WorldLayerRenderImNode.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 u64 RenderDAGImNodeLoader::entry_point(const std::string& sceneName, Reference<ImFlow::ImNodeFlow> imNodeFlow_, std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	imNodeFlow = imNodeFlow_;
@@ -120,10 +120,10 @@ std::shared_ptr<WorldLayerRenderImNode> RenderDAGImNodeLoader::load_as_world_ren
 	json.get_to(data.gBufferViewport.height);
 	json.get_to(data.gBufferViewport.minDepth);
 	json.get_to(data.gBufferViewport.maxDepth);
-	
+
 	json.get_to(data.layerScissor.topLeft);
 	json.get_to(data.layerScissor.bottomRight);
-	
+
 	result->set_data(data);
 	result->set_node_id(counter);
 	return result;

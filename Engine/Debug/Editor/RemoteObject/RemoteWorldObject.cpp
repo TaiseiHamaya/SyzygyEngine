@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteWorldObject.h"
-
-using namespace szg;
 
 #include <format>
 
@@ -11,7 +9,9 @@ using namespace szg;
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
 #include "../Core/EditorDandDManager.h"
-#include "../Window/EditorSceneView.h"
+#include "../Window/SceneView/EditorSceneView.h"
+
+using namespace szg;
 
 RemoteWorldObject::RemoteWorldObject() = default;
 RemoteWorldObject::~RemoteWorldObject() = default;
@@ -20,8 +20,8 @@ void RemoteWorldObject::setup() {
 	id = nextUseId;
 	++nextUseId;
 	sceneView->register_world(this);
-	
-	for(auto& child : children) {
+
+	for (auto& child : children) {
 		if (child) {
 			child->setup();
 		}
@@ -29,7 +29,7 @@ void RemoteWorldObject::setup() {
 }
 
 void RemoteWorldObject::update_preview(Reference<RemoteWorldObject>, Reference<Affine>) {
-	for(auto& child : children) {
+	for (auto& child : children) {
 		if (child) {
 			child->update_preview(this, nullptr);
 		}
@@ -121,7 +121,7 @@ nlohmann::json RemoteWorldObject::serialize() const {
 }
 
 void RemoteWorldObject::on_spawn() {
-	for(auto& child : children) {
+	for (auto& child : children) {
 		if (child) {
 			child->on_spawn();
 		}

@@ -1,7 +1,5 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 #include "ImGuiLoadManager.h"
-
-using namespace szg;
 
 #include <format>
 #include <imgui.h>
@@ -10,6 +8,8 @@ using namespace szg;
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 ImGuiLoadManager::ImGuiLoadManager() {
 	meshCurrentPath = "./SyzygyEngine/EngineResources";

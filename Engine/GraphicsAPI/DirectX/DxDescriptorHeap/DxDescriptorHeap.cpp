@@ -1,9 +1,9 @@
-#include "DxDescriptorHeap.h"
-
-using namespace szg;
+﻿#include "DxDescriptorHeap.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
+
+using namespace szg;
 
 const D3D12_CPU_DESCRIPTOR_HANDLE DxDescriptorHeap::get_cpu_handle(u32 index) const noexcept {
 	D3D12_CPU_DESCRIPTOR_HANDLE result = heapStartCPU; // スタートから

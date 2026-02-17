@@ -1,10 +1,10 @@
-#include "RenderTargetCollection.h"
-
-using namespace szg;
+﻿#include "RenderTargetCollection.h"
 
 #include "Engine/Module/Render/RenderPipeline/Deferred/DeferredAdaptor.h"
 #include "Engine/Module/Render/RenderTargetGroup/SingleRenderTarget.h"
 #include <Engine/Application/Logger.h>
+
+using namespace szg;
 
 std::pair<Reference<BaseRenderTargetGroup>, Reference<RenderTexture>> RenderTargetCollection::create_render_target_group(const nlohmann::json& json) {
 	std::unique_ptr<SingleRenderTarget> result;

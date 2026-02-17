@@ -1,11 +1,11 @@
-#include "SceneManager2.h"
-
-using namespace szg;
+﻿#include "SceneManager2.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Runtime/Scene/BaseSceneFactory.h"
+
+using namespace szg;
 
 void SceneManager2::Initialize() {
 	SceneManager2& instance = GetInstance();

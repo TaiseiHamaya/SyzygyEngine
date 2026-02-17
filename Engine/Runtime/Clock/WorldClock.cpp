@@ -1,6 +1,4 @@
-#include "WorldClock.h"
-
-using namespace szg;
+﻿#include "WorldClock.h"
 
 #include <ratio>
 #include <thread>
@@ -8,6 +6,8 @@ using namespace szg;
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 
 namespace chrono = std::chrono;
+
+using namespace szg;
 
 void WorldClock::Initialize() {
 	auto& instance = GetInstance();

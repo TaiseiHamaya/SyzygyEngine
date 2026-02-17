@@ -1,9 +1,9 @@
-#include "RenderPath.h"
-
-using namespace szg;
+﻿#include "RenderPath.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Module/Render/RenderPipeline/BaseRenderPipeline.h"
+
+using namespace szg;
 
 void RenderPath::initialize(std::vector<std::shared_ptr<BaseRenderPipeline>>&& list) {
 	// サイズ0のPathはバグるので止める
