@@ -1,12 +1,11 @@
-name: DevelopBuild
+name: BuildCheck
 
 env:
-  CONFIGURATION: Develop
   SOLUTION_FILE_PATH: BuildTest/project/BuildTest.sln
   SOLUTION_NAME: BuildTest
   BATCH_FILE_URL1: https://raw.githubusercontent.com/TaiseiHamaya/SyzygyEngine/refs/heads/
   BATCH_FILE_URL2: /ProjectGeneratorTool/CreateSolution.ps1
-  
+
 on:
   pull_request:
     branches:
@@ -15,6 +14,10 @@ on:
 jobs:
   build:
     runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Develop, Release]
     steps:
       - name: Download CreateSolution.ps1
         run: |
@@ -29,19 +32,15 @@ jobs:
         run: .\CreateSolution.ps1 ${{ env.SOLUTION_NAME }} ${{ github.head_ref }}
 
       - name: Build
-        run: msbuild ${{env.SOLUTION_FILE_PATH}} /p:Platform=x64,Configuration=${{env.CONFIGURATION}}
+        run: msbuild ${{ env.SOLUTION_FILE_PATH }} /p:Platform=x64,Configuration=${{ matrix.configuration }}
 
-  notification:
-    needs: build
-    if: ${{ always() }}
-    runs-on: ubuntu-22.04
-    steps:
       - name: Discord Notification
+        if: ${{ always() }}
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          title: Build Result(${{ needs.build.result }})
+          title: BuildCheck ${{ matrix.configuration }} Result(${{ job.status }})
           username: GitHub
           avatar_url: https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
-          status: ${{ needs.build.result }}
+          status: ${{ job.status }}
