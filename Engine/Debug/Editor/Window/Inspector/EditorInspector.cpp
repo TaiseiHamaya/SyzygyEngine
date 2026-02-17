@@ -6,8 +6,8 @@ using namespace szg;
 
 #include <imgui.h>
 
-#include "../Core/EditorSelectObject.h"
-#include "../RemoteObject/IRemoteObject.h"
+#include "../../Core/EditorSelectObject.h"
+#include "../../RemoteObject/IRemoteObject.h"
 
 void EditorInspector::initialize() {
 	isActive = true;

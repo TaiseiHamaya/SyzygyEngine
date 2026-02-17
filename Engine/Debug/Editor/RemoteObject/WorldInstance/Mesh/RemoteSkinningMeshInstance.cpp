@@ -4,7 +4,7 @@
 
 using namespace szg;
 
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonAsset.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"

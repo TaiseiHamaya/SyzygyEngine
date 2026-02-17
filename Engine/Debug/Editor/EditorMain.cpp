@@ -8,19 +8,20 @@ using namespace szg;
 
 #include <imgui.h>
 
+#include "./Adapter/EditorAssetSaver.h"
+#include "./Core/EditorAssetContentsCollector.h"
 #include "./Core/EditorDandDManager.h"
 #include "./Core/EditorSceneAssetCollection.h"
-#include "./Window/EditorLogWindow.h"
-#include "Command/EditorCommandInvoker.h"
-#include "Command/EditorCreateObjectCommand.h"
-#include "Command/EditorDeleteObjectCommand.h"
-#include "Command/EditorSelectCommand.h"
+#include "./Command/EditorCommandInvoker.h"
+#include "./Command/EditorCreateObjectCommand.h"
+#include "./Command/EditorDeleteObjectCommand.h"
+#include "./Command/EditorSelectCommand.h"
+#include "./Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
+#include "./Window/Logger/EditorLogWindow.h"
+
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
-#include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
-#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
-#include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
 
 void EditorMain::Initialize() {

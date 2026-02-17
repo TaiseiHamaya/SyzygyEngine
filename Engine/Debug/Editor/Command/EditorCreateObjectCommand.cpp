@@ -5,7 +5,7 @@
 using namespace szg;
 
 #include "../RemoteObject/EditorDeletedObjectPool.h"
-#include "../Window/EditorSceneView.h"
+#include "../Window/SceneView/EditorSceneView.h"
 
 EditorCreateObjectCommand::EditorCreateObjectCommand(Reference<IRemoteObject> parent_, std::unique_ptr<IRemoteObject> generatedObjectTemp_) {
 	parent = parent_;

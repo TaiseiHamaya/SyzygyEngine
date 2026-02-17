@@ -2,8 +2,6 @@
 
 #include "EditorGizmo.h"
 
-using namespace szg;
-
 #include <imgui.h>
 
 #include "./EditorSelectObject.h"
@@ -14,8 +12,10 @@ using namespace szg;
 #include "../Command/EditorValueChangeCommandHandler.h"
 #include "../RemoteObject/IRemoteObject.h"
 #include "../RemoteObject/RemoteWorldObject.h"
-#include "../Window/EditorWorldView/EditorWorldView.h"
+#include "../Window/SceneView/EditorWorldView.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
+
+using namespace szg;
 
 EditorGizmo::EditorGizmo() noexcept = default;
 EditorGizmo::~EditorGizmo() noexcept = default;

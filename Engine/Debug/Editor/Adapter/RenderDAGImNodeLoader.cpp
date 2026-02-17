@@ -6,10 +6,10 @@ using namespace szg;
 
 #include <vector>
 
-#include "../Window/RenderDagImNode/PostEffectImNode.h"
-#include "../Window/RenderDagImNode/ResultImNode.h"
-#include "../Window/RenderDagImNode/StaticTextureImNode.h"
-#include "../Window/RenderDagImNode/WorldLayerRenderImNode.h"
+#include "../Window/RenderDAG/PostEffectImNode.h"
+#include "../Window/RenderDAG/ResultImNode.h"
+#include "../Window/RenderDAG/StaticTextureImNode.h"
+#include "../Window/RenderDAG/WorldLayerRenderImNode.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 

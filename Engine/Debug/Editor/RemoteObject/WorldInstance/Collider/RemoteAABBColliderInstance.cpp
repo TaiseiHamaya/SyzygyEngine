@@ -4,7 +4,7 @@
 
 using namespace szg;
 
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 void RemoteAABBColliderInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<AABBCollider, void*>::update_preview(world, parentAffine);

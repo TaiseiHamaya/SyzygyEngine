@@ -13,7 +13,7 @@ using namespace szg;
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
 #include "../EditorMain.h"
-#include "../Window/EditorRenderDAG.h"
+#include "../Window/RenderDAG/EditorRenderDAG.h"
 #include "./IRemoteObject.h"
 #include "./RemoteWorldObject.h"
 

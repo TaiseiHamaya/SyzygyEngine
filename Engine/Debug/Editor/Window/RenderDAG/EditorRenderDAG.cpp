@@ -14,13 +14,13 @@ using namespace szg;
 #include <imgui.h>
 #include <ImNodeFlow/include/ImNodeFlow.h>
 
-#include "../Adapter/RenderDAGImNodeSaver.h"
-#include "../Adapter/RenderDAGImNodeLoader.h"
-#include "./RenderDagImNode/PostEffectImNode.h"
-#include "./RenderDagImNode/ResultImNode.h"
-#include "./RenderDagImNode/StaticTextureImNode.h"
-#include "./RenderDagImNode/WorldLayerRenderImNode.h"
-#include "./RenderDagImNode/IRenderDagImNode.h"
+#include "./PostEffectImNode.h"
+#include "./ResultImNode.h"
+#include "./StaticTextureImNode.h"
+#include "./WorldLayerRenderImNode.h"
+#include "./IRenderDagImNode.h"
+#include "../../Adapter/RenderDAGImNodeSaver.h"
+#include "../../Adapter/RenderDAGImNodeLoader.h"
 #include "Engine/Application/Logger.h"
 
 EditorRenderDAG::EditorRenderDAG() {

@@ -2,30 +2,30 @@
 
 #include "EditorHierarchy.h"
 
-using namespace szg;
-
 #include <imgui.h>
 #include <imgui_stdlib.h>
 
-#include "../Adapter/EditorSceneSerializer.h"
-#include "./EditorSceneView.h"
-#include "../EditorMain.h"
-#include "../Command/EditorCommandInvoker.h"
-#include "../Command/EditorCommandScope.h"
-#include "../Command/EditorCreateObjectCommand.h"
-#include "../Command/EditorDeleteObjectCommand.h"
-#include "../RemoteObject/FolderObject.h"
-#include "../RemoteObject/WorldInstance/Camera/RemoteCamera3dInstance.h"
-#include "../RemoteObject/WorldInstance/Collider/RemoteAABBColliderInstance.h"
-#include "../RemoteObject/WorldInstance/Collider/RemoteSphereColliderInstance.h"
-#include "../RemoteObject/WorldInstance/Light/RemoteDirectionalLightInstance.h"
-#include "../RemoteObject/WorldInstance/Light/RemotePointLightInstance.h"
-#include "../RemoteObject/WorldInstance/Mesh/RemoteSkinningMeshInstance.h"
-#include "../RemoteObject/WorldInstance/Mesh/RemoteStaticMeshInstance.h"
-#include "../RemoteObject/WorldInstance/Primitive/RemoteRect3dInstance.h"
-#include "../RemoteObject/WorldInstance/RemoteWorldInstance.h"
-#include "../RemoteObject/WorldInstance/StringRect/RemoteStringRectInstance.h"
+#include "../../Adapter/EditorSceneSerializer.h"
+#include "../../Command/EditorCommandInvoker.h"
+#include "../../Command/EditorCommandScope.h"
+#include "../../Command/EditorCreateObjectCommand.h"
+#include "../../Command/EditorDeleteObjectCommand.h"
+#include "../../EditorMain.h"
+#include "../../RemoteObject/FolderObject.h"
+#include "../../RemoteObject/WorldInstance/Camera/RemoteCamera3dInstance.h"
+#include "../../RemoteObject/WorldInstance/Collider/RemoteAABBColliderInstance.h"
+#include "../../RemoteObject/WorldInstance/Collider/RemoteSphereColliderInstance.h"
+#include "../../RemoteObject/WorldInstance/Light/RemoteDirectionalLightInstance.h"
+#include "../../RemoteObject/WorldInstance/Light/RemotePointLightInstance.h"
+#include "../../RemoteObject/WorldInstance/Mesh/RemoteSkinningMeshInstance.h"
+#include "../../RemoteObject/WorldInstance/Mesh/RemoteStaticMeshInstance.h"
+#include "../../RemoteObject/WorldInstance/Primitive/RemoteRect3dInstance.h"
+#include "../../RemoteObject/WorldInstance/RemoteWorldInstance.h"
+#include "../../RemoteObject/WorldInstance/StringRect/RemoteStringRectInstance.h"
+#include "../SceneView/EditorSceneView.h"
 #include "Engine/Assets/Json/JsonAsset.h"
+
+using namespace szg;
 
 void EditorHierarchy::setup(Reference<EditorSelectObject> select_, Reference<EditorSceneView> sceneView_) {
 	select = select_;

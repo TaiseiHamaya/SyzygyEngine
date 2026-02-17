@@ -4,7 +4,7 @@
 
 using namespace szg;
 
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"

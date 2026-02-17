@@ -313,12 +313,6 @@
     <Filter Include="Engine\Debug\Editor\Window\AssetBrowser">
       <UniqueIdentifier>{1F0D683D-E146-446A-8139-3165E1E3C3BD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Debug\Editor\Window\EditorWorldView">
-      <UniqueIdentifier>{B8145AF3-AAEF-4231-AEC1-1E8321FE562C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Debug\Editor\Window\RenderDagImNode">
-      <UniqueIdentifier>{CE9F2508-3D91-45AA-8E56-632644ABEBD2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\DSVDescroptorHeap">
       <UniqueIdentifier>{1B260608-7275-44EB-9153-D5FB3639AC9C}</UniqueIdentifier>
     </Filter>
@@ -499,6 +493,24 @@
     <Filter Include="Library\Externals\freetype\include\freetype\internal\services">
       <UniqueIdentifier>{DFD05730-D2A5-4E6A-9D2A-5017CA4BB2A8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\SceneView">
+      <UniqueIdentifier>{B8145AF3-AAEF-4231-AEC1-1E8321FE562C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\RenderDAG">
+      <UniqueIdentifier>{CE9F2508-3D91-45AA-8E56-632644ABEBD2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\Hierarchy">
+      <UniqueIdentifier>{45a3f6f3-5913-4184-9a40-e7987dbf796a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\Inspector">
+      <UniqueIdentifier>{56f5f3d3-0c73-4032-a623-8f6ffee6b148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\Logger">
+      <UniqueIdentifier>{14e1b4a4-ad89-42c1-8caa-caeededdd3d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\Window\ScreenResult">
+      <UniqueIdentifier>{51fcd6c0-79ed-4c2a-bae3-599f43d7c663}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp">
@@ -522,8 +534,8 @@
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp">
       <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
@@ -711,44 +723,26 @@
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorHierarchy.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorInspector.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorLogWindow.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorRenderDAG.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorSceneView.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorScreenResult.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorDebugCamera.cpp">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldView.cpp">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\IEditorWindow.cpp">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\ResultImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\StaticTextureImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.cpp">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -1068,8 +1062,8 @@
     <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp">
       <Filter>Engine\Assets\FontAtlasMSDF</Filter>
@@ -1422,8 +1416,8 @@
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h">
       <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
@@ -1508,9 +1502,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstanceType.h">
       <Filter>Engine\Module\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorScreenResult.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Application\ArgumentParser.h">
       <Filter>Engine\Application</Filter>
@@ -1710,41 +1701,26 @@
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorHierarchy.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorInspector.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorLogWindow.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorRenderDAG.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorSceneView.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorDebugCamera.h">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldView.h">
-      <Filter>Engine\Debug\Editor\Window\EditorWorldView</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\IEditorWindow.h">
       <Filter>Engine\Debug\Editor\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\ResultImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\StaticTextureImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.h">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -2067,8 +2043,8 @@
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDagImNode</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h">
       <Filter>Engine\Assets\FontAtlasMSDF</Filter>
@@ -2931,6 +2907,24 @@
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.cpp">
+      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.cpp">
+      <Filter>Engine\Debug\Editor\Window\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.cpp">
+      <Filter>Engine\Debug\Editor\Window\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.cpp">
+      <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="EngineResources\HLSL\Document.txt" />
@@ -2941,6 +2935,24 @@
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h">
       <Filter>Engine\Debug\Editor\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.h">
+      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.h">
+      <Filter>Engine\Debug\Editor\Window\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.h">
+      <Filter>Engine\Debug\Editor\Window\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.h">
+      <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,9 +6,9 @@ using namespace szg;
 
 #include <imgui.h>
 
-#include "../Core/EditorGizmo.h"
-#include "../RemoteObject/RemoteWorldObject.h"
-#include "EditorHierarchy.h"
+#include "../../Core/EditorGizmo.h"
+#include "../../RemoteObject/RemoteWorldObject.h"
+#include "../Hierarchy/EditorHierarchy.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"

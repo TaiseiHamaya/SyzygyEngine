@@ -4,8 +4,8 @@
 
 using namespace szg;
 
-#include "../../../Window/EditorSceneView.h"
 #include "./DebugProjectionVariantVisitor.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 
 void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {

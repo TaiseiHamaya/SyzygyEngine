@@ -4,7 +4,7 @@
 
 using namespace szg;
 
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
 #define VECTOR2_SERIALIZER
