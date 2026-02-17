@@ -2927,9 +2927,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="EngineResources\HLSL\Document.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
