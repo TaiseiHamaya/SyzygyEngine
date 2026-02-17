@@ -1,12 +1,12 @@
-#include "WorldClockProfiler.h"
+﻿#include "WorldClockProfiler.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
-
-using namespace szg;
 
 #include "Engine/Runtime/Clock/WorldClock.h"
 
 #include <imgui.h>
+
+using namespace szg;
 
 void WorldClockProfiler::update() {
 	// 平均フレーム秒を算出

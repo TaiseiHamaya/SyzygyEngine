@@ -3,7 +3,7 @@
 using namespace szg;
 
 SkeletonAsset::SkeletonAsset(Skeleton& skeleton_, std::unordered_map<std::string, VertexBuffer<VertexInfluenceData>>& influenceBuffers_) :
-	skeletonData(std::move(skeleton_)), 
+	skeletonData(std::move(skeleton_)),
 	influenceBuffers(std::move(influenceBuffers_)) {
 }
 

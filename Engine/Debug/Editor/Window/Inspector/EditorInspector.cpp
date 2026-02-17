@@ -1,13 +1,13 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorInspector.h"
 
-using namespace szg;
-
 #include <imgui.h>
 
-#include "../Core/EditorSelectObject.h"
-#include "../RemoteObject/IRemoteObject.h"
+#include "../../Core/EditorSelectObject.h"
+#include "../../RemoteObject/IRemoteObject.h"
+
+using namespace szg;
 
 void EditorInspector::initialize() {
 	isActive = true;

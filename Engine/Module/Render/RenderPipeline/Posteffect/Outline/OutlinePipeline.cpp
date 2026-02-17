@@ -1,12 +1,12 @@
-#include "OutlinePipeline.h"
-
-using namespace szg;
+﻿#include "OutlinePipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/DepthStencilTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/RenderTexture.h"
+
+using namespace szg;
 
 OutlinePipeline::OutlinePipeline() = default;
 

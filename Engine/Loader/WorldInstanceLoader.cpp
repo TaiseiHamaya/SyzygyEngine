@@ -1,7 +1,6 @@
-#include "WorldInstanceLoader.h"
+﻿#include "WorldInstanceLoader.h"
 
-using namespace szg;
-
+#include "Engine/Assets/AssetTypeEnum.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Module/Manager/World/WorldRoot.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraOrthroProjection.h"
@@ -25,6 +24,8 @@ using namespace szg;
 #define COLOR_RGB_SERIALIZER
 #define COLOR_RGBA_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void WorldInstanceLoader::setup(Reference<WorldRoot> worldRoot_) {
 	worldRoot = worldRoot_;
@@ -110,7 +111,7 @@ void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
 
-	instance->reset_mesh(json.value("MeshName", ""));
+	instance->reset_mesh(json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], ""));
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
 
@@ -119,8 +120,8 @@ void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json
 		for (u32 i = 0; i < materialsJson.size() && i < instance->get_materials().size(); ++i) {
 			auto& material = instance->get_materials()[i];
 			const auto& materialJson = materialsJson[i];
-			if (materialJson.contains("Texture")) {
-				material.texture = TextureLibrary::GetTexture(materialJson["Texture"].get<std::string>());
+			if (materialJson.contains(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)])) {
+				material.texture = TextureLibrary::GetTexture(materialJson[ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)]].get<std::string>());
 			}
 			if (materialJson.contains("Color")) {
 				materialJson["Color"].get_to(material.color);
@@ -152,7 +153,7 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
 	}
 
-	instance->reset_animated_mesh(json.value("MeshName", ""), json.value("AnimationName", ""), json.value("IsLoop", false));
+	instance->reset_animated_mesh(json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], ""), json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Animation)], ""), json.value("IsLoop", false));
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
 
@@ -161,8 +162,8 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 		for (u32 i = 0; i < materialsJson.size() && i < instance->get_materials().size(); ++i) {
 			auto& material = instance->get_materials()[i];
 			const auto& materialJson = materialsJson[i];
-			if (materialJson.contains("Texture")) {
-				material.texture = TextureLibrary::GetTexture(materialJson["Texture"].get<std::string>());
+			if (materialJson.contains(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)])) {
+				material.texture = TextureLibrary::GetTexture(materialJson[ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)]].get<std::string>());
 			}
 			if (materialJson.contains("Color")) {
 				materialJson["Color"].get_to(material.color);
@@ -203,7 +204,7 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 	instance->set_layer(json.value("Layer", 0u));
 
 	nlohmann::json materialJson = json.value("Material", nlohmann::json::object());
-	instance->get_material().texture = TextureLibrary::GetTexture(materialJson.value("Texture", ""));
+	instance->get_material().texture = TextureLibrary::GetTexture(materialJson.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)], ""));
 	instance->get_material().color = materialJson.value("Color", CColorRGBA::WHITE);
 	instance->get_material().uvTransform = materialJson.value("UV Transform", Transform2D{});
 	instance->get_material().lightingType = materialJson.value("LightingType", LighingType::None);
@@ -224,7 +225,7 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 	}
 
 	instance->initialize(
-		json.value("Font", ""),
+		json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Font)], ""),
 		json.value("Size", 10.0f),
 		json.value("Pivot", CVector2::ZERO)
 	);

@@ -1,6 +1,4 @@
-#include "PolygonMeshBuilder.h"
-
-using namespace szg;
+﻿#include "PolygonMeshBuilder.h"
 
 #include <algorithm>
 #include <sstream>
@@ -17,6 +15,8 @@ using namespace szg;
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
+
+using namespace szg;
 
 bool LoadMeshAssimp(const std::filesystem::path& filePath, std::vector<PolygonMesh::MeshData>& meshData, std::unordered_map<std::string, PolygonMesh::MeshMaterialData>& materialData);
 

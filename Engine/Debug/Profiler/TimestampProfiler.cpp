@@ -1,12 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "TimestampProfiler.h"
-
-using namespace szg;
 
 #include <format>
 
 #include <imgui.h>
+
+using namespace szg;
 
 void TimestampProfiler::debug_gui() {
 	auto flags = ImGuiTableFlags_RowBg | ImGuiTableFlags_Borders | ImGuiTableFlags_NoHostExtendX;
@@ -38,7 +38,6 @@ void TimestampProfiler::clear_timestamps() {
 
 void TimestampProfiler::timestamp(const std::string& name) {
 	auto now = clock::now();
-
 
 	if (!timestamps.empty()) {
 		auto prev = timestamps.rbegin();

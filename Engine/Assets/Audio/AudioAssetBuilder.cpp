@@ -1,6 +1,4 @@
-#include "AudioAssetBuilder.h"
-
-using namespace szg;
+﻿#include "AudioAssetBuilder.h"
 
 #include <array>
 #include <cstring>
@@ -12,10 +10,11 @@ using namespace szg;
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
+using namespace szg;
+
 bool IsEqualArrayChunkId(const std::array<i8, 4>& read, std::string&& id) {
 	return std::strncmp(read.data(), id.c_str(), 4) == 0;
 }
-
 
 AudioAssetBuilder::AudioAssetBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_, "Audio");

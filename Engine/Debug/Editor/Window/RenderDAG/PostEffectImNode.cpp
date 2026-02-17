@@ -1,10 +1,10 @@
-#include "PostEffectImNode.h"
+﻿#include "PostEffectImNode.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-using namespace szg;
-
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
+
+using namespace szg;
 
 PostEffectImNode::PostEffectImNode() {
 	setTitle("PostEffect");

@@ -28,7 +28,7 @@ public:
 
 	struct DragDataAsset {
 		AssetType assetType;
-		std::string filePath;
+		std::string fileName;
 	};
 
 public:

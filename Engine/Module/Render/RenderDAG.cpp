@@ -1,13 +1,13 @@
 #include "RenderDAG.h"
 
-using namespace szg;
-
 #include <format>
 
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Module/Render/RenderNode/IRenderNode.h"
 #include "Engine/Loader/RenderPath/RenderNodeLoader.h"
 #include "Engine/Runtime/Scene/Scene.h"
+
+using namespace szg;
 
 RenderDAG::RenderDAG() = default;
 RenderDAG::~RenderDAG() noexcept = default;
@@ -20,7 +20,7 @@ void RenderDAG::setup(std::string_view sceneName, Reference<Scene> scene) {
 	RenderNodeLoader loader;
 	loader.setup(scene, renderTargetCollection);
 
-	if(json.cget().is_null()) {
+	if (json.cget().is_null()) {
 		szgWarning("RenderDAG::setup: Failed to load RenderPath.json: {}", sceneName);
 		return;
 	}

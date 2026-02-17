@@ -1,7 +1,5 @@
 #include "Logger.h"
 
-using namespace szg;
-
 #include <Windows.h>
 
 #include <dbghelp.h>
@@ -18,7 +16,9 @@ using namespace szg;
 
 #include "./WinApp.h"
 #include "Engine/Application/EngineSettings.h"
-#include "Engine/Debug/Editor/Window/EditorLogWindow.h"
+#include "Engine/Debug/Editor/Window/Logger/EditorLogWindow.h"
+
+using namespace szg;
 
 static std::wstring ToFilenameW(const std::source_location& sourceLocation) {
 	std::string_view fullPath = sourceLocation.file_name();

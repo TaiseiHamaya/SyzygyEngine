@@ -13,7 +13,7 @@ namespace szg {
 template<typename T>
 class EditorValueChangeCommand final : public IEditorCommand {
 public:
-	EditorValueChangeCommand(Reference<T> target_);
+	EditorValueChangeCommand(Reference<T> target_, const T& recent_);
 	~EditorValueChangeCommand() = default;
 
 public:
@@ -28,9 +28,9 @@ private:
 };
 
 template<typename T>
-EditorValueChangeCommand<T>::EditorValueChangeCommand(Reference<T> target_) {
+EditorValueChangeCommand<T>::EditorValueChangeCommand(Reference<T> target_, const T& recent_) {
 	target = target_;
-	recent = *target;
+	recent = recent_;
 }
 
 template<typename T>
@@ -51,7 +51,7 @@ void EditorValueChangeCommand<T>::undo() {
 template<typename T>
 class EditorValueChangeCommandLambda final : public IEditorCommand {
 public:
-	EditorValueChangeCommandLambda(std::function<T&()> function_);
+	EditorValueChangeCommandLambda(std::function<T& ()> function_, const T& recent_);
 	~EditorValueChangeCommandLambda() = default;
 
 public:
@@ -66,9 +66,9 @@ private:
 };
 
 template<typename T>
-EditorValueChangeCommandLambda<T>::EditorValueChangeCommandLambda(std::function<T& ()> function_) {
+EditorValueChangeCommandLambda<T>::EditorValueChangeCommandLambda(std::function<T& ()> function_, const T& recent_) {
 	valueFunc = function_;
-	recent = valueFunc();
+	recent = recent_;
 }
 
 template<typename T>

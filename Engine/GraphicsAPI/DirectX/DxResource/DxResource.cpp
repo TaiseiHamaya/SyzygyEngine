@@ -1,9 +1,9 @@
-#include "DxResource.h"
-
-using namespace szg;
+﻿#include "DxResource.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
+
+using namespace szg;
 
 Microsoft::WRL::ComPtr<ID3D12Resource>& DxResource::get_resource() noexcept {
 	return resource;

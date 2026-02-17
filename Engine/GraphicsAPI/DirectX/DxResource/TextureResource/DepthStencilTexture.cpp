@@ -1,11 +1,11 @@
-#include "DepthStencilTexture.h"
-
-using namespace szg;
+﻿#include "DepthStencilTexture.h"
 
 #include <format>
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
+
+using namespace szg;
 
 DepthStencilTexture::~DepthStencilTexture() {
 	srv.release();

@@ -2,7 +2,7 @@
 
 using namespace szg;
 
-BaseCollider::BaseCollider() : 
+BaseCollider::BaseCollider() :
 	WorldInstance() {
 	groupName = nullptr;
 }

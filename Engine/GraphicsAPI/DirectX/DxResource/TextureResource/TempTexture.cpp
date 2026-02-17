@@ -1,10 +1,10 @@
-#include "TempTexture.h"
-
-using namespace szg;
+﻿#include "TempTexture.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
+
+using namespace szg;
 
 TempTexture::~TempTexture() {
 	srv.release();

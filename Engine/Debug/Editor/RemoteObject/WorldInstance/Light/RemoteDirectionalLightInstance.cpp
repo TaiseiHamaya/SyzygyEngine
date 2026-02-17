@@ -1,16 +1,15 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteDirectionalLightInstance.h"
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
+using namespace szg;
+
 void RemoteDirectionalLightInstance::setup() {
-	RemoteInstanceType::setup();
 	debugVisual = std::make_unique<Rect3d>();
 	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
 	debugVisual->get_material().lightingType = LighingType::None;
@@ -18,10 +17,10 @@ void RemoteDirectionalLightInstance::setup() {
 
 	instance = std::make_unique<DirectionalLightInstance>();
 
-	on_spawn();
-	
 	sceneView->register_directional_light(query_world(), instance);
 	sceneView->register_rect(query_world(), debugVisual);
+
+	RemoteInstanceType::setup();
 }
 
 void RemoteDirectionalLightInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {

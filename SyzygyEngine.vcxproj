@@ -184,15 +184,16 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetField.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp" />
     <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp" />
     <ClCompile Include="Engine\Application\ArgumentParser.cpp" />
     <ClCompile Include="Engine\Application\CrashHandler.cpp" />
@@ -255,19 +256,19 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteSkinningMeshInstance.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteStaticMeshInstance.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorHierarchy.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorInspector.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorLogWindow.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorRenderDAG.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorSceneView.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorScreenResult.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorDebugCamera.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldView.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\IEditorWindow.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\ResultImNode.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\StaticTextureImNode.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.cpp" />
     <ClCompile Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.cpp" />
     <ClCompile Include="Engine\Debug\ImGui\ImGuiLoadManager\ImGuiLoadManager.cpp" />
     <ClCompile Include="Engine\Debug\ImGui\ImGuiManager\ImGuiManager.cpp" />
@@ -374,7 +375,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Runtime\Input\Input.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp" />
     <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp" />
@@ -563,6 +564,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h" />
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h" />
     <ClInclude Include="Engine\Assets\AssetRootPath.h" />
     <ClInclude Include="Engine\Assets\AssetTypeEnum.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h" />
@@ -574,7 +577,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h" />
     <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldGridBuffer.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h" />
     <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h" />
@@ -603,7 +606,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.h" />
     <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h" />
     <ClInclude Include="Engine\Module\World\WorldInstanceType.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorScreenResult.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.h" />
     <ClInclude Include="Engine\Application\ArgumentParser.h" />
     <ClInclude Include="Engine\Application\CrashHandler.h" />
     <ClInclude Include="Engine\Application\EngineSettings.h" />
@@ -670,18 +673,18 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteSkinningMeshInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteStaticMeshInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorHierarchy.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorInspector.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorLogWindow.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorRenderDAG.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorSceneView.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorDebugCamera.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\EditorWorldView\EditorWorldView.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\IEditorWindow.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\PostEffectImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\ResultImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\StaticTextureImNode.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\WorldLayerRenderImNode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\ResultImNode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\StaticTextureImNode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.h" />
     <ClInclude Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.h" />
     <ClInclude Include="Engine\Debug\ImGui\ImGuiJsonEditor\ValueEditorObject.h" />
     <ClInclude Include="Engine\Debug\ImGui\ImGuiLoadManager\ImGuiLoadManager.h" />
@@ -789,7 +792,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h" />
     <ClInclude Include="Engine\Runtime\Scene\Scene.h" />
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h" />
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDagImNode\IRenderDagImNode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h" />
     <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h" />
@@ -1229,9 +1232,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="EngineResources\HLSL\Document.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

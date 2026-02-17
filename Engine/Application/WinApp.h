@@ -46,7 +46,7 @@ public:
 	/// フレーム終了処理
 	/// </summary>
 	static void EndFrame();
-	
+
 
 	/// <summary>
 	/// 終了処理

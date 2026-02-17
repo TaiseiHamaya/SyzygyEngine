@@ -22,7 +22,7 @@ public:
 	SZG_CLASS_MOVE_ONLY(EditorAssetSaver)
 
 public:
-	void setup(Reference<const EditorRenderDAG> dagEditor_, Reference<const RemoteSceneObject> scene_);
+	void setup(Reference<const EditorRenderDAG> dagEditor_);
 
 	/// <summary>
 	/// "filePath / Assets.json"に出力
@@ -31,13 +31,14 @@ public:
 	void save(const std::filesystem::path& filePath);
 
 private:
+	void collect_assets();
+
 	void collect_shaders();
 
 	void save_to_json(const std::filesystem::path& filePath);
 
 private:
 	Reference<const EditorRenderDAG> dagEditor;
-	Reference<const RemoteSceneObject> scene;
 
 	SceneAssetCollection sceneAssetCollection;
 };

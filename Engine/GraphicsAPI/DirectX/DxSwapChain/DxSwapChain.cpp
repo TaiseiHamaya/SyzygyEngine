@@ -1,6 +1,4 @@
-#include "DxSwapChain.h"
-
-using namespace szg;
+﻿#include "DxSwapChain.h"
 
 #include <memory>
 
@@ -13,6 +11,8 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ScreenTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxSystemValues.h"
 #include "Engine/Module/Render/RenderTargetGroup/SwapChainRenderTargetGroup.h"
+
+using namespace szg;
 
 void DxSwapChain::Initialize() {
 	auto& instance = GetInstance();

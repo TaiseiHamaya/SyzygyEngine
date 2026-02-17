@@ -2,20 +2,20 @@
 
 #include "EditorCommandReparent.h"
 
-using namespace szg;
-
 #include "Engine/Application/Logger.h"
 
+using namespace szg;
+
 EditorCommandReparent::EditorCommandReparent(Reference<IRemoteObject> target_, Reference<IRemoteObject> recent, Reference<IRemoteObject> next) {
-	if(!target_) {
+	if (!target_) {
 		szgWarning("Target is nullptr.");
 		return;
 	}
-	if(!recent) {
+	if (!recent) {
 		szgWarning("Recent parent is nullptr.");
 		return;
 	}
-	if(!next) {
+	if (!next) {
 		szgWarning("Next parent is nullptr.");
 		return;
 	}

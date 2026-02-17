@@ -1,10 +1,10 @@
-#include "SingleRenderTarget.h"
-
-using namespace szg;
+﻿#include "SingleRenderTarget.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/DepthStencilTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/RenderTexture.h"
+
+using namespace szg;
 
 void SingleRenderTarget::initialize(Reference<RenderTexture> texture_) {
 	texture = texture_;

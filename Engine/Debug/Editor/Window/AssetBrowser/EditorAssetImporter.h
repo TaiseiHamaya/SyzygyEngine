@@ -5,6 +5,8 @@
 #include <filesystem>
 #include <optional>
 
+#include <Library/Utility/Template/Reference.h>
+
 #include "./EditorAssetOptimizer.h"
 
 namespace szg {
@@ -21,6 +23,9 @@ private:
 	void show_load_popup();
 
 	void execute_import();
+
+public:
+	Reference<EditorAssetOptimizer> optimizer_mut();
 
 public:
 	struct PackageLoadInfo {

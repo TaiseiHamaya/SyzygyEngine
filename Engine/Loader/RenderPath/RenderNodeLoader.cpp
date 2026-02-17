@@ -1,6 +1,4 @@
-#include "RenderNodeLoader.h"
-
-using namespace szg;
+﻿#include "RenderNodeLoader.h"
 
 #include "./PostEffectPSOLoader.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
@@ -14,6 +12,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 RenderNodeLoader::RenderNodeLoader() = default;
 RenderNodeLoader::~RenderNodeLoader() noexcept = default;

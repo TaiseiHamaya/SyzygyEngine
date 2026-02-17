@@ -1,8 +1,8 @@
-#include "Rect3d.h"
-
-using namespace szg;
+﻿#include "Rect3d.h"
 
 #include <Library/Math/VectorConverter.h>
+
+using namespace szg;
 
 Rect3d::Rect3d() noexcept :
 	IPrimitiveInstance() {

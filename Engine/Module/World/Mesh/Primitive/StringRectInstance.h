@@ -44,7 +44,7 @@ public:
 	void set_pivot(const Vector2& pivot);
 	const Vector2& pivot_imm() const;
 	const Vector2& offset_imm() const;
-	
+
 	/// <summary>
 	/// 文字列の再生成
 	/// </summary>

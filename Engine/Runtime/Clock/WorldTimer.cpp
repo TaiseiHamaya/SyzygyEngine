@@ -1,8 +1,8 @@
-#include "WorldTimer.h"
-
-using namespace szg;
+﻿#include "WorldTimer.h"
 
 #include "./WorldClock.h"
+
+using namespace szg;
 
 void WorldTimer::ahead(r32 scale) {
 	timer += WorldClock::DeltaSeconds() * scale;

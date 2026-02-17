@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorLogWindow.h"
-
-using namespace szg;
 
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -10,6 +8,8 @@ using namespace szg;
 #include "Engine/Application/Logger.h"
 
 using namespace std::string_literals;
+
+using namespace szg;
 
 void EditorLogWindow::Allocate() {
 	auto& instance = GetInstance();

@@ -1,11 +1,11 @@
-#include "DirectionalLightingPipeline.h"
-
-using namespace szg;
+﻿#include "DirectionalLightingPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
 #include "Engine/Module/Render/RenderTargetGroup/MultiRenderTarget.h"
+
+using namespace szg;
 
 DirectionalLightingPipeline::DirectionalLightingPipeline() = default;
 

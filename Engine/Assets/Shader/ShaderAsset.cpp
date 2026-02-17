@@ -1,4 +1,4 @@
-#include "ShaderAsset.h"
+﻿#include "ShaderAsset.h"
 
 using namespace szg;
 

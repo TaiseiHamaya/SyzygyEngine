@@ -44,7 +44,7 @@ void WorldLayerRenderImNode::draw() {
 
 		ImGui::TreePop();
 	}
-	
+
 	if (ImGui::TreeNodeEx("Scissor", treeNodeFlags)) {
 		data.layerScissor.topLeft.show_gui();
 		data.layerScissor.bottomRight.show_gui();

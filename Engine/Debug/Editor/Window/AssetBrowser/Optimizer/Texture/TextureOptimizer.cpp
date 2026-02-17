@@ -1,4 +1,4 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "TextureOptimizer.h"
 

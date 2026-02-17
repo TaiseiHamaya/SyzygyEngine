@@ -1,6 +1,4 @@
-#include "SkeletonLibrary.h"
-
-using namespace szg;
+﻿#include "SkeletonLibrary.h"
 
 #include "./SkeletonAsset.h"
 #include "./SkeletonAssetBuilder.h"
@@ -12,6 +10,8 @@ using namespace szg;
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>
 #endif // _DEBUG
+
+using namespace szg;
 
 void SkeletonLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない

@@ -1,6 +1,4 @@
-#include "CollisionManager.h"
-
-using namespace szg;
+﻿#include "CollisionManager.h"
 
 #include <ranges>
 
@@ -8,6 +6,8 @@ using namespace szg;
 
 #include "Engine/Module/World/Collision/CollisionFunctions.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
+
+using namespace szg;
 
 CollisionManager::CollisionManager() {
 #ifdef DEBUG_FEATURES_ENABLE

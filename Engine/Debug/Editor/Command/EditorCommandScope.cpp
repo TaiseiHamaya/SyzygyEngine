@@ -1,12 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorCommandScope.h"
-
-using namespace szg;
 
 #include "EditorCommandInvoker.h"
 
 static i32 indent{ 0 };
+
+using namespace szg;
 
 EditorCommandScopeBegin::EditorCommandScopeBegin() : level(indent) {
 }

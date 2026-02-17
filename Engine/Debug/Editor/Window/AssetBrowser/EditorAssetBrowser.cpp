@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetBrowser.h"
-
-using namespace szg;
 
 #include <imgui.h>
 #include <imgui_stdlib.h>
@@ -12,6 +10,8 @@ using namespace szg;
 
 #include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+
+using namespace szg;
 
 void EditorAssetBrowser::draw() {
 	ImGui::Begin("Asset", &isActive);
@@ -32,9 +32,6 @@ void EditorAssetBrowser::draw() {
 
 	// 右クリックメニュー
 	draw_right_click_menu();
-
-	// Drag＆Drop関連
-	handle_drag_and_drop();
 
 	// ショートカットキーの処理
 	update_shortcut();
@@ -67,7 +64,7 @@ void szg::EditorAssetBrowser::draw_header() {
 	// 現在のディレクトリを表示
 	if (rootType == AssetRootType::Unselect) {
 		ImGui::Text(
-			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::Unselect)], selectFileName).c_str()
+			std::format("{}->{}", ROOT_TAG[static_cast<i32>(AssetRootType::Unselect)], selectFileName.string()).c_str()
 		);
 	}
 	else {
@@ -180,18 +177,24 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 
 	if (ImGui::BeginPopup("AssetBrowserRightClickMenu")) {
 		// エクスプローラーで開く
-		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / selectFileName;
+		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
+		std::filesystem::path filePath = directory / selectFileName;
 		if (ImGui::MenuItem("Open in Explorer")) {
-			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		}
+
+		// パスのコピー
+		if (ImGui::MenuItem("Copy Path")) {
+			ImGui::SetClipboardText(filePath.string().c_str());
 		}
 
 		if (selectFileName.empty() && rootType == AssetRootType::Game) {
 			// フォルダーの作成
 			if (ImGui::MenuItem("Create Folder")) {
-				std::filesystem::path newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / "NewFolder";
+				std::filesystem::path newFolderPath = directory / "NewFolder";
 				i32 count = 1;
 				while (std::filesystem::exists(newFolderPath)) {
-					newFolderPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / std::format("NewFolder({})", count);
+					newFolderPath = directory / std::format("NewFolder({})", count);
 					++count;
 				}
 				std::error_code ec;
@@ -202,7 +205,7 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 				else {
 					szgInformation("Created folder: {}", newFolderPath.string());
 					selectFileName = newFolderPath.filename().string();
-					newFileName = selectFileName;
+					newFileName = selectFileName.string();
 					isRenaming = true;
 				}
 			}
@@ -212,12 +215,12 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			// ファイル・フォルダの削除
 			if (ImGui::MenuItem("Delete")) {
 				std::error_code ec;
-				std::filesystem::remove_all(directory, ec);
+				std::filesystem::remove_all(filePath, ec);
 				if (ec) {
 					szgError("Failed to delete file or directory: {}", ec.message());
 				}
 				else {
-					szgInformation("Deleted file or directory: {}", directory.string());
+					szgInformation("Deleted file or directory: {}", filePath.string());
 					selectFileName.clear();
 				}
 			}
@@ -225,7 +228,14 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			// リネーム
 			if (ImGui::MenuItem("Rename")) {
 				isRenaming = true;
-				newFileName = selectFileName;
+				newFileName = selectFileName.string();
+			}
+
+			// 最適化をする
+			if (assetImporter.optimizer_mut()->is_support_optimization(selectFileName.extension())) {
+				if (ImGui::MenuItem("Optimize")) {
+					assetImporter.optimizer_mut()->optimize_asset(filePath, directory);
+				}
 			}
 		}
 
@@ -233,7 +243,36 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 	}
 }
 
-void szg::EditorAssetBrowser::handle_drag_and_drop() {
+void szg::EditorAssetBrowser::handle_drag_and_drop(bool isDirectory, const std::string& fileNameString, const std::string& extension) {
+	// Drag source
+	bool canDrag =
+		rootType == AssetRootType::Game ||
+		(rootType == AssetRootType::Engine && !isDirectory);
+	if (canDrag && ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
+		AssetType assetType = isDirectory ? AssetType::Unknown : EditorAssetContentsCollector::GetAssetTypeByExtension(extension);
+		EditorDandDManager::BeginDragAsset(assetType, fileNameString);
+		ImGui::Text(fileNameString.c_str());
+		ImGui::EndDragDropSource();
+	}
+
+	// Drop target（ディレクトリへの移動）
+	if (isDirectory && rootType == AssetRootType::Game) {
+		if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
+			std::filesystem::path srcPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / dropData->fileName;
+			std::filesystem::path dstPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileNameString / dropData->fileName;
+			std::error_code ec;
+			std::filesystem::rename(srcPath, dstPath, ec);
+			if (ec) {
+				szgError("Failed to move: {}", ec.message());
+			}
+			else {
+				szgInformation("Moved: {} -> {}", srcPath.string(), dstPath.string());
+				if (selectFileName == dropData->fileName) {
+					selectFileName.clear();
+				}
+			}
+		}
+	}
 }
 
 void szg::EditorAssetBrowser::draw_file_content(const std::filesystem::path& fileName, bool isDirectory, i32 idx) {
@@ -289,40 +328,12 @@ void szg::EditorAssetBrowser::draw_file_content(const std::filesystem::path& fil
 	ImGui::PopStyleColor();
 	ImGui::PopFont();
 
-	// Drag source
-	if (rootType != AssetRootType::Unselect) {
-		bool canDrag = !isDirectory || rootType == AssetRootType::Game;
-		if (canDrag && ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
-			AssetType assetType = isDirectory ? AssetType::Unknown : EditorAssetContentsCollector::GetAssetTypeByExtension(fileName.extension().string());
-			EditorDandDManager::BeginDragAsset(assetType, fileNameString);
-			ImGui::Text(fileNameString.c_str());
-			ImGui::EndDragDropSource();
-		}
-	}
-
-	// Drop target（ディレクトリへの移動）
-	if (isDirectory && rootType == AssetRootType::Game) {
-		if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
-			std::filesystem::path srcPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / dropData->filePath;
-			std::filesystem::path dstPath = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory / fileNameString / dropData->filePath;
-			std::error_code ec;
-			std::filesystem::rename(srcPath, dstPath, ec);
-			if (ec) {
-				szgError("Failed to move: {}", ec.message());
-			}
-			else {
-				szgInformation("Moved: {} -> {}", srcPath.string(), dstPath.string());
-				if (selectFileName == dropData->filePath) {
-					selectFileName.clear();
-				}
-			}
-		}
-	}
-
 	// シングルクリックで選択
 	if (isSelected) {
 		selectFileName = fileNameString;
 	}
+
+	handle_drag_and_drop(isDirectory, fileNameString, fileName.extension().string());
 
 	// ダブルクリックでフォルダ移動またはファイルオープン
 	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left)) {
@@ -349,7 +360,7 @@ void szg::EditorAssetBrowser::draw_file_content(const std::filesystem::path& fil
 		ImGui::SetKeyboardFocusHere(); // フォーカスを当てる
 		ImGui::SetNextItemWidth(iconSize); // アイコン幅に合わせる
 		ImGui::InputText(
-			std::format("##Rename{}", selectFileName).c_str(),
+			std::format("##Rename{}", selectFileName.string()).c_str(),
 			&newFileName,
 			ImGuiInputTextFlags_AutoSelectAll |
 			ImGuiInputTextFlags_EnterReturnsTrue |
@@ -408,7 +419,7 @@ void szg::EditorAssetBrowser::update_shortcut() {
 	if (ImGui::Shortcut(ImGuiKey_F2)) {
 		if (!selectFileName.empty() && !isRenaming && rootType == AssetRootType::Game) {
 			isRenaming = true;
-			newFileName = selectFileName;
+			newFileName = selectFileName.string();
 		}
 	}
 

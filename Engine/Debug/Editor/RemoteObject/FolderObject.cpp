@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "FolderObject.h"
-
-using namespace szg;
 
 #include <format>
 
@@ -11,6 +9,8 @@ using namespace szg;
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
 #include "../Core/EditorDandDManager.h"
+
+using namespace szg;
 
 void FolderObject::setup() {
 	for (auto& child : children) {
@@ -26,6 +26,10 @@ void FolderObject::update_preview(Reference<RemoteWorldObject> world, Reference<
 
 void FolderObject::draw_inspector() {
 	hierarchyName.show_gui();
+
+	ImGui::Separator();
+
+	ImGui::TextColored(ImVec4{ 0.5f, 0.5f, 0.5f, 1.0f }, "\ue88e Only editor");
 }
 
 void FolderObject::draw_hierarchy(Reference<const EditorSelectObject> select) {

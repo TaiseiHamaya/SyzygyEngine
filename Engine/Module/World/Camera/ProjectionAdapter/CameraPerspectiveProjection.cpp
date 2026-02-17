@@ -1,11 +1,11 @@
-#include "CameraPerspectiveProjection.h"
-
-using namespace szg;
+﻿#include "CameraPerspectiveProjection.h"
 
 #include <cmath>
 #include <cstdlib>
 
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 void CameraPerspectiveProjection::initialize(r32 fovY_, r32 aspectRatio_, r32 nearClip_, r32 farClip_) noexcept {
 	fovY = fovY_;

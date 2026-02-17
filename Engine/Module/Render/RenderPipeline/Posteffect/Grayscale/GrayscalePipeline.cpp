@@ -1,6 +1,4 @@
-#include "GrayscalePipeline.h"
-
-using namespace szg;
+﻿#include "GrayscalePipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
@@ -10,6 +8,8 @@ using namespace szg;
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>
 #endif // _DEBUG
+
+using namespace szg;
 
 GrayscalePipeline::GrayscalePipeline() = default;
 

@@ -1,6 +1,4 @@
-#include "NodeAnimationLibrary.h"
-
-using namespace szg;
+﻿#include "NodeAnimationLibrary.h"
 
 #include <mutex>
 
@@ -10,6 +8,8 @@ using namespace szg;
 #include "./NodeAnimationAssetBuilder.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+
+using namespace szg;
 
 void NodeAnimationLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない

@@ -1,6 +1,4 @@
-#include "DxCore.h"
-
-using namespace szg;
+﻿#include "DxCore.h"
 
 #include <dxgidebug.h>
 
@@ -17,6 +15,8 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxSwapChain/DxSwapChain.h"
 #include "Engine/GraphicsAPI/DirectX/DxCompiler/DxcManager.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 DxCore::DxCore() = default;
 

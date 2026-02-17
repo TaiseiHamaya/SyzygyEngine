@@ -2,11 +2,11 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IEditorWindow.h"
+#include "../IEditorWindow.h"
 
 #include <unordered_map>
 
-#include "EditorWorldView/EditorWorldView.h"
+#include "./EditorWorldView.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 #include "Engine/Module/DrawExecutor/LightingExecutor/DirectionalLightingExecutor.h"
 #include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"

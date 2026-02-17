@@ -1,10 +1,10 @@
-#include "ParticleDrawSystemRect.h"
-
-using namespace szg;
+﻿#include "ParticleDrawSystemRect.h"
 
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 ParticleDrawSystemRect::ParticleDrawSystemRect(std::shared_ptr<const TextureAsset> texture_) {
 	texture = texture_;

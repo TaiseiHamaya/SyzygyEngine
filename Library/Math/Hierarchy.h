@@ -24,13 +24,13 @@ public:
 	void set_parent(Reference<szg::WorldInstance> instance) noexcept;
 
 	bool has_parent() const noexcept;
-	
+
 	void reset_parent() noexcept;
-	
+
 	void add_child(Reference<szg::WorldInstance> instance);
 
 	void remove_child(Reference<szg::WorldInstance> instance) noexcept;
-	
+
 	Reference<const szg::WorldInstance> parent_imm() const noexcept;
 	Reference<szg::WorldInstance> parent_mut() noexcept;
 
@@ -39,7 +39,7 @@ public:
 
 	const Affine& parent_affine() const;
 	const Affine& parent_affine_safe() const noexcept;
-	
+
 
 private:
 	Reference<szg::WorldInstance> parent;

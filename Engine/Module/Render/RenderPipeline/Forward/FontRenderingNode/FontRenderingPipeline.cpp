@@ -1,11 +1,11 @@
 #include "FontRenderingPipeline.h"
 
-using namespace szg;
-
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 FontRenderingPipeline::FontRenderingPipeline() = default;
 FontRenderingPipeline::~FontRenderingPipeline() noexcept = default;
@@ -40,7 +40,7 @@ void FontRenderingPipeline::create_pipeline_state(PsoBlendMode blendMode) {
 
 	std::unique_ptr<PSOBuilder> psoBuilder = std::make_unique<PSOBuilder>();
 	psoBuilder->depth_state(
-		RenderingSystemValues::GetDepthStencilTexture()->get_as_dsv()->get_format(), 
+		RenderingSystemValues::GetDepthStencilTexture()->get_as_dsv()->get_format(),
 		blendMode == PsoBlendMode::None ? D3D12_DEPTH_WRITE_MASK_ALL : D3D12_DEPTH_WRITE_MASK_ZERO
 	);
 	psoBuilder->rasterizerstate();

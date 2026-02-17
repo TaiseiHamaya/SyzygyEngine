@@ -1,8 +1,8 @@
-#include "TextureAsset.h"
-
-using namespace szg;
+﻿#include "TextureAsset.h"
 
 #include <Library/Utility/Tools/ConvertString.h>
+
+using namespace szg;
 
 TextureAsset::TextureAsset(Microsoft::WRL::ComPtr<ID3D12Resource> resource, bool isCubemap) {
 	texture.initialize(resource, isCubemap);

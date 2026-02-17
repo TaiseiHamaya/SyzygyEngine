@@ -2,6 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
+#include <bitset>
 #include <concepts>
 #include <string>
 
@@ -38,8 +39,6 @@ public:
 		return result;
 	}
 
-	friend struct ::nlohmann::adl_serializer<EditorValueField<T>>;
-
 public:
 	void set_weak(const T& value_) {
 		value = value_;
@@ -61,7 +60,7 @@ public:
 		return *this;
 	}
 
-	operator const T&() const noexcept {
+	operator const T& () const noexcept {
 		return value;
 	}
 
@@ -78,12 +77,12 @@ template<typename T>
 	requires std::copyable<T>
 struct adl_serializer<szg::EditorValueField<T>> {
 	static inline void to_json(nlohmann::json& j, const szg::EditorValueField<T>& p) {
-		j[p.label()] = p.value;
+		j[p.label()] = p.value_imm();
 	}
 
 	static inline void from_json(const nlohmann::json& j, szg::EditorValueField<T>& p) {
 		if (j.contains(p.label())) {
-			j[p.label()].get_to(p.value);
+			j[p.label()].get_to(p.value_mut());
 		}
 	}
 };

@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteSceneObject.h"
-
-using namespace szg;
 
 #include <format>
 
@@ -13,9 +11,11 @@ using namespace szg;
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
 #include "../EditorMain.h"
-#include "../Window/EditorRenderDAG.h"
+#include "../Window/RenderDAG/EditorRenderDAG.h"
 #include "./IRemoteObject.h"
 #include "./RemoteWorldObject.h"
+
+using namespace szg;
 
 RemoteSceneObject::RemoteSceneObject() = default;
 RemoteSceneObject::~RemoteSceneObject() = default;

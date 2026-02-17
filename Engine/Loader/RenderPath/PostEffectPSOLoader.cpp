@@ -1,6 +1,4 @@
-#include "PostEffectPSOLoader.h"
-
-using namespace szg;
+﻿#include "PostEffectPSOLoader.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
@@ -17,6 +15,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void PostEffectPSOLoader::setup(Reference<std::vector<RenderNodeLoader::ImmidiateData>> immediateData_) {
 	immediateData = immediateData_;

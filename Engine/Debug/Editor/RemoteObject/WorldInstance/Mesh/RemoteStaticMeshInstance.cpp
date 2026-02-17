@@ -1,10 +1,8 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteStaticMeshInstance.h"
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
@@ -13,12 +11,10 @@ using namespace szg;
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
 
-RemoteStaticMeshInstance::RemoteStaticMeshInstance() {
-	debugVisual = std::make_unique<StaticMeshInstance>();
-}
+using namespace szg;
 
 void RemoteStaticMeshInstance::setup() {
-	on_spawn();
+	debugVisual = std::make_unique<StaticMeshInstance>();
 	debugVisual->reset_mesh(meshName);
 	// Editor側でDrawExecutorに登録
 	if (sceneView) {
@@ -62,8 +58,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	if (meshName.show_gui().any()) {
-		default_material();
+	if (meshName.show_gui(std::bind(&RemoteStaticMeshInstance::default_material, this), std::bind(&RemoteStaticMeshInstance::default_material, this)).any()) {
 		sceneView->create_mesh_instancing(query_world(), meshName);
 	}
 
@@ -92,7 +87,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = EditorAssetContentsCollector::ComboGUI(meshMaterial.texture, AssetType::Texture);
 				if (result.has_value()) {
-					EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, result.value());
+					EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, result.value().fileName);
 				}
 			}
 
@@ -185,13 +180,15 @@ void RemoteStaticMeshInstance::on_spawn() {
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
 
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::on_spawn();
+	meshName.on_activated();
+	RemoteInstanceType::on_spawn();
 }
 
 void RemoteStaticMeshInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
 
-	IRemoteInstance<StaticMeshInstance, StaticMeshInstance>::on_destroy();
+	meshName.on_deactivated();
+	RemoteInstanceType::on_destroy();
 }
 
 void RemoteStaticMeshInstance::default_material() {

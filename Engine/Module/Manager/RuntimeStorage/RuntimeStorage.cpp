@@ -1,8 +1,8 @@
-#include "RuntimeStorage.h"
-
-using namespace szg;
+﻿#include "RuntimeStorage.h"
 
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 RuntimeStorage::ValueGroup& RuntimeStorage::GetValueList(const std::string& name) {
 	auto& instance = GetInstance();

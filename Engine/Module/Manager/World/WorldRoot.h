@@ -60,7 +60,7 @@ inline Reference<T> szg::WorldRoot::instantiate(Reference<szg::WorldInstance> pa
 	result->setup_id(nextInstanceId);
 	result->setup_world_root(this);
 	result->reparent(parent, false);
-	
+
 	instanceBucket->register_instance(result);
 
 	++nextInstanceId;

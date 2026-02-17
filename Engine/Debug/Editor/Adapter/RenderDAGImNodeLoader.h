@@ -9,7 +9,7 @@
 
 #include <Library/Utility/Template/Reference.h>
 
-#include "Engine/Debug/Editor/Window/EditorRenderDAG.h"
+#include "Engine/Debug/Editor/Window/RenderDAG/EditorRenderDAG.h"
 
 namespace szg {
 

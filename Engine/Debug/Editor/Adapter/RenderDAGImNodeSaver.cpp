@@ -2,8 +2,6 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-using namespace szg;
-
 #include <unordered_set>
 
 #include "Engine/Application/Logger.h"
@@ -12,6 +10,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void RenderDAGImNodeSaver::entry_point(const std::filesystem::path& filePath, const std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	std::unordered_map<u64, bool> seen;
@@ -198,7 +198,7 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<WorldLayer
 	json["Data"].update(data.gBufferViewport.height);
 	json["Data"].update(data.gBufferViewport.minDepth);
 	json["Data"].update(data.gBufferViewport.maxDepth);
-	
+
 	json["Data"].update(data.layerScissor.topLeft);
 	json["Data"].update(data.layerScissor.bottomRight);
 

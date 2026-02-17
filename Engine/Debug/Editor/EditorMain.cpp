@@ -1,26 +1,28 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorMain.h"
-
-using namespace szg;
 
 #include <fstream>
 
 #include <imgui.h>
 
+#include "./Adapter/EditorAssetSaver.h"
+#include "./Core/EditorAssetContentsCollector.h"
 #include "./Core/EditorDandDManager.h"
-#include "./Window/EditorLogWindow.h"
-#include "Command/EditorCommandInvoker.h"
-#include "Command/EditorCreateObjectCommand.h"
-#include "Command/EditorDeleteObjectCommand.h"
-#include "Command/EditorSelectCommand.h"
+#include "./Core/EditorSceneAssetCollection.h"
+#include "./Command/EditorCommandInvoker.h"
+#include "./Command/EditorCreateObjectCommand.h"
+#include "./Command/EditorDeleteObjectCommand.h"
+#include "./Command/EditorSelectCommand.h"
+#include "./Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
+#include "./Window/Logger/EditorLogWindow.h"
+
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
-#include "Engine/Debug/Editor/Adapter/EditorAssetSaver.h"
-#include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
-#include "Engine/Debug/Editor/Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
+
+using namespace szg;
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();
@@ -68,6 +70,8 @@ void EditorMain::Setup() {
 	instance.sceneView.setup(instance.gizmo, instance.hierarchy);
 	instance.inspector.setup(instance.selectObject);
 	instance.hierarchy.setup(instance.selectObject, instance.sceneView);
+
+	EditorAssetContentsCollector::Setup();
 
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
 	std::string sceneName;
@@ -121,6 +125,8 @@ void EditorMain::DrawBase() {
 	if (instance.switchSceneName.has_value()) {
 		// シーンビューを未設定に設定
 		instance.sceneView.reset_force();
+		// AssetCollectionのリセット
+		EditorSceneAssetCollection::Clear();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
 		// DAG Editorのリセット
@@ -206,7 +212,7 @@ bool EditorMain::SeveScene() {
 	instance.renderDAG.save(sceneDirectory);
 
 	EditorAssetSaver saver;
-	saver.setup(instance.renderDAG, instance.hierarchy.scene_imm());
+	saver.setup(instance.renderDAG);
 	saver.save(sceneDirectory);
 
 	szgInformation("Scene file saved. ({})", sceneName);

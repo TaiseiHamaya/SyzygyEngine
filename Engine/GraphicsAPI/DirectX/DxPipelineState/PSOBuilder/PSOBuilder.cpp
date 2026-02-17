@@ -1,6 +1,4 @@
-#include "PSOBuilder.h"
-
-using namespace szg;
+﻿#include "PSOBuilder.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Shader/ShaderAsset.h"
@@ -8,6 +6,8 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCompiler/DxShaderReflection.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 #include "Engine/GraphicsAPI/DirectX/DxSystemValues.h"
+
+using namespace szg;
 
 void InputLayoutBuilder::add_element(string_literal semanticName, UINT semanticIndex, DXGI_FORMAT format, UINT slot) {
 	D3D12_INPUT_ELEMENT_DESC& inputElementDesc = inputElementDescs.emplace_back();

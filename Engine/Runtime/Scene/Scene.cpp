@@ -1,10 +1,10 @@
-#include "Scene.h"
-
-using namespace szg;
+﻿#include "Scene.h"
 
 #include <filesystem>
 
 #include "Engine/Loader/SceneAssetListLoader.h"
+
+using namespace szg;
 
 void Scene::load_assets() {
 	assetCollection = SceneAssetListLoader{}.load(sceneName);

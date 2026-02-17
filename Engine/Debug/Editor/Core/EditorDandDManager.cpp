@@ -1,14 +1,14 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorDandDManager.h"
-
-using namespace szg;
 
 #include <imgui.h>
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Debug/Editor/Command/EditorCommandInvoker.h"
 #include "Engine/Debug/Editor/Command/EditorCommandReparent.h"
+
+using namespace szg;
 
 void EditorDandDManager::CheckDandDHierarchy(Reference<IRemoteObject> self, Reference<IRemoteObject> parent) {
 	if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {
@@ -82,11 +82,11 @@ void EditorDandDManager::EndDragHierarchy(Reference<IRemoteObject> target) {
 	instance.currentDragData = std::monostate{};
 }
 
-void szg::EditorDandDManager::BeginDragAsset(AssetType assetType, const std::string& filePath) {
+void szg::EditorDandDManager::BeginDragAsset(AssetType assetType, const std::string& fileName) {
 	auto& instance = GetInstance();
 	DragDataAsset data{
 		.assetType = assetType,
-		.filePath = filePath
+		.fileName = fileName
 	};
 	instance.currentDragData = data;
 	if (ImGui::GetDragDropPayload() == nullptr) {

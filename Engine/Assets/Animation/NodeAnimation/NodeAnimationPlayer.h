@@ -43,9 +43,9 @@ public:
 	r32 parametric() const noexcept;
 
 	void set_loop(bool isLoop) noexcept;
-	
+
 	void set_time_force(r32 timer) noexcept;
-	
+
 	void animation_speed(r32 speed = 1.0f) noexcept;
 
 private:

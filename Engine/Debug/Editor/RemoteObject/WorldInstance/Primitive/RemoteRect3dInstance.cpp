@@ -1,19 +1,18 @@
-#include "RemoteRect3dInstance.h"
+﻿#include "RemoteRect3dInstance.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 
 #define COLOR_RGBA_SERIALIZER
 #define TRANSFORM2D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
 
+using namespace szg;
+
 void RemoteRect3dInstance::setup() {
 	debugVisual = std::make_unique<Rect3d>();
-	on_spawn();
 	debugVisual->initialize(size, pivot);
 	debugVisual->set_draw(true);
 	debugVisual->keyID = BlendMode::None;
@@ -23,11 +22,11 @@ void RemoteRect3dInstance::setup() {
 		sceneView->register_rect(query_world(), debugVisual);
 	}
 
-	IRemoteInstance<Rect3d, Rect3d>::setup();
+	RemoteInstanceType::setup();
 }
 
 void RemoteRect3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
-	IRemoteInstance<Rect3d, Rect3d>::update_preview(world, parentAffine);
+	RemoteInstanceType::update_preview(world, parentAffine);
 
 	debugVisual->localAffine = worldAffine;
 	debugVisual->data.size = size;
@@ -134,10 +133,16 @@ void RemoteRect3dInstance::on_spawn() {
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
+
+	material.texture.on_activated();
+	RemoteInstanceType::on_spawn();
 }
 
 void RemoteRect3dInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
+
+	material.texture.on_deactivated();
+	RemoteInstanceType::on_destroy();
 }
 
 void RemoteRect3dInstance::reset_material() {

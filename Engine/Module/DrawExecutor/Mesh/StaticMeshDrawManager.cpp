@@ -1,10 +1,10 @@
-#include "StaticMeshDrawManager.h"
-
-using namespace szg;
+﻿#include "StaticMeshDrawManager.h"
 
 #include <execution>
 
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
+
+using namespace szg;
 
 void StaticMeshDrawManager::make_instancing(u32 layer, const std::string& meshName_, u32 maxInstance) {
 	if (layer >= maxLayer) {

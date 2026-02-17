@@ -1,14 +1,14 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneList.h"
-
-using namespace szg;
 
 #include <fstream>
 
 #include <imgui.h>
 
 #include "Engine/Assets/Json/JsonAsset.h"
+
+using namespace szg;
 
 void EditorSceneList::initialize() {
 	JsonAsset json;

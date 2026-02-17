@@ -1,12 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteCamera3dInstance.h"
 
-using namespace szg;
-
-#include "../../../Window/EditorSceneView.h"
 #include "./DebugProjectionVariantVisitor.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
+
+using namespace szg;
 
 void RemoteCamera3dInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<CameraInstance, void*>::update_preview(world, parentAffine);

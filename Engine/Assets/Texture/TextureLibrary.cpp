@@ -1,6 +1,4 @@
-#include "TextureLibrary.h"
-
-using namespace szg;
+﻿#include "TextureLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -8,6 +6,8 @@ using namespace szg;
 #include "./TextureAssetBuilder.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+
+using namespace szg;
 
 TextureLibrary::TextureLibrary() = default;
 

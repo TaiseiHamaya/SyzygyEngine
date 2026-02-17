@@ -6,6 +6,8 @@
 
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
+#include "Engine/Assets/AssetTypeEnum.h"
+
 namespace szg {
 
 class SceneAssetCollection {
@@ -14,22 +16,8 @@ class SceneAssetCollection {
 #endif // DEBUG_FEATURES_ENABLE
 
 public:
-	enum AssetType {
-		Texture = 0,
-		Mesh,
-		Skeleton,
-		Animation,
-		Audio,
-		Shader,
-		MSDFFont,
-
-		Max,
-
-		Unknown = -1,
-	};
-
-public:
-	using AssetListType = std::array<std::unordered_set<std::filesystem::path>, AssetType::Max>;
+	static constexpr i32 COLLECTION_ASSET_TYPE_MAX = ASSET_TYPE_MAX - 1;
+	using AssetListType = std::array<std::unordered_set<std::filesystem::path>, COLLECTION_ASSET_TYPE_MAX>;
 
 public:
 	SceneAssetCollection() = default;
@@ -37,7 +25,7 @@ public:
 
 	SZG_CLASS_MOVE_ONLY(SceneAssetCollection)
 
-	SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
+		SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
 
 public:
 	/// <summary>

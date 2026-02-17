@@ -19,7 +19,7 @@ public:
 	friend class EditorSceneSerializer;
 
 	struct Material {
-		EditorAssetField texture{ "Texture", AssetType::Texture, "Error.png"};
+		EditorAssetField texture{ "Texture", AssetType::Texture, "Error.png" };
 		EditorValueField<ColorRGBA> color{ "Color", CColorRGBA::WHITE };
 		EditorValueField<Transform2D> uvTransform{ "UV Transform" };
 		LighingType lightingType{ LighingType::None };

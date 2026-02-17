@@ -2,8 +2,6 @@
 
 #include "RemoteErrorObject.h"
 
-using namespace szg;
-
 #include <format>
 
 #include <imgui.h>
@@ -12,6 +10,8 @@ using namespace szg;
 
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
+
+using namespace szg;
 
 RemoteErrorObject::RemoteErrorObject(const std::string& msg) :
 	errorMessage(msg) {
@@ -38,7 +38,7 @@ void RemoteErrorObject::draw_hierarchy(Reference<const EditorSelectObject> selec
 	}
 	ImGui::TreeNodeEx(std::format("Missing RemoteObject##{}", (void*)this).c_str(), flags);
 	ImGui::TreePop();
-	
+
 	// こうすると選択できるらしい
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(

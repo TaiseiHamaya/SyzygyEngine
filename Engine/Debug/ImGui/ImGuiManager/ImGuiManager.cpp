@@ -2,8 +2,6 @@
 
 #include "ImGuiManager.h"
 
-using namespace szg;
-
 #include "./ImGuiIcons.h"
 #include "./ImGuiJapanese.h"
 #include "./ImGuiStyleSetter.h"
@@ -12,7 +10,6 @@ using namespace szg;
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxDescriptorHeap/SRVDescriptorHeap/SRVDescriptorHeap.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
-#include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ScreenTexture.h"
 #include "Engine/GraphicsAPI/DirectX/DxSwapChain/DxSwapChain.h"
 #include "Engine/GraphicsAPI/DirectX/DxSystemValues.h"
 #include "Engine/Module/Render/RenderTargetGroup/SwapChainRenderTargetGroup.h"
@@ -21,6 +18,8 @@ using namespace szg;
 #include <imgui_impl_dx12.h>
 #include <imgui_impl_win32.h>
 #include <ImGuizmo.h>
+
+using namespace szg;
 
 ImGuiManager& ImGuiManager::GetInstance() noexcept {
 	static ImGuiManager instance{};
@@ -84,8 +83,9 @@ void ImGuiManager::BeginFrame() {
 }
 
 void ImGuiManager::EndFrame() {
-	DxSwapChain::GetRenderTarget()->begin_write(false, nullptr);
-	
+	Reference<SwapChainRenderTargetGroup> renderTarget = DxSwapChain::GetRenderTarget();
+	renderTarget->begin_write(false, nullptr);
+
 	ImGui::Render();
 	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), DxCommand::GetCommandList().Get());
 }

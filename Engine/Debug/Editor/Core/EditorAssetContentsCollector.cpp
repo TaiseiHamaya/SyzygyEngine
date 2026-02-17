@@ -18,6 +18,11 @@
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
 
+void szg::EditorAssetContentsCollector::Setup() {
+	auto& instance = GetInstance();
+	instance.collect_assets();
+}
+
 void szg::EditorAssetContentsCollector::Finalize() {
 	auto& instance = GetInstance();
 	if (instance.thread.joinable()) {
@@ -40,7 +45,7 @@ void szg::EditorAssetContentsCollector::Update() {
 	}
 
 	// 削除された要素を除外
-	std::lock_guard<std::mutex> lock(instance.mutex);
+	std::lock_guard<std::mutex> lock(mutex);
 	for (auto& typeMap : instance.assetMaps) {
 		std::erase_if(typeMap, [](const auto& pair) {
 			return !std::filesystem::exists(pair.second.path);
@@ -48,21 +53,21 @@ void szg::EditorAssetContentsCollector::Update() {
 	}
 }
 
-std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std::string& current, AssetType type, const std::string& label) {
-	std::optional<std::string> result;
+std::optional<szg::EditorAssetContentsCollector::AssetEntry> szg::EditorAssetContentsCollector::ComboGUI(const std::string& current, AssetType type, const std::string& label) {
+	std::optional<AssetEntry> result;
 	auto& instance = GetInstance();
 
 	// ラベル名の決定
 	std::string labelName = label.empty() ? ASSET_TYPE_NAME[static_cast<i32>(type)] : label;
 
 	// コンボボックスの表示
+	std::lock_guard<std::mutex> lock(mutex);
 	if (ImGui::BeginCombo(labelName.c_str(), current.c_str())) {
-		std::lock_guard<std::mutex> lock(instance.mutex);
 		for (const auto& asset : instance.assetMaps[static_cast<i32>(type)] | std::views::values) {
-			bool isSelected = (current == asset.name); // 選択済みかどうか
-			if (ImGui::Selectable(asset.name.c_str(), isSelected)) {
+			bool isSelected = (current == asset.fileName); // 選択済みかどうか
+			if (ImGui::Selectable(asset.fileName.c_str(), isSelected)) {
 				if (!isSelected) { // すでに選択されているものを選択しても変更とみなさない
-					result = asset.name;
+					result = asset;
 				}
 			}
 			if (isSelected) {
@@ -75,9 +80,8 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 
 	// DragDrop target
 	if (auto dropData = EditorDandDManager::AcceptAssetDrop()) {
-		std::lock_guard<std::mutex> lock(instance.mutex);
-		if (instance.assetMaps[static_cast<i32>(type)].contains(dropData->filePath)) {
-			result = dropData->filePath;
+		if (instance.assetMaps[static_cast<i32>(type)].contains(dropData->fileName)) {
+			result = instance.assetMaps[static_cast<i32>(type)].at(dropData->fileName);
 		}
 	}
 
@@ -95,8 +99,7 @@ std::optional<std::string> szg::EditorAssetContentsCollector::ComboGUI(const std
 			&ShaderLibrary::RegisterLoadQue,
 		};
 
-		std::lock_guard<std::mutex> lock(instance.mutex);
-		auto& assetEntry = instance.assetMaps[static_cast<i32>(type)][result.value()];
+		auto& assetEntry = instance.assetMaps[static_cast<i32>(type)][result.value().fileName];
 		auto loadFunc = loadFuncs[static_cast<i32>(type)];
 		if (loadFunc) {
 			loadFunc(assetEntry.path);
@@ -132,6 +135,15 @@ szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const 
 	return assetType;
 }
 
+std::optional<std::filesystem::path> szg::EditorAssetContentsCollector::GetAssetPath(AssetType type, const std::string& fileName) {
+	auto& instance = GetInstance();
+	std::lock_guard<std::mutex> lock(mutex);
+	if (instance.assetMaps[static_cast<i32>(type)].contains(fileName)) {
+		return instance.assetMaps[static_cast<i32>(type)].at(fileName).path;
+	}
+	return std::nullopt;
+}
+
 void szg::EditorAssetContentsCollector::collect_assets() {
 	auto& instance = GetInstance();
 	for (i32 i = 1; i < ASSET_ROOT_TYPE_MAX; ++i) {
@@ -144,7 +156,7 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 			std::filesystem::path relativePath = std::filesystem::relative(directory.path(), rootPath);
 			std::string extension = directory.path().extension().string();
 			AssetType assetType = GetAssetTypeByExtension(extension);
-			std::lock_guard<std::mutex> lock(instance.mutex);
+			std::lock_guard<std::mutex> lock(mutex);
 			auto& assetMap = instance.assetMaps[static_cast<i32>(assetType)];
 			std::string assetName = relativePath.filename().string();
 			// 既に登録されている場合はスキップ
@@ -155,7 +167,7 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 			// 登録
 			AssetEntry entry;
 			entry.type = assetType;
-			entry.name = assetName;
+			entry.fileName = assetName;
 			entry.extension = extension;
 			entry.path = directory.path();
 			entry.loadFunc = nullptr; // TODO: ロード関数の設定

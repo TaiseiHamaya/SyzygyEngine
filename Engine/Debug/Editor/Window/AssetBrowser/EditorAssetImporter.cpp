@@ -1,4 +1,4 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetImporter.h"
 
@@ -145,6 +145,10 @@ void szg::EditorAssetImporter::execute_import() {
 	}
 
 	loadAssets.clear();
+}
+
+Reference<szg::EditorAssetOptimizer> szg::EditorAssetImporter::optimizer_mut() {
+	return optimizer;
 }
 
 #endif // DEBUG_FEATURES_ENABLE

@@ -1,6 +1,4 @@
-#include "PolygonMeshLibrary.h"
-
-using namespace szg;
+﻿#include "PolygonMeshLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -12,6 +10,8 @@ using namespace szg;
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>
 #endif // _DEBUG
+
+using namespace szg;
 
 void PolygonMeshLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない

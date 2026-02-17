@@ -1,10 +1,10 @@
-#include "GaussianBlurPipeline.h"
-
-using namespace szg;
+﻿#include "GaussianBlurPipeline.h"
 
 #include <Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h>
 #include <Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h>
 #include <Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h>
+
+using namespace szg;
 
 void GaussianBlurPipeline::initialize() {
 	create_pipeline_state();

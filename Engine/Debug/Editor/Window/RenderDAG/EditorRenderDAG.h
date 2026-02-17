@@ -2,7 +2,7 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IEditorWindow.h"
+#include "../IEditorWindow.h"
 
 #include <filesystem>
 #include <memory>
@@ -39,7 +39,7 @@ public:
 	void initialize();
 
 	void load(const std::string& sceneName);
-	
+
 	void finalize();
 
 	void draw() override;

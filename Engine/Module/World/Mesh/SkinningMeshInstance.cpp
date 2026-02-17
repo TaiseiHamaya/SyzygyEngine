@@ -1,7 +1,5 @@
 #include "SkinningMeshInstance.h"
 
-using namespace szg;
-
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "Engine/Application/Logger.h"
@@ -11,6 +9,8 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 SkinningMeshInstance::SkinningMeshInstance() noexcept :
 	IMultiMeshInstance() {
@@ -90,7 +90,7 @@ void SkinningMeshInstance::default_material() {
 
 	materials.resize(mesh->material_count());
 
-	for (i32 i = 0; auto & meshMaterial : materials) {
+	for (i32 i = 0; auto& meshMaterial : materials) {
 		// 色情報のリセット
 		const auto* meshMaterialData = mesh->material_data(i);
 		if (meshMaterialData) {

@@ -1,8 +1,8 @@
-#include "StaticTexture.h"
-
-using namespace szg;
+﻿#include "StaticTexture.h"
 
 #include <format>
+
+using namespace szg;
 
 StaticTexture::~StaticTexture() {
 	srv.release();

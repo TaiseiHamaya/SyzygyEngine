@@ -1,7 +1,5 @@
 #include "WinApp.h"
 
-using namespace szg;
-
 #include <dbghelp.h>
 #include <timeapi.h>
 
@@ -19,7 +17,6 @@ using namespace szg;
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
-#include "Engine/Debug/Editor/Window/EditorLogWindow.h"
 #include "Engine/GraphicsAPI/DirectX/DxCore.h"
 #include "Engine/Runtime/Clock/WorldClock.h"
 #include "Engine/Runtime/Input/Input.h"
@@ -31,19 +28,23 @@ using namespace szg;
 #pragma comment(lib, "Oleacc.lib") // GetProcessHandleFromHwnd
 #pragma comment(lib, "winmm.lib") // timeBeginPeriod
 
-extern "C" HANDLE WINAPI GetProcessHandleFromHwnd(_In_ HWND hwnd);
-
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include "Engine/Debug/Editor/EditorMain.h"
 #include "Engine/Debug/ImGui/ImGuiManager/ImGuiManager.h"
+#include "Engine/Debug/Editor/Window/Logger/EditorLogWindow.h"
 
 #include <pix_win.h>
 
 #include <imgui.h>
+
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #endif // DEBUG_FEATURES_ENABLE
+
+using namespace szg;
+
+extern "C" HANDLE WINAPI GetProcessHandleFromHwnd(_In_ HWND hwnd);
 
 // ウィンドウプロシージャ
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {

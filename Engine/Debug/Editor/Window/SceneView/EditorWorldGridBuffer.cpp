@@ -29,7 +29,7 @@ void szg::EditorWorldGridBuffer::transfer(const Vector3& centerBase, r32 cameraY
 	// scaleの倍数に丸め込む
 	fixedCenter.x = std::floor(centerBase.x / scale) * scale;
 	fixedCenter.y = std::floor(centerBase.z / scale) * scale;
-	
+
 	data.data_mut()->center = fixedCenter;
 	data.data_mut()->scale = static_cast<r32>(scale);
 }

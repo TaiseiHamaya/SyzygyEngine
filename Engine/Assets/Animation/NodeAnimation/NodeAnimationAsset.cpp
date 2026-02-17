@@ -1,4 +1,4 @@
-#include "NodeAnimationAsset.h"
+﻿#include "NodeAnimationAsset.h"
 
 using namespace szg;
 
