@@ -1,0 +1,48 @@
+name: ManualBuildAll
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'ビルド対象のブランチ名'
+        required: true
+
+env:
+  SOLUTION_FILE_PATH: BuildTest/project/BuildTest.sln
+  SOLUTION_NAME: BuildTest
+  BATCH_FILE_URL1: https://raw.githubusercontent.com/TaiseiHamaya/SyzygyEngine/refs/heads/
+  BATCH_FILE_URL2: /ProjectGeneratorTool/CreateSolution.ps1
+
+jobs:
+  build:
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Develop, Release]
+    steps:
+      - name: Download CreateSolution.ps1
+        run: |
+          curl -o CreateSolution.ps1 ${{ env.BATCH_FILE_URL1 }}${{ github.event.inputs.branch }}${{ env.BATCH_FILE_URL2 }}
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
+
+      - name: Generate Solution File
+        run: .\CreateSolution.ps1 ${{ env.SOLUTION_NAME }} ${{ github.event.inputs.branch }}
+
+      - name: Build
+        run: msbuild ${{ env.SOLUTION_FILE_PATH }} /p:Platform=x64,Configuration=${{ matrix.configuration }}
+
+      - name: Discord Notification
+        if: ${{ always() }}
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          title: ManualBuildAll ${{ matrix.configuration }} Result(${{ job.status }})
+          username: GitHub
+          avatar_url: https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+          status: ${{ job.status }}
