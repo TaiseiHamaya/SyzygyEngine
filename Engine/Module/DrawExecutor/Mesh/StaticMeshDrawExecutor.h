@@ -19,7 +19,7 @@ struct MaterialDataBufferRGB;
 class StaticMeshDrawExecutor final : public BaseDrawExecutor<StaticMeshInstance> {
 public:
 	StaticMeshDrawExecutor() noexcept = default;
-	 ~StaticMeshDrawExecutor() noexcept = default;
+	~StaticMeshDrawExecutor() noexcept = default;
 
 	StaticMeshDrawExecutor(std::shared_ptr<const PolygonMesh> asset_, u32 maxInstance);
 

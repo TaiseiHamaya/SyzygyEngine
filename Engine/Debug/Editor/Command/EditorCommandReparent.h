@@ -11,7 +11,7 @@
 namespace szg {
 
 class EditorCommandReparent final : public IEditorCommand {
-	public:
+public:
 	EditorCommandReparent(Reference<IRemoteObject> target, Reference<IRemoteObject> recent, Reference<IRemoteObject> next);
 	~EditorCommandReparent() = default;
 

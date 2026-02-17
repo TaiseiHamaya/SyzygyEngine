@@ -1,4 +1,4 @@
-﻿#include "WorldRenderCollection.h"
+#include "WorldRenderCollection.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Module/Manager/World/InstanceBucket.h"
@@ -90,12 +90,12 @@ void WorldRenderCollection::transfer() {
 	for (auto& lightExecutor : directionalLightingExecutors) {
 		lightExecutor.begin();
 	}
-	for(auto& lightExecutor : pointLightingExecutors) {
+	for (auto& lightExecutor : pointLightingExecutors) {
 		lightExecutor.begin();
 	}
 	for (auto& instance : directionalLights) {
 		u32 influenceLayer = instance->influence_layer();
-		for(u8 i = 0; i < numLayer; ++i) {
+		for (u8 i = 0; i < numLayer; ++i) {
 			if (influenceLayer & (1u << i)) {
 				directionalLightingExecutors[i].write_to_buffer(instance);
 			}

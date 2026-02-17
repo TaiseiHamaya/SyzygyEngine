@@ -21,6 +21,6 @@ enum class PostEffectType {
 	TextureBlend4,       // テクスチャ合成4
 	Outline,             // アウトライン
 	RadialBlur,          // ラジアルブラー
-	
+
 	Max,
 };

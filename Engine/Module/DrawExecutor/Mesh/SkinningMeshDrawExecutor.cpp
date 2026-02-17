@@ -1,4 +1,4 @@
-﻿#include "SkinningMeshDrawExecutor.h"
+#include "SkinningMeshDrawExecutor.h"
 
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -30,7 +30,7 @@ void SkinningMeshDrawExecutor::reinitialize(std::shared_ptr<const PolygonMesh> m
 	// Palette初期化
 	matrixPalettes.resize(mesh->material_count());
 	paletteSize.resize(mesh->material_count());
-	for (u32 i = 0; MdStructuredBuffer<SkeletonMatrixPaletteWellBuffer>&matrixPalette : matrixPalettes) {
+	for (u32 i = 0; MdStructuredBuffer<SkeletonMatrixPaletteWellBuffer>& matrixPalette : matrixPalettes) {
 		const std::string& meshName = mesh->mesh_data(i)->meshName;
 		const std::vector<u32>* useJointIndexes = skeletonData->use_joint_indexes(meshName);
 		if (!useJointIndexes) {

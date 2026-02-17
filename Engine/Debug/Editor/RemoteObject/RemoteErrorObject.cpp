@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteErrorObject.h"
 
@@ -38,7 +38,7 @@ void RemoteErrorObject::draw_hierarchy(Reference<const EditorSelectObject> selec
 	}
 	ImGui::TreeNodeEx(std::format("Missing RemoteObject##{}", (void*)this).c_str(), flags);
 	ImGui::TreePop();
-	
+
 	// こうすると選択できるらしい
 	if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen() && !isSelected) {
 		EditorCommandInvoker::Execute(

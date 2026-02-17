@@ -14,7 +14,7 @@ class SceneAssetCollection {
 #ifdef DEBUG_FEATURES_ENABLE
 	friend class EditorAssetSaver;
 #endif // DEBUG_FEATURES_ENABLE
-	
+
 public:
 	static constexpr i32 COLLECTION_ASSET_TYPE_MAX = ASSET_TYPE_MAX - 1;
 	using AssetListType = std::array<std::unordered_set<std::filesystem::path>, COLLECTION_ASSET_TYPE_MAX>;
@@ -25,7 +25,7 @@ public:
 
 	SZG_CLASS_MOVE_ONLY(SceneAssetCollection)
 
-	SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
+		SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
 
 public:
 	/// <summary>

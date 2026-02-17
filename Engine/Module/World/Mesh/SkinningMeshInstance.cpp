@@ -1,4 +1,4 @@
-﻿#include "SkinningMeshInstance.h"
+#include "SkinningMeshInstance.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -90,7 +90,7 @@ void SkinningMeshInstance::default_material() {
 
 	materials.resize(mesh->material_count());
 
-	for (i32 i = 0; auto & meshMaterial : materials) {
+	for (i32 i = 0; auto& meshMaterial : materials) {
 		// 色情報のリセット
 		const auto* meshMaterialData = mesh->material_data(i);
 		if (meshMaterialData) {

@@ -1,4 +1,4 @@
-﻿#include "RenderDAGImNodeSaver.h"
+#include "RenderDAGImNodeSaver.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
@@ -198,7 +198,7 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<WorldLayer
 	json["Data"].update(data.gBufferViewport.height);
 	json["Data"].update(data.gBufferViewport.minDepth);
 	json["Data"].update(data.gBufferViewport.maxDepth);
-	
+
 	json["Data"].update(data.layerScissor.topLeft);
 	json["Data"].update(data.layerScissor.bottomRight);
 

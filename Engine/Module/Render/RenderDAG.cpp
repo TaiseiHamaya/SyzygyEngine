@@ -1,4 +1,4 @@
-﻿#include "RenderDAG.h"
+#include "RenderDAG.h"
 
 #include <format>
 
@@ -20,7 +20,7 @@ void RenderDAG::setup(std::string_view sceneName, Reference<Scene> scene) {
 	RenderNodeLoader loader;
 	loader.setup(scene, renderTargetCollection);
 
-	if(json.cget().is_null()) {
+	if (json.cget().is_null()) {
 		szgWarning("RenderDAG::setup: Failed to load RenderPath.json: {}", sceneName);
 		return;
 	}

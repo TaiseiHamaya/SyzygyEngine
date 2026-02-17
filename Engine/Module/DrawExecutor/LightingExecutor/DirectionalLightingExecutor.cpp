@@ -1,4 +1,4 @@
-﻿#include "DirectionalLightingExecutor.h"
+#include "DirectionalLightingExecutor.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
@@ -15,7 +15,7 @@ void DirectionalLightingExecutor::reinitialize(u32 maxInstance_) {
 }
 
 void DirectionalLightingExecutor::draw_command() const {
-	if(instanceCounter == 0){
+	if (instanceCounter == 0) {
 		return;
 	}
 

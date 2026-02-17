@@ -169,10 +169,10 @@ public: // グローバルメンバ関数
 };
 
 namespace CQuaternion {
-	static const Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
-	static const Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
-	static const Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
-	static const Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
+static const Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
+static const Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
+static const Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
+static const Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
 };
 
 /// <summary>

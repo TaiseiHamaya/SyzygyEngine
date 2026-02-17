@@ -5,7 +5,7 @@
 #include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
 
 szg::EditorCommandRegisterAsset::EditorCommandRegisterAsset(AssetType type_, const std::filesystem::path& assetFilePath_, bool isLazy_) :
-	type(type_), 
+	type(type_),
 	assetFilePath(assetFilePath_),
 	isLazy(isLazy_) {
 }

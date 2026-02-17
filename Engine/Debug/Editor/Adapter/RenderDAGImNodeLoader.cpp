@@ -1,4 +1,4 @@
-﻿#include "RenderDAGImNodeLoader.h"
+#include "RenderDAGImNodeLoader.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
@@ -120,10 +120,10 @@ std::shared_ptr<WorldLayerRenderImNode> RenderDAGImNodeLoader::load_as_world_ren
 	json.get_to(data.gBufferViewport.height);
 	json.get_to(data.gBufferViewport.minDepth);
 	json.get_to(data.gBufferViewport.maxDepth);
-	
+
 	json.get_to(data.layerScissor.topLeft);
 	json.get_to(data.layerScissor.bottomRight);
-	
+
 	result->set_data(data);
 	result->set_node_id(counter);
 	return result;

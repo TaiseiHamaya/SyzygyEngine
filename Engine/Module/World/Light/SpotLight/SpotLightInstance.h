@@ -12,7 +12,7 @@ struct SpotLightData {
 
 	Vector3 position; // 位置
 	r32 distance; // ライト距離
-	
+
 	Vector3 direction{ CVector3::DOWN }; // 向き
 	r32 decay; // 距離減衰率
 

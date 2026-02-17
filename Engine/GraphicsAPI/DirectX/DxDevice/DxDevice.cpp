@@ -1,4 +1,4 @@
-﻿#include "DxDevice.h"
+#include "DxDevice.h"
 
 #include "Engine/Application/Logger.h"
 
@@ -88,8 +88,8 @@ void DxDevice::check_future() {
 		}
 		D3D12_FEATURE_DATA_FORMAT_SUPPORT formatSupportR32UINT = { DXGI_FORMAT_R32_UINT, D3D12_FORMAT_SUPPORT1_NONE, D3D12_FORMAT_SUPPORT2_NONE };
 		hr = device->CheckFeatureSupport(D3D12_FEATURE_FORMAT_SUPPORT, &formatSupportR32UINT, sizeof(formatSupportR32UINT));
-		if (FAILED(hr) || 
-			!(formatSupportR32UINT.Support1 & D3D12_FORMAT_SUPPORT1_RENDER_TARGET) || 
+		if (FAILED(hr) ||
+			!(formatSupportR32UINT.Support1 & D3D12_FORMAT_SUPPORT1_RENDER_TARGET) ||
 			!(formatSupportR32UINT.Support1 & D3D12_FORMAT_SUPPORT1_SHADER_LOAD)
 			) {
 			szgCritical("Your hardware isn't support.");

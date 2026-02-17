@@ -1,4 +1,4 @@
-﻿#include "PointLightingExecutor.h"
+#include "PointLightingExecutor.h"
 
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -41,7 +41,7 @@ void PointLightingExecutor::write_to_buffer(Reference<const PointLightInstance> 
 	r32 radius = instance->light_data_imm().radius + 0.1f;
 	Vector3 scale = { radius, radius, radius };
 	matrices[instanceCounter] = Affine::FromSRT(
-		scale, 
+		scale,
 		CQuaternion::IDENTITY,
 		instance->world_affine().get_origin()
 	).to_matrix();

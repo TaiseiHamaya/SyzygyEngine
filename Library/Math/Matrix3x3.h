@@ -118,9 +118,9 @@ constexpr const Matrix3x3 Matrix3x3::transpose() const {
 }
 
 namespace CMatrix3x3 {
-	constexpr Matrix3x3 IDENTITY = {
-		{{1,0,0},
-		{0,1,0},
-		{0,0,1}}
-	};
+constexpr Matrix3x3 IDENTITY = {
+	{{1,0,0},
+	{0,1,0},
+	{0,0,1}}
+};
 }

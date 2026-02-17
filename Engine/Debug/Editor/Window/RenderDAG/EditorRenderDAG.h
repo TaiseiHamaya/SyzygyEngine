@@ -39,7 +39,7 @@ public:
 	void initialize();
 
 	void load(const std::string& sceneName);
-	
+
 	void finalize();
 
 	void draw() override;

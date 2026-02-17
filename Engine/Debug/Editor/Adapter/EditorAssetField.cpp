@@ -24,7 +24,7 @@ std::bitset<2> szg::EditorAssetField::show_gui(std::function<void(void)> preproc
 		auto path = EditorAssetContentsCollector::GetAssetPath(assetType, value);
 
 		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
-		
+
 		if (preprocess) {
 			preprocess();
 		}
