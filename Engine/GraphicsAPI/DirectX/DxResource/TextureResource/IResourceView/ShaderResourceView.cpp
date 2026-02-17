@@ -1,12 +1,12 @@
-#include "ShaderResourceView.h"
-
-using namespace szg;
+﻿#include "ShaderResourceView.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxDescriptorHeap/SRVDescriptorHeap/SRVDescriptorHeap.h"
 #include "Engine/GraphicsAPI/DirectX/DxDevice/DxDevice.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/ITextureResource.h"
+
+using namespace szg;
 
 void ShaderResourceView::release() {
 	if (index.has_value()) {

@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorValueChangeCommandHandler.h"
 
-using namespace szg;
-
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 void EditorValueChangeCommandHandler::Start(std::function<void(void)> endCallFunc) {
 	auto& instance = GetInstance();

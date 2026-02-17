@@ -1,9 +1,9 @@
-#include "SkinningMeshDrawManager.h"
-
-using namespace szg;
+﻿#include "SkinningMeshDrawManager.h"
 
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
+
+using namespace szg;
 
 void SkinningMeshDrawManager::make_instancing(u32 layer, const std::string& meshName, u32 maxInstance) {
 	if (layer >= maxLayer) {

@@ -1,6 +1,4 @@
-#include "RenderDAG.h"
-
-using namespace szg;
+﻿#include "RenderDAG.h"
 
 #include <format>
 
@@ -8,6 +6,8 @@ using namespace szg;
 #include "Engine/Module/Render/RenderNode/IRenderNode.h"
 #include "Engine/Loader/RenderPath/RenderNodeLoader.h"
 #include "Engine/Runtime/Scene/Scene.h"
+
+using namespace szg;
 
 RenderDAG::RenderDAG() = default;
 RenderDAG::~RenderDAG() noexcept = default;

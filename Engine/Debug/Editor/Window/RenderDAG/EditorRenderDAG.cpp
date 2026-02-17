@@ -1,8 +1,6 @@
-#include "EditorRenderDAG.h"
+﻿#include "EditorRenderDAG.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
-
-using namespace szg;
 
 #include <memory>
 #include <string>
@@ -22,6 +20,8 @@ using namespace szg;
 #include "../../Adapter/RenderDAGImNodeSaver.h"
 #include "../../Adapter/RenderDAGImNodeLoader.h"
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 EditorRenderDAG::EditorRenderDAG() {
 	isActive = true;

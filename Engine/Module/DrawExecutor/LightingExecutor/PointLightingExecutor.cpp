@@ -1,10 +1,10 @@
-#include "PointLightingExecutor.h"
-
-using namespace szg;
+﻿#include "PointLightingExecutor.h"
 
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/Module/World/Light/PointLight/PointLightInstance.h"
+
+using namespace szg;
 
 PointLightingExecutor::PointLightingExecutor(u32 maxInstance) {
 	reinitialize(maxInstance);

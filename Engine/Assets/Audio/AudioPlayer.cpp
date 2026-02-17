@@ -1,11 +1,11 @@
-#include "AudioPlayer.h"
-
-using namespace szg;
+﻿#include "AudioPlayer.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Audio/AudioAsset.h"
 #include "Engine/Assets/Audio/AudioLibrary.h"
 #include "Engine/Assets/Audio/AudioManager.h"
+
+using namespace szg;
 
 AudioPlayer::~AudioPlayer() {
 	destroy();

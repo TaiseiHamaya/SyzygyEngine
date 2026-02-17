@@ -1,11 +1,11 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorCreateObjectCommand.h"
 
-using namespace szg;
-
 #include "../RemoteObject/EditorDeletedObjectPool.h"
 #include "../Window/SceneView/EditorSceneView.h"
+
+using namespace szg;
 
 EditorCreateObjectCommand::EditorCreateObjectCommand(Reference<IRemoteObject> parent_, std::unique_ptr<IRemoteObject> generatedObjectTemp_) {
 	parent = parent_;

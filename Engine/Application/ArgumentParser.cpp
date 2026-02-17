@@ -1,6 +1,4 @@
-#include "ArgumentParser.h"
-
-using namespace szg;
+﻿#include "ArgumentParser.h"
 
 #include <sstream>
 
@@ -9,6 +7,8 @@ using namespace szg;
 #include <Library/Utility/Tools/ConvertString.h>
 
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 void ArgumentParser::Parse() {
 	ArgumentParser& instance = GetInstance();

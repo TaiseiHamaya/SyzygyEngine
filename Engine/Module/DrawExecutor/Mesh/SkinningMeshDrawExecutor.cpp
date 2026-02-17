@@ -1,11 +1,11 @@
-#include "SkinningMeshDrawExecutor.h"
-
-using namespace szg;
+﻿#include "SkinningMeshDrawExecutor.h"
 
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/SkinningMeshInstance.h"
+
+using namespace szg;
 
 SkinningMeshDrawExecutor::SkinningMeshDrawExecutor(std::shared_ptr<const PolygonMesh> mesh, std::shared_ptr<const SkeletonAsset> skeleton, u32 maxInstance) {
 	reinitialize(mesh, skeleton, maxInstance);

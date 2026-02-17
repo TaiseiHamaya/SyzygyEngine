@@ -1,8 +1,8 @@
-#include "Framework.h"
-
-using namespace szg;
+﻿#include "Framework.h"
 
 #include "Engine/Application/WinApp.h"
+
+using namespace szg;
 
 void Framework::run() {
 	WinApp::Initialize();

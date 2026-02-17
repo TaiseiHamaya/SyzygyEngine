@@ -1,6 +1,4 @@
-#include "AudioLibrary.h"
-
-using namespace szg;
+﻿#include "AudioLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -8,6 +6,8 @@ using namespace szg;
 #include "./AudioAssetBuilder.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+
+using namespace szg;
 
 void AudioLibrary::Initialize() {
 	// nullインスタンスの追加

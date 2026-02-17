@@ -1,4 +1,4 @@
-#include "BaseRenderTargetGroup.h"
+﻿#include "BaseRenderTargetGroup.h"
 
 using namespace szg;
 

@@ -1,6 +1,4 @@
-#include "SkinningMeshInstance.h"
-
-using namespace szg;
+﻿#include "SkinningMeshInstance.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -11,6 +9,8 @@ using namespace szg;
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 SkinningMeshInstance::SkinningMeshInstance() noexcept :
 	IMultiMeshInstance() {

@@ -1,8 +1,8 @@
-#include "SwapChainRenderTargetGroup.h"
-
-using namespace szg;
+﻿#include "SwapChainRenderTargetGroup.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 void SwapChainRenderTargetGroup::initialize() {
 	textures.resize(ProjectSettings::GetGraphicsSettingsImm().numBuffering);

@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorDeleteObjectCommand.h"
 
-using namespace szg;
-
 #include "../RemoteObject/EditorDeletedObjectPool.h"
+
+using namespace szg;
 
 EditorDeleteObjectCommand::EditorDeleteObjectCommand(Reference<IRemoteObject> object_) {
 	object = object_;

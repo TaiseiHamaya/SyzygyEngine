@@ -1,8 +1,8 @@
-#include "SceneScriptManager.h"
-
-using namespace szg;
+﻿#include "SceneScriptManager.h"
 
 #include "ISceneScript.h"
+
+using namespace szg;
 
 SceneScriptManager::SceneScriptManager() = default;
 SceneScriptManager::~SceneScriptManager() = default;

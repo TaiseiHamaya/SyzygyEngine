@@ -1,6 +1,4 @@
-#include "FontAtlasMSDFBuilder.h"
-
-using namespace szg;
+﻿#include "FontAtlasMSDFBuilder.h"
 
 #include <Library/Math/Vector2.h>
 #include <Library/Math/Transform2D.h>
@@ -12,6 +10,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 FontAtlasMSDFBuilder::FontAtlasMSDFBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_, "FontAtlasMSDF");

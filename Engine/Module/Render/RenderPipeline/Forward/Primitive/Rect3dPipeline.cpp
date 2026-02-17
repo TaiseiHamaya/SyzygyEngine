@@ -1,10 +1,10 @@
-#include "Rect3dPipeline.h"
-
-using namespace szg;
+﻿#include "Rect3dPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 Rect3dPipeline::Rect3dPipeline() = default;
 Rect3dPipeline::~Rect3dPipeline() noexcept = default;

@@ -1,9 +1,9 @@
-#include "IMultiMeshInstance.h"
-
-using namespace szg;
+﻿#include "IMultiMeshInstance.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 IMultiMeshInstance::IMultiMeshInstance() noexcept :
 	IDrawInstance() {

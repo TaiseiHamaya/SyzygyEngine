@@ -1,11 +1,11 @@
-#include "SkinningMeshDeferredPipeline.h"
-
-using namespace szg;
+﻿#include "SkinningMeshDeferredPipeline.h"
 
 #include "../DeferredAdaptor.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 SkinningMeshDeferredPipeline::SkinningMeshDeferredPipeline() = default;
 

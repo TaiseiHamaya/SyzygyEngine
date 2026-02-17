@@ -1,12 +1,12 @@
-#include "WorldLayerRenderNode.h"
-
-using namespace szg;
+﻿#include "WorldLayerRenderNode.h"
 
 #include "../WorldRenderCollection.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
+
+using namespace szg;
 
 void WorldLayerRenderNode::setup(Data&& data_) {
 	data = std::move(data_);

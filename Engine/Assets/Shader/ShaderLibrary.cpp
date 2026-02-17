@@ -1,6 +1,4 @@
-#include "ShaderLibrary.h"
-
-using namespace szg;
+﻿#include "ShaderLibrary.h"
 
 #include <mutex>
 
@@ -12,6 +10,8 @@ using namespace szg;
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
 
 std::mutex shaderLibraryMutex;
+
+using namespace szg;
 
 void ShaderLibrary::RegisterLoadQue(const std::filesystem::path& filePath) {
 	// ロード済みの場合は何もしない

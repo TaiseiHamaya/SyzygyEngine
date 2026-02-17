@@ -1,10 +1,10 @@
-#include "NonLightingPixelPipeline.h"
-
-using namespace szg;
+﻿#include "NonLightingPixelPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/Module/Render/RenderTargetGroup/MultiRenderTarget.h"
+
+using namespace szg;
 
 NonLightingPixelPipeline::NonLightingPixelPipeline() = default;
 NonLightingPixelPipeline::~NonLightingPixelPipeline() noexcept = default;

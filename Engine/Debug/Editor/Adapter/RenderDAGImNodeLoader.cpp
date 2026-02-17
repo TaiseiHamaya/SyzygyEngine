@@ -1,8 +1,6 @@
-#include "RenderDAGImNodeLoader.h"
+﻿#include "RenderDAGImNodeLoader.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
-
-using namespace szg;
 
 #include <vector>
 
@@ -15,6 +13,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 u64 RenderDAGImNodeLoader::entry_point(const std::string& sceneName, Reference<ImFlow::ImNodeFlow> imNodeFlow_, std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	imNodeFlow = imNodeFlow_;

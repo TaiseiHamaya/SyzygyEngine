@@ -1,12 +1,12 @@
-#include "FontAtlasMSDFLibrary.h"
-
-using namespace szg;
+﻿#include "FontAtlasMSDFLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./FontAtlasMSDFBuilder.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+
+using namespace szg;
 
 void FontAtlasMSDFLibrary::Initialize() {
 	GetInstance();

@@ -1,9 +1,9 @@
-#include "DirectionalLightingExecutor.h"
-
-using namespace szg;
+﻿#include "DirectionalLightingExecutor.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
+
+using namespace szg;
 
 DirectionalLightingExecutor::DirectionalLightingExecutor(u32 maxInstance_) {
 	reinitialize(maxInstance_);

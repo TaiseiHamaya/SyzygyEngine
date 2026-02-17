@@ -1,9 +1,9 @@
-#include "WorldRenderCollection.h"
-
-using namespace szg;
+﻿#include "WorldRenderCollection.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Module/Manager/World/InstanceBucket.h"
+
+using namespace szg;
 
 void WorldRenderCollection::initialize() {
 }

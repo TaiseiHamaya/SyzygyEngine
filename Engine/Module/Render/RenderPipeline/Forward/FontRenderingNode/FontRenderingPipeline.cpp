@@ -1,11 +1,11 @@
-#include "FontRenderingPipeline.h"
-
-using namespace szg;
+﻿#include "FontRenderingPipeline.h"
 
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 FontRenderingPipeline::FontRenderingPipeline() = default;
 FontRenderingPipeline::~FontRenderingPipeline() noexcept = default;

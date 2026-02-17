@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteAABBColliderInstance.h"
 
-using namespace szg;
-
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
+
+using namespace szg;
 
 void RemoteAABBColliderInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	IRemoteInstance<AABBCollider, void*>::update_preview(world, parentAffine);

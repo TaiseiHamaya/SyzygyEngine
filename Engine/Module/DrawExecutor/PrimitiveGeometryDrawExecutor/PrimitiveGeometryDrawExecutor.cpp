@@ -1,10 +1,10 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "PrimitiveGeometryDrawExecutor.h"
 
-using namespace szg;
-
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 PrimitiveGeometryDrawExecutor::PrimitiveGeometryDrawExecutor(std::shared_ptr<const PrimitiveGeometryAsset> asset_, u32 maxInstance) {
 	reinitialize(asset_, maxInstance);

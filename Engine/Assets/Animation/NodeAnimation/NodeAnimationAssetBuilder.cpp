@@ -1,6 +1,4 @@
-#include "NodeAnimationAssetBuilder.h"
-
-using namespace szg;
+﻿#include "NodeAnimationAssetBuilder.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
@@ -11,6 +9,8 @@ using namespace szg;
 #include "./NodeAnimationAsset.h"
 #include "./NodeAnimationLibrary.h"
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 NodeAnimationAssetBuilder::NodeAnimationAssetBuilder(const std::filesystem::path& filePath_) {
 	filePath = IAssetBuilder::ResolveFilePath(filePath_);

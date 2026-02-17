@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "ImGuiManager.h"
-
-using namespace szg;
 
 #include "./ImGuiIcons.h"
 #include "./ImGuiJapanese.h"
@@ -21,6 +19,8 @@ using namespace szg;
 #include <imgui_impl_dx12.h>
 #include <imgui_impl_win32.h>
 #include <ImGuizmo.h>
+
+using namespace szg;
 
 ImGuiManager& ImGuiManager::GetInstance() noexcept {
 	static ImGuiManager instance{};

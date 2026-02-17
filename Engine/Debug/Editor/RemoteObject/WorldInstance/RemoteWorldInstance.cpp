@@ -1,11 +1,11 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteWorldInstance.h"
 
-using namespace szg;
-
 #define TRANSFORM3D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 RemoteWorldInstance::RemoteWorldInstance() = default;
 RemoteWorldInstance::~RemoteWorldInstance() = default;

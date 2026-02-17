@@ -1,12 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "PrimitiveLinePipeline.h"
-
-using namespace szg;
 
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
+
+using namespace szg;
 
 PrimitiveLinePipeline::PrimitiveLinePipeline() = default;
 PrimitiveLinePipeline::~PrimitiveLinePipeline() noexcept = default;

@@ -1,8 +1,8 @@
-#include "DxDevice.h"
-
-using namespace szg;
+﻿#include "DxDevice.h"
 
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 DxDevice& DxDevice::GetInstance() noexcept {
 	static DxDevice instance{ };

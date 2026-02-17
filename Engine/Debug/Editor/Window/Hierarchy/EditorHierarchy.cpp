@@ -1,4 +1,4 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorHierarchy.h"
 
@@ -184,7 +184,6 @@ void EditorHierarchy::draw() {
 					);
 				}
 			}
-
 
 			ImGui::SeparatorText("Collider");
 			if (ImGui::MenuItem("AABBColliderInstance")) {

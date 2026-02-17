@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteWorldObject.h"
-
-using namespace szg;
 
 #include <format>
 
@@ -12,6 +10,8 @@ using namespace szg;
 #include "../Command/EditorSelectCommand.h"
 #include "../Core/EditorDandDManager.h"
 #include "../Window/SceneView/EditorSceneView.h"
+
+using namespace szg;
 
 RemoteWorldObject::RemoteWorldObject() = default;
 RemoteWorldObject::~RemoteWorldObject() = default;

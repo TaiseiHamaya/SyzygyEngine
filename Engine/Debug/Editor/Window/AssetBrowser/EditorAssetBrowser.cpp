@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetBrowser.h"
-
-using namespace szg;
 
 #include <imgui.h>
 #include <imgui_stdlib.h>
@@ -12,6 +10,8 @@ using namespace szg;
 
 #include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+
+using namespace szg;
 
 void EditorAssetBrowser::draw() {
 	ImGui::Begin("Asset", &isActive);

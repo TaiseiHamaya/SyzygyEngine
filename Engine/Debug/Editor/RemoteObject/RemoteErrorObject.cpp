@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteErrorObject.h"
-
-using namespace szg;
 
 #include <format>
 
@@ -12,6 +10,8 @@ using namespace szg;
 
 #include "../Command/EditorCommandInvoker.h"
 #include "../Command/EditorSelectCommand.h"
+
+using namespace szg;
 
 RemoteErrorObject::RemoteErrorObject(const std::string& msg) :
 	errorMessage(msg) {

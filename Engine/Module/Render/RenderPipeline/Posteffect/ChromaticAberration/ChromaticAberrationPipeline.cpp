@@ -1,6 +1,4 @@
-#include "ChromaticAberrationPipeline.h"
-
-using namespace szg;
+﻿#include "ChromaticAberrationPipeline.h"
 
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -10,6 +8,8 @@ using namespace szg;
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>
 #endif // _DEBUG
+
+using namespace szg;
 
 ChromaticAberrationPipeline::ChromaticAberrationPipeline() = default;
 

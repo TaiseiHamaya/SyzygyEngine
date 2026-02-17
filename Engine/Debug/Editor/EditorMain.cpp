@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorMain.h"
-
-using namespace szg;
 
 #include <fstream>
 
@@ -23,6 +21,8 @@ using namespace szg;
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
+
+using namespace szg;
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();

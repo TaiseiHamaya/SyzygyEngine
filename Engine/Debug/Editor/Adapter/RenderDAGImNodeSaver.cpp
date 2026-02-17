@@ -1,8 +1,6 @@
-#include "RenderDAGImNodeSaver.h"
+﻿#include "RenderDAGImNodeSaver.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
-
-using namespace szg;
 
 #include <unordered_set>
 
@@ -12,6 +10,8 @@ using namespace szg;
 
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void RenderDAGImNodeSaver::entry_point(const std::filesystem::path& filePath, const std::unordered_map<u64, EditorRenderDAG::DAGNodeType>& nodes) {
 	std::unordered_map<u64, bool> seen;

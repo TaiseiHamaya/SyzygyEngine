@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetSaver.h"
-
-using namespace szg;
 
 #include <memory>
 #include <ranges>
@@ -12,6 +10,8 @@ using namespace szg;
 #include "Engine/Debug/Editor/Window/RenderDAG/PostEffectImNode.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
 #include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
+
+using namespace szg;
 
 void EditorAssetSaver::setup(Reference<const EditorRenderDAG> dagEditor_) {
 	dagEditor = dagEditor_;

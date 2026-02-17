@@ -1,13 +1,13 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteDirectionalLightInstance.h"
-
-using namespace szg;
 
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void RemoteDirectionalLightInstance::setup() {
 	debugVisual = std::make_unique<Rect3d>();

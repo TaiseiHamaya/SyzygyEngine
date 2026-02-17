@@ -1,6 +1,4 @@
-#include "Input.h"
-
-using namespace szg;
+﻿#include "Input.h"
 
 #pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dxguid.lib")
@@ -8,6 +6,8 @@ using namespace szg;
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/WinApp.h"
+
+using namespace szg;
 
 Input& Input::GetInstance() {
 	static Input instance;

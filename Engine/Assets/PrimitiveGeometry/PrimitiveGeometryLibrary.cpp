@@ -1,6 +1,4 @@
-#include "PrimitiveGeometryLibrary.h"
-
-using namespace szg;
+﻿#include "PrimitiveGeometryLibrary.h"
 
 #include <mutex>
 
@@ -15,6 +13,8 @@ using namespace szg;
 #endif // _DEBUG
 
 std::mutex primitiveGeometryMutex;
+
+using namespace szg;
 
 std::shared_ptr<const PrimitiveGeometryAsset> PrimitiveGeometryLibrary::GetPrimitiveGeometry(const std::string& name) {
 	std::lock_guard<std::mutex> lock{ primitiveGeometryMutex };

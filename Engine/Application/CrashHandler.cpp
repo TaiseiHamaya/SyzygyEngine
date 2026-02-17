@@ -1,6 +1,4 @@
-#include "CrashHandler.h"
-
-using namespace szg;
+﻿#include "CrashHandler.h"
 
 #include <Windows.h>
 #include <DbgHelp.h>
@@ -8,6 +6,8 @@ using namespace szg;
 
 #include "Engine/Application/EngineSettings.h"
 #include "Engine/Application/Logger.h"
+
+using namespace szg;
 
 static LONG WINAPI ExportDump(EXCEPTION_POINTERS* exception) noexcept {
 	Logger::Finalize();

@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteStaticMeshInstance.h"
-
-using namespace szg;
 
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
@@ -12,6 +10,8 @@ using namespace szg;
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+
+using namespace szg;
 
 void RemoteStaticMeshInstance::setup() {
 	debugVisual = std::make_unique<StaticMeshInstance>();

@@ -1,6 +1,4 @@
-#include "BackgroundLoader.h"
-
-using namespace szg;
+﻿#include "BackgroundLoader.h"
 
 #include <functional>
 #include <mutex>
@@ -13,6 +11,7 @@ std::mutex referenceMutex;
 std::condition_variable waitConditionVariable;
 std::condition_variable loadConditionVariable;
 
+using namespace szg;
 
 void BackgroundLoader::Initialize() {
 	GetInstance().initialize();

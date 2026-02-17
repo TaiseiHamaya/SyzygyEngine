@@ -1,12 +1,12 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "IEditorWindow.h"
-
-using namespace szg;
 
 #include <string>
 
 #include <imgui.h>
+
+using namespace szg;
 
 void IEditorWindow::draw_menu(string_literal name) {
 	std::string itemName = name;

@@ -1,9 +1,9 @@
-#include "PolygonMesh.h"
-
-using namespace szg;
+﻿#include "PolygonMesh.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/IndexBuffer/IndexBuffer.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/VertexBuffer/VertexBuffer.h"
+
+using namespace szg;
 
 PolygonMesh::PolygonMesh(std::vector<MeshData>& meshData_, std::unordered_map<std::string, MeshMaterialData>& materialData_) noexcept : 
 	meshData(std::move(meshData_)),

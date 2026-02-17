@@ -1,8 +1,8 @@
-#include "CameraInstance.h"
-
-using namespace szg;
+﻿#include "CameraInstance.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+
+using namespace szg;
 
 void szg::CameraInstance::setup(std::unique_ptr<ICameraProjection> projection_) noexcept {
 	projection = std::move(projection_);

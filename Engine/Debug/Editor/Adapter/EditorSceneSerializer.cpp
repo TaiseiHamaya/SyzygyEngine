@@ -1,8 +1,6 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneSerializer.h"
-
-using namespace szg;
 
 #include "../RemoteObject/FolderObject.h"
 #include "../RemoteObject/RemoteErrorObject.h"
@@ -29,6 +27,8 @@ using namespace szg;
 #define TRANSFORM2D_SERIALIZER
 #define TRANSFORM3D_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 std::unique_ptr<RemoteSceneObject> EditorSceneSerializer::CreateRemoteScene(const std::string& sceneName) {
 	std::unique_ptr<RemoteSceneObject> scene = std::make_unique<RemoteSceneObject>();
@@ -225,7 +225,6 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstance(const nlohmann::json& json) {
 	std::unique_ptr<RemoteRect3dInstance> result = std::make_unique<RemoteRect3dInstance>();
 	json.get_to(result->hierarchyName);
-
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instance : json["Children"]) {

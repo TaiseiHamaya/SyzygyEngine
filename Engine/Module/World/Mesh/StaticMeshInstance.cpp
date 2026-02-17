@@ -1,11 +1,11 @@
-#include "StaticMeshInstance.h"
-
-using namespace szg;
+﻿#include "StaticMeshInstance.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
+
+using namespace szg;
 
 StaticMeshInstance::StaticMeshInstance() noexcept :
 	IMultiMeshInstance() {

@@ -1,6 +1,4 @@
-#include "ProjectSettings.h"
-
-using namespace szg;
+﻿#include "ProjectSettings.h"
 
 #include <fstream>
 
@@ -13,6 +11,8 @@ using namespace szg;
 #include "Engine/Assets/Json/JsonSerializer.h"
 
 constexpr u32 DEFAULT_WINDOW_STYLE = WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME;
+
+using namespace szg;
 
 void ProjectSettings::Initialize() {
 	ProjectSettings& instance = GetInstance();

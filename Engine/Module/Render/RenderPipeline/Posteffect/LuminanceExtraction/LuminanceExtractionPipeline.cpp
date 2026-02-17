@@ -1,10 +1,10 @@
-#include "LuminanceExtractionPipeline.h"
-
-using namespace szg;
+﻿#include "LuminanceExtractionPipeline.h"
 
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/DxPipelineState.h"
 #include "Engine/GraphicsAPI/DirectX/DxPipelineState/PSOBuilder/PSOBuilder.h"
+
+using namespace szg;
 
 void LuminanceExtractionPipeline::initialize() {
 	create_pipeline_state();

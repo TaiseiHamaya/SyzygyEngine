@@ -1,14 +1,14 @@
-#ifdef DEBUG_FEATURES_ENABLE
+﻿#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteStringRectInstance.h"
-
-using namespace szg;
 
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
 #define VECTOR2_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"
+
+using namespace szg;
 
 void RemoteStringRectInstance::setup() {
 	debugVisual = std::make_unique<StringRectInstance>();
