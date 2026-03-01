@@ -73,7 +73,8 @@ void WorldRenderCollection::collect_instantiated(Reference<InstanceBucket> insta
 	}
 	// Camera
 	for (auto& instance : instanceBucket->camera) {
-		cameras.emplace_back(instance);
+		auto& temp = cameras.emplace_back(instance);
+		temp.buffer.initialize();
 	}
 }
 
@@ -109,11 +110,23 @@ void WorldRenderCollection::transfer() {
 			}
 		}
 	}
+
+	// Camera
+	for (auto& camera : cameras) {
+		if (!camera.instance->is_active()) {
+			continue;
+		}
+		camera.buffer.update(camera.instance);
+	}
 }
 
-Reference<CameraInstance> WorldRenderCollection::camera_at(u32 index) const {
+Reference<const CameraBuffer> WorldRenderCollection::camera_buffer_at(u32 index) const {
 	if (index >= cameras.size()) {
 		return nullptr;
 	}
-	return cameras[index];
+	auto& cameraData = cameras[index];
+	if (!cameraData.instance->is_active()) {
+		return nullptr;
+	}
+	return cameraData.buffer;
 }

@@ -3,11 +3,15 @@
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include <memory>
+#include <string>
+#include <unordered_map>
 
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "EditorDebugCamera.h"
+#include "Engine/Module/Render/Struct/CameraBuffer.h"
+
 
 namespace szg {
 
@@ -52,6 +56,7 @@ private:
 	std::unique_ptr<EditorDebugCamera> cameraInstance;
 	std::unique_ptr<EditorWorldGridBuffer> worldGrid;
 	std::unordered_map<std::string, std::unique_ptr<PrimitiveGeometryDrawExecutor>> primitive;
+	CameraBuffer cameraBuffer;
 };
 
 }; // szg

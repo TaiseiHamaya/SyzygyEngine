@@ -1,10 +1,9 @@
-﻿#include "WorldLayerRenderNode.h"
+#include "WorldLayerRenderNode.h"
 
 #include "../WorldRenderCollection.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/RenderingSystemValues.h"
-#include "Engine/Module/World/Camera/CameraInstance.h"
 
 using namespace szg;
 
@@ -15,16 +14,11 @@ void WorldLayerRenderNode::setup(Data&& data_) {
 
 void WorldLayerRenderNode::stack_command() {
 	// カメラ取得
-	Reference<CameraInstance> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
+	Reference<const CameraBuffer> camera = data.layerData.worldRenderCollection->camera_buffer_at(data.layerData.cameraId);
 	if (!camera) {
 		szgWarning("Camera is invalid. LayerIndex: {}", data.layerData.index);
 		return;
 	}
-	if (!camera->is_active()) {
-		return;
-	}
-
-	camera->transfer();
 
 	execute_gbuffer_pass();
 
@@ -37,7 +31,7 @@ void WorldLayerRenderNode::stack_command() {
 
 void szg::WorldLayerRenderNode::execute_gbuffer_pass() {
 	auto&& commandList = DxCommand::GetCommandList();
-	Reference<CameraInstance> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
+	Reference<const CameraBuffer> camera = data.layerData.worldRenderCollection->camera_buffer_at(data.layerData.cameraId);
 	Reference<DepthStencilTexture> depthStencilTexture = RenderingSystemValues::GetDepthStencilTexture();
 
 	// ----- GBufferPass -----
@@ -53,18 +47,18 @@ void szg::WorldLayerRenderNode::execute_gbuffer_pass() {
 	}
 	// StaticMesh
 	subtree.begin_nodes();
-	camera->register_world_projection(2);
+	camera->stack_projection(2);
 	data.layerData.worldRenderCollection->staticMeshDrawManager.draw_layer(data.layerData.index);
 
 	// SkinningMesh
 	subtree.next_node();
-	camera->register_world_projection(2);
+	camera->stack_projection(2);
 	data.layerData.worldRenderCollection->skinningMeshDrawManager.draw_layer(data.layerData.index);
 }
 
 void szg::WorldLayerRenderNode::execute_lighting_pass() {
 	auto&& commandList = DxCommand::GetCommandList();
-	Reference<CameraInstance> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
+	Reference<const CameraBuffer> camera = data.layerData.worldRenderCollection->camera_buffer_at(data.layerData.cameraId);
 	Reference<DepthStencilTexture> depthStencilTexture = RenderingSystemValues::GetDepthStencilTexture();
 
 	// ----- LightingPass -----
@@ -90,7 +84,7 @@ void szg::WorldLayerRenderNode::execute_lighting_pass() {
 		data.gBuffer.texture[i]->get_as_srv()->use(i + 2);
 	}
 	depthStencilTexture->get_as_srv()->use(4);
-	camera->register_world_lighting(1);
+	camera->stack_lighting(1);
 	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].draw_command();
 
 	// PointLighting
@@ -99,14 +93,14 @@ void szg::WorldLayerRenderNode::execute_lighting_pass() {
 		data.gBuffer.texture[i]->get_as_srv()->use(i + 2);
 	}
 	depthStencilTexture->get_as_srv()->use(4);
-	camera->register_world_projection(1);
-	camera->register_world_lighting(6);
+	camera->stack_projection(1);
+	camera->stack_lighting(6);
 	data.layerData.outputTextureSize.stack_command(7);
 	data.layerData.worldRenderCollection->pointLightingExecutors[data.layerData.index].draw_command();
 }
 
 void szg::WorldLayerRenderNode::execute_forward_pass() {
-	Reference<CameraInstance> camera = data.layerData.worldRenderCollection->camera_at(data.layerData.cameraId);
+	Reference<const CameraBuffer> camera = data.layerData.worldRenderCollection->camera_buffer_at(data.layerData.cameraId);
 	Reference<DepthStencilTexture> depthStencilTexture = RenderingSystemValues::GetDepthStencilTexture();
 
 	// ----- PrimitivePass -----
@@ -114,14 +108,14 @@ void szg::WorldLayerRenderNode::execute_forward_pass() {
 	subtree.next_node();
 	depthStencilTexture->start_write();
 	data.outputRenderTargetGroup->begin_write(false, depthStencilTexture);
-	camera->register_world_projection(3);
-	camera->register_world_lighting(4);
+	camera->stack_projection(3);
+	camera->stack_lighting(4);
 	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
 	data.layerData.worldRenderCollection->rect3dDrawManager.draw_layer(data.layerData.index);
 
 	// StringRect
 	subtree.next_node();
-	camera->register_world_projection(3);
+	camera->stack_projection(3);
 	data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer(data.layerData.index);
 }
 
