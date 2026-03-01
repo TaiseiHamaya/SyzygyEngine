@@ -11,7 +11,7 @@ void szg::CameraBuffer::update(Reference<const CameraInstance> camera) {
 	}
 
 	vpBuffers.data_mut()->view = camera->view_affine().to_matrix();
-	vpBuffers.data_mut()->viewProjection = camera->vp_matrix_();
+	vpBuffers.data_mut()->viewProjection = camera->vp_matrix();
 	lightingBuffer.data_mut()->viewInv = camera->view_affine().inverse_fast().to_matrix();
 	lightingBuffer.data_mut()->position = camera->world_position();
 	lightingBuffer.data_mut()->projInv = camera->proj_matrix().inverse();
