@@ -36,7 +36,7 @@ const Matrix4x4& CameraInstance::proj_matrix() const {
 	return projectionMatrix;
 }
 
-const Matrix4x4& szg::CameraInstance::vp_matrix_() const {
+const Matrix4x4& szg::CameraInstance::vp_matrix() const {
 	return vpMatrix;
 }
 

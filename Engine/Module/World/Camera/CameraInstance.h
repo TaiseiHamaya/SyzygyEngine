@@ -28,7 +28,7 @@ public:
 public:
 	const Affine& view_affine() const;
 	const Matrix4x4& proj_matrix() const;
-	const Matrix4x4& vp_matrix_() const;
+	const Matrix4x4& vp_matrix() const;
 
 protected:
 	void make_view_matrix();
