@@ -2,17 +2,19 @@
 
 #include <vector>
 
+#include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
+#include "./Struct/CameraBuffer.h"
 #include "Engine/Module/DrawExecutor/LightingExecutor/DirectionalLightingExecutor.h"
 #include "Engine/Module/DrawExecutor/LightingExecutor/PointLightingExecutor.h"
-#include "Engine/Module/DrawExecutor/Mesh/Primitive/StringRectDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/Rect3dDrawManager.h"
+#include "Engine/Module/DrawExecutor/Mesh/Primitive/StringRectDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/SkinningMeshDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"
+#include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
 #include "Engine/Module/World/Light/PointLight/PointLightInstance.h"
-#include "RenderNode/WorldLayerRenderNode.h"
 
 namespace szg {
 
@@ -21,6 +23,12 @@ class InstanceBucket;
 
 class WorldRenderCollection final {
 	friend class WorldLayerRenderNode;
+
+public:
+	struct CameraData {
+		Reference<CameraInstance> instance;
+		CameraBuffer buffer;
+	};
 
 public:
 	WorldRenderCollection() = default;
@@ -37,7 +45,7 @@ public:
 
 	void transfer();
 
-	Reference<CameraInstance> camera_at(u32 index) const;
+	Reference<const CameraBuffer> camera_buffer_at(u32 index) const;
 
 private:
 	u8 numLayer{ 0 };
@@ -52,7 +60,7 @@ private:
 	std::vector<Reference<DirectionalLightInstance>> directionalLights;
 	std::vector<Reference<PointLightInstance>> pointLights;
 
-	std::vector<Reference<CameraInstance>> cameras;
+	std::vector<CameraData> cameras;
 };
 
 }; // szg

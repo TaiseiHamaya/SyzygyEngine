@@ -1,6 +1,4 @@
-﻿#include "CameraInstance.h"
-
-#include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
+#include "CameraInstance.h"
 
 using namespace szg;
 
@@ -19,38 +17,15 @@ void CameraInstance::update_affine() {
 
 	// カメラ位置をもとにViewMatrixを更新
 	make_view_matrix();
+
 	if (projection) {
 		projectionMatrix = projection->generate_matrix();
 	}
 	else {
 		projectionMatrix = CMatrix4x4::IDENTITY;
 	}
-}
 
-void CameraInstance::transfer() {
-	vpBuffers.data_mut()->view = viewAffine.to_matrix();
-	vpBuffers.data_mut()->viewProjection = viewAffine.to_matrix() * projectionMatrix;
-	lightingBuffer.data_mut()->viewInv = viewAffine.inverse_fast().to_matrix();
-	lightingBuffer.data_mut()->position = world_position();
-	lightingBuffer.data_mut()->projInv = projectionMatrix.inverse();
-}
-
-void CameraInstance::register_world_projection(u32 index) const {
-	auto& commandList = DxCommand::GetCommandList();
-	commandList->SetGraphicsRootConstantBufferView(
-		index, vpBuffers.get_resource()->GetGPUVirtualAddress()
-	);
-}
-
-void CameraInstance::register_world_lighting(u32 index) const {
-	auto& commandList = DxCommand::GetCommandList();
-	commandList->SetGraphicsRootConstantBufferView(
-		index, lightingBuffer.get_resource()->GetGPUVirtualAddress()
-	);
-}
-
-const Matrix4x4& CameraInstance::vp_matrix() const {
-	return vpBuffers.data_imm()->viewProjection;
+	vpMatrix = viewAffine.to_matrix() * projectionMatrix;
 }
 
 const Affine& CameraInstance::view_affine() const {
@@ -59,6 +34,10 @@ const Affine& CameraInstance::view_affine() const {
 
 const Matrix4x4& CameraInstance::proj_matrix() const {
 	return projectionMatrix;
+}
+
+const Matrix4x4& szg::CameraInstance::vp_matrix_() const {
+	return vpMatrix;
 }
 
 void CameraInstance::make_view_matrix() {

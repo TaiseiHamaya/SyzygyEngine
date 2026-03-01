@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorWorldView.h"
 
@@ -39,6 +39,8 @@ void EditorWorldView::initialize() {
 	primitive.emplace("Line", std::make_unique<PrimitiveGeometryDrawExecutor>(
 		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Line"), 1024
 	));
+
+	cameraBuffer.initialize();
 }
 
 void EditorWorldView::setup(Reference<RemoteWorldObject> remoteWorld_) {
@@ -67,7 +69,8 @@ void szg::EditorWorldView::transfer() {
 		executor->begin();
 	}
 	cameraInstance->constraint_mut()->update_affine();
-	cameraInstance->transfer();
+
+	cameraBuffer.update(cameraInstance);
 
 	worldGrid->transfer(
 		cameraInstance->view_point(),
@@ -76,22 +79,22 @@ void szg::EditorWorldView::transfer() {
 }
 
 void EditorWorldView::register_world_projection(u32 index) {
-	cameraInstance->register_world_projection(index);
+	cameraBuffer.stack_projection(index);
 }
 
 void EditorWorldView::register_world_lighting(u32 index) {
-	cameraInstance->register_world_lighting(index);
+	cameraBuffer.stack_lighting(index);
 }
 
 void EditorWorldView::draw_lines() {
-	cameraInstance->register_world_projection(1);
+	register_world_projection(1);
 	for (auto& executor : primitive | std::views::values) {
 		executor->draw_command();
 	}
 }
 
 void EditorWorldView::draw_grid() {
-	cameraInstance->register_world_projection(1);
+	register_world_projection(1);
 	worldGrid->stack_command();
 }
 

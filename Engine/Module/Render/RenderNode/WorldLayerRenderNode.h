@@ -13,8 +13,8 @@
 
 namespace szg {
 
-class CameraInstance;
 class WorldRenderCollection;
+class CameraBuffer;
 
 class WorldLayerRenderNode final : public IRenderNode {
 public:
@@ -67,9 +67,9 @@ public:
 	const Data& data_imm() const;
 
 private:
-	LayerRenderSubtree subtree;
-
 	Data data;
+
+	LayerRenderSubtree subtree;
 };
 
 }; // szg
