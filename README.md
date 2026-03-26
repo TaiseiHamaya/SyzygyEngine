@@ -89,20 +89,20 @@ The generated solution includes:
 
 ```text
 SyzygyEngine/
-	Engine/
-		Application/     # Framework, window app, logging, project settings
-		Assets/          # Asset types and libraries (mesh, texture, shader, audio, animation)
-		Debug/           # Editor, profiler, ImGui integration
-		GraphicsAPI/     # Rendering API layer (DirectX)
-		Loader/          # Scene/world and asset loading helpers
-		Module/          # World, rendering, and management modules
-		Runtime/         # Scene manager, input, clock
-	EngineResources/   # Engine-side HLSL and built-in resources
-	Library/
-		Externals/       # Third-party dependencies
-		Math/            # Math library
-		Utility/         # Utility layer and templates
-	ProjectGeneratorTool/
-		CreateSolution.ps1
-		CopyFolderRoot/  # Template files for generated game projects
+├─ Engine/
+│  ├─ Application/        # Framework, window app, logging, project settings
+│  ├─ Assets/             # Asset types and libraries (mesh, texture, shader, audio, animation)
+│  ├─ Debug/              # Editor, profiler, ImGui integration
+│  ├─ GraphicsAPI/        # Rendering API layer (DirectX)
+│  ├─ Loader/             # Scene/world and asset loading helpers
+│  ├─ Module/             # World, rendering, and management modules
+│  └─ Runtime/            # Scene manager, input, clock
+├─ EngineResources/       # Engine-side HLSL and built-in resources
+├─ Library/
+│  ├─ Externals/          # Third-party dependencies
+│  ├─ Math/               # Math library
+│  └─ Utility/            # Utility layer and templates
+└─ ProjectGeneratorTool/
+   ├─ CreateSolution.ps1
+   └─ CopyFolderRoot/     # Template files for generated game projects
 ```
