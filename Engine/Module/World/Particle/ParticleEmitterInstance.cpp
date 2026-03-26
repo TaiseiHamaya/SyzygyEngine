@@ -1,4 +1,4 @@
-﻿#include "ParticleEmitterInstance.h"
+#include "ParticleEmitterInstance.h"
 
 #include <Library/Math/Definition.h>
 #include <Library/Utility/Tools/RandomEngine.h>
@@ -15,7 +15,7 @@ using namespace szg;
 ParticleEmitterInstance::ParticleEmitterInstance(std::filesystem::path jsonFile, u32 MaxParticle) :
 	WorldInstance(),
 	numMaxParticle(MaxParticle),
-	jsonResource("Particle" / jsonFile) {
+	jsonResource("[[game]]\\Particle" / jsonFile) {
 	timer.set(0);
 	drawType = static_cast<ParticleDrawType>(jsonResource.try_emplace<i32>("DrawType"));
 	switch (drawType) {
