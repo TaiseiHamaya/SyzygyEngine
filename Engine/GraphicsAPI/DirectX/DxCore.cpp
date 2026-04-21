@@ -1,4 +1,4 @@
-﻿#include "DxCore.h"
+#include "DxCore.h"
 
 #include <dxgidebug.h>
 
