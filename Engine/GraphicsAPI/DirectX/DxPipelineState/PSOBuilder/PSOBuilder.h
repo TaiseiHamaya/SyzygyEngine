@@ -7,6 +7,8 @@
 #include <d3d12.h>
 #include <wrl/client.h>
 
+#include "Engine/GraphicsAPI/DirectX/DxSystemValues.h"
+
 namespace szg {
 
 class DepthStencilView;
@@ -80,7 +82,7 @@ public:
 	void front_face(D3D12_COMPARISON_FUNC func, D3D12_STENCIL_OP depthFail, D3D12_STENCIL_OP stencilFail, D3D12_STENCIL_OP stencilPass);
 	void back_face(D3D12_COMPARISON_FUNC func, D3D12_STENCIL_OP depthFail, D3D12_STENCIL_OP stencilFail, D3D12_STENCIL_OP stencilPass);
 	void primitivetopologytype(D3D12_PRIMITIVE_TOPOLOGY_TYPE topologyType_ = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE); // 使用するトポロジーのタイプ
-	void rendertarget(DXGI_FORMAT format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB);
+	void rendertarget(DXGI_FORMAT format = DxSystemValues::SCREEN_RTV_FORMAT);
 
 private:
 	Microsoft::WRL::ComPtr<ID3D12RootSignature> rootSignature;
