@@ -78,6 +78,13 @@ void WorldRenderCollection::collect_instantiated(Reference<InstanceBucket> insta
 	}
 }
 
+void szg::WorldRenderCollection::reset_buffer() {
+	staticMeshDrawManager.reset_buffer();
+	skinningMeshDrawManager.reset_buffer();
+	rect3dDrawManager.reset_buffer();
+	stringRectDrawManager.reset_buffer();
+}
+
 void WorldRenderCollection::transfer() {
 	// StaticMesh
 	staticMeshDrawManager.transfer();

@@ -27,29 +27,23 @@ public:
 
 public:
 	void initialize(u32 numLayer);
+	
 	virtual void make_instancing(u32 layer, const KeyType& meshName, u32 maxInstance) = 0;
+	
 	void register_instance(Reference<const InstanceType> instance);
 	void unregister_instance(Reference<const InstanceType> instance);
 	void remove_marked_destroy();
+	
+	void reset_buffer();
 	void transfer();
-	void draw_layer(u32 layer) const;
 
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	virtual void debug_gui() {};
-#endif // _DEBUG
+	void draw_layer(u32 layer) const;
 
 protected:
 	u32 maxLayer;
 	std::unordered_set<Reference<const InstanceType>> instances;
 	std::unordered_map<std::pair<u32, KeyType>, Executor> executors;
 	std::vector<std::vector<Reference<Executor>>> layerExecutors;
-
-#ifdef DEBUG_FEATURES_ENABLE
-	u32 d_layer{ 0 };
-	KeyType select;
-	u32 d_maxInstance{ 0 };
-#endif // _DEBUG
 };
 
 template<class Executor, typename KeyType, typename InstanceType>
@@ -82,7 +76,7 @@ inline void BaseDrawManager<Executor, KeyType, InstanceType>::remove_marked_dest
 
 template<class Executor, typename KeyType, typename InstanceType>
 	requires ConceptExecutor<Executor, InstanceType>
-inline void BaseDrawManager<Executor, KeyType, InstanceType>::transfer() {
+inline void BaseDrawManager<Executor, KeyType, InstanceType>::reset_buffer() {
 	// 全てのExecutorをリセット
 	auto executorsValue = std::views::values(executors);
 	std::for_each(
@@ -90,7 +84,11 @@ inline void BaseDrawManager<Executor, KeyType, InstanceType>::transfer() {
 		[](Executor& executor) {
 		executor.begin();
 	});
-	// 全てのExecutorをリセット
+}
+
+template<class Executor, typename KeyType, typename InstanceType>
+	requires ConceptExecutor<Executor, InstanceType>
+inline void BaseDrawManager<Executor, KeyType, InstanceType>::transfer() {
 	std::for_each(
 		std::execution::par, instances.begin(), instances.end(),
 		[&](const Reference<const InstanceType> instance) {

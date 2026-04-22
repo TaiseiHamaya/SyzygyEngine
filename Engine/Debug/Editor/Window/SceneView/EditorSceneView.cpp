@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneView.h"
 
@@ -77,7 +77,13 @@ void EditorSceneView::update() {
 			axisMesh->set_active(true);
 		}
 
+		// リセット
+		staticMeshDrawManager.reset_buffer();
+		rect3dDrawManager.reset_buffer();
+		stringRectDrawManager.reset_buffer();
 		directionalLightingExecutor.begin();
+
+		// 書き込み
 		for (auto& lightInstance : directionalLights[selectWorldId.value()]) {
 			if (!lightInstance->is_active()) {
 				continue;
