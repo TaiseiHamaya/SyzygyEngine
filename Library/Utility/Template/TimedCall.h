@@ -17,6 +17,8 @@ public:
 
 	void restart(r32 time);
 
+	void end_force();
+
 #ifdef DEBUG_FEATURES_ENABLE
 public:
 	void debug_gui();
@@ -53,6 +55,11 @@ template<class Type>
 inline void TimedCall<Type>::restart(r32 time_) {
 	timer.set(time_);
 	isFinished = false;
+}
+
+template<class Type>
+inline void TimedCall<Type>::end_force() {
+	timer.set(0);
 }
 
 #ifdef DEBUG_FEATURES_ENABLE
