@@ -1,11 +1,11 @@
 #pragma once
 
 #include <any>
+#include <optional>
 #include <string>
 #include <unordered_map>
 
 #include <Library/Utility/Template/SingletonInterface.h>
-#include <Library/Utility/Template/Reference.h>
 
 namespace szg {
 
@@ -18,12 +18,33 @@ public:
 public:
 	static ValueGroup& GetValueList(const std::string& name);
 
-	static Reference<const std::any> GetValueImm(const std::string& groupName, const std::string& valueName);
-	static Reference<std::any> GetValueMut(const std::string& groupName, const std::string& valueName);
+	template<typename T>
+	static std::optional<T> GetValue(const std::string& groupName, const std::string& valueName);
 
 private:
 	std::unordered_map<std::string, ValueGroup> runtimeValues;
 };
 
+template<typename T>
+std::optional<T> RuntimeStorage::GetValue(const std::string& groupName, const std::string& valueName) {
+	auto& instance = GetInstance();
+	if (!instance.runtimeValues.contains(groupName)) {
+		return std::nullopt;
+	}
+	auto& valueGroup = instance.runtimeValues.at(groupName);
+	if (!valueGroup.contains(valueName)) {
+		return std::nullopt;
+	}
+	std::any value = valueGroup.at(valueName);
+	if (!value.has_value()) {
+		return std::nullopt;
+	}
+	if (value.type() == typeid(T)) {
+		return std::any_cast<T>(value);
+	}
+	else {
+		return std::nullopt;
+	}
+}
 
 }; // szg
