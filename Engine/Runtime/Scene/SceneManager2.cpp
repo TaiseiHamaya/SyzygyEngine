@@ -1,4 +1,4 @@
-﻿#include "SceneManager2.h"
+#include "SceneManager2.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/WinApp.h"
@@ -149,6 +149,11 @@ void SceneManager2::PopScene(r32 interval, size_t numPopScenes) {
 	instance.sceneChangeTempData.type = SceneChangeType::POP;
 	instance.sceneChangeTempData.isStopLoad = false;
 	instance.sceneChangeTempData.onEnd.restart(interval);
+}
+
+void szg::SceneManager2::EndSceneChangeIntervalForce() {
+	SceneManager2& instance = GetInstance();
+	instance.sceneChangeTempData.onEnd.end_force();
 }
 
 Reference<Scene> SceneManager2::GetCurrentScene() {

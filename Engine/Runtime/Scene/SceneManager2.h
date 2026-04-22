@@ -37,6 +37,8 @@ public:
 	static void SceneChange(u32 nextScene, r32 interval, bool isStackScene = false, bool isStopLoad = true);
 	static void PopScene(r32 interval, size_t numPopScenes = 1);
 
+	static void EndSceneChangeIntervalForce();
+
 public:
 	static Reference<Scene> GetCurrentScene();
 
