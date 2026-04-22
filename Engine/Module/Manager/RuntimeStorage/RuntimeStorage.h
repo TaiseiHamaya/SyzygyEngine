@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-#include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Template/SingletonInterface.h>
 
 namespace szg {
@@ -20,22 +19,14 @@ public:
 	static ValueGroup& GetValueList(const std::string& name);
 
 	template<typename T>
-	static std::optional<const T> GetValueImm(const std::string& groupName, const std::string& valueName);
-
-	template<typename T>
-	static std::optional<T> GetValueMut(const std::string& groupName, const std::string& valueName);
+	static std::optional<T> GetValue(const std::string& groupName, const std::string& valueName);
 
 private:
 	std::unordered_map<std::string, ValueGroup> runtimeValues;
 };
 
 template<typename T>
-inline std::optional<const T> RuntimeStorage::GetValueImm(const std::string& groupName, const std::string& valueName) {
-	return GetValueMut<const T>(groupName, valueName);
-}
-
-template<typename T>
-std::optional<T> RuntimeStorage::GetValueMut(const std::string& groupName, const std::string& valueName) {
+std::optional<T> RuntimeStorage::GetValue(const std::string& groupName, const std::string& valueName) {
 	auto& instance = GetInstance();
 	if (!instance.runtimeValues.contains(groupName)) {
 		return std::nullopt;
