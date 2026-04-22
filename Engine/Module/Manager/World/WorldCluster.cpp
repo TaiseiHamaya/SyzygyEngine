@@ -1,4 +1,4 @@
-﻿#include "WorldCluster.h"
+#include "WorldCluster.h"
 
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Loader/WorldInstanceLoader.h"
@@ -31,6 +31,9 @@ void WorldCluster::setup(const std::filesystem::path& setupFile) {
 }
 
 void WorldCluster::begin_frame() {
+	if (state & WorldState::PauseUpdate) {
+		return;
+	}
 	// ---------- Instantiate後の処理 ----------
 	// 描画が側に伝達
 	worldRenderCollection.collect_instantiated(instanceBucket);
@@ -45,15 +48,24 @@ void WorldCluster::begin_frame() {
 }
 
 void WorldCluster::update() {
+	if (state & WorldState::PauseUpdate) {
+		return;
+	}
 	worldRoot.update();
 
 	worldRoot.update_affine();
 }
 
 void WorldCluster::pre_draw() {
-	worldRenderCollection.transfer();
+	worldRenderCollection.reset_buffer();
 
-	worldRoot.post_update();
+	if (!(state & WorldState::PauseDraw)) {
+		worldRenderCollection.transfer();
+	}
+
+	if (!(state & WorldState::PauseUpdate)) {
+		worldRoot.post_update();
+	}
 }
 
 void WorldCluster::end_frame() {

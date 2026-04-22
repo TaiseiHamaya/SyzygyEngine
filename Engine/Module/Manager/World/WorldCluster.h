@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include <Library/Utility/Tools/ConstructorMacro.h>
+#include <Library/Utility/Template/bitflag.h>
 
 #include "Engine/Module/Manager/World/InstanceBucket.h"
 #include "Engine/Module/Manager/World/WorldRoot.h"
@@ -10,6 +11,16 @@
 #include "Engine/Module/World/Collision/CollisionManager.h"
 
 namespace szg {
+
+enum class WorldState {
+	Default = 0,
+	PauseUpdate = 1 << 0,
+	PauseDraw = 1 << 1,
+
+	PauseAll = PauseUpdate | PauseDraw,
+};
+
+SZG_BITFLAG(WorldState);
 
 class WorldCluster final {
 public:
@@ -37,6 +48,8 @@ public:
 	Reference<WorldRenderCollection> render_collection();
 
 private:
+	eps::bitflag<WorldState> state{ WorldState::Default };
+
 	WorldRoot worldRoot;
 	InstanceBucket instanceBucket;
 	WorldRenderCollection worldRenderCollection;

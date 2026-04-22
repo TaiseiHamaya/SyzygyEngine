@@ -43,6 +43,7 @@ public:
 	void remove_marked_destroy();
 	void collect_instantiated(Reference<InstanceBucket> instanceBucket);
 
+	void reset_buffer();
 	void transfer();
 
 	Reference<const CameraBuffer> camera_buffer_at(u32 index) const;
