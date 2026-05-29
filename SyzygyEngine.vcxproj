@@ -463,6 +463,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp" />
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
+    <ClCompile Include="Library\Utility\Template\unorm.inl" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -1044,6 +1045,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h" />
     <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
+    <ClInclude Include="Library\Utility\Template\unorm.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
