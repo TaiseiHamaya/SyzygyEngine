@@ -2926,6 +2926,9 @@
       <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp" />
+    <ClCompile Include="Library\Utility\Template\unorm.inl">
+      <Filter>Library\Utility\Template</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2953,5 +2956,8 @@
       <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
+    <ClInclude Include="Library\Utility\Template\unorm.h">
+      <Filter>Library\Utility\Template</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
