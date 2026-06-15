@@ -4,7 +4,7 @@
 #include <memory>
 #include <thread>
 
-#include "../IAssetBuilder.h"
+#include "Engine/Assets/IAssetBuilder.h"
 
 #include <Library/Utility/Template/SingletonInterface.h>
 

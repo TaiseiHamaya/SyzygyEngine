@@ -1,4 +1,4 @@
-﻿#include "PrimitiveGeometryLibrary.h"
+#include "PrimitiveGeometryLibrary.h"
 
 #include <mutex>
 
@@ -6,7 +6,7 @@
 
 #include "./PrimitiveGeometryAsset.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>

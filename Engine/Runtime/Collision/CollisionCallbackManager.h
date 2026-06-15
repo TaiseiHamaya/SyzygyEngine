@@ -9,7 +9,7 @@
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "Collider/BaseCollider.h"
+#include "Engine/Module/World/Collider/BaseCollider.h"
 
 namespace szg {
 

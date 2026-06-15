@@ -1,4 +1,4 @@
-﻿#include "NodeAnimationLibrary.h"
+#include "NodeAnimationLibrary.h"
 
 #include <mutex>
 
@@ -7,7 +7,7 @@
 #include "./NodeAnimationAsset.h"
 #include "./NodeAnimationAssetBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 using namespace szg;
 

@@ -7,8 +7,8 @@
 
 #include <Library/Utility/Template/Reference.h>
 
-#include "Collider/BaseCollider.h"
-#include "CollisionCallbackManager.h"
+#include "./CollisionCallbackManager.h"
+#include "Engine/Module/World/Collider/BaseCollider.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 #include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"

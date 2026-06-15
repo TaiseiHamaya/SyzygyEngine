@@ -2,7 +2,7 @@
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/WinApp.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Runtime/Scene/BaseSceneFactory.h"
 
 using namespace szg;

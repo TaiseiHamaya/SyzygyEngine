@@ -1,4 +1,4 @@
-﻿#include "ShaderLibrary.h"
+#include "ShaderLibrary.h"
 
 #include <mutex>
 
@@ -7,7 +7,7 @@
 #include "./ShaderAsset.h"
 #include "./ShaderAssetBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 std::mutex shaderLibraryMutex;
 

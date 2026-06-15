@@ -2,8 +2,8 @@
 
 #include <Library/Utility/Template/Reference.h>
 
-#include "Engine/Module/World/Collision/Collider/AABBCollider.h"
-#include "Engine/Module/World/Collision/Collider/SphereCollider.h"
+#include "Engine/Module/World/Collider/AABBCollider.h"
+#include "Engine/Module/World/Collider/SphereCollider.h"
 
 namespace szg {
 

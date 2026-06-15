@@ -5,10 +5,10 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 #include <Library/Utility/Template/bitflag.h>
 
-#include "Engine/Module/Manager/World/InstanceBucket.h"
-#include "Engine/Module/Manager/World/WorldRoot.h"
+#include "Engine/Runtime/Scene/World/InstanceBucket.h"
+#include "Engine/Runtime/Scene/World/WorldRoot.h"
 #include "Engine/Module/Render/WorldRenderCollection.h"
-#include "Engine/Module/World/Collision/CollisionManager.h"
+#include "Engine/Runtime/Collision/CollisionManager.h"
 
 namespace szg {
 
