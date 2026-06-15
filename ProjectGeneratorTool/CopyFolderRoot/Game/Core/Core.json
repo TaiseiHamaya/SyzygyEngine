@@ -1,7 +1,7 @@
 {
   "ProjectName": "__Template__",
   "WindowStyle": {
-    "Fullscreen": false,
+    "Fullscreen": true,
     "MaximizeBox": false,
     "MinimizeBox": true,
     "Resizable": false
@@ -11,11 +11,20 @@
     "ShaderVersion": "6.6",
     "SrvHeapSize": 65536,
     "RtvHeapSize": 10,
-    "DsvHeapSize": 1
+    "DsvHeapSize": 1,
+    "ClearColor": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 1.0
+    }
   },
-  "WindowSize": {
-    "Width": 1920,
-    "Height": 1080
-  },
-  "IsFixWorldClock": true
+  "Application": {
+    "Window": {
+      "Width": 1920,
+      "Height": 1080
+    },
+    "FixDeltaSeconds": null,
+    "TargetFrameRate": null
+  }
 }
