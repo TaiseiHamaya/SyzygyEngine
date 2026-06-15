@@ -149,6 +149,10 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 	for (i32 i = 1; i < ASSET_ROOT_TYPE_MAX; ++i) {
 		std::filesystem::path rootPath = std::filesystem::path(ROOT_PATH[i]);
 
+		if (std::filesystem::exists(rootPath) == false) {
+			std::filesystem::create_directories(rootPath);
+		}
+
 		for (auto directory : std::filesystem::recursive_directory_iterator(rootPath)) {
 			if (directory.is_directory()) {
 				continue;
