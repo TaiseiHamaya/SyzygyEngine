@@ -1,4 +1,4 @@
-﻿#include "ShaderAssetBuilder.h"
+#include "ShaderAssetBuilder.h"
 
 #include "./ShaderAsset.h"
 #include "./ShaderLibrary.h"
@@ -52,7 +52,7 @@ bool ShaderAssetBuilder::run() {
 	LPCWSTR arguments[] = { // 追加パラメータ
 		filePath.c_str(),
 		L"-E", L"main", // エントリーポイント
-		L"-I", L"./SyzygyEngine/EngineResources/HLSL/", // 追加のインクルードディレクトリ
+		L"-I", L"./SyzygyEngine/Assets/HLSL/", // 追加のインクルードディレクトリ
 		L"-T", profile.data(), // シェーダーの種類
 #ifdef DEBUG_FEATURES_ENABLE
 		L"-Zi", L"-Qembed_debug", // デバッグ機能

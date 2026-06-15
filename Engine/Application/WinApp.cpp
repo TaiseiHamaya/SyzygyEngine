@@ -11,7 +11,7 @@
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/Assets/Audio/AudioManager.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"

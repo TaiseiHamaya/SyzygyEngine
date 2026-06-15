@@ -1,10 +1,10 @@
-﻿#include "FontAtlasMSDFLibrary.h"
+#include "FontAtlasMSDFLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./FontAtlasMSDFBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 using namespace szg;
 

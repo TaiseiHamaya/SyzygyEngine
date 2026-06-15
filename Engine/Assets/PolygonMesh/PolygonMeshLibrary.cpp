@@ -1,11 +1,11 @@
-﻿#include "PolygonMeshLibrary.h"
+#include "PolygonMeshLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./PolygonMesh.h"
 #include "./PolygonMeshBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 #include <imgui.h>

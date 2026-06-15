@@ -57,8 +57,8 @@ void ImGuiManager::Initialize() {
 	config.GlyphOffset.y = 2.f;
 
 	ImGuiIO& io = ImGui::GetIO();
-	io.Fonts->AddFontFromFileTTF("./SyzygyEngine/EngineResources/Misc/UDEVGothic35HS-Regular.ttf", 13.f, nullptr, glyphRangesJapanese);
-	io.Fonts->AddFontFromFileTTF("./SyzygyEngine/EditorResources/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf", 14.5f, &config, IconsGlyphRanges);
+	io.Fonts->AddFontFromFileTTF("./SyzygyEngine/Assets/Misc/UDEVGothic35HS-Regular.ttf", 13.f, nullptr, glyphRangesJapanese);
+	io.Fonts->AddFontFromFileTTF("./SyzygyEngine/EditorAssets/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].ttf", 14.5f, &config, IconsGlyphRanges);
 	ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
 
 	SetImGuiStyle();

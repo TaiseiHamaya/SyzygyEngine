@@ -1,11 +1,11 @@
-﻿#include "AudioLibrary.h"
+#include "AudioLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./AudioAsset.h"
 #include "./AudioAssetBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 using namespace szg;
 

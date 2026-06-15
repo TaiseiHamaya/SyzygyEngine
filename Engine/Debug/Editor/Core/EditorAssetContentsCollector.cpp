@@ -16,7 +16,7 @@
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 void szg::EditorAssetContentsCollector::Setup() {
 	auto& instance = GetInstance();

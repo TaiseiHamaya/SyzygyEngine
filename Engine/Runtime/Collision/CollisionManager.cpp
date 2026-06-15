@@ -1,10 +1,10 @@
-﻿#include "CollisionManager.h"
+#include "CollisionManager.h"
 
 #include <ranges>
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
-#include "Engine/Module/World/Collision/CollisionFunctions.h"
+#include "./CollisionFunctions.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 
 using namespace szg;

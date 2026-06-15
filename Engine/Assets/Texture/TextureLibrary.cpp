@@ -1,11 +1,11 @@
-﻿#include "TextureLibrary.h"
+#include "TextureLibrary.h"
 
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./TextureAsset.h"
 #include "./TextureAssetBuilder.h"
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/BackgroundLoader/BackgroundLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 
 using namespace szg;
 

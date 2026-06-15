@@ -31,9 +31,9 @@ static constexpr std::array<wstring_literal, ASSET_ROOT_TYPE_MAX>  ROOT_TAG_W{
 
 static constexpr std::array<string_literal, ASSET_ROOT_TYPE_MAX>  ROOT_PATH{
 	"",
-	".\\SyzygyEngine\\EngineResources",
+	".\\SyzygyEngine\\Assets",
 	".\\Game\\Assets",
-	".\\SyzygyEngine\\EditorResources",
+	".\\SyzygyEngine\\EditorAssets",
 };
 
 } // namespace szg

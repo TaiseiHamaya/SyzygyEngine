@@ -594,7 +594,7 @@
     <ClCompile Include="Engine\Assets\Audio\AudioPlayer.cpp">
       <Filter>Engine\Assets\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Assets\BackgroundLoader\BackgroundLoader.cpp">
+    <ClCompile Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.cpp">
       <Filter>Engine\Assets\BackgroundLoader</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Assets\IAssetBuilder.cpp">
@@ -864,22 +864,22 @@
     <ClCompile Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor\PrimitiveGeometryDrawExecutor.cpp">
       <Filter>Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\RuntimeStorage\RuntimeStorage.cpp">
+    <ClCompile Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.cpp">
       <Filter>Engine\Module\Manager\RuntimeStorage</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\SceneScript\ISceneScript.cpp">
+    <ClCompile Include="Engine\Runtime\SceneScript\ISceneScript.cpp">
       <Filter>Engine\Module\Manager\SceneScript</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\SceneScript\SceneScriptManager.cpp">
+    <ClCompile Include="Engine\Runtime\SceneScript\SceneScriptManager.cpp">
       <Filter>Engine\Module\Manager\SceneScript</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\World\InstanceBucket.cpp">
+    <ClCompile Include="Engine\Runtime\Scene\World\InstanceBucket.cpp">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\World\WorldCluster.cpp">
+    <ClCompile Include="Engine\Runtime\Scene\World\WorldCluster.cpp">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Manager\World\WorldRoot.cpp">
+    <ClCompile Include="Engine\Runtime\Scene\World\WorldRoot.cpp">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderDAG.cpp">
@@ -993,19 +993,19 @@
     <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Collision\Collider\AABBCollider.cpp">
+    <ClCompile Include="Engine\Module\World\Collider\AABBCollider.cpp">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Collision\Collider\BaseCollider.cpp">
+    <ClCompile Include="Engine\Module\World\Collider\BaseCollider.cpp">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Collision\Collider\SphereCollider.cpp">
+    <ClCompile Include="Engine\Module\World\Collider\SphereCollider.cpp">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Collision\CollisionCallbackManager.cpp">
+    <ClCompile Include="Engine\Runtime\Collision\CollisionCallbackManager.cpp">
       <Filter>Engine\Module\World\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Collision\CollisionManager.cpp">
+    <ClCompile Include="Engine\Runtime\Collision\CollisionManager.cpp">
       <Filter>Engine\Module\World\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Light\DirectionalLight\DirectionalLightInstance.cpp">
@@ -1560,7 +1560,7 @@
     <ClInclude Include="Engine\Assets\Audio\AudioPlayer.h">
       <Filter>Engine\Assets\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Assets\BackgroundLoader\BackgroundLoader.h">
+    <ClInclude Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.h">
       <Filter>Engine\Assets\BackgroundLoader</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\IAssetBuilder.h">
@@ -1887,22 +1887,22 @@
     <ClInclude Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor\PrimitiveGeometryDrawExecutor.h">
       <Filter>Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\RuntimeStorage\RuntimeStorage.h">
+    <ClInclude Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.h">
       <Filter>Engine\Module\Manager\RuntimeStorage</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\SceneScript\ISceneScript.h">
+    <ClInclude Include="Engine\Runtime\SceneScript\ISceneScript.h">
       <Filter>Engine\Module\Manager\SceneScript</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\SceneScript\SceneScriptManager.h">
+    <ClInclude Include="Engine\Runtime\SceneScript\SceneScriptManager.h">
       <Filter>Engine\Module\Manager\SceneScript</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\World\InstanceBucket.h">
+    <ClInclude Include="Engine\Runtime\Scene\World\InstanceBucket.h">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\World\WorldCluster.h">
+    <ClInclude Include="Engine\Runtime\Scene\World\WorldCluster.h">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\Manager\World\WorldRoot.h">
+    <ClInclude Include="Engine\Runtime\Scene\World\WorldRoot.h">
       <Filter>Engine\Module\Manager\World</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderDAG.h">
@@ -1950,22 +1950,22 @@
     <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h">
       <Filter>Engine\Module\World\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\Collider\AABBCollider.h">
+    <ClInclude Include="Engine\Module\World\Collider\AABBCollider.h">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\Collider\BaseCollider.h">
+    <ClInclude Include="Engine\Module\World\Collider\BaseCollider.h">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\Collider\SphereCollider.h">
+    <ClInclude Include="Engine\Module\World\Collider\SphereCollider.h">
       <Filter>Engine\Module\World\Collision\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\CollisionCallbackManager.h">
+    <ClInclude Include="Engine\Runtime\Collision\CollisionCallbackManager.h">
       <Filter>Engine\Module\World\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\CollisionFunctions.h">
+    <ClInclude Include="Engine\Runtime\Collision\CollisionFunctions.h">
       <Filter>Engine\Module\World\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Collision\CollisionManager.h">
+    <ClInclude Include="Engine\Runtime\Collision\CollisionManager.h">
       <Filter>Engine\Module\World\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Light\BaseLightInstance.h">

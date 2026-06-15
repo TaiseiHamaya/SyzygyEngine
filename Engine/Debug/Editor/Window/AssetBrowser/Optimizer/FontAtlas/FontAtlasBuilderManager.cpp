@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "FontAtlasBuilderManager.h"
 
@@ -10,7 +10,7 @@ void FontAtlasBuilderManager::Initialize() {
 		return;
 	}
 	instance.freetype = msdfgen::initializeFreetype();
-	instance.charset.load("./SyzygyEngine/EditorResources/charset.txt");
+	instance.charset.load("./SyzygyEngine/EditorAssets/charset.txt");
 }
 
 void FontAtlasBuilderManager::Finalize() {

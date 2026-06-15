@@ -1,6 +1,6 @@
-﻿#include "WorldInstance.h"
+#include "WorldInstance.h"
 
-#include "Engine/Module/Manager/World/WorldRoot.h"
+#include "Engine/Runtime/Scene/World/WorldRoot.h"
 
 using namespace szg;
 
