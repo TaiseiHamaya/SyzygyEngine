@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 #include "ImGuiLoadManager.h"
 
 #include <format>
@@ -12,8 +12,8 @@
 using namespace szg;
 
 ImGuiLoadManager::ImGuiLoadManager() {
-	meshCurrentPath = "./SyzygyEngine/EngineResources";
-	textureCurrentPath = "./SyzygyEngine/EngineResources";
+	meshCurrentPath = "./SyzygyEngine/Assets";
+	textureCurrentPath = "./SyzygyEngine/Assets";
 	get_file_list(meshFileList, meshCurrentPath, { ".obj", ".gltf" });
 	get_file_list(textureFileList, textureCurrentPath, { ".png" });
 };
