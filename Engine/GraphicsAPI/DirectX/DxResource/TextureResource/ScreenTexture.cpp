@@ -1,4 +1,4 @@
-﻿#include "ScreenTexture.h"
+#include "ScreenTexture.h"
 
 #include "Engine/Application/EngineSettings.h"
 #include "Engine/GraphicsAPI/DirectX/DxSystemValues.h"

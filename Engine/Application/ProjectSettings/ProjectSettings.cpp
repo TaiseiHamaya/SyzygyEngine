@@ -1,4 +1,4 @@
-﻿#include "ProjectSettings.h"
+#include "ProjectSettings.h"
 
 #include <fstream>
 
