@@ -100,6 +100,8 @@ void WinApp::Initialize() {
 	// COMの初期化
 	CoInitializeEx(0, COINIT_MULTITHREADED);
 
+	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
 	// Log出力システムの初期化
 	Logger::Initialize();
 #ifdef DEBUG_FEATURES_ENABLE
