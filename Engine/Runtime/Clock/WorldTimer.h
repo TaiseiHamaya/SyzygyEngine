@@ -1,8 +1,16 @@
 #pragma once
 
+#include <Library/Utility/Tools/ConstructorMacro.h>
+
 namespace szg {
 
 class WorldTimer final {
+public:
+	WorldTimer(r32 time = 0.0f);
+	~WorldTimer() noexcept = default;
+
+	SZG_CLASS_DEFAULT(WorldTimer)
+
 public:
 	void ahead(r32 scale = 1.0f);
 	void back(r32 scale = 1.0f);
