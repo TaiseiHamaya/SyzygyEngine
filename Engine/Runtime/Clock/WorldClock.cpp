@@ -1,4 +1,4 @@
-﻿#include "WorldClock.h"
+#include "WorldClock.h"
 
 #include <ratio>
 #include <thread>
@@ -6,12 +6,16 @@
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 
 namespace chrono = std::chrono;
+using Clock = chrono::steady_clock;
+using SysClock = chrono::system_clock;
 
 using namespace szg;
 
 void WorldClock::Initialize() {
 	auto& instance = GetInstance();
-	instance.startFrameTimePoint = chrono::high_resolution_clock::now();
+	instance.frameTime = Clock::now();
+	instance.frameSysTime = SysClock::now();
+	instance.appLaunchTime = instance.frameSysTime;
 	std::this_thread::sleep_for(chrono::microseconds(1666));
 	instance.deltaSeconds = ProjectSettings::GetApplicationSettingsImm().fixDeltaSeconds.value_or(0);
 }
@@ -23,15 +27,16 @@ void WorldClock::Update() {
 	auto&& instance = GetInstance();
 
 	// 現在時刻を取得
-	auto now = chrono::high_resolution_clock::now();
+	auto now = Clock::now();
+	instance.frameSysTime = SysClock::now();
 	// duration算出
-	auto secDuration = chrono::duration_cast<second_f>(now - instance.startFrameTimePoint);
+	auto secDuration = chrono::duration_cast<second_f>(now - instance.frameTime);
 	// deltaTimeとして記録
 	const auto& fixDeltaSeconds = ProjectSettings::GetApplicationSettingsImm().fixDeltaSeconds;
 	instance.deltaSeconds = fixDeltaSeconds.has_value() ? std::min(fixDeltaSeconds.value(), secDuration.count()) : secDuration.count();
 
 	// Startを更新
-	instance.startFrameTimePoint = now;
+	instance.frameTime = now;
 
 #ifdef DEBUG_FEATURES_ENABLE
 	instance.profiler.update();
@@ -42,8 +47,16 @@ r32 WorldClock::DeltaSeconds() {
 	return GetInstance().deltaSeconds;
 }
 
-const chrono::high_resolution_clock::time_point& WorldClock::BeginTime() {
-	return GetInstance().startFrameTimePoint;
+const Clock::time_point& WorldClock::FrameTime() {
+	return GetInstance().frameTime;
+}
+
+const SysClock::time_point& WorldClock::FrameSysTime() {
+	return GetInstance().frameSysTime;
+}
+
+const SysClock::time_point& szg::WorldClock::AppLaunchTime() {
+	return GetInstance().appLaunchTime;
 }
 
 #ifdef DEBUG_FEATURES_ENABLE
