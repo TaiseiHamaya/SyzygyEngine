@@ -507,9 +507,9 @@ void WinApp::wait_frame() {
 	const u32 targetFPS = ProjectSettings::GetApplicationSettingsImm().maxFrameRate.value() + 5;
 	const millisecond_f MinCheckTime{ 1000.00000f / targetFPS }; // 少し短い時間を使用する
 	// 開始
-	auto& begin = WorldClock::BeginTime();
+	auto& begin = WorldClock::FrameTime();
 	// 今
-	auto now = std::chrono::high_resolution_clock::now();
+	auto now = WorldClock::Clock::now();
 	// 経過時間
 	auto duration = std::chrono::duration_cast<millisecond_f>(now - begin);
 	// 基準より短い場合
