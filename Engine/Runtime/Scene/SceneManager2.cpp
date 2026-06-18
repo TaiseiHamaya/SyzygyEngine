@@ -1,7 +1,6 @@
 #include "SceneManager2.h"
 
 #include "Engine/Application/Logger.h"
-#include "Engine/Application/WinApp.h"
 #include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Runtime/Scene/BaseSceneFactory.h"
 
@@ -53,10 +52,6 @@ void SceneManager2::Finalize() noexcept {
 
 void SceneManager2::BeginFrame() {
 	auto& instance = GetInstance();
-	if (!instance.sceneChangeTempData.onEnd.is_finished()) {
-		instance.sceneChangeTempData.onEnd.update();
-	}
-
 	auto& currentScene = instance.sceneStack.back();
 	currentScene->begin_frame();
 }
@@ -86,6 +81,8 @@ void SceneManager2::EndFrame() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
 	currentScene->end_frame();
+
+	TryChangeScene();
 }
 
 bool SceneManager2::IsEndProgram() noexcept {
@@ -104,8 +101,10 @@ void SceneManager2::SceneChange(u32 nextSceneIndex, r32 interval, bool isStackSc
 	auto nextScene = instance.factory->create_scene2(nextSceneIndex);
 
 	// アセットロード
-	nextScene->load_assets();
-	nextScene->custom_load_asset();
+	if (nextScene) {
+		nextScene->load_assets();
+		nextScene->custom_load_asset();
+	}
 
 	// シーンスタック
 	std::swap(instance.sceneStack.back(), nextScene);
@@ -151,6 +150,13 @@ void SceneManager2::PopScene(r32 interval, size_t numPopScenes) {
 	instance.sceneChangeTempData.onEnd.restart(interval);
 }
 
+void szg::SceneManager2::TryChangeScene() {
+	auto& instance = GetInstance();
+	if (!instance.sceneChangeTempData.onEnd.is_finished()) {
+		instance.sceneChangeTempData.onEnd.update();
+	}
+}
+
 void szg::SceneManager2::EndSceneChangeIntervalForce() {
 	SceneManager2& instance = GetInstance();
 	instance.sceneChangeTempData.onEnd.end_force();
@@ -180,7 +186,7 @@ void SceneManager2::OnNextScene() {
 
 	// シーンの初期化
 	auto& newScene = instance.sceneStack.back();
-	if (instance.sceneChangeTempData.type != SceneChangeType::POP) {
+	if (instance.sceneChangeTempData.type != SceneChangeType::POP && newScene) {
 		newScene->initialize();
 		newScene->setup();
 		newScene->custom_setup();
