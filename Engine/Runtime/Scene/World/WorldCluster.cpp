@@ -8,7 +8,7 @@ using namespace szg;
 void WorldCluster::initialize() {
 	worldRoot.initialize();
 	worldRenderCollection.initialize();
-	collisionManager.set_callback_manager(std::make_unique<CollisionCallbackManager>());
+	collisionManager.initialize_callback<CollisionCallbackManager>();
 }
 
 void WorldCluster::setup(const std::filesystem::path& setupFile) {
@@ -37,6 +37,7 @@ void WorldCluster::begin_frame() {
 	// ---------- Instantiate後の処理 ----------
 	// 描画が側に伝達
 	worldRenderCollection.collect_instantiated(instanceBucket);
+	collisionManager.collect_instantiated(instanceBucket);
 	instanceBucket.reset();
 	// ---------- 削除予定インスタンス処理 ----------
 	// 描画に関して
@@ -52,6 +53,8 @@ void WorldCluster::update() {
 		return;
 	}
 	worldRoot.update();
+
+	collisionManager.collision_entry_point();
 
 	worldRoot.update_affine();
 }

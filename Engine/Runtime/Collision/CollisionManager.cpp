@@ -1,33 +1,19 @@
 #include "CollisionManager.h"
 
+#include "./CollisionFunctions.h"
+
+#include <algorithm>
 #include <ranges>
 
-#include <Library/Utility/Tools/SmartPointer.h>
-
-#include "./CollisionFunctions.h"
-#include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
+#include "Engine/Runtime/Scene/World/InstanceBucket.h"
 
 using namespace szg;
-
-CollisionManager::CollisionManager() {
-#ifdef DEBUG_FEATURES_ENABLE
-
-	sphereDebugDrawExecutor = eps::CreateUnique<PrimitiveGeometryDrawExecutor>(
-		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Sphere"), 1024
-	);
-	aabbDebugDrawExecutor = eps::CreateUnique<PrimitiveGeometryDrawExecutor>(
-		PrimitiveGeometryLibrary::GetPrimitiveGeometry("Box"), 1024
-	);
-
-#endif // _DEBUG
-}
 
 void CollisionManager::collision_entry_point() {
 	collisionCallbackManager->begin_callback();
 
-#undef small
 	for (const auto& key : collisionLayerList) {
-		collision(key.big(), key.small());
+		collision(key.big_imm(), key.small_imm());
 	}
 }
 
@@ -59,9 +45,6 @@ void CollisionManager::remove_marked_destroy() {
 		auto& value = list.second;
 
 		if (value.aabbColliders.empty() && value.sphereColliders.empty()) {
-#ifdef DEBUG_FEATURES_ENABLE
-			keyList.erase(list.first);
-#endif // _DEBUG
 			return true;
 		}
 		return false;
@@ -69,6 +52,15 @@ void CollisionManager::remove_marked_destroy() {
 
 	// callback側の削除
 	collisionCallbackManager->remove_marked_destroy();
+}
+
+void szg::CollisionManager::collect_instantiated(Reference<const InstanceBucket> instanceBucket) {
+	std::ranges::for_each(instanceBucket->sphereColliders, [&](const Reference<SphereCollider>& collider) {
+		register_collider(collider);
+	});
+	std::ranges::for_each(instanceBucket->aabbColliders, [&](const Reference<AABBCollider>& collider) {
+		register_collider(collider);
+	});
 }
 
 template<std::derived_from<BaseCollider> LColliderType, std::derived_from<BaseCollider> RColliderType>
@@ -96,46 +88,10 @@ void CollisionManager::test_colliders(const std::list<Reference<LColliderType>>&
 	}
 }
 
-#ifdef DEBUG_FEATURES_ENABLE
+void szg::CollisionManager::initialize_callback_body() {
+	const auto& checkType = std::views::keys(collisionCallbackManager->callback_functions_imm());
 
-#include <format>
-#include <imgui.h>
-
-void CollisionManager::debug_gui() {
-	ImGui::Checkbox("ShowDebugDraw", &isShowDebugDraw);
-	if (ImGui::TreeNode(std::format("ColliderList##{:}", (void*)this).c_str())) {
-		for (auto& name : keyList) {
-			if (colliderList.contains(name)) {
-				auto& list = colliderList.at(name);
-				ImGui::Text(
-					std::format("{} : {}", name,
-						list.aabbColliders.size() + list.sphereColliders.size()).c_str()
-				);
-			}
-		}
-		ImGui::TreePop();
+	for (auto& key : checkType) {
+		collisionLayerList.emplace(key.big_imm(), key.small_imm());
 	}
 }
-
-void CollisionManager::debug_draw3d() {
-	if (!isShowDebugDraw) {
-		return;
-	}
-
-	sphereDebugDrawExecutor->begin();
-	aabbDebugDrawExecutor->begin();
-
-	for (const Colliders& colliders : colliderList | std::views::values) {
-		for (const Reference<SphereCollider>& sphereCollider : colliders.sphereColliders) {
-			sphereDebugDrawExecutor->write_to_buffer(sphereCollider->debug_matrix());
-		}
-
-		for (const Reference<AABBCollider>& aabbCollider : colliders.aabbColliders) {
-			aabbDebugDrawExecutor->write_to_buffer(aabbCollider->debug_matrix());
-		}
-	}
-
-	sphereDebugDrawExecutor->draw_command();
-	aabbDebugDrawExecutor->draw_command();
-}
-#endif // _DEBUG

@@ -36,10 +36,10 @@ public:
 	constexpr SortedPair(const T& val1, const T& val2);
 
 public:
-	constexpr const T& small() const { return values.first; };
-	constexpr const T& big() const { return values.second; };
-	constexpr T& small() { return values.first; };
-	constexpr T& big() { return values.second; };
+	constexpr const T& small_imm() const { return values.first; };
+	constexpr const T& big_imm() const { return values.second; };
+	constexpr T& small_mut() { return values.first; };
+	constexpr T& big_mut() { return values.second; };
 
 private:
 	std::pair<T, T> values;
@@ -60,7 +60,7 @@ template<typename T>
 struct hash<SortedPair<T>> {
 public:
 	size_t operator()(const SortedPair<T>& val) const {
-		return eps::hash_vector<T>({ val.big(), val.small() });
+		return eps::hash_vector<T>({ val.big_imm(), val.small_imm() });
 	}
 };
 

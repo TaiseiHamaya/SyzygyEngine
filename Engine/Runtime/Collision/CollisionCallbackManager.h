@@ -36,6 +36,9 @@ public:
 	void remove_marked_destroy();
 	void callback(CallbackTarget lhs, CallbackTarget rhs, bool result);
 
+public:
+	const std::unordered_map<CallbackMapKey, CallbackFunctions>& callback_functions_imm() const;
+
 protected:
 	std::unordered_map<CallbackMapKey, CallbackFunctions> callbackFunctions;
 

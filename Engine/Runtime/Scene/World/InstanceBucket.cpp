@@ -1,4 +1,4 @@
-﻿#include "InstanceBucket.h"
+#include "InstanceBucket.h"
 
 using namespace szg;
 
@@ -10,4 +10,7 @@ void InstanceBucket::reset() {
 	pointLightInstance.clear();
 	rect.clear();
 	stringRect.clear();
+
+	sphereColliders.clear();
+	aabbColliders.clear();
 }

@@ -1,4 +1,4 @@
-﻿#include "CollisionCallbackManager.h"
+#include "CollisionCallbackManager.h"
 
 using namespace szg;
 
@@ -12,7 +12,7 @@ void CollisionCallbackManager::remove_marked_destroy() {
 	std::erase_if(collisionRecent, [](const std::pair<const CollisionRecentKeyType&, const std::bitset<2>&> kv) {
 		const auto& key = kv.first;
 		const auto& value = kv.second;
-		return value.none() || key.big()->is_marked_destroy() || key.small()->is_marked_destroy();
+		return value.none() || key.big_imm()->is_marked_destroy() || key.small_imm()->is_marked_destroy();
 	});
 }
 
@@ -65,4 +65,8 @@ void CollisionCallbackManager::callback(CallbackTarget lhs, CallbackTarget rhs, 
 	default:
 		break;
 	}
+}
+
+const std::unordered_map<CollisionCallbackManager::CallbackMapKey, CollisionCallbackManager::CallbackFunctions>& szg::CollisionCallbackManager::callback_functions_imm() const {
+	return callbackFunctions;
 }
