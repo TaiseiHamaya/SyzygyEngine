@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteWorldObject.h"
 
@@ -6,10 +6,10 @@
 
 #include <imgui.h>
 
-#include "../Command/EditorCommandInvoker.h"
-#include "../Command/EditorSelectCommand.h"
-#include "../Core/EditorDandDManager.h"
-#include "../Window/SceneView/EditorSceneView.h"
+#include "../../Command/EditorCommandInvoker.h"
+#include "../../Command/EditorSelectCommand.h"
+#include "../../Core/EditorDandDManager.h"
+#include "../../Window/SceneView/EditorSceneView.h"
 
 using namespace szg;
 
@@ -146,6 +146,10 @@ const std::string& RemoteWorldObject::world_name() const {
 
 u32 RemoteWorldObject::get_id() const {
 	return id;
+}
+
+Reference<const RemoteColliderGroupRegistry> szg::RemoteWorldObject::collider_group_registry_imm() const {
+	return colliderGroupRegistry;
 }
 
 #endif // DEBUG_FEATURES_ENABLE

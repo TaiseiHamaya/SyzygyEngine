@@ -702,7 +702,7 @@
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\RemoteSceneObject.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\RemoteWorldObject.cpp">
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteWorldObject.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\RemoteCamera3dInstance.cpp">
@@ -1677,7 +1677,7 @@
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteSceneObject.h">
       <Filter>Engine\Debug\Editor\RemoteObject</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteWorldObject.h">
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteWorldObject.h">
       <Filter>Engine\Debug\Editor\RemoteObject</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\RemoteCamera3dInstance.h">
@@ -2929,6 +2929,9 @@
     <ClCompile Include="Library\Utility\Template\unorm.inl">
       <Filter>Library\Utility\Template</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Runtime\Collision\ColliderGroupMap.cpp" />
+    <ClCompile Include="Engine\Loader\ColliderGroupMapLoader.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteColliderGroupRegistry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2959,5 +2962,8 @@
     <ClInclude Include="Library\Utility\Template\unorm.h">
       <Filter>Library\Utility\Template</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Runtime\Collision\ColliderGroupMap.h" />
+    <ClInclude Include="Engine\Loader\ColliderGroupMapLoader.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteColliderGroupRegistry.h" />
   </ItemGroup>
 </Project>

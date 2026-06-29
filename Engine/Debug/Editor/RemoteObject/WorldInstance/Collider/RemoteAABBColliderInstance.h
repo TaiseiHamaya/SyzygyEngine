@@ -28,6 +28,8 @@ public:
 	constexpr InstanceType instance_type() const { return InstanceType::AABBColliderInstance; }
 
 private:
+	i32 colliderId;
+
 	EditorValueField<Vector3> size{ "Size", CVector3::ONE * 2 };
 	EditorValueField<Vector3> offset{ "Offset", CVector3::HALF };
 };

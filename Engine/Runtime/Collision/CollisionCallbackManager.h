@@ -2,7 +2,6 @@
 
 #include <bitset>
 #include <functional>
-#include <string>
 #include <unordered_map>
 
 #include <Library/Utility/Template/SortedPair.h>
@@ -13,11 +12,11 @@
 
 namespace szg {
 
-class CollisionCallbackManager {
-protected:
+class CollisionCallbackManager final {
+public:
 	using CallbackTarget = Reference<BaseCollider>; // 対象
 	using CollisionRecentKeyType = SortedPair<CallbackTarget>; // 衝突管理キー
-	using CallbackMapKey = SortedPair<const std::string>; //  
+	using CallbackMapKey = SortedPair<const i32>; //  
 	// コールバック関数
 	struct CallbackFunctions {
 		std::function<void(CallbackTarget, CallbackTarget)> onContinue;
@@ -39,10 +38,10 @@ public:
 public:
 	const std::unordered_map<CallbackMapKey, CallbackFunctions>& callback_functions_imm() const;
 
-protected:
-	std::unordered_map<CallbackMapKey, CallbackFunctions> callbackFunctions;
+	void register_callback(const i32 lGroupId, const i32 rGroupId, CallbackFunctions callbackFunction);
 
 private:
+	std::unordered_map<CallbackMapKey, CallbackFunctions> callbackFunctions;
 	std::unordered_map<CollisionRecentKeyType, std::bitset<2>> collisionRecent;
 };
 

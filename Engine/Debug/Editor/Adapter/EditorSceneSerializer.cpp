@@ -1,11 +1,10 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneSerializer.h"
 
 #include "../RemoteObject/FolderObject.h"
 #include "../RemoteObject/RemoteErrorObject.h"
 #include "../RemoteObject/RemoteSceneObject.h"
-#include "../RemoteObject/RemoteWorldObject.h"
 #include "../RemoteObject/WorldInstance/Camera/RemoteCamera3dInstance.h"
 #include "../RemoteObject/WorldInstance/Collider/RemoteAABBColliderInstance.h"
 #include "../RemoteObject/WorldInstance/Collider/RemoteSphereColliderInstance.h"
@@ -16,6 +15,7 @@
 #include "../RemoteObject/WorldInstance/Primitive/RemoteRect3dInstance.h"
 #include "../RemoteObject/WorldInstance/RemoteWorldInstance.h"
 #include "../RemoteObject/WorldInstance/StringRect/RemoteStringRectInstance.h"
+#include "../RemoteObject/WorldObject/RemoteWorldObject.h"
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"

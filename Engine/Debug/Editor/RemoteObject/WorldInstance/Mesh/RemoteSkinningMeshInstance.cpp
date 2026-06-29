@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteSkinningMeshInstance.h"
 
@@ -106,7 +106,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 			{
 				auto result = uvTransformSO.show_gui(meshMaterial.uvTransform);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::uvTransform);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::uvTransform)>(materials, i, &Material::uvTransform);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -117,7 +117,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 			{
 				auto result = colorSO.show_gui(meshMaterial.color);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::color);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::color)>(materials, i, &Material::color);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -145,7 +145,7 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 			{
 				auto result = shininessSO.show_gui(meshMaterial.shininess);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::lightingType);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::shininess)>(materials, i, &Material::shininess);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -231,7 +231,7 @@ void RemoteSkinningMeshInstance::default_material() {
 		}
 		else {
 			EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, "Error.png");
-			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::uvTransform);
+			EditorValueChangeCommandHandler::GenCommandInstant<decltype(Material::uvTransform)>(materials, i, &Material::uvTransform);
 
 			szgWarning("Material data is not found.");
 		}

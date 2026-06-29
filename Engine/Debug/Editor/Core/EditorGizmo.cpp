@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorGizmo.h"
 
@@ -11,7 +11,7 @@
 
 #include "../Command/EditorValueChangeCommandHandler.h"
 #include "../RemoteObject/IRemoteObject.h"
-#include "../RemoteObject/RemoteWorldObject.h"
+#include "../RemoteObject/WorldObject/RemoteWorldObject.h"
 #include "../Window/SceneView/EditorWorldView.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
 

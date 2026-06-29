@@ -37,13 +37,13 @@ public:
 		requires std::copyable<T>
 	static void GenCommand(Reference<T> target);
 
-	template<typename T, typename Struct>
+	template<typename T, typename Struct, typename Proj = std::identity>
 		requires std::copyable<T>
-	static void GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value = {});
+	static void GenCommandInstant(std::vector<Struct>& container, i32 index, Proj proj = {}, const T& value = {});
 
-	template<typename T, typename Struct>
+	template<typename T, typename Struct, typename Proj = std::identity>
 		requires std::copyable<T>
-	static void GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member);
+	static void GenCommand(std::vector<Struct>& container, i32 index, Proj proj);
 };
 
 template<typename T>
@@ -66,19 +66,19 @@ void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
 	});
 }
 
-template<typename T, typename Struct>
+template<typename T, typename Struct, typename Proj>
 	requires std::copyable<T>
-inline void EditorValueChangeCommandHandler::GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value) {
-	GenCommand(container, index, member);
-	container.at(index).*member = value;
+inline void EditorValueChangeCommandHandler::GenCommandInstant(std::vector<Struct>& container, i32 index, Proj proj, const T& value) {
+	GenCommand<T>(container, index, proj);
+	std::invoke(proj, container.at(index)) = value;
 	End();
 };
 
-template<typename T, typename Struct>
+template<typename T, typename Struct, typename Proj>
 	requires std::copyable<T>
-void EditorValueChangeCommandHandler::GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member) {
-	auto lambda = [&container, index, member]() -> T& {
-		return container.at(index).*member;
+void EditorValueChangeCommandHandler::GenCommand(std::vector<Struct>& container, i32 index, Proj proj) {
+	auto lambda = [&container, index, proj]() -> T& {
+		return std::invoke(proj, container.at(index));
 	};
 
 	Start([lambda, recent = lambda()]() {

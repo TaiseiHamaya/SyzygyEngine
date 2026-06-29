@@ -1,7 +1,11 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteSphereColliderInstance.h"
 
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
+
+#include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
+#include "Engine/Debug/Editor/RemoteObject/WorldObject/RemoteWorldObject.h"
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 using namespace szg;
@@ -20,6 +24,13 @@ void RemoteSphereColliderInstance::draw_inspector() {
 	ImGui::Separator();
 
 	transform.show_gui();
+
+	ImGui::Separator();
+
+	auto result = query_world()->collider_group_registry_imm()->combo_gui(colliderId, "Collider Group");
+	if (result) {
+		EditorValueChangeCommandHandler::GenCommandInstant<i32>(colliderId, result.value());
+	}
 
 	ImGui::Separator();
 	radius.show_gui();

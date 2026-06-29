@@ -2,15 +2,17 @@
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "IRemoteObject.h"
+#include "../IRemoteObject.h"
 
 #include <memory>
 #include <string>
 #include <vector>
 
+#include "Engine/Debug/Editor/RemoteObject/WorldObject/RemoteColliderGroupRegistry.h"
+
 namespace szg {
 
-class WorldManager;
+class WorldCluster;
 class FolderObject;
 class RemoteWorldInstance;
 
@@ -49,18 +51,23 @@ public:
 
 	constexpr InstanceType instance_type() const { return InstanceType::DebugWorldRoot; }
 
+public:
 	const std::string& world_name() const;
 
 	u32 get_id() const;
 
+	Reference<const RemoteColliderGroupRegistry> collider_group_registry_imm() const;
+
 private:
-	Reference<WorldManager> self;
+	Reference<WorldCluster> self;
 
 	std::vector<std::unique_ptr<IRemoteObject>> children;
 
 	u32 id;
 
 	EditorValueField<u32> numLayer{ "NumLayer", 1 };
+
+	RemoteColliderGroupRegistry colliderGroupRegistry;
 
 private:
 	inline static u32 nextUseId{ 0 };

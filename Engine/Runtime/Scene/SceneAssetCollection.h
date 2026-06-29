@@ -25,7 +25,7 @@ public:
 
 	SZG_CLASS_MOVE_ONLY(SceneAssetCollection)
 
-		SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
+	SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
 
 public:
 	/// <summary>

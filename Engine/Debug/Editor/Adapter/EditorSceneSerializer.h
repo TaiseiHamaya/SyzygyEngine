@@ -10,7 +10,7 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "../RemoteObject/RemoteSceneObject.h"
-#include "../RemoteObject/RemoteWorldObject.h"
+#include "../RemoteObject/WorldObject/RemoteWorldObject.h"
 
 namespace szg {
 

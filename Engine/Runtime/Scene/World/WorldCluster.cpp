@@ -8,7 +8,6 @@ using namespace szg;
 void WorldCluster::initialize() {
 	worldRoot.initialize();
 	worldRenderCollection.initialize();
-	collisionManager.initialize_callback<CollisionCallbackManager>();
 }
 
 void WorldCluster::setup(const std::filesystem::path& setupFile) {
@@ -74,10 +73,14 @@ void WorldCluster::pre_draw() {
 void WorldCluster::end_frame() {
 }
 
-WorldRoot& WorldCluster::world_root_mut() {
+Reference<WorldRoot> WorldCluster::world_root_mut() {
 	return worldRoot;
 }
 
-Reference<WorldRenderCollection> WorldCluster::render_collection() {
+Reference<const WorldRenderCollection> WorldCluster::render_collection_imm() {
 	return worldRenderCollection;
+}
+
+Reference<CollisionManager> szg::WorldCluster::collision_manager_mut() {
+	return collisionManager;
 }

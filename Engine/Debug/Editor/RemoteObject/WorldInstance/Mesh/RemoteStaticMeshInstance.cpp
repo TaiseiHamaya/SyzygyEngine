@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteStaticMeshInstance.h"
 
@@ -94,7 +94,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = uvTransformSO.show_gui(meshMaterial.uvTransform);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::uvTransform);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::uvTransform)>(materials, i, &Material::uvTransform);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -104,7 +104,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = colorSO.show_gui(meshMaterial.color);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::color);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::color)>(materials, i, &Material::color);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -113,7 +113,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 			if (ImGui::RadioButton("None", meshMaterial.lightingType == LighingType::None)) {
 				if (meshMaterial.lightingType != LighingType::None) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::lightingType);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
 					meshMaterial.lightingType = LighingType::None;
 					EditorValueChangeCommandHandler::End();
 				}
@@ -121,7 +121,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Lambert", meshMaterial.lightingType == LighingType::Lambert)) {
 				if (meshMaterial.lightingType != LighingType::Lambert) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::lightingType);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
 					meshMaterial.lightingType = LighingType::Lambert;
 					EditorValueChangeCommandHandler::End();
 				}
@@ -129,7 +129,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Half lambert", meshMaterial.lightingType == LighingType::HalfLambert)) {
 				if (meshMaterial.lightingType != LighingType::HalfLambert) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::lightingType);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
 					meshMaterial.lightingType = LighingType::HalfLambert;
 					EditorValueChangeCommandHandler::End();
 				}
@@ -138,7 +138,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = shininessSO.show_gui(meshMaterial.shininess);
 				if (result == 0b01) {
-					EditorValueChangeCommandHandler::GenCommand(materials, i, &Material::shininess);
+					EditorValueChangeCommandHandler::GenCommand<decltype(Material::shininess)>(materials, i, &Material::shininess);
 				}
 				else if (result == 0b10) {
 					EditorValueChangeCommandHandler::End();
@@ -208,7 +208,7 @@ void RemoteStaticMeshInstance::default_material() {
 		}
 		else {
 			EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, "Error.png");
-			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::uvTransform);
+			EditorValueChangeCommandHandler::GenCommandInstant<decltype(Material::uvTransform)>(materials, i, &Material::uvTransform);
 
 			szgWarning("Material data is not found.");
 		}

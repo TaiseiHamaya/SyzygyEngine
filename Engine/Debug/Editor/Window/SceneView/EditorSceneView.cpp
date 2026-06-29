@@ -5,7 +5,7 @@
 #include <imgui.h>
 
 #include "../../Core/EditorGizmo.h"
-#include "../../RemoteObject/RemoteWorldObject.h"
+#include "../../RemoteObject/WorldObject/RemoteWorldObject.h"
 #include "../Hierarchy/EditorHierarchy.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"

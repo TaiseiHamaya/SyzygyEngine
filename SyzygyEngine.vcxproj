@@ -184,6 +184,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Loader\ColliderGroupMapLoader.cpp" />
+    <ClCompile Include="Engine\Runtime\Collision\ColliderGroupMap.cpp" />
     <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp" />
@@ -250,7 +252,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\IRemoteObject.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\RemoteErrorObject.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\RemoteSceneObject.cpp" />
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\RemoteWorldObject.cpp" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteWorldObject.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\RemoteCamera3dInstance.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider\RemoteAABBColliderInstance.cpp" />
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider\RemoteSphereColliderInstance.cpp" />
@@ -464,6 +466,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
     <ClCompile Include="Library\Utility\Template\unorm.inl" />
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteColliderGroupRegistry.cpp" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -566,6 +569,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Loader\ColliderGroupMapLoader.h" />
+    <ClInclude Include="Engine\Runtime\Collision\ColliderGroupMap.h" />
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h" />
@@ -668,7 +673,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\IRemoteObject.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteErrorObject.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteSceneObject.h" />
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteWorldObject.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteWorldObject.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\RemoteCamera3dInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider\RemoteAABBColliderInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider\RemoteSphereColliderInstance.h" />
@@ -1046,6 +1051,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
     <ClInclude Include="Library\Utility\Template\unorm.h" />
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldObject\RemoteColliderGroupRegistry.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">

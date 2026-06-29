@@ -1,5 +1,7 @@
 #include "CollisionCallbackManager.h"
 
+#include "Engine/Application/Logger.h"
+
 using namespace szg;
 
 void CollisionCallbackManager::begin_callback() {
@@ -17,7 +19,7 @@ void CollisionCallbackManager::remove_marked_destroy() {
 }
 
 void CollisionCallbackManager::callback(CallbackTarget lhs, CallbackTarget rhs, bool result) {
-	CallbackMapKey callbackKey = CallbackMapKey(lhs->group(), rhs->group());
+	CallbackMapKey callbackKey = CallbackMapKey(lhs->group_imm(), rhs->group_imm());
 	if (!callbackFunctions.contains(callbackKey)) {
 		return;
 	}
@@ -69,4 +71,13 @@ void CollisionCallbackManager::callback(CallbackTarget lhs, CallbackTarget rhs, 
 
 const std::unordered_map<CollisionCallbackManager::CallbackMapKey, CollisionCallbackManager::CallbackFunctions>& szg::CollisionCallbackManager::callback_functions_imm() const {
 	return callbackFunctions;
+}
+
+void szg::CollisionCallbackManager::register_callback(const i32 lGroupId, const i32 rGroupId, CallbackFunctions callbackFunction) {
+	CallbackMapKey callbackKey = CallbackMapKey(lGroupId, rGroupId);
+	if (callbackFunctions.contains(callbackKey)) {
+		szgWarning("Callback for groupID '{}' and '{}' already registered.", lGroupId, rGroupId);
+		return;
+	}
+	callbackFunctions.emplace(callbackKey, callbackFunction);
 }

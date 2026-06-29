@@ -42,10 +42,11 @@ public:
 	void end_frame();
 
 public:
-	WorldRoot& world_root_mut();
+	Reference<WorldRoot> world_root_mut();
 
-public:
-	Reference<WorldRenderCollection> render_collection();
+	Reference<const WorldRenderCollection> render_collection_imm();
+
+	Reference<CollisionManager> collision_manager_mut();
 
 private:
 	eps::bitflag<WorldState> state{ WorldState::Default };
