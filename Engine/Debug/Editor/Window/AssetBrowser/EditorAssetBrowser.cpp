@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetBrowser.h"
 
@@ -14,6 +14,10 @@
 using namespace szg;
 
 void EditorAssetBrowser::draw() {
+	if (!isActive) {
+		return;
+	}
+
 	ImGui::Begin("Asset", &isActive);
 	update_focus();
 

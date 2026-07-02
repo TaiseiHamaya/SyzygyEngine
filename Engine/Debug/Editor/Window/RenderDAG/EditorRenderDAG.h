@@ -21,7 +21,7 @@ class EditorHierarchy;
 
 class EditorRenderDAG final : public IEditorWindow {
 public:
-	EditorRenderDAG();
+	EditorRenderDAG() = default;
 	~EditorRenderDAG() override = default;
 
 	SZG_CLASS_MOVE_ONLY(EditorRenderDAG)

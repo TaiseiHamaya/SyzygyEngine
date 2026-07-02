@@ -1,9 +1,9 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorCommandInvoker.h"
 
-#include "IEditorCommand.h"
 #include "Engine/Application/Logger.h"
+#include "IEditorCommand.h"
 
 using namespace szg;
 

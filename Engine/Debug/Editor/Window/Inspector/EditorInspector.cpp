@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorInspector.h"
 
@@ -8,10 +8,6 @@
 #include "../../RemoteObject/IRemoteObject.h"
 
 using namespace szg;
-
-void EditorInspector::initialize() {
-	isActive = true;
-}
 
 void EditorInspector::setup(Reference<EditorSelectObject> selectObject_) {
 	selectObject = selectObject_;

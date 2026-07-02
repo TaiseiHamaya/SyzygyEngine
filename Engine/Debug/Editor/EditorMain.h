@@ -67,14 +67,15 @@ private:
 
 	std::optional<std::string> switchSceneName;
 
-	EditorSceneView sceneView;
-	EditorScreenResult screenResult;
-	EditorHierarchy hierarchy;
-	EditorInspector inspector;
 	EditorGizmo gizmo;
 	EditorSelectObject selectObject;
 	EditorDeletedObjectPool deletedPool;
 	EditorSceneList sceneList;
+
+	EditorSceneView sceneView;
+	EditorScreenResult screenResult;
+	EditorHierarchy hierarchy;
+	EditorInspector inspector;
 	EditorRenderDAG renderDAG;
 	EditorAssetBrowser assetBrowser;
 
