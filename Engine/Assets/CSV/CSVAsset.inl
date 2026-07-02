@@ -41,3 +41,19 @@ inline i64 szg::CSVAsset<T>::size_col(i64 row) const {
 	szgAssert(row >= 0 && row < static_cast<i64>(data.size()));
 	return static_cast<i64>(data[row].size());
 }
+
+template<typename T>
+inline void szg::CSVAsset<T>::resize_all(i64 row, i64 col) {
+	data.resize(row, std::vector<T>(col));
+}
+
+template<typename T>
+inline void szg::CSVAsset<T>::resize_row(i64 row, i64 size) {
+	data.resize(row, std::vector<T>(size));
+}
+
+template<typename T>
+inline void szg::CSVAsset<T>::resize_col(i64 row, i64 col) {
+	szgAssert(row >= 0 && row < static_cast<i64>(data.size()));
+	data[row].resize(col);
+}

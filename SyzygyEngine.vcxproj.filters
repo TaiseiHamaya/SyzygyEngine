@@ -2933,6 +2933,7 @@
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
+    <ClCompile Include="Engine\Saver\CSVAssetSaver.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2968,6 +2969,7 @@
     </ClInclude>
     <ClInclude Include="Engine\Assets\CSV\CSVAsset.h" />
     <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
+    <ClInclude Include="Engine\Saver\CSVAssetSaver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\csv\test.csv" />
