@@ -21,8 +21,7 @@
 
 using namespace szg;
 
-void EditorSceneView::initialize(bool isActive_) {
-	isActive = isActive_;
+void EditorSceneView::initialize() {
 	screenResultTexture.initialize();
 
 	std::shared_ptr<StaticMeshForwardPipeline> staticMeshNode = std::make_shared<StaticMeshForwardPipeline>();

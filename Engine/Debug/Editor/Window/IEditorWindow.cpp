@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "IEditorWindow.h"
 
@@ -10,12 +10,7 @@ using namespace szg;
 
 void IEditorWindow::draw_menu(string_literal name) {
 	std::string itemName = name;
-	if (isActive) {
-		itemName += "\ue5ca";
-	}
-	if (ImGui::MenuItem(itemName.c_str())) {
-		isActive = true;
-	}
+	ImGui::MenuItem(itemName.c_str(), nullptr, &isActive);
 }
 
 bool IEditorWindow::is_active() const {

@@ -1,4 +1,4 @@
-﻿#include "EditorRenderDAG.h"
+#include "EditorRenderDAG.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
@@ -22,10 +22,6 @@
 #include "Engine/Application/Logger.h"
 
 using namespace szg;
-
-EditorRenderDAG::EditorRenderDAG() {
-	isActive = true;
-}
 
 void EditorRenderDAG::initialize() {
 	imNodeFlow = std::make_unique<ImFlow::ImNodeFlow>();
