@@ -2929,6 +2929,9 @@
     <ClCompile Include="Library\Utility\Template\unorm.inl">
       <Filter>Library\Utility\Template</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2958,6 +2961,9 @@
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
     <ClInclude Include="Library\Utility\Template\unorm.h">
       <Filter>Library\Utility\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h">
+      <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -173,6 +173,11 @@ void EditorMain::Draw() {
 	instance.renderDAG.draw();
 	instance.assetBrowser.draw();
 	EditorLogWindow::Draw();
+
+	if (instance.customEditorManager) {
+		instance.customEditorManager->draw_window();
+	}
+
 	if (instance.sceneView.is_active()) {
 		ImGuizmo::SetDrawlist(instance.sceneView.draw_list().ptr());
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
@@ -183,6 +188,10 @@ void EditorMain::Draw() {
 
 void EditorMain::SetActiveEditor(bool isActive) {
 	GetInstance().isActiveEditor = isActive;
+}
+
+void szg::EditorMain::SetCustomEditorManager(std::unique_ptr<CustomEditorManager> manager) {
+	GetInstance().customEditorManager = std::move(manager);
 }
 
 bool EditorMain::IsHoverEditorWindow() {
@@ -265,6 +274,11 @@ void szg::EditorMain::draw_menu_bar(r32& menuHight) {
 			inspector.draw_menu("Inspector");
 			EditorLogWindow::DrawMenu("Log");
 			renderDAG.draw_menu("RenderDAG");
+
+			if (customEditorManager) {
+				ImGui::Separator();
+				customEditorManager->draw_menu();
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::PushFont(nullptr, menuHight * 0.5f);
