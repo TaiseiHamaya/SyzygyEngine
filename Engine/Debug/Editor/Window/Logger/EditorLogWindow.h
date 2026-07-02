@@ -32,7 +32,6 @@ private:
 
 public:
 	static void Allocate();
-	static void Initialize(bool isActive_);
 
 	static void Draw();
 	static void DrawMenu(string_literal label);
@@ -40,6 +39,10 @@ public:
 	void draw() override;
 
 	static void AppendLogEntry(Logger::Level level, const std::string& message);
+
+public:
+	static void SetActive(bool isActive_);
+	static bool IsActive();
 
 private:
 	std::array<LogState, Logger::LevelCount> logStates;

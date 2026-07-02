@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorHierarchy.h"
 
@@ -41,8 +41,6 @@ void EditorHierarchy::update_preview() {
 }
 
 void EditorHierarchy::load(const std::string& sceneName) {
-	isActive = true;
-
 	scene = EditorSceneSerializer::CreateRemoteScene(sceneName);
 
 	scene->setup();
@@ -100,7 +98,8 @@ void EditorHierarchy::draw() {
 			}
 			ImGui::SeparatorText("Instance");
 			if (ImGui::MenuItem("WorldInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object && 
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -111,7 +110,8 @@ void EditorHierarchy::draw() {
 			}
 			ImGui::SeparatorText("Rendering");
 			if (ImGui::MenuItem("StaticMeshInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -121,7 +121,8 @@ void EditorHierarchy::draw() {
 				}
 			}
 			if (ImGui::MenuItem("SkinningMeshInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -131,7 +132,8 @@ void EditorHierarchy::draw() {
 				}
 			}
 			if (ImGui::MenuItem("Rect3dInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -141,7 +143,8 @@ void EditorHierarchy::draw() {
 				}
 			}
 			if (ImGui::MenuItem("StringRectInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -153,7 +156,8 @@ void EditorHierarchy::draw() {
 
 			ImGui::SeparatorText("Camera");
 			if (ImGui::MenuItem("CameraInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -165,7 +169,8 @@ void EditorHierarchy::draw() {
 
 			ImGui::SeparatorText("Light");
 			if (ImGui::MenuItem("DirectionalLightInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -175,7 +180,8 @@ void EditorHierarchy::draw() {
 				}
 			}
 			if (ImGui::MenuItem("PointLightInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -187,7 +193,8 @@ void EditorHierarchy::draw() {
 
 			ImGui::SeparatorText("Collider");
 			if (ImGui::MenuItem("AABBColliderInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
@@ -197,7 +204,8 @@ void EditorHierarchy::draw() {
 				}
 			}
 			if (ImGui::MenuItem("SphereColliderInstance")) {
-				if (select->get_item_mut().object) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(
 							select->get_item_mut().object,
