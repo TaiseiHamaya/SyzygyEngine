@@ -178,6 +178,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp" />
     <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp" />
@@ -560,6 +561,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h" />
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h" />
