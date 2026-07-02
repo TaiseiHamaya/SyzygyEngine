@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "CustomEditorManager.h"
 
 #include "Engine/Debug/Editor/Window/IEditorWindow.h"
@@ -44,3 +46,5 @@ void szg::CustomEditorManager::draw_window() {
 		}
 	}
 }
+
+#endif // DEBUG_FEATURES_ENABLE
