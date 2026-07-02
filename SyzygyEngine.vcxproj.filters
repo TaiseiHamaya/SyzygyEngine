@@ -2929,6 +2929,7 @@
     <ClCompile Include="Library\Utility\Template\unorm.inl">
       <Filter>Library\Utility\Template</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2959,5 +2960,12 @@
     <ClInclude Include="Library\Utility\Template\unorm.h">
       <Filter>Library\Utility\Template</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Assets\CSV\CSVAsset.h" />
+    <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\csv\test.csv" />
+    <None Include="Engine\Assets\CSV\CSVAsset.inl" />
+    <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl" />
   </ItemGroup>
 </Project>
