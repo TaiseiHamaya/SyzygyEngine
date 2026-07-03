@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorGizmo.h"
 
@@ -39,16 +39,9 @@ void EditorGizmo::draw_gizmo(Reference<EditorSelectObject> select, Reference<con
 
 	// RootWorld check
 	{
-		bool check = false;
 		Reference<IRemoteObject> remoteObject = item.object;
-		while (remoteObject) {
-			if (remoteObject == world->remote_world()) {
-				check = true;
-				break;
-			}
-			remoteObject = remoteObject->get_parent();
-		}
-		if (!check) {
+		Reference<const RemoteWorldObject> worldObject = remoteObject->query_world();
+		if (world->remote_world() != worldObject) {
 			// RootWorldが違う
 			return;
 		}
