@@ -178,7 +178,9 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp" />
+    <ClCompile Include="Engine\Saver\CSVAssetSaver.inl" />
     <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp" />
@@ -459,6 +461,7 @@
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
     <ClCompile Include="Library\Utility\Template\unorm.inl" />
+    <None Include="Assets\csv\test.csv" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -559,9 +562,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Develop|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
+    <None Include="Engine\Assets\CSV\CSVAsset.inl" />
+    <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Assets\CSV\CSVAsset.h" />
+    <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h" />
+    <ClInclude Include="Engine\Saver\CSVAssetSaver.h" />
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h" />
