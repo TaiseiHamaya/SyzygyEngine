@@ -2975,5 +2975,6 @@
     <None Include="Assets\csv\test.csv" />
     <None Include="Engine\Assets\CSV\CSVAsset.inl" />
     <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl" />
+    <None Include="Assets\HLSL\Tools\Shadowing\Inline\InlineShadow.hlsli" />
   </ItemGroup>
 </Project>

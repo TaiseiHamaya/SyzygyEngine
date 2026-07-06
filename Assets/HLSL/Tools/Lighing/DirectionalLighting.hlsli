@@ -7,13 +7,13 @@
 struct DirectionalLightBuffer {
 	float3 color; // 色
 	float intensity; // 輝度
-	float3 directon; // 向き
+	float3 direction; // 向き
 };
 
 LightingData CalcLightingData(Pixel pixel, float3 camera, DirectionalLightBuffer light) {
 	LightingData data;
 	data.incoming.radiance = light.color * light.intensity;
-	data.incoming.direction = light.directon;
+	data.incoming.direction = light.direction;
 	data.surface.albedo = pixel.color;
 	data.surface.normal = pixel.normal;
 	data.surface.shininess = pixel.shininess;

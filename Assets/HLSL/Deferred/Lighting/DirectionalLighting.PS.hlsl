@@ -3,6 +3,8 @@
 #include "Tools/Lighing/DirectionalLighting.hlsli"
 #include "Tools/PackA2.hlsli"
 
+#include "Tools/Shadowing/Inline/InlineShadow.hlsli"
+
 struct Camera {
 	float3 position;
 	float4x4 viewInv;
@@ -44,11 +46,29 @@ float4 main(VertexShaderOutput input) : SV_TARGET {
 	else if (shadingType == 1) {
 		output.rgb = BlinnPhongSpecular(lightingData) + LambertDiffuse(lightingData);
 		output.a = 1.0f;
+		
+		InlineShadowInput shadowInput = (InlineShadowInput)0;
+		shadowInput.position = pixel.world;
+		shadowInput.direction = -directionalLight.direction;
+		shadowInput.normal = pixel.normal;
+		if (InlineShadow(shadowInput))
+		{
+			output.rgb *= 0.5f;
+		}
 	}
 	// Half Lambert
 	else if (shadingType == 2) {
 		output.rgb = BlinnPhongSpecular(lightingData) + HalfLambertDiffuse(lightingData);
 		output.a = 1.0f;
+		
+		InlineShadowInput shadowInput = (InlineShadowInput) 0;
+		shadowInput.position = pixel.world;
+		shadowInput.direction = -directionalLight.direction;
+		shadowInput.normal = pixel.normal;
+		if (InlineShadow(shadowInput))
+		{
+			output.rgb *= 0.5f;
+		}
 	}
 	// それ以外は異常値なので、discard
 	else {

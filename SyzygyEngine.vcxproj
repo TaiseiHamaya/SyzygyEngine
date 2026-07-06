@@ -462,6 +462,7 @@
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
     <ClCompile Include="Library\Utility\Template\unorm.inl" />
     <None Include="Assets\csv\test.csv" />
+    <None Include="Assets\HLSL\Tools\Shadowing\Inline\InlineShadow.hlsli" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
