@@ -11,7 +11,7 @@
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
-#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
+#include "Engine/Debug/Editor/Adapter/Field/EditorAssetField.h"
 
 #define COLOR_RGB_SERIALIZER
 #include "Engine/Assets/Json/JsonSerializer.h"

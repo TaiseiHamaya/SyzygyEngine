@@ -15,7 +15,7 @@
 
 namespace szg {
 
-template<typename T>
+template<typename T, typename ShowObject = ValueEditor::show_object<T>>
 class EditorValueField {
 public:
 	EditorValueField(const std::string& name_, T init = T{}) :
@@ -23,7 +23,7 @@ public:
 	}
 	~EditorValueField() = default;
 
-	SZG_CLASS_DEFAULT(EditorValueField<T>)
+	SZG_CLASS_DEFAULT(EditorValueField<T, ShowObject>)
 
 public:
 	std::bitset<2> show_gui() {
@@ -55,7 +55,7 @@ public:
 		return showObject.get_name();
 	}
 
-	EditorValueField<T>& operator=(const T& rhs) {
+	EditorValueField<T, ShowObject>& operator=(const T& rhs) {
 		set(rhs);
 		return *this;
 	}
@@ -66,21 +66,21 @@ public:
 
 private:
 	T value;
-	ValueEditor::show_object<T> showObject;
+	ShowObject showObject;
 };
 
 } // namespace szg
 
 namespace nlohmann {
 
-template<typename T>
+template<typename T, typename U>
 	requires std::copyable<T>
-struct adl_serializer<szg::EditorValueField<T>> {
-	static inline void to_json(nlohmann::json& j, const szg::EditorValueField<T>& p) {
+struct adl_serializer<szg::EditorValueField<T, U>> {
+	static inline void to_json(nlohmann::json& j, const szg::EditorValueField<T, U>& p) {
 		j[p.label()] = p.value_imm();
 	}
 
-	static inline void from_json(const nlohmann::json& j, szg::EditorValueField<T>& p) {
+	static inline void from_json(const nlohmann::json& j, szg::EditorValueField<T, U>& p) {
 		if (j.contains(p.label())) {
 			j[p.label()].get_to(p.value_mut());
 		}

@@ -9,8 +9,9 @@
 #include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Vector2.h>
 
+#include "Engine/Debug/Editor/Adapter/Field/EditorAssetField.h"
+#include "Engine/Debug/ImGui/ImGuiJsonEditor/ValueEditorObject.h"
 #include "Engine/Module/World/Mesh/Primitive/StringRectInstance.h"
-#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
 
 namespace szg {
 
@@ -46,7 +47,7 @@ private:
 	EditorAssetField font{ "Font", AssetType::Font };
 	EditorValueField<r32> fontSize{ "Size", 16.0f };
 	EditorValueField<Vector2> pivot{ "Pivot", CVector2::ZERO };
-	EditorValueField<std::string> text{ "Text", "Sample Text" };
+	EditorValueField<std::string, ValueEditor::show_object_string_ml> text{ "Text", "Sample Text" };
 	EditorValueField<ColorRGBA> color{ "Color", CColorRGBA::WHITE };
 
 	bool isChangedValue{ false };

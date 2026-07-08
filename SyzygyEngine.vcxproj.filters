@@ -516,7 +516,7 @@
     <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetField.cpp">
+    <ClCompile Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp">
@@ -1392,7 +1392,7 @@
     <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetField.h">
+    <ClInclude Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h">
@@ -1611,7 +1611,7 @@
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorValueField.h">
+    <ClInclude Include="Engine\Debug\Editor\Adapter\Field\EditorValueField.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h">
