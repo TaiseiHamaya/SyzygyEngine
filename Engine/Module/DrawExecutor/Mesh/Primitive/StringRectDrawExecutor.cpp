@@ -1,4 +1,4 @@
-﻿#include "StringRectDrawExecutor.h"
+#include "StringRectDrawExecutor.h"
 
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
@@ -97,11 +97,10 @@ void StringRectDrawExecutor::write_to_buffer(Reference<const StringRectInstance>
 	material[stringIndex] = materialData;
 
 	// CharBuffer書き込み
-	r32 offsetX = 0.0f;
 	for (u32 i = 0; i < numChars; ++i) {
 		const GlyphRenderingData& glyph = glyphData[i];
 		CharBuffer charBuffer{
-			.rectOffset = Vector2{ glyph.bottomLeft.x + offsetX, glyph.bottomLeft.y },
+			.rectOffset = glyph.topLeft,
 			.size = glyph.size,
 			.glyphIndex = glyph.glyphIndex,
 			.instanceIndex = stringIndex,

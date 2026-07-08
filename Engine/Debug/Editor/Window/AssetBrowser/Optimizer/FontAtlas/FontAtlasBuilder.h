@@ -5,6 +5,10 @@
 #include <filesystem>
 #include <vector>
 
+#include <FontGeometry.h>
+#include <ImmediateAtlasGenerator.h>
+#include <GlyphGeometry.h>
+
 #include <Library/Externals/DirectXTex/DirectXTex.h>
 #include <Library/Externals/msdf-atlas-gen/msdf-atlas-gen/msdf-atlas-gen.h>
 
@@ -34,11 +38,11 @@ private:
 	std::filesystem::path ttfFilePath;
 
 	msdf_atlas::ImmediateAtlasGenerator<float, 4, msdf_atlas::mtsdfGenerator, msdf_atlas::BitmapAtlasStorage<float, 4>> generator;
-	std::vector<msdf_atlas::GlyphGeometry> glyphs;
-	r32 baseFontScale;
-	r32 lineHeight;
+	msdf_atlas::FontGeometry fontGeometry{};
+	std::vector<msdf_atlas::GlyphGeometry> glyphs{};
 
-	DirectX::ScratchImage scratchImage;
+	i32 textureWidth = 0;
+	i32 textureHeight = 0;
 };
 
 }; // szg

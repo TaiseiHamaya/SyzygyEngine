@@ -1,16 +1,11 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "FontAtlasBuilder.h"
 
 #include <thread>
 
-#include <Library/Math/Vector2.h>
-
 #include "./FontAtlasBuilderManager.h"
 #include "Engine/Assets/Json/JsonAsset.h"
-
-#define VECTOR2_SERIALIZER
-#include "Engine/Assets/Json/JsonSerializer.h"
 
 using namespace msdf_atlas;
 
@@ -32,7 +27,7 @@ void FontAtlasBuilder::load_glyphs() {
 		return;
 	}
 
-	FontGeometry fontGeometry(&glyphs);
+	fontGeometry = FontGeometry{ &glyphs };
 	fontGeometry.loadCharset(font, 1.0f, FontAtlasBuilderManager::Charset());
 	for (GlyphGeometry& glyph : glyphs) {
 		glyph.edgeColoring(&msdfgen::edgeColoringInkTrap, 3.0, 0);
@@ -45,14 +40,10 @@ void FontAtlasBuilder::load_glyphs() {
 	packer.setDimensionsConstraint(DimensionsConstraint::POWER_OF_TWO_SQUARE);
 	packer.pack(glyphs.data(), static_cast<int>(glyphs.size()));
 
-	baseFontScale = static_cast<r32>(packer.getScale());
-	lineHeight = static_cast<r32>(fontGeometry.getMetrics().lineHeight);
-
-	int sizeX, sizeY;
-	packer.getDimensions(sizeX, sizeY);
+	packer.getDimensions(textureWidth, textureHeight);
 
 	// 実際の生成
-	generator.resize(sizeX, sizeY);
+	generator.resize(textureWidth, textureHeight);
 	GeneratorAttributes attributes;
 	generator.setAttributes(attributes);
 	generator.setThreadCount(std::thread::hardware_concurrency());
@@ -74,6 +65,7 @@ void FontAtlasBuilder::save_mtsdf_texture(const std::filesystem::path& outputPat
 	image.pixels = const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(bitmapRef.pixels));
 
 	// ScratchImage に変換
+	DirectX::ScratchImage scratchImage;
 	hr = scratchImage.InitializeFromImage(image);
 	assert(SUCCEEDED(hr));
 
@@ -94,50 +86,21 @@ void FontAtlasBuilder::save_mtsdf_texture(const std::filesystem::path& outputPat
 }
 
 void FontAtlasBuilder::save_atlas_data(const std::filesystem::path& outputPath) {
-	JsonAsset json;
 	std::filesystem::path outputFilePath = outputPath / (ttfFilePath.stem().native() + L".mtsdf");
+
+	JsonAtlasMetrics jsonMetrics = {};
+	jsonMetrics.distanceRange = 2;
+	jsonMetrics.width = textureWidth;
+	jsonMetrics.height = textureHeight;
+	jsonMetrics.yDirection = YDirection::BOTTOM_UP;
+	jsonMetrics.size = 1.0;
+
+	msdf_atlas::exportJSON(&fontGeometry, 1, ImageType::MTSDF, jsonMetrics, outputFilePath.string().c_str(), true);
+
+	JsonAsset json;
 	json.load(outputFilePath);
-	json.get().clear();
 
-	size_t textureWidth = scratchImage.GetMetadata().width;
-	size_t textureHeight = scratchImage.GetMetadata().height;
-	// Glyphの情報を保存
-	nlohmann::json atlasJson = nlohmann::json::array();
-	for (const GlyphGeometry& glyph : glyphs) {
-		nlohmann::json glyphJson;
-		glyphJson["Codepoint"] = glyph.getCodepoint();
-		double lt, bt, rt, tt;
-		glyph.getQuadAtlasBounds(lt, bt, rt, tt);
-
-		nlohmann::json textureJson = nlohmann::json::object();
-		textureJson["Scale"] = Vector2{
-			static_cast<r32>(rt - lt) / textureWidth,
-			static_cast<r32>(tt - bt) / textureHeight,
-		};
-		textureJson["Translate"] = Vector2{
-			static_cast<r32>(lt) / textureWidth,
-			static_cast<r32>(bt) / textureHeight,
-		};
-		glyphJson["Texture"] = textureJson;
-
-		glyphJson["Index"] = glyph.getIndex();
-		glyphJson["Advance"] = glyph.getAdvance();
-		double lb, bb, rb, tb;
-		glyph.getQuadPlaneBounds(lb, bb, rb, tb);
-		glyphJson["BoundsBox"] = { {"Left", lb}, {"Bottom", bb}, {"Right", rb}, {"Top", tb} };
-		atlasJson.push_back(glyphJson);
-	}
-
-	json.get()["Glyphs"] = atlasJson;
-
-	json.get()["TextureWidth"] = textureWidth;
-	json.get()["TextureHeight"] = textureHeight;
-
-	json.get()["BaseFontScale"] = baseFontScale;
-	json.get()["LineHeight"] = lineHeight;
-
-	json.get()["DDSTexture"] = ttfFilePath.stem().string() + ".dds";
-
+	json.get()["atlas"]["texture"] = ttfFilePath.stem().string() + ".dds";
 	json.save();
 }
 

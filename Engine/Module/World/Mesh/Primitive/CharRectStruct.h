@@ -5,9 +5,9 @@
 namespace szg {
 
 struct GlyphRenderingData {
-	Vector2 bottomLeft;
-	Vector2 size;
-	u32 glyphIndex;
+	Vector2 topLeft{};
+	Vector2 size{};
+	u32 glyphIndex{};
 };
 
 }; // szg
