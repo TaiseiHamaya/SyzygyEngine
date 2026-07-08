@@ -37,7 +37,7 @@ public:
 
 	void clear() noexcept;
 
-	r32 calculate_cursor_offset(Reference<szg::StringRectInstance> stringRect) const;
+	Vector2 calculate_cursor_offset(Reference<szg::StringRectInstance> stringRect) const;
 
 	bool is_return() const noexcept;
 

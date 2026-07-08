@@ -1,4 +1,4 @@
-﻿#include "StringRectInstance.h"
+#include "StringRectInstance.h"
 
 #include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFLibrary.h"
 
@@ -33,7 +33,7 @@ void StringRectInstance::set_font(const std::string& fontName) {
 	if (!fontAtlas) {
 		return;
 	}
-	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	charRenderingData = fontAtlas->calculate_glyph(string);
 	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
 }
 
@@ -59,21 +59,12 @@ void StringRectInstance::reset_string(std::string_view string_) {
 	if (!fontAtlas) {
 		return;
 	}
-	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	charRenderingData = fontAtlas->calculate_glyph(string);
 	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
 }
 
 void szg::StringRectInstance::reset_string(std::wstring_view string_) {
-	std::string tempStr;
-	tempStr.reserve(string_.size());
-	tempStr = ConvertString(string_);
-	string = tempStr;
-	charRenderingData.clear();
-	if (!fontAtlas) {
-		return;
-	}
-	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
-	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
+	reset_string(ConvertString(string_));
 }
 
 const std::string& StringRectInstance::string_imm() const {
@@ -81,36 +72,19 @@ const std::string& StringRectInstance::string_imm() const {
 }
 
 void StringRectInstance::append(const std::string& append_) {
-	auto temp = fontAtlas->calculate_glyph(append_, data.fontSize);
-	data.offset += fontAtlas->calculate_offset(temp, data.pivot, data.fontSize);
-	charRenderingData.insert(charRenderingData.end(), temp.begin(), temp.end());
-	string += append_;
+	reset_string(string + append_);
 }
 
 void StringRectInstance::append(const std::wstring& append_) {
-	std::string tempStr;
-	tempStr.reserve(append_.size());
-	tempStr = ConvertString(append_);
-	string += tempStr;
-	// TODO: 差分だけ計算し直すみたいなことをしたい
-	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
-	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
+	append(ConvertString(append_));
 }
 
 void StringRectInstance::append(char c) {
-	auto temp = fontAtlas->calculate_glyph(std::string(1, c), data.fontSize);
-	data.offset += fontAtlas->calculate_offset(temp, data.pivot, data.fontSize);
-	charRenderingData.emplace_back(temp[0]);
-	string += c;
+	reset_string(string + c);
 }
 
 void StringRectInstance::append(wchar_t c) {
-	std::string tempStr;
-	tempStr = ConvertString(std::wstring(1, c));
-	auto temp = fontAtlas->calculate_glyph(tempStr, data.fontSize);
-	data.offset += fontAtlas->calculate_offset(temp, data.pivot, data.fontSize);
-	charRenderingData.emplace_back(temp[0]);
-	string += tempStr;
+	reset_string(string + ConvertString(std::wstring(1, c)));
 }
 
 void szg::StringRectInstance::pop_back() {
@@ -119,7 +93,7 @@ void szg::StringRectInstance::pop_back() {
 		return;
 	}
 	string.pop_back();
-	charRenderingData = fontAtlas->calculate_glyph(string, data.fontSize);
+	charRenderingData = fontAtlas->calculate_glyph(string);
 	data.offset = fontAtlas->calculate_offset(charRenderingData, data.pivot, data.fontSize);
 }
 

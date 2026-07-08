@@ -78,18 +78,22 @@ void szg::InputTextController::clear() noexcept {
 	cursorPos = 0;
 }
 
-r32 szg::InputTextController::calculate_cursor_offset(Reference<szg::StringRectInstance> stringRect) const {
+Vector2 szg::InputTextController::calculate_cursor_offset(Reference<szg::StringRectInstance> stringRect) const {
 	if (!stringRect) {
-		return 0.0f;
+		return CVector2::ZERO;
 	}
 	auto fontAtlasAsset = stringRect->font_atlas_asset();
 	if (!fontAtlasAsset) {
-		return 0.0f;
+		return CVector2::ZERO;
+	}
+	if (cursorPos == 0) {
+		return CVector2::ZERO;
 	}
 
 	std::string textA = ConvertString(text.substr(0, cursorPos));
-	std::vector<szg::GlyphRenderingData> glyph = fontAtlasAsset->calculate_glyph(textA, stringRect->font_size());
-	return fontAtlasAsset->calculate_advance(glyph) * stringRect->font_scale();
+	std::vector<szg::GlyphRenderingData> glyph = fontAtlasAsset->calculate_glyph(textA);
+	auto& back = glyph.back();
+	return (back.topLeft + back.size) * stringRect->font_size();
 }
 
 bool szg::InputTextController::is_return() const noexcept {
