@@ -34,9 +34,9 @@ void FontAtlasBuilder::load_glyphs() {
 	}
 
 	TightAtlasPacker packer;
-	packer.setMinimumScale(10.0);
-	packer.setPixelRange(2.0);
-	packer.setUnitRange(1.0);
+	packer.setScale(32.0);
+	packer.setUnitRange(0.2);
+	packer.setMiterLimit(1.0);
 	packer.setDimensionsConstraint(DimensionsConstraint::POWER_OF_TWO_SQUARE);
 	packer.pack(glyphs.data(), static_cast<int>(glyphs.size()));
 
