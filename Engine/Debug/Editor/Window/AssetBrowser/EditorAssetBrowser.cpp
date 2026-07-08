@@ -199,12 +199,16 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 			}
 		}
 
+		ImGui::Separator();
+
 		// パスのコピー
 		if (ImGui::MenuItem("Copy Path")) {
 			ImGui::SetClipboardText(filePath.string().c_str());
 		}
 
 		if (selectFileName.empty() && rootType == AssetRootType::Game) {
+			ImGui::Separator();
+
 			// フォルダーの作成
 			if (ImGui::MenuItem("Create Folder")) {
 				std::filesystem::path newFolderPath = directory / "NewFolder";
@@ -228,6 +232,8 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 		}
 
 		if (!selectFileName.empty() && rootType == AssetRootType::Game) {
+			ImGui::Separator();
+
 			// ファイル・フォルダの削除
 			if (ImGui::MenuItem("Delete")) {
 				std::error_code ec;
@@ -246,6 +252,8 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 				isRenaming = true;
 				newFileName = selectFileName.string();
 			}
+
+			ImGui::Separator();
 
 			// 最適化をする
 			if (assetImporter.optimizer_mut()->is_support_optimization(selectFileName.extension())) {
