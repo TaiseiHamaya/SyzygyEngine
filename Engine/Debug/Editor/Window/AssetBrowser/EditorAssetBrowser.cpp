@@ -182,9 +182,21 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 	if (ImGui::BeginPopup("AssetBrowserRightClickMenu")) {
 		// エクスプローラーで開く
 		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
+		if (ImGui::MenuItem("Open Directory")) {
+			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		}
+
+		// ファイルを開く
 		std::filesystem::path filePath = directory / selectFileName;
-		if (ImGui::MenuItem("Open in Explorer")) {
-			ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		if (!selectFileName.empty()) {
+			if (ImGui::MenuItem("Open")) {
+				ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			}
+
+			// ファイルを編集する
+			if (ImGui::MenuItem("Edit")) {
+				ShellExecuteW(NULL, L"edit", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			}
 		}
 
 		// パスのコピー
