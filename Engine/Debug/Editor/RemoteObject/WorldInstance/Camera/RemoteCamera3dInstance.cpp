@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteCamera3dInstance.h"
 
@@ -63,15 +63,11 @@ void RemoteCamera3dInstance::draw_inspector() {
 
 	ImGui::Text("Projection Type");
 	if (ImGui::RadioButton("Perspective", std::holds_alternative<PerspectiveParameters>(projectionParameters))) {
-		EditorValueChangeCommandHandler::GenCommand<decltype(projectionParameters)>(projectionParameters);
-		projectionParameters = PerspectiveParameters{};
-		EditorValueChangeCommandHandler::End();
+		EditorValueChangeCommandHandler::GenCommandInstant<decltype(projectionParameters)>(projectionParameters, PerspectiveParameters{});
 	}
 	ImGui::SameLine();
 	if (ImGui::RadioButton("Orthographic", std::holds_alternative<OrthroParameters>(projectionParameters))) {
-		EditorValueChangeCommandHandler::GenCommand<decltype(projectionParameters)>(projectionParameters);
-		projectionParameters = OrthroParameters{};
-		EditorValueChangeCommandHandler::End();
+		EditorValueChangeCommandHandler::GenCommandInstant<decltype(projectionParameters)>(projectionParameters, OrthroParameters{});
 	}
 
 	std::visit(DebugProjectionVariantVisitor{}, projectionParameters);
