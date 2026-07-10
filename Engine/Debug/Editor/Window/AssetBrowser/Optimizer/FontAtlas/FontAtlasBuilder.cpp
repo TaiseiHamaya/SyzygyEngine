@@ -7,6 +7,11 @@
 #include "./FontAtlasBuilderManager.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 
+#include <core/BitmapRef.hpp>
+#include <DirectXTex.h>
+#include <json-export.h>
+#include <TightAtlasPacker.h>
+
 using namespace msdf_atlas;
 
 using namespace szg;
