@@ -9,8 +9,8 @@
 #include <ImmediateAtlasGenerator.h>
 #include <GlyphGeometry.h>
 
-#include <Library/Externals/DirectXTex/DirectXTex.h>
-#include <Library/Externals/msdf-atlas-gen/msdf-atlas-gen/msdf-atlas-gen.h>
+#include <msdf-atlas-gen/glyph-generators.h>
+#include <msdf-atlas-gen/BitmapAtlasStorage.h>
 
 namespace szg {
 
