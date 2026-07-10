@@ -59,34 +59,24 @@ void FontAtlasBuilder::load_glyphs() {
 }
 
 void FontAtlasBuilder::save_mtsdf_texture(const std::filesystem::path& outputPath) {
-	msdfgen::BitmapConstRef<float, 4> bitmapRef = generator.atlasStorage();
+	msdfgen::BitmapConstRef<u8, 4> bitmapRef = generator.atlasStorage();
 	HRESULT hr;
 	DirectX::Image image = {}; // 書き込み
 	image.width = bitmapRef.width;
 	image.height = bitmapRef.height;
-	image.format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-	image.rowPitch = sizeof(float) * 4 * bitmapRef.width;
+	image.format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	image.rowPitch = sizeof(u8) * 4 * bitmapRef.width;
 	image.slicePitch = image.rowPitch * bitmapRef.height;
-	image.pixels = const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(bitmapRef.pixels));
+	image.pixels = const_cast<u8*>(reinterpret_cast<const u8*>(bitmapRef.pixels));
 
 	// ScratchImage に変換
 	DirectX::ScratchImage scratchImage;
 	hr = scratchImage.InitializeFromImage(image);
 	assert(SUCCEEDED(hr));
 
-	// 圧縮
-	//DirectX::ScratchImage compressed;
-	//hr = DirectX::Compress(scratchImage.GetImages(), scratchImage.GetImageCount(), scratchImage.GetMetadata(),
-	//	DXGI_FORMAT_BC7_UNORM, DirectX::TEX_COMPRESS_BC7_QUICK | DirectX::TEX_COMPRESS_PARALLEL, 1.0f, compressed);
-	//assert(SUCCEEDED(hr));
-
-	// 転送
-	//scratchImage = std::move(compressed);
-	DirectX::TexMetadata metadata = scratchImage.GetMetadata();
-
 	// 保存
 	std::filesystem::path outputFilePath = outputPath.parent_path() / (ttfFilePath.stem().native() + L".dds");
-	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), metadata, DirectX::DDS_FLAGS_NONE, outputFilePath.c_str());
+	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), scratchImage.GetMetadata(), DirectX::DDS_FLAGS_NONE, outputFilePath.c_str());
 	assert(SUCCEEDED(hr));
 }
 

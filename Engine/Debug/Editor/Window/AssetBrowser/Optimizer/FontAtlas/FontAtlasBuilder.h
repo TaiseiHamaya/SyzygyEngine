@@ -37,7 +37,7 @@ private:
 private:
 	std::filesystem::path ttfFilePath;
 
-	msdf_atlas::ImmediateAtlasGenerator<float, 4, msdf_atlas::mtsdfGenerator, msdf_atlas::BitmapAtlasStorage<float, 4>> generator;
+	msdf_atlas::ImmediateAtlasGenerator<float, 4, msdf_atlas::mtsdfGenerator, msdf_atlas::BitmapAtlasStorage<u8, 4>> generator;
 	msdf_atlas::FontGeometry fontGeometry{};
 	std::vector<msdf_atlas::GlyphGeometry> glyphs{};
 
