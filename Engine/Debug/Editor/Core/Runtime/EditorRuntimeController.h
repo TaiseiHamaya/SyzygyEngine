@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include <vector>
 
 #include <Library/Utility/Template/bitflag.h>
@@ -45,3 +47,5 @@ private:
 };
 
 } // namespace szg
+
+#endif // DEBUG_FEATURES_ENABLE

@@ -1,3 +1,5 @@
+#ifdef DEBUG_FEATURES_ENABLE
+
 #include "EditorRuntimeController.h"
 
 #include <imgui.h>
@@ -214,3 +216,5 @@ void szg::EditorRuntimeController::restore_world_states() {
 		script->set_pause(sceneScripts[i]);
 	}
 }
+
+#endif // DEBUG_FEATURES_ENABLE
