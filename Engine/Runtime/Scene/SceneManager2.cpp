@@ -15,9 +15,13 @@ void SceneManager2::Initialize() {
 	instance.sceneChangeTempData.onEnd = { &SceneManager2::OnNextScene, 0, true };
 }
 
-void SceneManager2::Setup(std::unique_ptr<BaseSceneFactory> factory_) {
+void szg::SceneManager2::SetupFactory(std::unique_ptr<BaseSceneFactory> factory_) {
 	SceneManager2& instance = GetInstance();
 	instance.factory = std::move(factory_);
+}
+
+void SceneManager2::Setup() {
+	SceneManager2& instance = GetInstance();
 
 	auto scene = instance.factory->initialize_scene2();
 	if (!scene) {
@@ -47,12 +51,17 @@ void SceneManager2::Finalize() noexcept {
 		scene->finalize();
 	}
 	instance.sceneStack.clear();
-	instance.factory.reset();
+	
+	//instance.factory.reset();
 }
 
 void SceneManager2::BeginFrame() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
+
+	if (!currentScene) {
+		return;
+	}
 	currentScene->begin_frame();
 }
 
@@ -60,6 +69,9 @@ void SceneManager2::Update() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
 
+	if (!currentScene) {
+		return;
+	}
 	currentScene->update();
 }
 
@@ -67,6 +79,9 @@ void SceneManager2::PreDraw() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
 
+	if (!currentScene) {
+		return;
+	}
 	currentScene->pre_draw();
 }
 
@@ -74,12 +89,19 @@ void SceneManager2::Draw() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
 
+	if (!currentScene) {
+		return;
+	}
 	currentScene->draw();
 }
 
 void SceneManager2::EndFrame() {
 	auto& instance = GetInstance();
 	auto& currentScene = instance.sceneStack.back();
+	if (!currentScene) {
+		return;
+	}
+
 	currentScene->end_frame();
 
 	TryChangeScene();
