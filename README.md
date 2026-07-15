@@ -76,7 +76,7 @@ curl -o CreateSolution.ps1 https://raw.githubusercontent.com/TaiseiHamaya/Syzygy
 3. Open the generated solution:
 
 ```text
-MyGame/project/MyGame.sln
+<project_name>.sln
 ```
 
 4. Build with Visual Studio (x64, Debug / Develop / Release).
