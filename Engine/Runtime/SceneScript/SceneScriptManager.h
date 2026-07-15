@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 
+#include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 namespace szg {
@@ -23,6 +24,10 @@ public:
 	void post_update();
 
 	void finalize();
+
+public:
+	i64 size() const noexcept;
+	Reference<ISceneScript> script_mut(i64 index) noexcept;
 
 private:
 	std::vector<std::unique_ptr<ISceneScript>> scripts;

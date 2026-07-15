@@ -8,6 +8,7 @@
 #include "./Core/EditorSceneList.h"
 #include "./Core/EditorSelectObject.h"
 #include "./Core/CustomEditor/CustomEditorManager.h"
+#include "./Core/Runtime/EditorRuntimeController.h"
 #include "./Window/Hierarchy/EditorHierarchy.h"
 #include "./Window/Inspector/EditorInspector.h"
 #include "./Window/RenderDAG/EditorRenderDAG.h"
@@ -71,6 +72,7 @@ private:
 	EditorSelectObject selectObject;
 	EditorDeletedObjectPool deletedPool;
 	EditorSceneList sceneList;
+	EditorRuntimeController runtimeController;
 
 	EditorSceneView sceneView;
 	EditorScreenResult screenResult;

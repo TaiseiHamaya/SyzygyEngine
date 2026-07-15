@@ -49,7 +49,11 @@ public:
 	void finalize();
 
 public:
-	Reference<WorldCluster> get_world(u32 index);
+	i64 world_size() const noexcept;
+	Reference<WorldCluster> world_mut(i64 index) noexcept;
+
+	i64 script_size() const noexcept;
+	Reference<ISceneScript> script_mut(i64 index) noexcept;
 
 	void set_name(const std::string& name);
 	std::string_view name() const noexcept;

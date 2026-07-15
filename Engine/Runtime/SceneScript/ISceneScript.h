@@ -16,6 +16,14 @@ public:
 
 	virtual void prev_update() {};
 	virtual void post_update() {};
+
+public:
+	bool is_paused() const noexcept;
+
+	void set_pause(bool pause);
+
+private:
+	bool isPause{ false };
 };
 
 }; // szg

@@ -39,9 +39,15 @@ public:
 
 	void pre_draw();
 
+	void post_update();
+
 	void end_frame();
 
 public:
+	eps::bitflag<WorldState> state_imm() const;
+
+	eps::bitflag<WorldState>& state_mut();
+
 	WorldRoot& world_root_mut();
 
 public:

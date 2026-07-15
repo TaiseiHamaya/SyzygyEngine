@@ -11,13 +11,13 @@
 #include "Engine/Application/Logger.h"
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/Assets/Audio/AudioManager.h"
-#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Assets/Shader/ShaderLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCore.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Runtime/Clock/WorldClock.h"
 #include "Engine/Runtime/Input/Input.h"
 #include "Engine/Runtime/Input/InputTextFrame.h"
@@ -31,8 +31,8 @@
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include "Engine/Debug/Editor/EditorMain.h"
-#include "Engine/Debug/ImGui/ImGuiManager/ImGuiManager.h"
 #include "Engine/Debug/Editor/Window/Logger/EditorLogWindow.h"
+#include "Engine/Debug/ImGui/ImGuiManager/ImGuiManager.h"
 
 #include <pix_win.h>
 
@@ -266,9 +266,6 @@ void WinApp::Update() {
 #ifdef DEBUG_FEATURES_ENABLE
 	auto& instance = GetInstance();
 	instance.profiler.timestamp("Update");
-	if (IsStopUpdate()) { // 更新停止の場合
-		return;
-	}
 #endif // DEBUG_FEATURES_ENABLE
 
 	// シーン更新
@@ -308,9 +305,6 @@ void WinApp::EndFrame() {
 
 	// GUI
 	ImGui::Begin("Application");
-	ImGui::Checkbox("IsStopUpdate", &instance.isStopUpdate);
-	instance.isPassedPause = false;
-	if (ImGui::Button("NextFrame")) instance.isPassedPause = true;
 	ImGui::SeparatorText("Profiler");
 	instance.profiler.debug_gui();
 	ImGui::End();
@@ -361,6 +355,9 @@ void WinApp::Finalize() {
 }
 
 void WinApp::ShowAppWindow() {
+	// シーンの生成
+	SceneManager2::Setup();
+
 	// ウィンドウ表示
 	if (!ProjectSettings::GetApplicationSettingsImm().hideWindowForce) {
 		ShowWindow(GetInstance().hWnd, SW_SHOW);
@@ -434,11 +431,12 @@ bool WinApp::IsEndApp() noexcept {
 	if (GetInstance().isEndApp) { // ×ボタンが押されたら終わる
 		return true;
 	}
-	if (SceneManager2::IsEndProgram()) {
-		return true;
-	}
 #ifdef DEBUG_FEATURES_ENABLE
 	if (EditorMain::IsEndApplicationForce()) {
+		return true;
+	}
+#else
+	if (SceneManager2::IsEndProgram()) {
 		return true;
 	}
 #endif // DEBUG_FEATURES_ENABLE
@@ -520,12 +518,3 @@ void WinApp::wait_frame() {
 		std::this_thread::sleep_for(std::chrono::duration_cast<std::chrono::microseconds>(sleepMilliSec));
 	}
 }
-
-#ifdef DEBUG_FEATURES_ENABLE
-
-bool WinApp::IsStopUpdate() {
-	auto& instance = GetInstance();
-	return instance.isStopUpdate && !instance.isPassedPause;
-}
-
-#endif // DEBUG_FEATURES_ENABLE

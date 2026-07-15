@@ -178,6 +178,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.cpp" />
     <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp" />
     <ClCompile Include="Engine\Saver\CSVAssetSaver.inl" />
@@ -566,6 +567,7 @@
     <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h" />
     <ClInclude Include="Engine\Assets\CSV\CSVAsset.h" />
     <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h" />
