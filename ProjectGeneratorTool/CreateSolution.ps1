@@ -39,17 +39,17 @@ if ($LASTEXITCODE -ne 0) {
 	exit 1
 }
 
-# --- ステップ4: サブモジュールの追加 ---
+# --- ステップ4: エンジンサブモジュールの追加 ---
 if ($BranchName) {
-	Write-Host "ブランチ '$BranchName' を指定してサブモジュールを追加しています..."
+	Write-Host "ブランチ '$BranchName' を指定してSyzygyEngineを初期化中..."
 	git submodule add -b $BranchName https://github.com/TaiseiHamaya/SyzygyEngine.git
 }
 else {
-	Write-Host "デフォルトブランチでサブモジュールを追加しています..."
+	Write-Host "SyzygyEngineを初期化中..."
 	git submodule add https://github.com/TaiseiHamaya/SyzygyEngine.git
 }
 if ($LASTEXITCODE -ne 0) {
-	Write-Host "サブモジュールの追加に失敗しました。"
+	Write-Host "失敗しました。"
 	Pop-Location
 	Read-Host "Enterキーで終了"
 	exit 1
@@ -62,7 +62,7 @@ try {
 	Copy-Item -Path $sourcePath -Destination $destinationPath -Recurse -Force -ErrorAction Stop
 }
 catch {
-	Write-Host "コピーに失敗しました。エラー内容:"
+	Write-Host "ソリューションの作成に失敗しました"
 	Write-Host $_.Exception.Message
 	Pop-Location
 	Read-Host "Enterキーで終了"
