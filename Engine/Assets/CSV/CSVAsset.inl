@@ -45,6 +45,9 @@ inline i64 szg::CSVAsset<T>::size_col(i64 row) const {
 template<typename T>
 inline void szg::CSVAsset<T>::resize_all(i64 row, i64 col) {
 	data.resize(row, std::vector<T>(col));
+	for (i64 r = 0; r < row; ++r) {
+		data[r].resize(col);
+	}
 }
 
 template<typename T>
