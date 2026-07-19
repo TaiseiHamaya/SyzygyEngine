@@ -90,10 +90,16 @@ Vector2 szg::InputTextController::calculate_cursor_offset(Reference<szg::StringR
 		return CVector2::ZERO;
 	}
 
-	std::string textA = ConvertString(text.substr(0, cursorPos));
+	std::string textA = ConvertString(text);
 	std::vector<szg::GlyphRenderingData> glyph = fontAtlasAsset->calculate_glyph(textA);
-	auto& back = glyph.back();
-	return (back.topLeft + back.size) * stringRect->font_size();
+
+	i32 idx = cursorPos - 1;
+	Vector2 basePosition = glyph[idx].topLeft;
+	basePosition.x -= glyph[idx].size.x;
+	basePosition.y += glyph[idx].size.y;
+	Vector2 offset = fontAtlasAsset->calculate_offset(glyph, stringRect->pivot_imm(), stringRect->font_size());
+	// positionはフォントサイズを掛ける前の値なので、掛けてから返す
+	return basePosition * stringRect->font_size() + offset;
 }
 
 bool szg::InputTextController::is_return() const noexcept {
