@@ -20,16 +20,23 @@ FontAtlasMSDFBuilder::FontAtlasMSDFBuilder(const std::filesystem::path& filePath
 FontAtlasMSDFBuilder::~FontAtlasMSDFBuilder() = default;
 
 bool FontAtlasMSDFBuilder::run() {
-	szgInformation(L"Start load font mtsdf atlas file-\'{}\'", filePath.native());
+	szgInformation(L"Start load font mtsdf atlas. File-\'{}\'", filePath.native());
 
 	JsonAsset json;
 	json.load(filePath);
+
+	if (json.cget().is_null()) {
+		// mtsdfフォントの定義ファイルが見つからない or 内容が正しくない
+		szgWarning(L"Failed to load mtsdf file. File-\'{}\'", filePath.native());
+		return false;
+	}
 
 	u32 textureWidth{};
 	u32 textureHeight{};
 	{
 		const nlohmann::json& atlasJson = json.get()["atlas"];
 		if (atlasJson.empty()) {
+			szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Atlas data is empty.\'", filePath.native());
 			return false;
 		}
 		textureWidth = atlasJson.value("width", 0);
@@ -40,6 +47,7 @@ bool FontAtlasMSDFBuilder::run() {
 	{
 		const nlohmann::json& atlasJson = json.get()["metrics"];
 		if (atlasJson.empty()) {
+			szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Metrics data is empty.\'", filePath.native());
 			return false;
 		}
 		data.baseScale = atlasJson.value("emSize", 1.0f);
@@ -52,6 +60,7 @@ bool FontAtlasMSDFBuilder::run() {
 	nlohmann::json glyphsJson = json.get()["glyphs"];
 	glyphsDataBuffer.resize(glyphsJson.size());
 	if (glyphsJson.empty()) {
+		szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Glyphs data is empty.\'", filePath.native());
 		return false;
 	}
 	for (i32 i = 0; auto& glyphJson : glyphsJson) {
@@ -101,6 +110,7 @@ bool FontAtlasMSDFBuilder::run() {
 
 	textureBuilder = std::make_unique<TextureAssetBuilder>(filePath.parent_path() / ddsTextureName);
 	if (!textureBuilder->run()) {
+		// テクスチャのロードに失敗
 		return false;
 	}
 	return true;
