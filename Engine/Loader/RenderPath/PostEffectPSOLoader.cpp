@@ -23,7 +23,6 @@ void PostEffectPSOLoader::setup(Reference<std::vector<RenderNodeLoader::Immidiat
 }
 
 std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nlohmann::json& json) {
-	RuntimeStorage::ValueGroup& postEffectValueGroup = RuntimeStorage::GetValueList("PostEffect");
 	std::any value;
 	std::unique_ptr<IPostEffectPipeline> node = nullptr;
 
@@ -131,7 +130,7 @@ std::unique_ptr<IPostEffectPipeline> PostEffectPSOLoader::entry_point(const nloh
 	}
 
 	if (value.has_value()) {
-		postEffectValueGroup[dataJson["EffectTag"].get<std::string>()] = std::move(value);
+		RuntimeStorage::OverwirteValue("PostEffect", dataJson["EffectTag"].get<std::string>(), std::move(value));
 	}
 
 	return node;

@@ -16,7 +16,9 @@ public:
 	using ValueGroup = std::unordered_map<std::string, std::any>;
 
 public:
-	static ValueGroup& GetValueList(const std::string& name);
+	static void OverwirteValue(const std::string& groupName, const std::string& valueName, std::any value);
+
+	static void WriteValue(const std::string& groupName, const std::string& valueName, std::any value);
 
 	template<typename T>
 	static std::optional<T> GetValue(const std::string& groupName, const std::string& valueName);
