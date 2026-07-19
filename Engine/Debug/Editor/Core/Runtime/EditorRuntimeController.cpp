@@ -57,7 +57,9 @@ void szg::EditorRuntimeController::control_gui(r32 menuHight) {
 
 	ImGui::PushStyleColor(ImGuiCol_Button, currentState == State::Pause ? ImVec4(0.1f, 0.1f, 0.1f, 1.0f) : defualtButtonColor);
 	// step over button
-	if (ImGui::Button("\uf6ff")) {
+	ImGui::Button("\uf6ff");
+	// repeat
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left, true)) {
 		isStepFrameState.set(0, true);
 		ImGui::SetWindowFocus("Screen");
 	}
