@@ -17,17 +17,19 @@ inline szg::SparseSet<T>::SparseSet(i64 size, const T& defaultValue) {
 }
 
 template<typename T>
-inline const T& szg::SparseSet<T>::at(i64 id) const {
+inline Reference<const T> szg::SparseSet<T>::at(i64 id) const {
 	if (!is_valid_id(id)) {
 		szgError("SparseSet::at() - Invalid id: {}", id);
+		return nullptr;
 	}
 	return data[indexes[id]];
 }
 
 template<typename T>
-inline T& szg::SparseSet<T>::at(i64 id) {
+inline Reference<T> szg::SparseSet<T>::at_mut(i64 id) {
 	if (!is_valid_id(id)) {
-		szgError("SparseSet::at() - Invalid id: {}", id);
+		szgError("SparseSet::at_mut() - Invalid id: {}", id);
+		return nullptr;
 	}
 	return data[indexes[id]];
 }
@@ -38,7 +40,7 @@ inline const T& szg::SparseSet<T>::at_unchecked(i64 id) const {
 }
 
 template<typename T>
-inline T& szg::SparseSet<T>::at_unchecked(i64 id) {
+inline T& szg::SparseSet<T>::at_mut_unchecked(i64 id) {
 	return data[indexes[id]];
 }
 
