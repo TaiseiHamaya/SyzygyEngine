@@ -462,6 +462,7 @@
     <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp" />
     <ClCompile Include="Library\Utility\Template\unorm.inl" />
+    <ClCompile Include="Library\Utility\SparseSet.inl" />
     <None Include="Assets\csv\test.csv" />
     <None Include="EditorResources\HLSL\Grid\Grid.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -1052,6 +1053,7 @@
     <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h" />
     <ClInclude Include="Library\Utility\Template\unorm.h" />
+    <ClInclude Include="Library\Utility\SparseSet.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">

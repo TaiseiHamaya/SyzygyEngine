@@ -2935,6 +2935,7 @@
     <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
     <ClCompile Include="Engine\Saver\CSVAssetSaver.inl" />
     <ClCompile Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.cpp" />
+    <ClCompile Include="Library\Utility\SparseSet.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
@@ -2972,6 +2973,7 @@
     <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
     <ClInclude Include="Engine\Saver\CSVAssetSaver.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h" />
+    <ClInclude Include="Library\Utility\SparseSet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\csv\test.csv" />
