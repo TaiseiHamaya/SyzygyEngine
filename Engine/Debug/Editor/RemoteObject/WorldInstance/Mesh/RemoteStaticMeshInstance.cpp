@@ -113,25 +113,19 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 			if (ImGui::RadioButton("None", meshMaterial.lightingType == LighingType::None)) {
 				if (meshMaterial.lightingType != LighingType::None) {
-					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
-					meshMaterial.lightingType = LighingType::None;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::None);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Lambert", meshMaterial.lightingType == LighingType::Lambert)) {
 				if (meshMaterial.lightingType != LighingType::Lambert) {
-					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
-					meshMaterial.lightingType = LighingType::Lambert;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::Lambert);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Half lambert", meshMaterial.lightingType == LighingType::HalfLambert)) {
 				if (meshMaterial.lightingType != LighingType::HalfLambert) {
-					EditorValueChangeCommandHandler::GenCommand<decltype(Material::lightingType)>(materials, i, &Material::lightingType);
-					meshMaterial.lightingType = LighingType::HalfLambert;
-					EditorValueChangeCommandHandler::End();
+					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::HalfLambert);
 				}
 			}
 

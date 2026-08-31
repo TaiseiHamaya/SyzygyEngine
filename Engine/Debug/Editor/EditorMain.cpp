@@ -7,13 +7,13 @@
 #include <imgui.h>
 
 #include "./Adapter/EditorAssetSaver.h"
-#include "./Core/EditorAssetContentsCollector.h"
-#include "./Core/EditorDandDManager.h"
-#include "./Core/EditorSceneAssetCollection.h"
 #include "./Command/EditorCommandInvoker.h"
 #include "./Command/EditorCreateObjectCommand.h"
 #include "./Command/EditorDeleteObjectCommand.h"
 #include "./Command/EditorSelectCommand.h"
+#include "./Core/EditorAssetContentsCollector.h"
+#include "./Core/EditorDandDManager.h"
+#include "./Core/EditorSceneAssetCollection.h"
 #include "./Window/AssetBrowser/Optimizer/FontAtlas/FontAtlasBuilderManager.h"
 #include "./Window/Logger/EditorLogWindow.h"
 
@@ -26,12 +26,11 @@ using namespace szg;
 
 void EditorMain::Initialize() {
 	EditorMain& instance = GetInstance();
-	instance.sceneView.initialize(true);
-	instance.inspector.initialize();
 	instance.sceneList.initialize();
-	EditorLogWindow::Initialize(true);
+
+	instance.sceneView.initialize();
 	instance.renderDAG.initialize();
-	instance.screenResult.initialize(true);
+	instance.screenResult.initialize();
 
 	FontAtlasBuilderManager::Initialize();
 }
@@ -45,6 +44,33 @@ void EditorMain::Finalize() {
 
 	nlohmann::json json;
 	json["LastLoadedScene"] = instance.hierarchy.current_scene_name();
+
+	u32 windowStateBit{ 0 };
+	if (instance.sceneView.is_active()) {
+		windowStateBit |= (1 << 0);
+	}
+	if (instance.hierarchy.is_active()) {
+		windowStateBit |= (1 << 1);
+	}
+	if (instance.inspector.is_active()) {
+		windowStateBit |= (1 << 2);
+	}
+	if (instance.renderDAG.is_active()) {
+		windowStateBit |= (1 << 3);
+	}
+	if (instance.assetBrowser.is_active()) {
+		windowStateBit |= (1 << 4);
+	}
+	if (EditorLogWindow::IsActive()) {
+		windowStateBit |= (1 << 5);
+	}
+	if (instance.screenResult.is_active()) {
+		windowStateBit |= (1 << 6);
+	}
+	if (instance.customEditorManager) {
+		windowStateBit |= instance.customEditorManager->get_window_state_bit();
+	}
+	json["WindowStateBit"] = windowStateBit;
 
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
 	auto parentPath = filePath.parent_path();
@@ -79,6 +105,33 @@ void EditorMain::Setup() {
 		// 直前に開いていたシーン情報がある場合はそれを開く
 		JsonAsset json{ "./Game/DebugData/Editor.json" };
 		sceneName = json.try_emplace<std::string>("LastLoadedScene");
+
+		u32 windowStateBit = json.get().value("WindowStateBit", static_cast<u32>(-1));
+		if (windowStateBit & (1 << 0)) {
+			instance.sceneView.set_active(true);
+		}
+		if (windowStateBit & (1 << 1)) {
+			instance.hierarchy.set_active(true);
+		}
+		if (windowStateBit & (1 << 2)) {
+			instance.inspector.set_active(true);
+		}
+		if (windowStateBit & (1 << 3)) {
+			instance.renderDAG.set_active(true);
+		}
+		if (windowStateBit & (1 << 4)) {
+			instance.assetBrowser.set_active(true);
+		}
+		if (windowStateBit & (1 << 5)) {
+			EditorLogWindow::SetActive(true);
+		}
+		if (windowStateBit & (1 << 6)) {
+			instance.screenResult.set_active(true);
+		}
+
+		if (instance.customEditorManager) {
+			instance.customEditorManager->setup_window_active(windowStateBit);
+		}
 	}
 	else {
 		// ない場合
@@ -173,6 +226,11 @@ void EditorMain::Draw() {
 	instance.renderDAG.draw();
 	instance.assetBrowser.draw();
 	EditorLogWindow::Draw();
+
+	if (instance.customEditorManager) {
+		instance.customEditorManager->draw_window();
+	}
+
 	if (instance.sceneView.is_active()) {
 		ImGuizmo::SetDrawlist(instance.sceneView.draw_list().ptr());
 		instance.gizmo.draw_gizmo(instance.selectObject, instance.sceneView.get_current_world_view());
@@ -183,6 +241,10 @@ void EditorMain::Draw() {
 
 void EditorMain::SetActiveEditor(bool isActive) {
 	GetInstance().isActiveEditor = isActive;
+}
+
+void szg::EditorMain::SetCustomEditorManager(std::unique_ptr<CustomEditorManager> manager) {
+	GetInstance().customEditorManager = std::move(manager);
 }
 
 bool EditorMain::IsHoverEditorWindow() {
@@ -263,8 +325,14 @@ void szg::EditorMain::draw_menu_bar(r32& menuHight) {
 			sceneView.draw_menu("Scene");
 			hierarchy.draw_menu("Hierarchy");
 			inspector.draw_menu("Inspector");
+			assetBrowser.draw_menu("Asset");
 			EditorLogWindow::DrawMenu("Log");
 			renderDAG.draw_menu("RenderDAG");
+
+			if (customEditorManager) {
+				ImGui::Separator();
+				customEditorManager->draw_menu();
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::PushFont(nullptr, menuHight * 0.5f);
@@ -301,12 +369,14 @@ void szg::EditorMain::draw_window_buttons(r32 menuHight) {
 		ShowWindow(WinApp::GetWndHandle(), SW_MINIMIZE);
 	}
 
-	// 最大化
+	// ばつボタン
 	ImGui::SameLine();
 	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight, 0.0f });
 	if (ImGui::Button("\ue5cd")) {
 		ImGui::OpenPopup("未保存の項目があります");
 	}
+
+	runtimeController.control_gui(menuHight);
 
 	ImGui::PopStyleColor();
 	ImGui::PopStyleVar();

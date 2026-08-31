@@ -7,7 +7,7 @@
 #include <Library/Math/Vector2.h>
 
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
-#include "Engine/Debug/Editor/Adapter/EditorValueField.h"
+#include "Engine/Debug/Editor/Adapter/Field/EditorValueField.h"
 
 namespace szg {
 

@@ -34,6 +34,8 @@ public:
 	struct Data {
 		r32 baseScale;
 		r32 lineHeight;
+		r32 ascender;
+		r32 descender;
 	};
 
 public:
@@ -53,16 +55,15 @@ public:
 	/// 文字列から描画用データを返す
 	/// </summary>
 	/// <param name="string">描画する文字列</param>
-	/// <param name="fontSize">フォントサイズ</param>
 	/// <returns></returns>
-	std::vector<GlyphRenderingData> calculate_glyph(std::string_view string, r32 fontSize) const;
+	std::vector<GlyphRenderingData> calculate_glyph(std::string_view string) const;
 
 	/// <summary>
-	/// 文字列の幅を計算する
+	/// 文字列の大きさを計算する
 	/// </summary>
-	/// <param name="glyph"></param>
+	/// <param name="glyph">文字列データ</param>
 	/// <returns></returns>
-	r32 calculate_advance(const std::vector<GlyphRenderingData>& glyph) const;
+	Vector2 calculate_glyph_size(const std::vector<GlyphRenderingData>& glyph) const;
 
 	/// <summary>
 	/// 描画のオフセットを計算する

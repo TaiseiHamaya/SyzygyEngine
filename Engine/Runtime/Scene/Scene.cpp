@@ -57,6 +57,10 @@ void Scene::pre_draw() {
 	for (std::unique_ptr<WorldCluster>& world : worlds) {
 		world->pre_draw();
 	}
+
+	for (std::unique_ptr<WorldCluster>& world : worlds) {
+		world->post_update();
+	}
 }
 
 void Scene::draw() const {
@@ -73,12 +77,24 @@ void Scene::finalize() {
 	sceneScriptManager.finalize();
 }
 
-Reference<WorldCluster> Scene::get_world(u32 index) {
-	if (index >= worlds.size()) {
+i64 szg::Scene::world_size() const noexcept {
+	return static_cast<i64>(worlds.size());
+}
+
+Reference<WorldCluster> Scene::world_mut(i64 index) noexcept {
+	if (index >= world_size()) {
 		szgWarning("Try to reference world out of range index-\'{}\'.", index);
 		return nullptr;
 	}
 	return worlds[index];
+}
+
+i64 szg::Scene::script_size() const noexcept {
+	return sceneScriptManager.size();
+}
+
+Reference<ISceneScript> szg::Scene::script_mut(i64 index) noexcept {
+	return sceneScriptManager.script_mut(index); // SceneScriptManager内でnullチェック済み
 }
 
 void Scene::set_name(const std::string& name) {

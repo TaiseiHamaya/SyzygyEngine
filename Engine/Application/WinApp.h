@@ -86,12 +86,7 @@ private:
 	MSG msg{};
 
 #ifdef DEBUG_FEATURES_ENABLE
-public:
-	static bool IsStopUpdate();
-
 private:
-	bool isStopUpdate{ false };
-	bool isPassedPause{ false };
 	mutable TimestampProfiler profiler{};
 #endif // _DEBUG
 };

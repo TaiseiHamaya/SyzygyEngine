@@ -37,7 +37,7 @@ public:
 	SZG_CLASS_MOVE_ONLY(EditorSceneView)
 
 public:
-	void initialize(bool isActive_);
+	void initialize();
 	void setup(Reference<EditorGizmo> gizmo_, Reference<const EditorHierarchy> hierarchy_);
 
 	void update();

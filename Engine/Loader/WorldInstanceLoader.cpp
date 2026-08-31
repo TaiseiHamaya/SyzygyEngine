@@ -93,7 +93,7 @@ void WorldInstanceLoader::create_world_instance(const nlohmann::json& json, Refe
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	if (json.contains("Children") && json["Children"].is_array()) {
@@ -108,7 +108,7 @@ void WorldInstanceLoader::create_static_mesh_instance(const nlohmann::json& json
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->reset_mesh(json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], ""));
@@ -150,7 +150,7 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->reset_animated_mesh(json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], ""), json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Animation)], ""), json.value("IsLoop", false));
@@ -192,7 +192,7 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->initialize(
@@ -221,7 +221,7 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 	auto instance = worldRoot->instantiate<StringRectInstance>(parent);
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->initialize(
@@ -247,7 +247,7 @@ void WorldInstanceLoader::create_camera3d_instance(const nlohmann::json& json, R
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	// 投影関連
@@ -309,7 +309,7 @@ void WorldInstanceLoader::create_sphere_collider_instance(const nlohmann::json& 
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->set_radius(json.value("Radius", 1.0f));
@@ -326,7 +326,7 @@ void WorldInstanceLoader::create_aabb_collider_instance(const nlohmann::json& js
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	if (json.contains("Children") && json["Children"].is_array()) {
@@ -341,7 +341,7 @@ void WorldInstanceLoader::create_directional_light_instance(const nlohmann::json
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->light_data_mut().color = json.value("Color", CColorRGB::WHITE);
@@ -361,7 +361,7 @@ void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json
 
 	instance->transform_mut() = json["Local transform"].get<Transform3D>();
 	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
-		RuntimeStorage::GetValueList("RuntimeInstance").emplace(json["Name"], instance);
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
 	instance->light_data_mut().color = json.value("Color", CColorRGB::WHITE);

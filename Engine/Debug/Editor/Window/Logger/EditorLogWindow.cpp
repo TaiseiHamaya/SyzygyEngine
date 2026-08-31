@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorLogWindow.h"
 
@@ -19,11 +19,6 @@ void EditorLogWindow::Allocate() {
 	instance.logStates[static_cast<u8>(Logger::Level::Error)] = { true, 0, "\ue99a",{ 0.8f, 0.1f, 0.1f, 1.0f } };
 	instance.logStates[static_cast<u8>(Logger::Level::Critical)] = { true, 0, "\uf5cf",{ 1.0f, 0.5f, 0.5f, 1.0f } };
 	instance.logStates[static_cast<u8>(Logger::Level::Assert)] = { true, 0, "\uf5cf",{ 1.0f, 0.5f, 0.5f, 1.0f } };
-}
-
-void EditorLogWindow::Initialize(bool isActive_) {
-	auto& instance = GetInstance();
-	instance.isActive = isActive_;
 }
 
 void EditorLogWindow::Draw() {
@@ -138,6 +133,18 @@ void EditorLogWindow::AppendLogEntry(Logger::Level level, const std::string& mes
 		--instance.logStates[static_cast<u8>(tmp.level)].numLogs;
 		instance.logs.pop_front();
 	}
+}
+
+void szg::EditorLogWindow::SetActive(bool isActive_) {
+	auto& instance = GetInstance();
+	std::lock_guard lock{ instance.mutex };
+	instance.isActive = isActive_;
+}
+
+bool szg::EditorLogWindow::IsActive() {
+	auto& instance = GetInstance();
+	std::lock_guard lock{ instance.mutex };
+	return instance.isActive;
 }
 
 #endif // DEBUG_FEATURES_ENABLE

@@ -11,7 +11,7 @@
 #include <Library/Math/Transform2D.h>
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
-#include "Engine/Debug/Editor/Adapter/EditorAssetField.h"
+#include "Engine/Debug/Editor/Adapter/Field/EditorAssetField.h"
 
 #define COLOR_RGB_SERIALIZER
 #define TRANSFORM2D_SERIALIZER

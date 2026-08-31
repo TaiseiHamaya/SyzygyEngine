@@ -45,7 +45,7 @@ The repository is designed to be used with the included project generator, which
 - Windows 11 / Visual Studio 2022 (MSVC v143)
 - Windows SDK 10.0.26100.0 or compatible
 - PowerShell, Git
-- GPU with DirectX 12 support (Feature Level 12.0+, Shader Model 6.6, Bindless resources, Mesh Shader)
+- GPU with DirectX 12 support (Feature Level 12.0+, Shader Model 6.6, Bindless resources)
 
 ## External Libraries
 
@@ -65,14 +65,18 @@ The engine includes and/or references the following libraries inside the reposit
 2. Download and run the generator script:
 
 ```powershell
-curl -o CreateSolution.ps1 https://raw.githubusercontent.com/TaiseiHamaya/SyzygyEngine/refs/heads/master/ProjectGeneratorTool/CreateSolution.ps1
-.\CreateSolution.ps1 MyGame
+curl -o CreateSolution.ps1 https://raw.githubusercontent.com/TaiseiHamaya/SyzygyEngine/refs/heads/master/ProjectGeneratorTool/CreateSolution.ps1; .\CreateSolution.ps1
+```
+
+Or if you want to select engine branch:
+```powershell
+curl -o CreateSolution.ps1 https://raw.githubusercontent.com/TaiseiHamaya/SyzygyEngine/refs/heads/master/ProjectGeneratorTool/CreateSolution.ps1; .\CreateSolution.ps1 -b:<branch_name>
 ```
 
 3. Open the generated solution:
 
 ```text
-MyGame/project/MyGame.sln
+<project_name>.sln
 ```
 
 4. Build with Visual Studio (x64, Debug / Develop / Release).

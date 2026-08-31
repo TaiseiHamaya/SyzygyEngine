@@ -12,7 +12,6 @@ class EditorSelectObject;
 
 class EditorInspector : public IEditorWindow {
 public:
-	void initialize();
 	void setup(Reference<EditorSelectObject> selectObject_);
 
 	void draw() override;

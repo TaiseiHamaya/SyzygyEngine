@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetBrowser.h"
 
@@ -14,6 +14,10 @@
 using namespace szg;
 
 void EditorAssetBrowser::draw() {
+	if (!isActive) {
+		return;
+	}
+
 	ImGui::Begin("Asset", &isActive);
 	update_focus();
 
@@ -178,10 +182,24 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 	if (ImGui::BeginPopup("AssetBrowserRightClickMenu")) {
 		// エクスプローラーで開く
 		std::filesystem::path directory = ROOT_PATH[static_cast<i32>(rootType)] / currentDirectory;
-		std::filesystem::path filePath = directory / selectFileName;
-		if (ImGui::MenuItem("Open in Explorer")) {
-			ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		if (ImGui::MenuItem("Open Directory")) {
+			ShellExecuteW(NULL, L"open", directory.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
 		}
+
+		// ファイルを開く
+		std::filesystem::path filePath = directory / selectFileName;
+		if (!selectFileName.empty()) {
+			if (ImGui::MenuItem("Open")) {
+				ShellExecuteW(NULL, L"open", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			}
+
+			// ファイルを編集する
+			if (ImGui::MenuItem("Edit")) {
+				ShellExecuteW(NULL, L"edit", filePath.native().c_str(), NULL, NULL, SW_SHOWDEFAULT);
+			}
+		}
+
+		ImGui::Separator();
 
 		// パスのコピー
 		if (ImGui::MenuItem("Copy Path")) {
@@ -189,6 +207,8 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 		}
 
 		if (selectFileName.empty() && rootType == AssetRootType::Game) {
+			ImGui::Separator();
+
 			// フォルダーの作成
 			if (ImGui::MenuItem("Create Folder")) {
 				std::filesystem::path newFolderPath = directory / "NewFolder";
@@ -212,6 +232,8 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 		}
 
 		if (!selectFileName.empty() && rootType == AssetRootType::Game) {
+			ImGui::Separator();
+
 			// ファイル・フォルダの削除
 			if (ImGui::MenuItem("Delete")) {
 				std::error_code ec;
@@ -230,6 +252,8 @@ void szg::EditorAssetBrowser::draw_right_click_menu() {
 				isRenaming = true;
 				newFileName = selectFileName.string();
 			}
+
+			ImGui::Separator();
 
 			// 最適化をする
 			if (assetImporter.optimizer_mut()->is_support_optimization(selectFileName.extension())) {

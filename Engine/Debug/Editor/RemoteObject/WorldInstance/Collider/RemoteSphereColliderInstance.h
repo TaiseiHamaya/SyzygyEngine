@@ -29,6 +29,7 @@ public:
 
 private:
 	EditorValueField<r32> radius{ "Radius", 1.0f };
+	i32 colliderId{ 0 };
 };
 
 }; // szg

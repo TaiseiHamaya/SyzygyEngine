@@ -136,7 +136,7 @@ std::unique_ptr<IRenderNode> RenderNodeLoader::load_as_world_render(const nlohma
 			dataJson.value("OutputSize", Vector2{ 1920, 1080 });
 		const u32 worldIndex = dataJson.value("WorldIndex", 0);
 		resultData.layerData.index = dataJson.value<u8>("LayerIndex", 0);
-		resultData.layerData.worldRenderCollection = scene->get_world(worldIndex)->render_collection_imm();
+		resultData.layerData.worldRenderCollection = scene->world_mut(worldIndex)->render_collection_imm();
 
 		resultData.layerData.cameraId = dataJson.value("CameraId", 0);
 

@@ -7,6 +7,8 @@
 #include "./Core/EditorGizmo.h"
 #include "./Core/EditorSceneList.h"
 #include "./Core/EditorSelectObject.h"
+#include "./Core/CustomEditor/CustomEditorManager.h"
+#include "./Core/Runtime/EditorRuntimeController.h"
 #include "./Window/Hierarchy/EditorHierarchy.h"
 #include "./Window/Inspector/EditorInspector.h"
 #include "./Window/RenderDAG/EditorRenderDAG.h"
@@ -30,6 +32,8 @@ public:
 
 public:
 	static void SetActiveEditor(bool isActive);
+
+	static void SetCustomEditorManager(std::unique_ptr<CustomEditorManager> manager);
 
 	static bool IsHoverEditorWindow();
 
@@ -64,16 +68,20 @@ private:
 
 	std::optional<std::string> switchSceneName;
 
-	EditorSceneView sceneView;
-	EditorScreenResult screenResult;
-	EditorHierarchy hierarchy;
-	EditorInspector inspector;
 	EditorGizmo gizmo;
 	EditorSelectObject selectObject;
 	EditorDeletedObjectPool deletedPool;
 	EditorSceneList sceneList;
+	EditorRuntimeController runtimeController;
+
+	EditorSceneView sceneView;
+	EditorScreenResult screenResult;
+	EditorHierarchy hierarchy;
+	EditorInspector inspector;
 	EditorRenderDAG renderDAG;
 	EditorAssetBrowser assetBrowser;
+
+	std::unique_ptr<CustomEditorManager> customEditorManager;
 };
 
 }; // szg

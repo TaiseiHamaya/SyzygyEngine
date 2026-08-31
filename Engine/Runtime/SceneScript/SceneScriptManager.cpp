@@ -1,6 +1,7 @@
-﻿#include "SceneScriptManager.h"
+#include "SceneScriptManager.h"
 
 #include "ISceneScript.h"
+#include "Engine/Application/Logger.h"
 
 using namespace szg;
 
@@ -13,7 +14,7 @@ void SceneScriptManager::register_script(std::unique_ptr<ISceneScript> script) {
 
 void SceneScriptManager::prev_update() {
 	for (auto& script : scripts) {
-		if (script) {
+		if (script && !script->is_paused()) {
 			script->prev_update();
 		}
 	}
@@ -21,7 +22,7 @@ void SceneScriptManager::prev_update() {
 
 void SceneScriptManager::post_update() {
 	for (auto& script : scripts) {
-		if (script) {
+		if (script && !script->is_paused()) {
 			script->post_update();
 		}
 	}
@@ -33,4 +34,16 @@ void SceneScriptManager::finalize() {
 			script->finalize();
 		}
 	}
+}
+
+i64 szg::SceneScriptManager::size() const noexcept {
+	return static_cast<i64>(scripts.size());
+}
+
+Reference<ISceneScript> szg::SceneScriptManager::script_mut(i64 index) noexcept {
+	if (index >= size()) {
+		szgWarning("Try to reference script out of range index-\'{}\'.", index);
+		return nullptr;
+	}
+	return Reference<ISceneScript>(scripts[index].get());
 }

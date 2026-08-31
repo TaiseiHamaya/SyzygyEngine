@@ -10,7 +10,7 @@ namespace szg {
 
 class EditorScreenResult final : public IEditorWindow {
 public:
-	void initialize(bool isActive_);
+	void initialize();
 
 	void draw() override;
 

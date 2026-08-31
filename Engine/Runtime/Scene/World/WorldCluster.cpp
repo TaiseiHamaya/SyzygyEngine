@@ -59,18 +59,31 @@ void WorldCluster::update() {
 }
 
 void WorldCluster::pre_draw() {
+	if (state & WorldState::PauseDraw) {
+		return;
+	}
+
 	worldRenderCollection.reset_buffer();
+	worldRenderCollection.transfer();
+}
 
-	if (!(state & WorldState::PauseDraw)) {
-		worldRenderCollection.transfer();
+void szg::WorldCluster::post_update() {
+	if (state & WorldState::PauseUpdate) {
+		return;
 	}
 
-	if (!(state & WorldState::PauseUpdate)) {
-		worldRoot.post_update();
-	}
+	worldRoot.post_update();
 }
 
 void WorldCluster::end_frame() {
+}
+
+eps::bitflag<WorldState> szg::WorldCluster::state_imm() const {
+	return state;
+}
+
+eps::bitflag<WorldState>& szg::WorldCluster::state_mut() {
+	return state;
 }
 
 Reference<WorldRoot> WorldCluster::world_root_mut() {

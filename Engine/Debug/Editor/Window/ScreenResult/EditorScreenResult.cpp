@@ -10,9 +10,7 @@
 
 using namespace szg;
 
-void EditorScreenResult::initialize(bool isActive_) {
-	isActive = isActive_;
-
+void EditorScreenResult::initialize() {
 	screenResultCpy.initialize();
 }
 

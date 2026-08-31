@@ -4,7 +4,7 @@
 
 #include "./EditorWorldGridBuffer.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
-#include "Engine/Debug/Editor/RemoteObject/RemoteWorldObject.h"
+#include "Engine/Debug/Editor/RemoteObject/WorldObject/RemoteWorldObject.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 #include "Engine/Module/DrawExecutor/PrimitiveGeometryDrawExecutor/PrimitiveGeometryDrawExecutor.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
