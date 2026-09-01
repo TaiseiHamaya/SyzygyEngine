@@ -320,6 +320,38 @@ private:
 	std::string name;
 };
 
+struct show_object_string_ml {
+	inline show_object_string_ml(const std::string& name_) :
+		name(name_) {
+	};
+	~show_object_string_ml() = default;
+
+	SZG_CLASS_DEFAULT(show_object_string_ml)
+
+public:
+	inline std::bitset<2> show_gui(std::string& value) const {
+		ImGui::InputTextMultiline(name.c_str(), &value);
+		std::bitset<2> result = 0;
+		if (ImGui::IsItemDeactivated()) {
+			result = 0b10;
+		}
+		else if (ImGui::IsItemActivated()) {
+			result = 0b01;
+		}
+		else if (ImGui::IsItemActive()) {
+			result = 0b11;
+		}
+		return result;
+	};
+
+	std::string_view get_name() const {
+		return name;
+	}
+
+private:
+	std::string name;
+};
+
 template<>
 struct show_object<ColorRGB> {
 	inline show_object(const std::string& name_) :

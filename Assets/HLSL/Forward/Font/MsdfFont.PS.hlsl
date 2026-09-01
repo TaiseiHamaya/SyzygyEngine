@@ -22,7 +22,7 @@ float median3(float3 v) {
 
 PixelShaderOutput main(VertexShaderOutput input) {
 	PixelShaderOutput output;
-	
+		
 	Material material = gMaterial[input.materialIndex];
 	
 	// texture color

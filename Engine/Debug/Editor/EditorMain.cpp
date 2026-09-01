@@ -369,12 +369,14 @@ void szg::EditorMain::draw_window_buttons(r32 menuHight) {
 		ShowWindow(WinApp::GetWndHandle(), SW_MINIMIZE);
 	}
 
-	// 最大化
+	// ばつボタン
 	ImGui::SameLine();
 	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight, 0.0f });
 	if (ImGui::Button("\ue5cd")) {
 		ImGui::OpenPopup("未保存の項目があります");
 	}
+
+	runtimeController.control_gui(menuHight);
 
 	ImGui::PopStyleColor();
 	ImGui::PopStyleVar();

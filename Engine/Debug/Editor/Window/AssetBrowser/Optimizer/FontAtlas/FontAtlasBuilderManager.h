@@ -4,7 +4,8 @@
 
 #include <Library/Utility/Template/SingletonInterface.h>
 
-#include <Library/Externals/msdf-atlas-gen/msdf-atlas-gen/msdf-atlas-gen.h>
+#include <Charset.h>
+#include <ext/import-font.h>
 
 /// <summary>
 /// freetype/msdfgen/msdf-atlas-genのハンドラ管理クラス

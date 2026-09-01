@@ -11,7 +11,7 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "../Core/EditorSelectObject.h"
-#include "Engine/Debug/Editor/Adapter/EditorValueField.h"
+#include "Engine/Debug/Editor/Adapter/Field/EditorValueField.h"
 #include "Engine/Module/World/WorldInstanceType.h"
 
 class Affine;

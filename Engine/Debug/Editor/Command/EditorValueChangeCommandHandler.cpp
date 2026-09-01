@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorValueChangeCommandHandler.h"
 
@@ -12,7 +12,7 @@ void EditorValueChangeCommandHandler::Start(std::function<void(void)> endCallFun
 		End();
 	}
 
-	GetInstance().endCallFunc = endCallFunc;
+	instance.endCallFunc = endCallFunc;
 }
 
 void EditorValueChangeCommandHandler::End() {

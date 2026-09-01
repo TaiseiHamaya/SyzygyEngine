@@ -1,7 +1,7 @@
-﻿#include "FontAtlasMSDFBuilder.h"
+#include "FontAtlasMSDFBuilder.h"
 
-#include <Library/Math/Vector2.h>
 #include <Library/Math/Transform2D.h>
+#include <Library/Math/Vector2.h>
 
 #include "../Texture/TextureAssetBuilder.h"
 #include "../Texture/TextureLibrary.h"
@@ -20,53 +20,97 @@ FontAtlasMSDFBuilder::FontAtlasMSDFBuilder(const std::filesystem::path& filePath
 FontAtlasMSDFBuilder::~FontAtlasMSDFBuilder() = default;
 
 bool FontAtlasMSDFBuilder::run() {
-	szgInformation(L"Start load font mtsdf atlas file-\'{}\'", filePath.native());
+	szgInformation(L"Start load font mtsdf atlas. File-\'{}\'", filePath.native());
 
 	JsonAsset json;
 	json.load(filePath);
-	nlohmann::json glyphsJson = json.get()["Glyphs"];
 
-	if (glyphsJson.empty()) {
+	if (json.cget().is_null()) {
+		// mtsdfフォントの定義ファイルが見つからない or 内容が正しくない
+		szgWarning(L"Failed to load mtsdf file. File-\'{}\'", filePath.native());
 		return false;
 	}
 
-	glyphsDataBuffer.resize(glyphsJson.size());
+	u32 textureWidth{};
+	u32 textureHeight{};
+	{
+		const nlohmann::json& atlasJson = json.get()["atlas"];
+		if (atlasJson.empty()) {
+			szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Atlas data is empty.\'", filePath.native());
+			return false;
+		}
+		textureWidth = atlasJson.value("width", 0);
+		textureHeight = atlasJson.value("height", 0);
+		ddsTextureName = atlasJson.value("texture", "");
+	}
 
+	{
+		const nlohmann::json& atlasJson = json.get()["metrics"];
+		if (atlasJson.empty()) {
+			szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Metrics data is empty.\'", filePath.native());
+			return false;
+		}
+		data.baseScale = atlasJson.value("emSize", 1.0f);
+		data.lineHeight = atlasJson.value("lineHeight", 0.0f);
+		data.ascender = atlasJson.value("ascender", 0.0f);
+		data.descender = atlasJson.value("descender", 0.0f);
+	}
+
+	// 文字データ
+	nlohmann::json glyphsJson = json.get()["glyphs"];
+	glyphsDataBuffer.resize(glyphsJson.size());
+	if (glyphsJson.empty()) {
+		szgWarning(L"Failed to load mtsdf file. File-\'{}\', Reason-\'Glyphs data is empty.\'", filePath.native());
+		return false;
+	}
 	for (i32 i = 0; auto& glyphJson : glyphsJson) {
 		FontAtlasMSDFAsset::GlyphDataGpu glyphBuffer;
 		FontAtlasMSDFAsset::GlyphData glyphData;
-		// テクスチャUV
-		const nlohmann::json& textureJson = glyphJson["Texture"];
-		Vector2 scale = textureJson.value("Scale", CVector2::ONE);
-		Vector2 translate = textureJson.value("Translate", CVector2::ZERO);
-		glyphBuffer.uvMatrix = Transform2D::MakeAffineMatrix(scale, 0.0f, translate);
-		// 文字の矩形
-		const nlohmann::json& boundsJson = glyphJson["BoundsBox"];
-		glyphBuffer.bounds.top = boundsJson.value("Top", 0.0f);
-		glyphBuffer.bounds.left = boundsJson.value("Left", 0.0f);
-		glyphBuffer.bounds.bottom = boundsJson.value("Bottom", 0.0f);
-		glyphBuffer.bounds.right = boundsJson.value("Right", 0.0f);
-		// 文字列にする際に使う
-		glyphData.advance = glyphJson.value("Advance", 0.0f);
-		// Codepoint
-		u32 codepoint = glyphJson["Codepoint"].get<u32>();
+		u32 unicode = glyphJson["unicode"].get<u32>();
+		glyphData.advance = glyphJson.value("advance", 0.0f);
+
+		{	// テクスチャUV
+			if (glyphJson.contains("atlasBounds")) {
+				const nlohmann::json& atlasBounsJson = glyphJson["atlasBounds"];
+				r32 bottom = atlasBounsJson.value("bottom", 0.0f) / textureHeight;
+				r32 left = atlasBounsJson.value("left", 0.0f) / textureWidth;
+				r32 top = atlasBounsJson.value("top", 0.0f) / textureHeight;
+				r32 right = atlasBounsJson.value("right", 0.0f) / textureWidth;
+
+				Vector2 scale = Vector2{ right - left, top - bottom };
+				Vector2 translate = { left, bottom };
+				glyphBuffer.uvMatrix = Transform2D::MakeAffineMatrix(scale, 0.0f, translate);
+			}
+		}
+
+		{	// 文字の矩形
+			if (glyphJson.contains("planeBounds")) {
+				const nlohmann::json& planeBoundsJson = glyphJson["planeBounds"];
+				r32 bottom = planeBoundsJson.value("bottom", 0.0f);
+				r32 left = planeBoundsJson.value("left", 0.0f);
+				r32 top = planeBoundsJson.value("top", 0.0f);
+				r32 right = planeBoundsJson.value("right", 0.0f);
+
+				glyphBuffer.bounds.top = top;
+				glyphBuffer.bounds.bottom = bottom;
+				glyphBuffer.bounds.left = left;
+				glyphBuffer.bounds.right = right;
+			}
+		}
 		// 重複登録防止
-		if (glyphMap.contains(codepoint)) {
+		if (glyphMap.contains(unicode)) {
 			continue;
 		}
 		// 書き込み
 		glyphsDataBuffer[i] = { glyphData, glyphBuffer };
-		glyphMap[codepoint] = i;
+		glyphMap[unicode] = i;
 
 		++i;
 	}
 
-	data.baseScale = json.get().value("BaseFontScale", 1.0f);
-	data.lineHeight = json.get().value("LineHeight", 0.0f);
-	ddsTextureName = json.get().value("DDSTexture", filePath.stem().string() + ".dds");
-
 	textureBuilder = std::make_unique<TextureAssetBuilder>(filePath.parent_path() / ddsTextureName);
 	if (!textureBuilder->run()) {
+		// テクスチャのロードに失敗
 		return false;
 	}
 	return true;

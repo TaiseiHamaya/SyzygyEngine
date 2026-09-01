@@ -22,7 +22,8 @@ class SceneManager2 final : public SingletonInterface<SceneManager2> {
 
 public:
 	static void Initialize();
-	static void Setup(std::unique_ptr<BaseSceneFactory> factory_);
+	static void SetupFactory(std::unique_ptr<BaseSceneFactory> factory_);
+	static void Setup();
 	static void Finalize() noexcept;
 
 	static void BeginFrame();
