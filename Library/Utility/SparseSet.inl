@@ -93,6 +93,19 @@ inline void szg::SparseSet<T>::remove(i64 removeId) {
 }
 
 template<typename T>
+inline void szg::SparseSet<T>::swap_item(i64 lhs, i64 rhs) {
+	if (!is_valid_id(lhs) || !is_valid_id(rhs)) {
+		return;
+	}
+
+	std::swap(data[lhs], data[rhs]);
+	std::swap(ids[lhs], ids[rhs]);
+
+	indexes[ids[lhs]] = lhs;
+	indexes[ids[rhs]] = rhs;
+}
+
+template<typename T>
 inline std::vector<T>::iterator szg::SparseSet<T>::begin() {
 	return data.begin();
 }

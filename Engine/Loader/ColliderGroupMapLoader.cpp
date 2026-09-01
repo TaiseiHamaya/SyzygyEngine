@@ -5,7 +5,7 @@
 using namespace szg;
 
 std::pair<i32, ColliderGroupMap>  szg::ColliderGroupMapLoader::load(const std::string& sceneName) {
-	JsonAsset json{ std::format("./Game/Core/Scene/{}/Collision.json", sceneName) };
+	JsonAsset json{ std::format("./Game/Core/Scene/{}/CollisionGroup.json", sceneName) };
 
 	if (json.cget().is_null()) {
 		return {};

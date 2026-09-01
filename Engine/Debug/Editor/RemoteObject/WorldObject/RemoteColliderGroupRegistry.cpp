@@ -5,18 +5,25 @@
 #include <imgui.h>
 #include <imgui_stdlib.h>
 
+#include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 
+using namespace szg;
+
 void szg::RemoteColliderGroupRegistry::load(const std::string& sceneName) {
-	sceneName;
+	JsonAsset json{ std::format("./Game/Core/Scene/{}/CollisionGroup.json", sceneName) };
+
+	if (json.cget().is_null()) {
+		return;
+	}
 }
 
 void szg::RemoteColliderGroupRegistry::show_gui() {
 	int flags =
 		ImGuiTreeNodeFlags_FramePadding |
-		ImGuiTreeNodeFlags_SpanAllColumns |
+		ImGuiTreeNodeFlags_SpanLabelWidth |
 		ImGuiTreeNodeFlags_OpenOnArrow; // 矢印で開く
 	if (isOpen) {
 		flags |= ImGuiTreeNodeFlags_DefaultOpen;
@@ -32,8 +39,9 @@ void szg::RemoteColliderGroupRegistry::show_gui() {
 
 			bool isSelected = selecteIdx.value_or(-1) == id;
 
-			if (renameGroupName.has_value()) {
+			if (renameGroupName.has_value() && isSelected) {
 				std::string& prevGroupName = renameGroupName.value();
+				ImGui::SetNextItemWidth(100);
 				ImGui::InputText("##Rename", &entry.name);
 				if (ImGui::IsItemDeactivated()) {
 					if (!entry.name.empty() && entry.name != prevGroupName) {
@@ -45,35 +53,39 @@ void szg::RemoteColliderGroupRegistry::show_gui() {
 				}
 			}
 			else {
-				ImGui::Selectable(entry.name.c_str(), isSelected);
+				ImGui::Selectable(std::format("{}##{}", entry.name, id).c_str(), isSelected, 0, ImVec2{ 100, 0 });
 
 				ImGui::SameLine();
 
-				if (ImGui::Button(std::format("\ue676##{}", entry.name).c_str())) {
+				std::string guiId = std::format("{}{:#010x}", entry.name, id);
+				if (ImGui::Button(std::format("\ue676##{}", guiId).c_str())) {
 					renameGroupName = entry.name;
+					selecteIdx = id;
 				}
 
-				if (ImGui::Button(std::format("\ue15b##{}", entry.name).c_str())) {
+				ImGui::SameLine();
+				if (ImGui::Button(std::format("\ue15b##{}", guiId).c_str())) {
 					EditorValueChangeCommandHandler::GenCommandInstant<bool>(colliderGroups, id, &ColliderGroupEntry::isDeleted, true);
 				}
 			}
 		}
 
+		if (ImGui::Button("\ue145")) {
+			EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
+
+			i32 size = static_cast<i32>(colliderGroups.size()) + 1;
+			i32 idx = size - 1;
+
+			EditorCommandInvoker::Execute(std::make_unique<EditorCommandResizeContainer<decltype(groupEditorGuiOrder)>>(groupEditorGuiOrder, size));
+			EditorCommandInvoker::Execute(std::make_unique<EditorCommandResizeContainer<decltype(colliderGroups)>>(colliderGroups, size));
+
+			EditorValueChangeCommandHandler::GenCommandInstant<std::string>(colliderGroups, idx, &ColliderGroupEntry::name, std::format("New Group {}", idx));
+			EditorValueChangeCommandHandler::GenCommandInstant<i32>(groupEditorGuiOrder, idx, std::identity{}, idx);
+
+			EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
+		}
+
 		ImGui::TreePop();
-	}
-
-	if (ImGui::Button("\ue145")) {
-		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeBegin>());
-
-		i32 idx = static_cast<i32>(colliderGroups.size()) + 1;
-
-		EditorCommandInvoker::Execute(std::make_unique<EditorCommandResizeContainer<decltype(groupEditorGuiOrder)>>(groupEditorGuiOrder, idx));
-		EditorCommandInvoker::Execute(std::make_unique<EditorCommandResizeContainer<decltype(colliderGroups)>>(colliderGroups, idx));
-
-		EditorValueChangeCommandHandler::GenCommandInstant<std::string>(colliderGroups, idx, &ColliderGroupEntry::name, "New Group");
-		EditorValueChangeCommandHandler::GenCommandInstant<i32>(groupEditorGuiOrder, idx, std::identity{}, idx);
-
-		EditorCommandInvoker::Execute(std::make_unique<EditorCommandScopeEnd>());
 	}
 }
 

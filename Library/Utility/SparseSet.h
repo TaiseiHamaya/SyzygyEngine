@@ -87,6 +87,13 @@ public:
 	/// <param name="id"></param>
 	void remove(i64 id);
 
+	/// <summary>
+	/// 要素の入れ替え
+	/// </summary>
+	/// <param name="lhs"></param>
+	/// <param name="rhs"></param>
+	void swap_item(i64 lhs, i64 rhs);
+
 public:
 	std::vector<T>::iterator begin();
 	std::vector<T>::iterator end();

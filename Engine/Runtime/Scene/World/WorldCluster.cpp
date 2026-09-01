@@ -13,6 +13,9 @@ void WorldCluster::initialize() {
 void WorldCluster::setup(const std::filesystem::path& setupFile) {
 	worldRoot.setup(instanceBucket);
 
+	std::string worldName = setupFile.filename().string();
+	collisionManager.setup(worldName);
+
 	// 読み込み
 	JsonAsset json{ setupFile };
 	WorldInstanceLoader loader;

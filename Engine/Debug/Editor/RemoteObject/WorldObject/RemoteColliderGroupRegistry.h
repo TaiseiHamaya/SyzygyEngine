@@ -31,7 +31,7 @@ public:
 	std::optional<i32> combo_gui(const i32 current, const std::string& label = "") const;
 
 private:
-	bool isOpen{ false };
+	bool isOpen{ true };
 
 	std::optional<std::string> renameGroupName;
 	std::optional<i32> selecteIdx;

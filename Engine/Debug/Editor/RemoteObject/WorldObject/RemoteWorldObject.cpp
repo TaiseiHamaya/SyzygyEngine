@@ -42,6 +42,10 @@ void RemoteWorldObject::draw_inspector() {
 	ImGui::Separator();
 
 	numLayer.show_gui();
+
+	ImGui::Separator();
+
+	colliderGroupRegistry.show_gui();
 }
 
 void RemoteWorldObject::draw_hierarchy(Reference<const EditorSelectObject> select) {
