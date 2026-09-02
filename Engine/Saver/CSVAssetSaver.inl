@@ -16,8 +16,9 @@ inline void szg::CSVAssetSaver<T>::save_to(const std::filesystem::path& filepath
 			result += std::to_string(csv->at(r, c));
 			result += ',';
 		}
-		result.push_back('\n');
+		result.back() = '\n';
 	}
+	result.pop_back();
 
 	std::ofstream ofs(filepath, std::ios::out | std::ios::trunc);
 	ofs << result;
