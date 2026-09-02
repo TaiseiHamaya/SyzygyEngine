@@ -4,10 +4,21 @@
 #include <unordered_map>
 #include <vector>
 
-#include "Engine/Runtime/Input/Input.h"
 #include "Engine/Runtime/Clock/WorldTimer.h"
+#include "Engine/Runtime/Input/Input.h"
 
 namespace szg {
+
+/// <summary>
+/// InputHandler 初期化時の履歴設定モード
+/// </summary>
+enum class InputInitializeMode {
+	Default,  // 履歴を初期化しない
+	True,     // 押下状態として履歴を初期化
+	False,    // 離れ状態として履歴を初期化
+	Current,  // 現在の入力状態と同じ状態として履歴を初期化
+	Inverted, // 現在の入力状態の反転として履歴を初期化
+};
 
 template<typename T>
 struct InputHandlerFunction;
@@ -52,7 +63,8 @@ public:
 	/// 初期化
 	/// </summary>
 	/// <param name="keys">検知するキー</param>
-	void initialize(std::vector<T> keys);
+	/// <param name="mode">初期化時の履歴設定モード</param>
+	void initialize(std::vector<T> keys, InputInitializeMode mode = InputInitializeMode::Default);
 
 	/// <summary>
 	/// 更新処理
@@ -89,11 +101,29 @@ inline InputHandler<T, InputFunction>::InputHandler(std::vector<T> keys) {
 }
 
 template<typename T, class InputFunction>
-inline void InputHandler<T, InputFunction>::initialize(std::vector<T> keys) {
+inline void InputHandler<T, InputFunction>::initialize(std::vector<T> keys, InputInitializeMode mode) {
 	data.clear();
 	data.reserve(keys.size());
 	for (T& key : keys) {
-		data.try_emplace(key, WorldTimer{}, false);
+		std::bitset<2> initialState{ 0b00 };
+		switch (mode) {
+		case InputInitializeMode::True:
+			initialState.set(0, true);
+			break;
+		case InputInitializeMode::False:
+			initialState.set(0, false);
+			break;
+		case InputInitializeMode::Current:
+			initialState.set(0, inputter(key));
+			break;
+		case InputInitializeMode::Inverted:
+			initialState.set(0, !inputter(key));
+			break;
+		case InputInitializeMode::Default:
+		default:
+			continue;
+		}
+		data.try_emplace(key, WorldTimer{}, initialState);
 	}
 }
 
