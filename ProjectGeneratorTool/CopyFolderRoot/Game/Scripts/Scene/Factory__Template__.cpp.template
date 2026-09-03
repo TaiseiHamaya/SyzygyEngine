@@ -2,11 +2,6 @@
 
 #include <Engine/Runtime/Scene/Scene.h>
 
-std::unique_ptr<szg::Scene> Factory__Template__::initialize_scene2() {
-	return create_scene2(0);
-}
-
-std::unique_ptr<szg::Scene> Factory__Template__::create_scene2(i32) {
+std::unique_ptr<szg::Scene> Factory__Template__::create_scene2(i32) const {
 	return std::make_unique<szg::Scene>();
 }
-
