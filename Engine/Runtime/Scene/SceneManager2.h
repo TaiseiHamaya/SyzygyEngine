@@ -13,10 +13,6 @@ namespace szg {
 
 class BaseSceneFactory;
 
-#ifdef DEBUG_FEATURES_ENABLE
-class TimestampProfiler;
-#endif //DEBUG_FEATURES_ENABLE
-
 class SceneManager2 final : public SingletonInterface<SceneManager2> {
 	SZG_CLASS_SINGLETON(SceneManager2)
 
@@ -51,11 +47,6 @@ public:
 private:
 	static void OnNextScene();
 
-#ifdef DEBUG_FEATURES_ENABLE
-public:
-	static void SetProfiler(Reference<TimestampProfiler> profiler_);
-#endif // _DEBUG
-
 private:
 	std::unique_ptr<BaseSceneFactory> factory;
 	i32 initialSceneIndex{ 0 };
@@ -74,11 +65,6 @@ private:
 		SceneChangeType type = SceneChangeType::NONE;
 		bool isStopLoad;
 	} sceneChangeTempData;
-
-#ifdef DEBUG_FEATURES_ENABLE
-private:
-	Reference<TimestampProfiler> profiler;
-#endif // _DEBUG
 };
 
 }; // szg

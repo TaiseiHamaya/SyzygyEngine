@@ -228,10 +228,6 @@ void WinApp::BeginFrame() {
 #ifdef DEBUG_FEATURES_ENABLE
 	Logger::SyncErrorWindow();
 
-	auto& instance = GetInstance();
-	instance.profiler.clear_timestamps();
-	instance.profiler.timestamp("BeginFrame");
-
 	WorldClock::Update();
 
 	if (EditorMain::IsRuntimeInput()) {
@@ -263,30 +259,15 @@ void WinApp::BeginFrame() {
 }
 
 void WinApp::Update() {
-#ifdef DEBUG_FEATURES_ENABLE
-	auto& instance = GetInstance();
-	instance.profiler.timestamp("Update");
-#endif // DEBUG_FEATURES_ENABLE
-
 	// シーン更新
 	SceneManager2::Update();
 }
 
 void WinApp::Draw() {
-#ifdef DEBUG_FEATURES_ENABLE
-	auto& instance = GetInstance();
-	instance.profiler.timestamp("PreDraw");
-
-#else
-
-#endif // DEBUG_FEATURES_ENABLE
-
 	// 描画前処理
 	SceneManager2::PreDraw();
 
 #ifdef DEBUG_FEATURES_ENABLE
-	instance.profiler.timestamp("Draw");
-
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "SceneRendering");
 #endif // DEBUG_FEATURES_ENABLE
 
@@ -301,14 +282,6 @@ void WinApp::Draw() {
 void WinApp::EndFrame() {
 	auto& instance = GetInstance();
 #ifdef DEBUG_FEATURES_ENABLE
-	instance.profiler.timestamp("EndFrame");
-
-	// GUI
-	ImGui::Begin("Application");
-	ImGui::SeparatorText("Profiler");
-	instance.profiler.debug_gui();
-	ImGui::End();
-
 	// エディター描画
 	PIXBeginEvent(DxCommand::GetCommandList().Get(), 0, "EditorScreen");
 	EditorMain::Draw();

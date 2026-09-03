@@ -56,8 +56,6 @@ void SceneManager2::Finalize() noexcept {
 		scene->finalize();
 	}
 	instance.sceneStack.clear();
-	
-	//instance.factory.reset();
 }
 
 void SceneManager2::BeginFrame() {

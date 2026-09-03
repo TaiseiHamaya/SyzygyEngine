@@ -84,11 +84,6 @@ private:
 	HANDLE hProcess{ nullptr };
 
 	MSG msg{};
-
-#ifdef DEBUG_FEATURES_ENABLE
-private:
-	mutable TimestampProfiler profiler{};
-#endif // _DEBUG
 };
 
 
