@@ -8,6 +8,5 @@ enum SceneList__Template__ {
 class Factory__Template__ final : public szg::BaseSceneFactory {
 
 public:
-	std::unique_ptr<szg::Scene> initialize_scene2() override;
-	std::unique_ptr<szg::Scene> create_scene2(i32 next) override;
+	std::unique_ptr<szg::Scene> create_scene2(i32 next) const override;
 };
