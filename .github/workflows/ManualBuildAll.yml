@@ -27,7 +27,7 @@ jobs:
           msbuild-architecture: x64
 
       - name: Generate Solution File
-        run: .\CreateSolution.ps1 ${{ env.SOLUTION_NAME }} ${{ github.ref_name }}
+        run: .\CreateSolution.ps1 -b:${{ github.ref_name }} ${{ env.SOLUTION_NAME }}
 
       - name: Build
         run: msbuild ${{ env.SOLUTION_FILE_PATH }} /p:Platform=x64,Configuration=${{ matrix.configuration }}
