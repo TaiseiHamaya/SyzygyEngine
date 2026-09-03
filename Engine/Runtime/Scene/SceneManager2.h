@@ -23,6 +23,7 @@ class SceneManager2 final : public SingletonInterface<SceneManager2> {
 public:
 	static void Initialize();
 	static void SetupFactory(std::unique_ptr<BaseSceneFactory> factory_);
+	static void SetupInitialScene(i32 initialSceneIndex_);
 	static void Setup();
 	static void Finalize() noexcept;
 
@@ -45,6 +46,8 @@ public:
 public:
 	static Reference<Scene> GetCurrentScene();
 
+	static Reference<const BaseSceneFactory> SceneFactoryImm() noexcept;
+
 private:
 	static void OnNextScene();
 
@@ -55,6 +58,7 @@ public:
 
 private:
 	std::unique_ptr<BaseSceneFactory> factory;
+	i32 initialSceneIndex{ 0 };
 
 	std::vector<std::unique_ptr<Scene>> sceneStack;
 

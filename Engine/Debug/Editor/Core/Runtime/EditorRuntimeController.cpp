@@ -7,6 +7,10 @@
 #include "Engine/Runtime/Scene/SceneManager2.h"
 #include "Engine/Runtime/SceneScript/ISceneScript.h"
 
+void szg::EditorRuntimeController::setup(const std::string& lastSelectedSceneName) {
+	registeredSceneList.setup(lastSelectedSceneName);
+}
+
 void szg::EditorRuntimeController::update() {
 	if (currentState == State::Pause && isStepFrameState.test(0) == true) {
 		restore_world_states();
@@ -73,6 +77,9 @@ void szg::EditorRuntimeController::control_gui(r32 menuHight) {
 	ImGui::Text("   %s", currentState == State::Play ? "Play" : currentState == State::Pause ? "Pause" : "Stop");
 	ImGui::PopFont();
 
+	ImGui::SameLine();
+	registeredSceneList.combo_gui();
+
 	update();
 }
 
@@ -80,19 +87,27 @@ void szg::EditorRuntimeController::start_runtime() {
 	if (currentState == State::Play) {
 		return;
 	}
-	// window focusをゲームにする
-	ImGui::SetWindowFocus("Screen");
 
 	if (currentState == State::Pause) {
 		restore_world_states();
 	}
 	else {
 		// 開始
+		auto selectedScene = registeredSceneList.runtime_initial_scene_index();
+		if (!selectedScene) {
+			szgWarning("Failed to initialize the selected scene.");
+			return;
+		}
+
 		worldStates.clear();
+		SceneManager2::SetupInitialScene(selectedScene.value());
 		SceneManager2::Setup();
 	}
 
 	currentState = State::Play;
+
+	// window focusをゲームにする
+	ImGui::SetWindowFocus("Screen");
 }
 
 void szg::EditorRuntimeController::stop_runtime() {
@@ -217,6 +232,10 @@ void szg::EditorRuntimeController::restore_world_states() {
 
 		script->set_pause(sceneScripts[i]);
 	}
+}
+
+std::optional<std::string_view> szg::EditorRuntimeController::runtime_initial_scene() const {
+	return registeredSceneList.runtime_initial_scene();
 }
 
 #endif // DEBUG_FEATURES_ENABLE

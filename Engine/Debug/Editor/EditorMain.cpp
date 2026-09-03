@@ -72,6 +72,8 @@ void EditorMain::Finalize() {
 	}
 	json["WindowStateBit"] = windowStateBit;
 
+	json["LastRuntimeInitializeScene"] = instance.runtimeController.runtime_initial_scene().value_or("Unselected");
+
 	std::filesystem::path filePath = "./Game/DebugData/Editor.json";
 	auto parentPath = filePath.parent_path();
 	if (!parentPath.empty() && !std::filesystem::exists(parentPath)) {
@@ -105,6 +107,9 @@ void EditorMain::Setup() {
 		// 直前に開いていたシーン情報がある場合はそれを開く
 		JsonAsset json{ "./Game/DebugData/Editor.json" };
 		sceneName = json.try_emplace<std::string>("LastLoadedScene");
+
+		std::string lastRuntimeInitializeScene = json.try_emplace<std::string>("LastRuntimeInitializeScene");
+		instance.runtimeController.setup(lastRuntimeInitializeScene);
 
 		u32 windowStateBit = json.get().value("WindowStateBit", static_cast<u32>(-1));
 		if (windowStateBit & (1 << 0)) {
@@ -147,6 +152,8 @@ void EditorMain::Setup() {
 			// 50音順先頭のシーンが開く
 			sceneName = *sceneListImm.begin();
 		}
+
+		instance.runtimeController.setup("Unselected");
 	}
 
 	instance.hierarchy.load(sceneName);
