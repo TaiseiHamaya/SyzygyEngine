@@ -20,10 +20,15 @@ void szg::SceneManager2::SetupFactory(std::unique_ptr<BaseSceneFactory> factory_
 	instance.factory = std::move(factory_);
 }
 
+void szg::SceneManager2::SetupInitialScene(i32 initialSceneIndex_) {
+	SceneManager2& instance = GetInstance();
+	instance.initialSceneIndex = initialSceneIndex_;
+}
+
 void SceneManager2::Setup() {
 	SceneManager2& instance = GetInstance();
 
-	auto scene = instance.factory->initialize_scene2();
+	auto scene = instance.factory->create_scene2(instance.initialSceneIndex);
 	if (!scene) {
 		szgCritical("The created initial scene was nullptr.");
 		return;
@@ -186,6 +191,10 @@ void szg::SceneManager2::EndSceneChangeIntervalForce() {
 
 Reference<Scene> SceneManager2::GetCurrentScene() {
 	return GetInstance().sceneStack.back();
+}
+
+Reference<const BaseSceneFactory> szg::SceneManager2::SceneFactoryImm() noexcept {
+	return GetInstance().factory;
 }
 
 void SceneManager2::OnNextScene() {

@@ -7,6 +7,7 @@
 #include <Library/Utility/Template/bitflag.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
+#include "./RuntimeRegisteredSceneList.h"
 #include "Engine/Runtime/Scene/World/WorldCluster.h"
 
 namespace szg {
@@ -26,6 +27,8 @@ public:
 	SZG_CLASS_MOVE_ONLY(EditorRuntimeController);
 
 public:
+	void setup(const std::string& lastSelectedSceneName);
+
 	void update();
 
 	void control_gui(r32 menuHight);
@@ -38,12 +41,17 @@ private:
 	void save_world_states();
 	void restore_world_states();
 
+public:
+	std::optional<std::string_view> runtime_initial_scene() const;
+
 private:
 	State currentState{ State::Play };
 	std::bitset<2> isStepFrameState;
 
 	std::vector<eps::bitflag<WorldState>> worldStates;
 	std::vector<bool> sceneScripts;
+
+	RuntimeRegisteredSceneList registeredSceneList;
 };
 
 } // namespace szg

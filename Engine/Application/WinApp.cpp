@@ -355,8 +355,12 @@ void WinApp::Finalize() {
 }
 
 void WinApp::ShowAppWindow() {
+#ifdef DEBUG_FEATURES_ENABLE
+	EditorMain::Setup();
+#else
 	// シーンの生成
 	SceneManager2::Setup();
+#endif // DEBUG_FEATURES_ENABLE
 
 	// ウィンドウ表示
 	if (!ProjectSettings::GetApplicationSettingsImm().hideWindowForce) {
@@ -364,10 +368,6 @@ void WinApp::ShowAppWindow() {
 		szgInformation("Show application window.");
 		DragAcceptFiles(GetInstance().hWnd, TRUE); // Drag＆Dropを受け付ける
 	}
-
-#ifdef DEBUG_FEATURES_ENABLE
-	EditorMain::Setup();
-#endif // DEBUG_FEATURES_ENABLE
 
 	// 時計初期化
 	WorldClock::Initialize();

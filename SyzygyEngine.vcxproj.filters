@@ -1383,6 +1383,9 @@
     <ClCompile Include="Library\Utility\SparseSet.inl">
       <Filter>Library\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.cpp">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h">
@@ -2842,6 +2845,9 @@
     </ClInclude>
     <ClInclude Include="Library\Utility\SparseSet.h">
       <Filter>Library\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.h">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
