@@ -20,11 +20,16 @@
 
 using namespace szg;
 
-static std::wstring ToFilenameW(const std::source_location& sourceLocation) {
-	std::string_view fullPath = sourceLocation.file_name();
-	size_t position = fullPath.find_last_of('\\') + 1;
-	size_t end = fullPath.find_last_of('.');
-	return ConvertString(fullPath.substr(position, end - position));
+static std::wstring FormatLocationW(const std::source_location& sourceLocation) {
+	std::string_view funcName = sourceLocation.function_name();
+
+	funcName.remove_suffix(funcName.size() - funcName.find_last_of('('));
+	if (funcName.ends_with("noexcept")) {
+		funcName.remove_suffix(funcName.size() - funcName.find_last_of('('));
+	}
+
+	funcName.remove_prefix(funcName.find_last_of(' ') + 1);
+	return ConvertString(funcName) + std::format(L" | Line:{}", sourceLocation.line());
 }
 
 void Logger::Initialize() {
@@ -59,7 +64,7 @@ void Logger::body(const std::wstring& file, Level level, const std::wstring& mes
 
 	std::wstring levelStringW = LevelStringW[static_cast<u8>(level)];
 	std::wstring out =
-		std::format(L"{:%H:%M:%S} | {: <11} | {} [{}]\n", time, levelStringW, message, file);
+		std::format(L"{:%H:%M:%S} | {: <11} | {} | {}\n", time, levelStringW, message, file);
 
 	// コンソール出力
 	if (config & OutputDestination::Console) {
@@ -99,7 +104,7 @@ void Logger::intermediate_a(const std::source_location& sourceLocation, Level le
 		return;
 	}
 
-	body(ToFilenameW(sourceLocation), level, ConvertString(message));
+	body(FormatLocationW(sourceLocation), level, ConvertString(message));
 }
 
 void Logger::intermediate_w(const std::source_location& sourceLocation, Level level, const std::wstring& message) {
@@ -108,7 +113,7 @@ void Logger::intermediate_w(const std::source_location& sourceLocation, Level le
 		return;
 	}
 
-	body(ToFilenameW(sourceLocation), level, message);
+	body(FormatLocationW(sourceLocation), level, message);
 }
 
 void Logger::output_console(const std::wstring& msg) {
