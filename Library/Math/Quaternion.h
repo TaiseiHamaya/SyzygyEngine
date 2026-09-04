@@ -2,12 +2,12 @@
 
 #include "Vector3.h"
 
-class Matrix4x4;
-class Basis;
+#include "Basis.h"
+#include "Matrix4x4.h"
 
 class Quaternion final {
 public:
-	Quaternion() noexcept;
+	inline constexpr Quaternion() noexcept;
 	~Quaternion() noexcept = default;
 
 	/// <summary>
@@ -15,7 +15,7 @@ public:
 	/// </summary>
 	/// <param name="xyz_">虚部</param>
 	/// <param name="w_">実部</param>
-	Quaternion(const Vector3& xyz_, r32 w_) noexcept;
+	inline constexpr Quaternion(const Vector3& xyz_, r32 w_) noexcept;
 
 	/// <summary>
 	/// クォータニオンのパラメータを直接構築して作成
@@ -24,7 +24,7 @@ public:
 	/// <param name="y">j成分</param>
 	/// <param name="z">k成分</param>
 	/// <param name="w">実部</param>
-	Quaternion(r32 x, r32 y, r32 z, r32 w) noexcept;
+	inline constexpr Quaternion(r32 x, r32 y, r32 z, r32 w) noexcept;
 
 	Quaternion(const Quaternion& rhs) noexcept = default;
 	Quaternion(Quaternion&& rhs) noexcept = default;
@@ -75,22 +75,22 @@ public:
 
 
 public:
-	bool operator==(const Quaternion& rhs) const noexcept;
-	bool operator!=(const Quaternion& rhs) const noexcept;
-	Quaternion operator*(const Quaternion& rhs) const noexcept;
-	Quaternion& operator*=(const Quaternion& rhs) noexcept;
-	Quaternion operator*(r32 times) const noexcept;
-	Quaternion& operator*=(r32 times) noexcept;
-	friend Vector3 operator*(const Vector3& vector, const Quaternion& quaternion);
+	inline constexpr bool operator==(const Quaternion& rhs) const noexcept;
+	inline constexpr bool operator!=(const Quaternion& rhs) const noexcept;
+	inline constexpr Quaternion operator*(const Quaternion& rhs) const noexcept;
+	inline constexpr Quaternion& operator*=(const Quaternion& rhs) noexcept;
+	inline constexpr Quaternion operator*(r32 times) const noexcept;
+	inline constexpr Quaternion& operator*=(r32 times) noexcept;
+	inline constexpr friend Vector3 operator*(const Vector3& vector, const Quaternion& quaternion);
 
 public: // メンバ関数
 	/// <summary>
 	/// 回転行列に変換
 	/// </summary>
 	/// <returns>回転行列Matrix4x4</returns>
-	Matrix4x4 to_matrix() const noexcept;
+	inline constexpr Matrix4x4 to_matrix() const noexcept;
 
-	Basis to_basis() const noexcept;
+	inline constexpr Basis to_basis() const noexcept;
 
 	/// <summary>
 	/// Quaternionベクトルの長さ[1]
@@ -102,7 +102,7 @@ public: // メンバ関数
 	/// 逆クォータニオンの取得
 	/// </summary>
 	/// <returns>逆Quaternion</returns>
-	Quaternion inverse() const noexcept;
+	inline constexpr Quaternion inverse() const noexcept;
 
 	/// <summary>
 	/// クォータニオンの正規化
@@ -114,13 +114,13 @@ public: // メンバ関数
 	/// ベクトル部の取得
 	/// </summary>
 	/// <returns></returns>
-	const Vector3& vector() const noexcept;
+	inline constexpr const Vector3& vector() const noexcept;
 
 	/// <summary>
 	/// 実部の取得
 	/// </summary>
 	/// <returns></returns>
-	const r32& real() const noexcept;
+	inline constexpr const r32& real() const noexcept;
 
 public: // グローバルメンバ関数
 	/// <summary>
@@ -168,11 +168,105 @@ public: // グローバルメンバ関数
 	static Quaternion SlerpClockwise(const Quaternion& internal, const Quaternion& terminal, r32 t, const Vector3& axis = CVector3::UP) noexcept;
 };
 
+inline constexpr Quaternion::Quaternion() noexcept : Quaternion{ 0,0,0,1 } {}
+
+inline constexpr Quaternion::Quaternion(const Vector3& xyz_, r32 w_) noexcept :
+	xyz(xyz_),
+	w(w_) {
+}
+
+inline constexpr Quaternion::Quaternion(r32 x, r32 y, r32 z, r32 w) noexcept :
+	xyz(Vector3{ x,y,z }),
+	w(w) {
+}
+
+inline constexpr bool Quaternion::operator==(const Quaternion& rhs) const noexcept {
+	return xyz == rhs.xyz && w == rhs.w;
+}
+
+inline constexpr bool Quaternion::operator!=(const Quaternion& rhs) const noexcept {
+	return !(*this == rhs);
+}
+
+inline constexpr Quaternion Quaternion::operator*(const Quaternion& rhs) const noexcept {
+	Vector3 resultV = rhs.xyz * w + xyz * rhs.w + Vector3::Cross(xyz, rhs.xyz);
+	return Quaternion{
+		resultV, w * rhs.w - Vector3::Dot(xyz, rhs.xyz)
+	};
+}
+
+inline constexpr Quaternion& Quaternion::operator*=(const Quaternion& rhs) noexcept {
+	*this = rhs * *this;
+	return *this;
+}
+
+inline constexpr Quaternion Quaternion::operator*(r32 times) const noexcept {
+	return { xyz * times, w * times };
+}
+
+inline constexpr Quaternion& Quaternion::operator*=(r32 times) noexcept {
+	*this = *this * times;
+	return *this;
+}
+
+inline constexpr Matrix4x4 Quaternion::to_matrix() const noexcept {
+	r32 xx = xyz.x * xyz.x;
+	r32 xy = xyz.x * xyz.y;
+	r32 xz = xyz.x * xyz.z;
+	r32 xw = xyz.x * w;
+	r32 yy = xyz.y * xyz.y;
+	r32 yz = xyz.y * xyz.z;
+	r32 yw = xyz.y * w;
+	r32 zz = xyz.z * xyz.z;
+	r32 zw = xyz.z * w;
+	r32 ww = w * w;
+
+	return {
+		{{ww + xx - yy - zz, 2 * (xy + zw), 2 * (xz - yw), 0},
+		{2 * (xy - zw),ww - xx + yy - zz, 2 * (yz + xw), 0},
+		{2 * (xz + yw), 2 * (yz - xw), ww - xx - yy + zz , 0},
+		{0,0,0,1}}
+	};
+}
+
+inline constexpr Basis Quaternion::to_basis() const noexcept {
+	r32 xx = xyz.x * xyz.x;
+	r32 xy = xyz.x * xyz.y;
+	r32 xz = xyz.x * xyz.z;
+	r32 xw = xyz.x * w;
+	r32 yy = xyz.y * xyz.y;
+	r32 yz = xyz.y * xyz.z;
+	r32 yw = xyz.y * w;
+	r32 zz = xyz.z * xyz.z;
+	r32 zw = xyz.z * w;
+	r32 ww = w * w;
+
+	return {
+		{ww + xx - yy - zz, 2 * (xy + zw), 2 * (xz - yw)},
+		{2 * (xy - zw),ww - xx + yy - zz, 2 * (yz + xw)},
+		{2 * (xz + yw), 2 * (yz - xw), ww - xx - yy + zz}
+	};
+}
+
+inline constexpr Quaternion Quaternion::inverse() const noexcept {
+	return { -xyz.x, -xyz.y, -xyz.z, w };
+}
+
+inline constexpr const Vector3& Quaternion::vector() const noexcept {
+	return xyz;
+}
+
+inline constexpr const r32& Quaternion::real() const noexcept {
+	return w;
+}
+
 namespace CQuaternion {
-static const Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
-static const Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
-static const Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
-static const Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
+
+constexpr Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
+constexpr Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
+constexpr Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
+constexpr Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
+
 };
 
 /// <summary>
@@ -181,4 +275,8 @@ static const Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
 /// <param name="vector">元のベクトル</param>
 /// <param name="quaternion">回転Quaternion</param>
 /// <returns></returns>
-Vector3 operator*(const Vector3& vector, const Quaternion& quaternion);
+inline constexpr Vector3 operator*(const Vector3& vector, const Quaternion& quaternion) {
+	Quaternion vectorQuaternion = Quaternion{ vector, 0.0f };
+	return (quaternion * vectorQuaternion * quaternion.inverse()).xyz;
+}
+
