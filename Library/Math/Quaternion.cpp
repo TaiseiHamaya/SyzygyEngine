@@ -2,21 +2,7 @@
 
 #include <cmath>
 
-#include "Basis.h"
 #include "Definition.h"
-#include "Matrix4x4.h"
-
-Quaternion::Quaternion() noexcept : Quaternion{ 0,0,0,1 } {}
-
-Quaternion::Quaternion(const Vector3& xyz_, r32 w_) noexcept :
-	xyz(xyz_),
-	w(w_) {
-}
-
-Quaternion::Quaternion(r32 x, r32 y, r32 z, r32 w) noexcept :
-	xyz(Vector3{ x,y,z }),
-	w(w) {
-}
 
 Quaternion Quaternion::AngleAxis(const Vector3& axis, r32 angleAxis) {
 	Quaternion result;
@@ -57,93 +43,13 @@ Quaternion Quaternion::EulerDegree(r32 pitch, r32 yaw, r32 roll) noexcept {
 	return EulerRadian(pitch * ToRadian, yaw * ToRadian, roll * ToRadian);
 }
 
-bool Quaternion::operator==(const Quaternion& rhs) const noexcept {
-	return xyz == rhs.xyz && w == rhs.w;
-}
-
-bool Quaternion::operator!=(const Quaternion& rhs) const noexcept {
-	return !(*this == rhs);
-}
-
-Quaternion Quaternion::operator*(const Quaternion& rhs) const noexcept {
-	Vector3 resultV = rhs.xyz * w + xyz * rhs.w + Vector3::Cross(xyz, rhs.xyz);
-	return Quaternion{
-		resultV, w * rhs.w - Vector3::Dot(xyz, rhs.xyz)
-	};
-}
-
-Quaternion& Quaternion::operator*=(const Quaternion& rhs) noexcept {
-	*this = rhs * *this;
-	return *this;
-}
-
-Quaternion Quaternion::operator*(r32 times) const noexcept {
-	return { xyz * times, w * times };
-}
-
-Quaternion& Quaternion::operator*=(r32 times) noexcept {
-	*this = *this * times;
-	return *this;
-}
-
-Matrix4x4 Quaternion::to_matrix() const noexcept {
-	r32 xx = xyz.x * xyz.x;
-	r32 xy = xyz.x * xyz.y;
-	r32 xz = xyz.x * xyz.z;
-	r32 xw = xyz.x * w;
-	r32 yy = xyz.y * xyz.y;
-	r32 yz = xyz.y * xyz.z;
-	r32 yw = xyz.y * w;
-	r32 zz = xyz.z * xyz.z;
-	r32 zw = xyz.z * w;
-	r32 ww = w * w;
-
-	return {
-		{{ww + xx - yy - zz, 2 * (xy + zw), 2 * (xz - yw), 0},
-		{2 * (xy - zw),ww - xx + yy - zz, 2 * (yz + xw), 0},
-		{2 * (xz + yw), 2 * (yz - xw), ww - xx - yy + zz , 0},
-		{0,0,0,1}}
-	};
-}
-
-Basis Quaternion::to_basis() const noexcept {
-	r32 xx = xyz.x * xyz.x;
-	r32 xy = xyz.x * xyz.y;
-	r32 xz = xyz.x * xyz.z;
-	r32 xw = xyz.x * w;
-	r32 yy = xyz.y * xyz.y;
-	r32 yz = xyz.y * xyz.z;
-	r32 yw = xyz.y * w;
-	r32 zz = xyz.z * xyz.z;
-	r32 zw = xyz.z * w;
-	r32 ww = w * w;
-
-	return {
-		{ww + xx - yy - zz, 2 * (xy + zw), 2 * (xz - yw)},
-		{2 * (xy - zw),ww - xx + yy - zz, 2 * (yz + xw)},
-		{2 * (xz + yw), 2 * (yz - xw), ww - xx - yy + zz}
-	};
-}
-
 r32 Quaternion::length() const noexcept {
 	Vector3 v2 = Vector3::Multiply(xyz, xyz);
 	return std::sqrt(v2.x + v2.y + v2.z + w * w);
 }
 
-Quaternion Quaternion::inverse() const noexcept {
-	return { -xyz.x, -xyz.y, -xyz.z, w };
-}
-
 Quaternion Quaternion::normalize() const noexcept {
 	return *this * (1 / length());
-}
-
-const Vector3& Quaternion::vector() const noexcept {
-	return xyz;
-}
-
-const r32& Quaternion::real() const noexcept {
-	return w;
 }
 
 Quaternion Quaternion::FromToRotation(const Vector3& from, const Vector3& to) {
@@ -280,9 +186,4 @@ Quaternion Quaternion::SlerpClockwise(const Quaternion& internal, const Quaterni
 	result.xyz = rResult.xyz + lResult.xyz;
 	result.w = rResult.w + lResult.w;
 	return result;
-}
-
-Vector3 operator*(const Vector3& vector, const Quaternion& quaternion) {
-	Quaternion vectorQuaternion = Quaternion{ vector, 0.0f };
-	return (quaternion * vectorQuaternion * quaternion.inverse()).xyz;
 }
