@@ -21,7 +21,7 @@ public:
 public:
 	void setup(const std::string& lastSelectedSceneName);
 
-	void combo_gui();
+	void combo_gui(r32 menuHeight);
 
 public:
 	std::optional<std::string_view> runtime_initial_scene() const;

@@ -26,9 +26,9 @@ void szg::EditorRuntimeController::update() {
 	}
 }
 
-void szg::EditorRuntimeController::control_gui(r32 menuHight) {
+void szg::EditorRuntimeController::control_gui(r32 menuHeight) {
 	ImVec4 defualtButtonColor = ImGui::GetStyleColorVec4(ImGuiCol_WindowBg);
-	ImGui::SetCursorPos(ImVec2((ImGui::GetIO().DisplaySize.x - menuHight * 3) / 2, 0));
+	ImGui::SetCursorPos(ImVec2((ImGui::GetIO().DisplaySize.x - menuHeight * 3) / 2, 0));
 	ImGui::PushStyleVarX(ImGuiStyleVar_ItemSpacing, .0f);
 
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.7f, 0.1f, 0.1f, 1.0f));
@@ -72,13 +72,16 @@ void szg::EditorRuntimeController::control_gui(r32 menuHight) {
 	ImGui::PopStyleColor(3);
 	ImGui::PopStyleVar();
 
-	ImGui::PushFont(nullptr, menuHight * 0.5f);
-	ImGui::SetCursorPosY((menuHight - ImGui::GetFontSize()) / 2);
-	ImGui::Text("   %s", currentState == State::Play ? "Play" : currentState == State::Pause ? "Pause" : "Stop");
-	ImGui::PopFont();
+	ImGui::PushFont(nullptr, menuHeight * 0.5f);
+	std::string runtimeState = std::format("   {:<7}", currentState == State::Play ? "Running" : currentState == State::Pause ? "Pause" : "Stop");
+	ImGui::SetCursorPosY((menuHeight - ImGui::GetTextLineHeightWithSpacing()) / 2);
+
+	ImGui::Text(runtimeState.c_str());
 
 	ImGui::SameLine();
-	registeredSceneList.combo_gui();
+	registeredSceneList.combo_gui(menuHeight);
+
+	ImGui::PopFont();
 
 	update();
 }
