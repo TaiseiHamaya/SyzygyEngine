@@ -30,8 +30,9 @@ void RuntimeRegisteredSceneList::setup(const std::string& lastSelectedSceneName)
 	}
 }
 
-void RuntimeRegisteredSceneList::combo_gui() {
+void RuntimeRegisteredSceneList::combo_gui(r32 menuHeight) {
 	ImGui::SetNextItemWidth(250.0f);
+	ImGui::SetCursorPosY((menuHeight - ImGui::GetTextLineHeightWithSpacing()) / 2);
 	if (ImGui::BeginCombo("##Initialize Scene", currentSelectedSceneName.c_str())) {
 		for (const auto& [name, index] : sceneNameToIndexMap) {
 			bool isSelected = (currentSelectedSceneName == name);

@@ -31,7 +31,7 @@ public:
 
 	void update();
 
-	void control_gui(r32 menuHight);
+	void control_gui(r32 menuHeight);
 
 private:
 	void start_runtime();

@@ -50,11 +50,11 @@ public:
 private:
 	void set_imgui_command();
 
-	void draw_menu_bar(r32& menuHight);
+	void draw_menu_bar(r32& menuHeight);
 
-	void draw_window_buttons(r32 menuHight);
+	void draw_window_buttons(r32 menuHeight);
 
-	void draw_dock_space(r32 menuHight);
+	void draw_dock_space(r32 menuHeight);
 
 	void execute_shortcut();
 

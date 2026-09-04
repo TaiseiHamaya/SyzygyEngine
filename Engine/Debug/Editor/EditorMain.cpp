@@ -310,21 +310,21 @@ void szg::EditorMain::HandleDropFile(const std::filesystem::path& filePath) {
 }
 
 void EditorMain::set_imgui_command() {
-	r32 menuHight{ 0 };
+	r32 menuHeight{ 0 };
 
-	draw_menu_bar(menuHight);
+	draw_menu_bar(menuHeight);
 
-	draw_dock_space(menuHight);
+	draw_dock_space(menuHeight);
 }
 
-void szg::EditorMain::draw_menu_bar(r32& menuHight) {
+void szg::EditorMain::draw_menu_bar(r32& menuHeight) {
 	// メニューバーの表示
 	if (ImGui::BeginMainMenuBar()) {
 		// Windowメニュー
 		bool isOpen;
-		menuHight = ImGui::GetWindowSize().y;
+		menuHeight = ImGui::GetWindowSize().y;
 		ImGui::SetCursorPos({ 1.0f,1.0f });
-		ImGui::PushFont(nullptr, menuHight * 0.5f);
+		ImGui::PushFont(nullptr, menuHeight * 0.5f);
 		isOpen = ImGui::BeginMenu("Window");
 		ImGui::PopFont();
 		if (isOpen) {
@@ -342,7 +342,7 @@ void szg::EditorMain::draw_menu_bar(r32& menuHight) {
 			}
 			ImGui::EndMenu();
 		}
-		ImGui::PushFont(nullptr, menuHight * 0.5f);
+		ImGui::PushFont(nullptr, menuHeight * 0.5f);
 
 		// Editメニュー
 		isOpen = ImGui::BeginMenu("Edit");
@@ -358,32 +358,32 @@ void szg::EditorMain::draw_menu_bar(r32& menuHight) {
 			ImGui::EndMenu();
 		}
 
-		draw_window_buttons(menuHight);
+		draw_window_buttons(menuHeight);
 
 		ImGui::EndMainMenuBar();
 	}
 }
 
-void szg::EditorMain::draw_window_buttons(r32 menuHight) {
-	ImGui::PushFont(nullptr, menuHight * 0.75f);
+void szg::EditorMain::draw_window_buttons(r32 menuHeight) {
+	ImGui::PushFont(nullptr, menuHeight * 0.75f);
 	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0f);
 	ImGui::PushStyleColor(ImGuiCol_Button, ImGui::GetStyleColorVec4(ImGuiCol_WindowBg));
 
 	// 最小化
 	ImGui::SameLine();
-	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight * 2 , 0.0f });
+	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHeight * 2 , 0.0f });
 	if (ImGui::Button("\ue931")) {
 		ShowWindow(WinApp::GetWndHandle(), SW_MINIMIZE);
 	}
 
 	// ばつボタン
 	ImGui::SameLine();
-	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHight, 0.0f });
+	ImGui::SetCursorPos({ ImGui::GetWindowSize().x - menuHeight, 0.0f });
 	if (ImGui::Button("\ue5cd")) {
 		ImGui::OpenPopup("未保存の項目があります");
 	}
 
-	runtimeController.control_gui(menuHight);
+	runtimeController.control_gui(menuHeight);
 
 	ImGui::PopStyleColor();
 	ImGui::PopStyleVar();
@@ -413,7 +413,7 @@ void szg::EditorMain::draw_window_buttons(r32 menuHight) {
 	}
 }
 
-void szg::EditorMain::draw_dock_space(r32 menuHight) {
+void szg::EditorMain::draw_dock_space(r32 menuHeight) {
 	i32 flags =
 		ImGuiWindowFlags_MenuBar | // メニューバーを表示
 		ImGuiWindowFlags_NoDocking | // ドッキングしない
@@ -433,7 +433,7 @@ void szg::EditorMain::draw_dock_space(r32 menuHight) {
 	// メインのドックスペースを追加
 	ImGuiID dockSpaceId = ImGui::GetID("EditorMain");
 	ImVec2 one = { 1.0f, 1.0f };
-	ImVec2 cursorPos = ImVec2{ 0.0f, menuHight } + one;
+	ImVec2 cursorPos = ImVec2{ 0.0f, menuHeight } + one;
 	ImGui::SetCursorPos(cursorPos);
 	ImVec2 baseSize = ImVec2{ ProjectSettings::ClientSize().x, ProjectSettings::ClientSize().y };
 	ImVec2 editorSize = baseSize - cursorPos - one;
