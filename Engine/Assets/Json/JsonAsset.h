@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include <string>
+#include <string_view>
 
 #include <json.hpp>
 
@@ -24,10 +25,10 @@ public:
 	JsonAsset() = default;
 	~JsonAsset() = default;
 
-	JsonAsset(const std::filesystem::path& file);
+	JsonAsset(const std::filesystem::path& file, std::string_view subdirectory = "json");
 
 public:
-	void load(const std::filesystem::path& file);
+	void load(const std::filesystem::path& file, std::string_view subdirectory = "json");
 
 	void save() const;
 

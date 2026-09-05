@@ -1,6 +1,7 @@
 #pragma once
 
 #include <filesystem>
+#include <string_view>
 
 #include "Library/Utility/Tools/ConstructorMacro.h"
 
@@ -43,7 +44,7 @@ public:
 	/// <param name="filePath">ファイルパス</param>
 	/// <param name="subdirectory">リソースディレクトリ直下の</param>
 	/// <returns></returns>
-	static std::filesystem::path ResolveFilePath(const std::filesystem::path& filePath, const std::string& subdirectory = "");
+	static std::filesystem::path ResolveFilePath(const std::filesystem::path& filePath, std::string_view subdirectory = "");
 
 protected:
 	std::filesystem::path filePath;

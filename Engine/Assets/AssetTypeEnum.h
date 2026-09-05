@@ -14,6 +14,7 @@ enum class AssetType {
 	Json,
 	Audio,
 	Shader,
+	Param,
 
 	Max,
 };
@@ -30,6 +31,7 @@ constexpr std::array<string_literal, ASSET_TYPE_MAX> ASSET_TYPE_NAME = {
 	"Json",
 	"Audio",
 	"Shader",
+	"Param",
 };
 
 }

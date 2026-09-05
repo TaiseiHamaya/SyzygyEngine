@@ -1,10 +1,10 @@
-﻿#include "IAssetBuilder.h"
+#include "IAssetBuilder.h"
 
 #include "./AssetRootPath.h"
 
 using namespace szg;
 
-std::filesystem::path IAssetBuilder::ResolveFilePath(const std::filesystem::path& filePath, const std::string& subdirectory) {
+std::filesystem::path IAssetBuilder::ResolveFilePath(const std::filesystem::path& filePath, std::string_view subdirectory) {
 	// 正規化
 	auto path = filePath.lexically_normal();
 

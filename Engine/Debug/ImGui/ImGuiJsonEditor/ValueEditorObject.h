@@ -6,6 +6,7 @@
 #include <imgui_stdlib.h>
 
 #include <bitset>
+#include <format>
 #include <string>
 
 class ColorRGB;
@@ -14,6 +15,7 @@ class ColorRGBA;
 #include <Library/Math/Quaternion.h>
 #include <Library/Math/Transform2D.h>
 #include <Library/Math/Transform3D.h>
+#include <Library/Utility/Template/unorm.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 namespace szg {
@@ -163,6 +165,42 @@ private:
 	std::string name;
 };
 
+// unorm
+template<>
+struct show_object<unorm> {
+	inline show_object(const std::string& name_) :
+		name(name_) {
+	};
+	~show_object() = default;
+
+	SZG_CLASS_DEFAULT(show_object<unorm>)
+
+public:
+	inline std::bitset<2> show_gui(unorm& value) const {
+		r32 asFloat = value.to_float();
+		ImGui::DragFloat(name.c_str(), &asFloat, 0.01f, 0.0f, 1.0f);
+		value = unorm::from_float(asFloat);
+		std::bitset<2> result = 0;
+		if (ImGui::IsItemDeactivated()) {
+			result = 0b10;
+		}
+		else if (ImGui::IsItemActivated()) {
+			result = 0b01;
+		}
+		else if (ImGui::IsItemActive()) {
+			result = 0b11;
+		}
+		return result;
+	};
+
+	std::string_view get_name() const {
+		return name;
+	}
+
+private:
+	std::string name;
+};
+
 // Vector2
 template<>
 struct show_object<Vector2> {
@@ -246,7 +284,7 @@ public:
 		std::bitset<2> result1 = 0;
 		Vector3 rotationL = CVector3::ZERO;
 		ImGui::SetNextItemWidth(150);
-		if (ImGui::DragFloat3("RotateLocal", &rotationL.x, 1.0f, -180.0f, 180.0f, "")) {
+		if (ImGui::DragFloat3(std::format("RotateLocal##{}", name).c_str(), &rotationL.x, 1.0f, -180.0f, 180.0f, "")) {
 			value = (value * Quaternion::EulerDegree(rotationL)).normalize();
 		}
 		if (ImGui::IsItemDeactivated()) {
@@ -262,7 +300,7 @@ public:
 		std::bitset<2> result2 = 0;
 		Vector3 rotationW = CVector3::ZERO;
 		ImGui::SetNextItemWidth(150);
-		if (ImGui::DragFloat3("RotateWorld", &rotationW.x, 1.0f, -180.0f, 180.0f, "")) {
+		if (ImGui::DragFloat3(std::format("RotateWorld##{}", name).c_str(), &rotationW.x, 1.0f, -180.0f, 180.0f, "")) {
 			value *= Quaternion::EulerDegree(rotationW);
 			value = value.normalize();
 		}

@@ -67,6 +67,9 @@ void EditorMain::Finalize() {
 	if (instance.screenResult.is_active()) {
 		windowStateBit |= (1 << 6);
 	}
+	if (instance.paramEditor.is_active()) {
+		windowStateBit |= (1 << 7);
+	}
 	if (instance.customEditorManager) {
 		windowStateBit |= instance.customEditorManager->get_window_state_bit();
 	}
@@ -132,6 +135,9 @@ void EditorMain::Setup() {
 		}
 		if (windowStateBit & (1 << 6)) {
 			instance.screenResult.set_active(true);
+		}
+		if (windowStateBit & (1 << 7)) {
+			instance.paramEditor.set_active(true);
 		}
 
 		if (instance.customEditorManager) {
@@ -232,6 +238,7 @@ void EditorMain::Draw() {
 	instance.inspector.draw();
 	instance.renderDAG.draw();
 	instance.assetBrowser.draw();
+	instance.paramEditor.draw();
 	EditorLogWindow::Draw();
 
 	if (instance.customEditorManager) {
@@ -335,6 +342,7 @@ void szg::EditorMain::draw_menu_bar(r32& menuHeight) {
 			assetBrowser.draw_menu("Asset");
 			EditorLogWindow::DrawMenu("Log");
 			renderDAG.draw_menu("RenderDAG");
+			paramEditor.draw_menu("Parameter");
 
 			if (customEditorManager) {
 				ImGui::Separator();

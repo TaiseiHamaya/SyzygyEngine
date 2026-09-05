@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <vector>
 
 #include "Library/Utility/Template/Reference.h"
@@ -54,7 +55,7 @@ public:
 	/// <param name="id"></param>
 	/// <returns></returns>
 	T& at_mut_unchecked(i64 id);
-	
+
 	/// <summary>
 	/// 現在の要素数
 	/// </summary>
@@ -87,9 +88,51 @@ public:
 	/// <param name="id"></param>
 	void remove(i64 id);
 
+	/// <summary>
+	/// indexの末尾の要素を削除
+	/// </summary>
+	void pop_back();
+
+	/// <summary>
+	/// サイズの変更
+	/// </summary>
+	/// <param name="newSize"></param>
+	void resize(i64 newSize);
+
+	/// <summary>
+	/// IDが有効かどうかチェック
+	/// </summary>
+	/// <param name="id"></param>
+	/// <returns></returns>
+	bool is_valid_id(i64 id) const;
+
+	/// <summary>
+	/// indexからIDを取得
+	/// </summary>
+	/// <param name="idx"></param>
+	/// <returns>範囲外の場合std::nullopt</returns>
+	std::optional<i64> id_by_index(i64 idx) const;
+
+	/// <summary>
+	/// ID基準で要素を入れ替え
+	/// </summary>
+	/// <param name="lid"></param>
+	/// <param name="rid"></param>
+	void swap_ids(i64 lid, i64 rid);
+
+	/// <summary>
+	/// index基準で要素を入れ替え
+	/// </summary>
+	/// <param name="lidx"></param>
+	/// <param name="ridx"></param>
+	void swap_indexes(i64 lidx, i64 ridx);
+
 public:
 	std::vector<T>::iterator begin();
 	std::vector<T>::iterator end();
+
+	std::vector<T>::const_iterator begin() const;
+	std::vector<T>::const_iterator end() const;
 
 	std::vector<T>::const_iterator cbegin() const;
 	std::vector<T>::const_iterator cend() const;
@@ -102,11 +145,10 @@ public:
 
 private:
 	/// <summary>
-	/// IDが有効かどうかチェック
+	/// ID空間のサイズを取得
 	/// </summary>
-	/// <param name="id"></param>
 	/// <returns></returns>
-	bool is_valid_id(i64 id) const;
+	i64 id_space_size() const;
 
 private:
 	std::vector<T> data;

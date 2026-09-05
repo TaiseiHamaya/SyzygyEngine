@@ -15,6 +15,7 @@
 #include "./Window/SceneView/EditorSceneView.h"
 #include "./Window/ScreenResult/EditorScreenResult.h"
 #include "./Window/AssetBrowser/EditorAssetBrowser.h"
+#include "./Window/Parameter/EditorParameterWindow.h"
 #include "RemoteObject/EditorDeletedObjectPool.h"
 
 namespace szg {
@@ -80,6 +81,7 @@ private:
 	EditorInspector inspector;
 	EditorRenderDAG renderDAG;
 	EditorAssetBrowser assetBrowser;
+	EditorParameterWindow paramEditor;
 
 	std::unique_ptr<CustomEditorManager> customEditorManager;
 };
