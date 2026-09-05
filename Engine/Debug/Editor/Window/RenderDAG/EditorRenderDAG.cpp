@@ -117,8 +117,7 @@ void EditorRenderDAG::draw() {
 		return;
 	}
 
-	int flags = 0;
-	ImGui::Begin("Render DAG Editor", &isActive, flags);
+	ImGui::Begin("Render DAG Editor", &isActive, windowFlags);
 
 	update_focus();
 

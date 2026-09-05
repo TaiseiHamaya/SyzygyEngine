@@ -18,7 +18,7 @@ void EditorAssetBrowser::draw() {
 		return;
 	}
 
-	ImGui::Begin("Asset", &isActive);
+	ImGui::Begin("Asset", &isActive, windowFlags);
 	update_focus();
 
 	// ヘッダの描画

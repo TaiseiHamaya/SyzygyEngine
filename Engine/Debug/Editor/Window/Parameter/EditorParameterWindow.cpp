@@ -31,8 +31,7 @@ void szg::EditorParameterWindow::draw() {
 
 	update_focus();
 
-	i32 flags = 0;
-	ImGui::Begin("Parameter##ParamEditor", &isActive, flags);
+	ImGui::Begin("Parameter##ParamEditor", &isActive, windowFlags);
 
 	if (filename.has_value()) {
 		if (stringEditBuffer.has_value() && isEditingFilename) {

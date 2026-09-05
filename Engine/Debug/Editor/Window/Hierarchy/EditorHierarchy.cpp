@@ -61,8 +61,7 @@ void EditorHierarchy::draw() {
 		return;
 	}
 
-	int flags = 0;
-	ImGui::Begin("Hierarchy", &isActive, flags);
+	ImGui::Begin("Hierarchy", &isActive, windowFlags);
 
 	update_focus();
 

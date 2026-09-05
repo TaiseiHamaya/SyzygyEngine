@@ -18,8 +18,7 @@ void EditorInspector::draw() {
 		return;
 	}
 
-	int flags = 0;
-	ImGui::Begin("Inspector", &isActive, flags);
+	ImGui::Begin("Inspector", &isActive, windowFlags);
 
 	update_focus();
 

@@ -23,12 +23,16 @@ public:
 
 	bool is_focus() const;
 
+	i32 window_flags() const { return windowFlags; }
+
 protected:
 	void update_focus();
 
 protected:
 	bool isActive{ false };
 	bool isFocus{ false };
+
+	i32 windowFlags{ 0 };
 };
 
 }; // szg

@@ -47,6 +47,8 @@ void EditorSceneView::initialize() {
 
 	axisMesh = std::make_unique<StaticMeshInstance>("CameraAxis.obj");
 	axisMesh->get_materials()[0].lightingType = LighingType::None;
+
+	windowFlags = ImGuiWindowFlags_NoScrollbar;
 }
 
 void EditorSceneView::setup(Reference<EditorGizmo> gizmo_, Reference<const EditorHierarchy> hierarchy_) {
@@ -254,7 +256,7 @@ void EditorSceneView::set_imgui_command() {
 	}
 
 	screenResultTexture.start_read();
-	ImGui::Begin("SceneView", &isActive, ImGuiWindowFlags_NoScrollbar);
+	ImGui::Begin("SceneView", &isActive, windowFlags);
 
 	update_focus();
 

@@ -38,8 +38,7 @@ void EditorLogWindow::draw() {
 		return;
 	}
 
-	int flags = 0;
-	ImGui::Begin("Log", &isActive, flags);
+	ImGui::Begin("Log", &isActive, windowFlags);
 
 	update_focus();
 
