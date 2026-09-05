@@ -178,6 +178,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.cpp" />
     <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp" />
     <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp" />
@@ -568,10 +569,12 @@
     <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h" />
     <ClInclude Include="Engine\Assets\CSV\CSVAsset.h" />
     <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\Parameter.h" />
     <ClInclude Include="Engine\Saver\CSVAssetSaver.h" />
     <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h" />
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h" />
@@ -1023,6 +1026,7 @@
     <ClInclude Include="Library\Math\Vector3.h" />
     <ClInclude Include="Library\Math\VectorConverter.h" />
     <ClInclude Include="Library\Utility\BuiltinTypes.h" />
+    <ClInclude Include="Engine\Debug\Editor\Command\ValueChangeCommandHelper\SparseSetDefaultAccesser.h" />
     <ClInclude Include="Library\Utility\Template\Array2D.h" />
     <ClInclude Include="Library\Utility\Template\Behavior.h" />
     <ClInclude Include="Library\Utility\Template\bitflag.h" />
@@ -1055,6 +1059,7 @@
     <ClInclude Include="Library\Utility\Template\unorm.h" />
     <ClInclude Include="Library\Utility\SparseSet.h" />
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.h" />
+    <ClInclude Include="Engine\Assets\Json\Serializer\UnormSerializer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Library\Externals\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">

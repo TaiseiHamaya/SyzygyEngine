@@ -1,4 +1,4 @@
-﻿#include "JsonAsset.h"
+#include "JsonAsset.h"
 
 #include <fstream>
 
@@ -8,12 +8,12 @@
 
 using namespace szg;
 
-JsonAsset::JsonAsset(const std::filesystem::path& file) {
-	load(file);
+JsonAsset::JsonAsset(const std::filesystem::path& file, std::string_view subdirectory) {
+	load(file, subdirectory);
 }
 
-void JsonAsset::load(const std::filesystem::path& file) {
-	filePath = IAssetBuilder::ResolveFilePath(file, "json");
+void JsonAsset::load(const std::filesystem::path& file, std::string_view subdirectory) {
+	filePath = IAssetBuilder::ResolveFilePath(file, subdirectory);
 
 	if (!std::filesystem::exists(filePath)) {
 		szgWarning(L"File-\'{}\' is not found.", filePath.stem().native());
@@ -27,7 +27,7 @@ void JsonAsset::load(const std::filesystem::path& file) {
 		return;
 	}
 
-	json = nlohmann::json::parse(ifstream);
+	json = nlohmann::json::parse(ifstream, nullptr, false);
 }
 
 void JsonAsset::save() const {

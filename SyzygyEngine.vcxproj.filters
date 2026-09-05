@@ -1386,6 +1386,7 @@
     <ClCompile Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.cpp">
       <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h">
@@ -2849,6 +2850,10 @@
     <ClInclude Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.h">
       <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.h" />
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\Parameter.h" />
+    <ClInclude Include="Engine\Debug\Editor\Command\ValueChangeCommandHelper\SparseSetDefaultAccesser.h" />
+    <ClInclude Include="Engine\Assets\Json\Serializer\UnormSerializer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EditorAssets\HLSL\Grid\Grid.hlsli">

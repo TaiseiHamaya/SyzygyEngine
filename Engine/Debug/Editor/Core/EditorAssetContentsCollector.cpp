@@ -97,6 +97,7 @@ std::optional<szg::EditorAssetContentsCollector::AssetEntry> szg::EditorAssetCon
 			nullptr,
 			&AudioLibrary::RegisterLoadQue,
 			&ShaderLibrary::RegisterLoadQue,
+			nullptr
 		};
 
 		auto& assetEntry = instance.assetMaps[static_cast<i32>(type)][result.value().fileName];
@@ -130,6 +131,9 @@ szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const 
 	}
 	else if (extension == ".hlsl") {
 		assetType = AssetType::Shader;
+	}
+	else if (extension == ".param") {
+		assetType = AssetType::Param;
 	}
 
 	return assetType;
