@@ -7,12 +7,34 @@
 
 #include <concepts>
 #include <functional>
-#include <vector>
+#include <type_traits>
 
 #include "EditorCommandInvoker.h"
 #include "EditorValueChangeCommand.h"
 
 namespace szg {
+
+template<typename Member, typename Container, typename Accessor = DefaultAccessor<Container>>
+struct AccessorValueType {
+	using type = std::remove_cvref_t<
+		std::invoke_result_t<Member, decltype(Accessor::Get(std::declval<Container&>(), std::declval<i32>()))>
+	>;
+};
+
+template<typename Member, typename Container, typename Accessor = DefaultAccessor<Container>>
+using AccessorValueType_t = AccessorValueType<Member, Container, Accessor>::type;
+
+template<typename Container>
+struct DefaultAccessor {
+	inline static auto& Get(Container& c, i64 index) { return c.at(index); }
+};
+
+template<typename T>
+struct DefaultAccessor<std::list<T>> {
+	inline static auto& Get(std::list<T>& c, i64 index) {
+		return *std::advance(c.begin(), index);
+	}
+};
 
 class EditorValueChangeCommandHandler final : public SingletonInterface<EditorValueChangeCommandHandler> {
 	SZG_CLASS_SINGLETON(EditorValueChangeCommandHandler)
@@ -37,13 +59,13 @@ public:
 		requires std::copyable<T>
 	static void GenCommand(Reference<T> target);
 
-	template<typename T, typename Struct>
+	template<typename Member, typename Container, typename Accessor = DefaultAccessor<Container>, typename T = AccessorValueType_t<Member, Container, Accessor>>
 		requires std::copyable<T>
-	static void GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value = {});
+	static void GenCommandInstant(Container& container, i32 index, Member member, std::type_identity_t<const T&> value = {});
 
-	template<typename T, typename Struct>
+	template<typename Member, typename Container, typename Accessor = DefaultAccessor<Container>, typename T = AccessorValueType_t<Member, Container, Accessor>>
 		requires std::copyable<T>
-	static void GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member);
+	static void GenCommand(Container& container, i32 index, Member member);
 };
 
 template<typename T>
@@ -66,19 +88,19 @@ void EditorValueChangeCommandHandler::GenCommand(Reference<T> target) {
 	});
 }
 
-template<typename T, typename Struct>
+template<typename Member, typename Container, typename Accessor, typename T>
 	requires std::copyable<T>
-inline void EditorValueChangeCommandHandler::GenCommandInstant(std::vector<Struct>& container, i32 index, T Struct::* member, const T& value) {
-	GenCommand(container, index, member);
-	container.at(index).*member = value;
+inline void EditorValueChangeCommandHandler::GenCommandInstant(Container& container, i32 index, Member member, std::type_identity_t<const T&> value) {
+	GenCommand<Member, Container, Accessor>(container, index, member);
+	std::invoke(member, Accessor::Get(container, index)) = value;
 	End();
 };
 
-template<typename T, typename Struct>
+template<typename Member, typename Container, typename Accessor, typename T>
 	requires std::copyable<T>
-void EditorValueChangeCommandHandler::GenCommand(std::vector<Struct>& container, i32 index, T Struct::* member) {
+void EditorValueChangeCommandHandler::GenCommand(Container& container, i32 index, Member member) {
 	auto lambda = [&container, index, member]() -> T& {
-		return container.at(index).*member;
+		return std::invoke(member, Accessor::Get(container, index));
 	};
 
 	Start([lambda, recent = lambda()]() {

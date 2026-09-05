@@ -8,8 +8,13 @@
 
 namespace szg {
 
+template <typename T>
+concept ResizeableContainer = requires(T t) {
+	t.resize(std::declval<size_t>());
+};
+
 template<typename Container>
-	requires requires(Container c) { c.resize(size_t()); }
+	requires ResizeableContainer<Container>
 class EditorCommandResizeContainer final : public IEditorCommand {
 public:
 	EditorCommandResizeContainer(Reference<Container> container_, size_t next);
@@ -28,7 +33,7 @@ private:
 };
 
 template<typename Container>
-	requires requires(Container c) { c.resize(size_t()); }
+	requires ResizeableContainer<Container>
 inline EditorCommandResizeContainer<Container>::EditorCommandResizeContainer(Reference<Container> container_, size_t next) {
 	prev = container_->size();
 	container = container_;
@@ -36,13 +41,13 @@ inline EditorCommandResizeContainer<Container>::EditorCommandResizeContainer(Ref
 }
 
 template<typename Container>
-	requires requires(Container c) { c.resize(size_t()); }
+	requires ResizeableContainer<Container>
 inline void EditorCommandResizeContainer<Container>::execute() {
 	container->resize(next);
 }
 
 template<typename Container>
-	requires requires(Container c) { c.resize(size_t()); }
+	requires ResizeableContainer<Container>
 inline void EditorCommandResizeContainer<Container>::undo() {
 	container->resize(prev);
 }
