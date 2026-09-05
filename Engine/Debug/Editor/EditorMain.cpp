@@ -20,6 +20,8 @@
 #include "Engine/Application/ProjectSettings/ProjectSettings.h"
 #include "Engine/Application/WinApp.h"
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Loader/SceneAssetListLoader.h"
+#include "Engine/Runtime/BackgroundLoader/BackgroundLoader.h"
 #include "Engine/Runtime/Scene/SceneManager2.h"
 
 using namespace szg;
@@ -162,6 +164,9 @@ void EditorMain::Setup() {
 		instance.runtimeController.setup("Unselected");
 	}
 
+	SceneAssetListLoader{}.load(sceneName).load_assets();
+	BackgroundLoader::WaitEndExecute();
+
 	instance.hierarchy.load(sceneName);
 	instance.renderDAG.load(sceneName);
 }
@@ -193,6 +198,9 @@ void EditorMain::DrawBase() {
 		instance.sceneView.reset_force();
 		// AssetCollectionのリセット
 		EditorSceneAssetCollection::Clear();
+		// アセットのロード
+		SceneAssetListLoader{}.load(instance.switchSceneName.value()).load_assets();
+		BackgroundLoader::WaitEndExecute();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
 		// DAG Editorのリセット
