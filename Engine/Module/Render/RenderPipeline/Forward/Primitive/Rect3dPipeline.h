@@ -2,8 +2,8 @@
 
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "Engine/Module/Render/RenderPipeline/BaseRenderPipeline.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Module/Render/RenderPipeline/BaseRenderPipeline.h"
 
 namespace szg {
 

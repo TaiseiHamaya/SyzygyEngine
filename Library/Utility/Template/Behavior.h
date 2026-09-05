@@ -1,7 +1,7 @@
 #pragma once
 
-#include <optional>
 #include <functional>
+#include <optional>
 #include <unordered_map>
 
 template<typename T>

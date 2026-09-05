@@ -1,7 +1,7 @@
 #pragma once
 
-#include "./IPrimitiveInstance.h"
 #include "./CharRectStruct.h"
+#include "./IPrimitiveInstance.h"
 
 #include "Engine/Assets/FontAtlasMSDF/FontAtlasMSDFAsset.h"
 

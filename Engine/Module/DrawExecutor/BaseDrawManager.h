@@ -27,13 +27,13 @@ public:
 
 public:
 	void initialize(u32 numLayer);
-	
+
 	virtual void make_instancing(u32 layer, const KeyType& meshName, u32 maxInstance) = 0;
-	
+
 	void register_instance(Reference<const InstanceType> instance);
 	void unregister_instance(Reference<const InstanceType> instance);
 	void remove_marked_destroy();
-	
+
 	void reset_buffer();
 	void transfer();
 

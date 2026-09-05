@@ -1,11 +1,11 @@
 #include "StringRectDrawExecutor.h"
 
+#include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
+#include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/GraphicsAPI/DirectX/DxCommand/DxCommand.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
 #include "Engine/Module/World/Mesh/Primitive/StringRectInstance.h"
-#include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
-#include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
 
 using namespace szg;
 

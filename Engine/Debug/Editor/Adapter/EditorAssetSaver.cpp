@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetSaver.h"
 
@@ -6,10 +6,10 @@
 #include <ranges>
 
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
 #include "Engine/Debug/Editor/Window/RenderDAG/EditorRenderDAG.h"
 #include "Engine/Debug/Editor/Window/RenderDAG/PostEffectImNode.h"
 #include "Engine/Loader/RenderPath/RenderNodeType.h"
-#include "Engine/Debug/Editor/Core/EditorSceneAssetCollection.h"
 
 using namespace szg;
 

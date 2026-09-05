@@ -5,9 +5,9 @@
 
 #include "./NodeAnimationAsset.h"
 
-#include <Library/Utility/Tools/ConstructorMacro.h>
 #include <Library/Math/Quaternion.h>
 #include <Library/Math/Vector3.h>
+#include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "Engine/Runtime/Clock/WorldTimer.h"
 

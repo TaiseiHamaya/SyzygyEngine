@@ -1,7 +1,7 @@
-﻿#include "SceneAssetListLoader.h"
+#include "SceneAssetListLoader.h"
 
-#include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Assets/AssetTypeEnum.h"
+#include "Engine/Assets/Json/JsonAsset.h"
 
 using namespace szg;
 

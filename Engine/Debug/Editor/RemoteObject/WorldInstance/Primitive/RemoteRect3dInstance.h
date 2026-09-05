@@ -9,8 +9,8 @@
 #include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Transform2D.h>
 
-#include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
 #include "Engine/Debug/Editor/Adapter/Field/EditorAssetField.h"
+#include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
 
 namespace szg {
 

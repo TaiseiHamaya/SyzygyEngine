@@ -5,8 +5,8 @@
 #include <Library/Utility/Template/SingletonInterface.h>
 
 #include <deque>
-#include <optional>
 #include <memory>
+#include <optional>
 
 namespace szg {
 
