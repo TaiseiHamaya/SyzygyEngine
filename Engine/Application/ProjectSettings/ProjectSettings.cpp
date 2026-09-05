@@ -86,8 +86,8 @@ void ProjectSettings::Initialize() {
 	}
 
 	// DirectX設定
-	if (json.contains("Graphics")) {
-		nlohmann::json& graphics = json["Graphics"];
+	if (json.contains("GraphicsAPI")) {
+		nlohmann::json& graphics = json["GraphicsAPI"];
 		// バッファリング数
 		instance.graphicsSettings.numBuffering = graphics.value("NumBuffering", 2);
 		// シェーダーバージョン
