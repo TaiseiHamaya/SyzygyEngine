@@ -34,12 +34,11 @@ void RemoteSkinningMeshInstance::setup() {
 void RemoteSkinningMeshInstance::update_preview(Reference<RemoteWorldObject> world, Reference<Affine> parentAffine) {
 	RemoteInstanceType::update_preview(world, parentAffine);
 
-	debugVisual->reset_mesh(meshName);
 	debugVisual->localAffine = worldAffine;
 	debugVisual->isDraw = isDraw.value_imm();
 
 	if (debugVisual->keyID != meshName.value_imm()) {
-		return;
+		debugVisual->reset_mesh(meshName);
 	}
 	for (i32 i = 0; i < materials.size(); ++i) {
 		RemoteSkinningMeshInstance::Material& source = materials[i];

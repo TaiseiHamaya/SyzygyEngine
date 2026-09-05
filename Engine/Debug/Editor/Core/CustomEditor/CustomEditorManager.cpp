@@ -39,7 +39,7 @@ void szg::CustomEditorManager::draw_window() {
 	for (const auto& editorWindowInfo : editorWindows) {
 		if (editorWindowInfo.window->is_active()) {
 			bool isOpen = editorWindowInfo.window->is_active();
-			ImGui::Begin(editorWindowInfo.name, &isOpen, ImGuiWindowFlags_MenuBar);
+			ImGui::Begin(editorWindowInfo.name, &isOpen);
 			editorWindowInfo.window->set_active(isOpen);
 			editorWindowInfo.window->draw();
 			ImGui::End();
