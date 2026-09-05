@@ -2,9 +2,14 @@
 
 #include "EditorParameterWindow.h"
 
-#include <imgui.h>
+#include <fstream>
+#include <iomanip>
+#include <unordered_set>
 
-#include "Engine/Assets/Json/JsonAsset.h"
+#include <imgui.h>
+#include <json.hpp>
+
+#include "Engine/Assets/IAssetBuilder.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
@@ -234,50 +239,62 @@ void szg::EditorParameterWindow::draw() {
 }
 
 void szg::EditorParameterWindow::save() const {
-	szg::JsonAsset jsonAsset{ std::format("[[game]]/{}", filename.value().string()), "param" };
+	// check param key conflicting
+	std::unordered_set<std::string> paramNames;
+	for (const auto& param : parameters) {
+		if (paramNames.contains(param.name)) {
+			szgWarning("Detected conflicting parameter name: {}", param.name);
+			return;
+		}
+		paramNames.emplace(param.name);
+	}
 
-	jsonAsset.get().clear();
+	std::filesystem::path filePath = IAssetBuilder::ResolveFilePath(
+		std::format("[[game]]/{}", filename.value().string()), "param");
 
-	nlohmann::json jsonArray = nlohmann::json::array();
+	std::filesystem::create_directories(filePath.parent_path());
+
+	nlohmann::ordered_json jsonObject;
 	for (const auto& param : parameters) {
 		nlohmann::json jsonParam;
-		i32  typeIndex = static_cast<i32>(param.type);
+		i32 typeIndex = static_cast<i32>(param.type);
 
-		jsonParam["name"] = param.name;
 		jsonParam["type"] = ParameterTypeNames[typeIndex];
 		std::visit([&jsonParam](const auto& val) {
 			jsonParam["value"] = val;
 		}, param.value);
-		jsonArray.emplace_back(jsonParam);
+		jsonObject[param.name] = jsonParam;
 	}
 
-	jsonAsset.get() = jsonArray;
-
-	jsonAsset.save();
+	std::ofstream ofstream{ filePath, std::ios_base::out };
+	ofstream << std::setw(1) << std::setfill('\t') << jsonObject;
 }
 
 void szg::EditorParameterWindow::load() {
-	szg::JsonAsset jsonAsset{ std::format("[[game]]/{}", filename.value().string()), "param" };
+	std::filesystem::path filePath = IAssetBuilder::ResolveFilePath(
+		std::format("[[game]]/{}", filename.value().string()), "param");
 
-	if (jsonAsset.cget().is_null()) {
+	if (!std::filesystem::exists(filePath)) {
 		return;
 	}
 
-	if (!jsonAsset.cget().is_array()) {
+	std::ifstream ifstream{ filePath };
+	if (ifstream.fail()) {
 		return;
 	}
 
-	for (auto& jsonParam : jsonAsset.cget()) {
-		if (!jsonParam.contains("name") || !jsonParam["name"].is_string()) {
-			continue;
-		}
+	nlohmann::ordered_json jsonObject = nlohmann::ordered_json::parse(ifstream, nullptr, false);
+	if (jsonObject.is_discarded() || !jsonObject.is_object()) {
+		return;
+	}
+
+	for (auto& [name, jsonParam] : jsonObject.items()) {
 		if (!jsonParam.contains("type") || !jsonParam["type"].is_string()) {
 			continue;
 		}
 		if (!jsonParam.contains("value")) {
 			continue;
 		}
-		std::string name = jsonParam["name"];
 		std::string typeName = jsonParam["type"];
 		ParameterType type;
 		ParameterVariant value;
@@ -290,7 +307,8 @@ void szg::EditorParameterWindow::load() {
 			type = static_cast<ParameterType>(i);
 			value = std::visit([&jsonParam](auto&& arg) -> ParameterVariant {
 				using T = std::decay_t<decltype(arg)>;
-				return jsonParam["value"].get<T>();
+				nlohmann::json valueJson = jsonParam["value"];
+				return valueJson.get<T>();
 			}, ParameterDefaultValues[i]);
 			break;
 		}
