@@ -12,6 +12,7 @@ using namespace szg;
 
 void EditorScreenResult::initialize() {
 	screenResultCpy.initialize();
+	windowFlags = ImGuiWindowFlags_NoScrollbar;
 }
 
 void EditorScreenResult::draw() {
@@ -35,7 +36,7 @@ void EditorScreenResult::set_imgui_command() {
 		return;
 	}
 
-	ImGui::Begin("Screen", &isActive, ImGuiWindowFlags_NoScrollbar);
+	ImGui::Begin("Screen", &isActive, windowFlags);
 
 	update_focus();
 
