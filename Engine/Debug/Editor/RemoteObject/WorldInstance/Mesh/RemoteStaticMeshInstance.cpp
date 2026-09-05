@@ -87,7 +87,7 @@ void RemoteStaticMeshInstance::draw_inspector() {
 			{
 				auto result = EditorAssetContentsCollector::ComboGUI(meshMaterial.texture, AssetType::Texture);
 				if (result.has_value()) {
-					EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, result.value().fileName);
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, result.value().fileName);
 				}
 			}
 
@@ -113,19 +113,19 @@ void RemoteStaticMeshInstance::draw_inspector() {
 
 			if (ImGui::RadioButton("None", meshMaterial.lightingType == LighingType::None)) {
 				if (meshMaterial.lightingType != LighingType::None) {
-					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::None);
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::lightingType, LighingType::None);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Lambert", meshMaterial.lightingType == LighingType::Lambert)) {
 				if (meshMaterial.lightingType != LighingType::Lambert) {
-					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::Lambert);
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::lightingType, LighingType::Lambert);
 				}
 			}
 			ImGui::SameLine();
 			if (ImGui::RadioButton("Half lambert", meshMaterial.lightingType == LighingType::HalfLambert)) {
 				if (meshMaterial.lightingType != LighingType::HalfLambert) {
-					EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::HalfLambert);
+					EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::lightingType, LighingType::HalfLambert);
 				}
 			}
 
@@ -201,14 +201,14 @@ void RemoteStaticMeshInstance::default_material() {
 
 		}
 		else {
-			EditorValueChangeCommandHandler::GenCommandInstant<std::string>(materials, i, &Material::texture, "Error.png");
+			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::texture, "Error.png");
 			EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::uvTransform);
 
 			szgWarning("Material data is not found.");
 		}
 
-		EditorValueChangeCommandHandler::GenCommandInstant<LighingType>(materials, i, &Material::lightingType, LighingType::HalfLambert);
-		EditorValueChangeCommandHandler::GenCommandInstant<ColorRGB>(materials, i, &Material::color, CColorRGB::WHITE);
+		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::lightingType, LighingType::HalfLambert);
+		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::color, CColorRGB::WHITE);
 		EditorValueChangeCommandHandler::GenCommandInstant(materials, i, &Material::shininess, 50.0f);
 	}
 }
