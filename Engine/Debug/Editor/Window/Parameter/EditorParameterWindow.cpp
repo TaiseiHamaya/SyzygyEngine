@@ -180,7 +180,7 @@ void szg::EditorParameterWindow::draw() {
 				ImGui::SetClipboardText(parameter.name.c_str());
 			}
 			ImGui::SameLine();
-			if (stringEditBuffer.has_value() && isSelected) {
+			if (stringEditBuffer.has_value() && isSelected && !isEditingFilename) {
 				ImGui::SetKeyboardFocusHere();
 				i32 textFlags =
 					ImGuiInputTextFlags_AutoSelectAll |
@@ -268,6 +268,8 @@ void szg::EditorParameterWindow::save() const {
 
 	std::ofstream ofstream{ filePath, std::ios_base::out };
 	ofstream << std::setw(1) << std::setfill('\t') << jsonObject;
+
+	szgInformation("Saved parameter file: {}", filePath.string());
 }
 
 void szg::EditorParameterWindow::load() {
@@ -315,6 +317,8 @@ void szg::EditorParameterWindow::load() {
 
 		parameters.emplace_back(name, type, value);
 	}
+
+	szgInformation("Loaded parameter file: {}", filePath.string());
 }
 
 #endif // DEBUG_FEATURES_ENABLE
