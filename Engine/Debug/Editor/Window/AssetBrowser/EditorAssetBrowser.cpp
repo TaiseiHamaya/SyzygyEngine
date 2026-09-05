@@ -8,8 +8,8 @@
 
 #include "Engine/Application/Logger.h"
 
-#include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+#include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 
 using namespace szg;
 

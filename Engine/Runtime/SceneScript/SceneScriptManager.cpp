@@ -1,7 +1,7 @@
 #include "SceneScriptManager.h"
 
-#include "ISceneScript.h"
 #include "Engine/Application/Logger.h"
+#include "ISceneScript.h"
 
 using namespace szg;
 

@@ -1,9 +1,9 @@
-﻿#include "PrimitiveGeometryAsset.h"
+#include "PrimitiveGeometryAsset.h"
 
 #define VECTOR3_SERIALIZER
 
-#include "Engine/Assets/Json/JsonSerializer.h"
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Assets/Json/JsonSerializer.h"
 
 using namespace szg;
 

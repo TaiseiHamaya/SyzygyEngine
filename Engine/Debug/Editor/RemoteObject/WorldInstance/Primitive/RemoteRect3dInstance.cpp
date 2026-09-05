@@ -1,9 +1,9 @@
-﻿#include "RemoteRect3dInstance.h"
+#include "RemoteRect3dInstance.h"
 
 #ifdef DEBUG_FEATURES_ENABLE
 
-#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
 #define TRANSFORM2D_SERIALIZER

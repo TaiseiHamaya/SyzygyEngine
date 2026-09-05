@@ -6,8 +6,8 @@
 
 #include <Library/Utility/Template/Reference.h>
 
-#include "Engine/GraphicsAPI/DirectX/DxResource/StructuredBuffer/StructuredBuffer.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/GraphicsAPI/DirectX/DxResource/StructuredBuffer/StructuredBuffer.h"
 
 namespace szg {
 

@@ -98,7 +98,7 @@ void EditorHierarchy::draw() {
 			}
 			ImGui::SeparatorText("Instance");
 			if (ImGui::MenuItem("WorldInstance")) {
-				if (select->get_item_mut().object && 
+				if (select->get_item_mut().object &&
 					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
 					EditorCommandInvoker::Execute(
 						std::make_unique<EditorCreateObjectCommand>(

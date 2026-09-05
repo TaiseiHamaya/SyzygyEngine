@@ -4,8 +4,8 @@
 
 #include <imgui.h>
 
-#include "Engine/Runtime/Scene/SceneManager2.h"
 #include "Engine/Runtime/Scene/BaseSceneFactory.h"
+#include "Engine/Runtime/Scene/SceneManager2.h"
 
 using namespace szg;
 
@@ -43,7 +43,7 @@ void RuntimeRegisteredSceneList::combo_gui(r32 menuHeight) {
 				ImGui::SetItemDefaultFocus();
 			}
 		}
-		
+
 
 		ImGui::EndCombo();
 	}

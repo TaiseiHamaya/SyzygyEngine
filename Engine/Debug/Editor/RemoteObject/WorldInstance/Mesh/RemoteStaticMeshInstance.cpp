@@ -2,14 +2,14 @@
 
 #include "RemoteStaticMeshInstance.h"
 
-#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
-#include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Command/EditorCommandResizeContainer.h"
+#include "Engine/Debug/Editor/Command/EditorCommandScope.h"
 #include "Engine/Debug/Editor/Core/EditorAssetContentsCollector.h"
+#include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 using namespace szg;
 

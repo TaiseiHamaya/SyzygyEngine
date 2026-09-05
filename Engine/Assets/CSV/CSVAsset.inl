@@ -2,8 +2,8 @@
 
 // implement inline function
 
-#include "Engine/Application/Logger.h"
 #include "CSVAsset.h"
+#include "Engine/Application/Logger.h"
 
 template<typename T>
 inline szg::CSVAsset<T>::CSVAsset(std::vector<std::vector<T>> data_) :

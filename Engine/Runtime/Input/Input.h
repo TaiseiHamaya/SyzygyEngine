@@ -1,14 +1,14 @@
 #pragma once
 
-#include <memory>
 #include <array>
+#include <memory>
 
 #ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION 0x0800
 #endif
 
-#include <wrl/client.h>
 #include <dinput.h>
+#include <wrl/client.h>
 #include <Xinput.h>
 
 #include <Library/Math/Vector2.h>

@@ -6,11 +6,11 @@
 #include <vector>
 
 #include <FontGeometry.h>
-#include <ImmediateAtlasGenerator.h>
 #include <GlyphGeometry.h>
+#include <ImmediateAtlasGenerator.h>
 
-#include <msdf-atlas-gen/glyph-generators.h>
 #include <msdf-atlas-gen/BitmapAtlasStorage.h>
+#include <msdf-atlas-gen/glyph-generators.h>
 
 namespace szg {
 

@@ -2,13 +2,13 @@
 
 #include <filesystem>
 
-#include <Library/Utility/Tools/ConstructorMacro.h>
 #include <Library/Utility/Template/bitflag.h>
+#include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "Engine/Runtime/Scene/World/InstanceBucket.h"
-#include "Engine/Runtime/Scene/World/WorldRoot.h"
 #include "Engine/Module/Render/WorldRenderCollection.h"
 #include "Engine/Runtime/Collision/CollisionManager.h"
+#include "Engine/Runtime/Scene/World/InstanceBucket.h"
+#include "Engine/Runtime/Scene/World/WorldRoot.h"
 
 namespace szg {
 

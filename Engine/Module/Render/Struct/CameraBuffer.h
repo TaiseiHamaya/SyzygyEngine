@@ -2,9 +2,9 @@
 
 #include "Engine/GraphicsAPI/DirectX/DxResource/ConstantBuffer/ConstantBuffer.h"
 
-#include <Library/Utility/Tools/ConstructorMacro.h>
 #include <Library/Math/Matrix4x4.h>
 #include <Library/Math/Vector3.h>
+#include <Library/Utility/Tools/ConstructorMacro.h>
 
 namespace szg {
 

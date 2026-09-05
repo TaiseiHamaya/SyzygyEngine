@@ -7,9 +7,9 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "./SceneAssetCollection.h"
-#include "Engine/Runtime/SceneScript/SceneScriptManager.h"
-#include "Engine/Runtime/Scene/World/WorldCluster.h"
 #include "Engine/Module/Render/RenderDAG.h"
+#include "Engine/Runtime/Scene/World/WorldCluster.h"
+#include "Engine/Runtime/SceneScript/SceneScriptManager.h"
 
 namespace szg {
 

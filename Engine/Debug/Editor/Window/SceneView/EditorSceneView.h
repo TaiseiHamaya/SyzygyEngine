@@ -9,9 +9,9 @@
 #include "./EditorWorldView.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/TextureResource/TempTexture.h"
 #include "Engine/Module/DrawExecutor/LightingExecutor/DirectionalLightingExecutor.h"
-#include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/Rect3dDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/StringRectDrawManager.h"
+#include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"
 #include "Engine/Module/Render/RenderPath/RenderPath.h"
 
 #include <Library/Math/Vector2.h>
