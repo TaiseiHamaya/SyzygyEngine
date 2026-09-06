@@ -121,7 +121,7 @@ szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const 
 	else if (extension == ".obj" || extension == ".fbx" || extension == ".gltf") {
 		assetType = AssetType::Mesh;
 	}
-	else if (extension == ".ttf" || extension == ".mtsdf") {
+	else if (extension == ".mtsdf") {
 		assetType = AssetType::Font;
 	}
 	else if (extension == ".json") {

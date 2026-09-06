@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorAssetOptimizer.h"
 
@@ -16,7 +16,7 @@ void szg::EditorAssetOptimizer::optimize_asset(const std::filesystem::path& inpu
 	if (extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".tga" || extension == ".bmp") {
 		TextureOptimizer{}.convert_wic_to_dds(inputFile, outputPath);
 	}
-	else if (extension == ".ttf") {
+	else if (extension == ".ttf" || extension == ".otf") {
 		FontAtlasBuilder{}.entry_point(inputFile, outputPath);
 	}
 }
@@ -26,7 +26,7 @@ bool szg::EditorAssetOptimizer::is_support_optimization(const std::filesystem::p
 	std::ranges::transform(ext, ext.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
 	return
 		(ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".tga" || ext == ".bmp") ||
-		(ext == ".ttf");
+		(ext == ".ttf" || ext == ".otf");
 }
 
 #endif // DEBUG_FEATURES_ENABLE
