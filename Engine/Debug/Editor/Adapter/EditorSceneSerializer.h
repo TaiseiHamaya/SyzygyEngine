@@ -43,6 +43,8 @@ private:
 
 	static std::unique_ptr<IRemoteObject> CreateRemoteDirectionalLightInstance(const nlohmann::json& json);
 	static std::unique_ptr<IRemoteObject> CreateRemotePointLightInstance(const nlohmann::json& json);
+
+	static std::unique_ptr<IRemoteObject> CreateRemoteEmitterInstance(const nlohmann::json& json);
 };
 
 }; // szg

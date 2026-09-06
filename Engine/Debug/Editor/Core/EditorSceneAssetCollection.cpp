@@ -37,7 +37,11 @@ void szg::EditorSceneAssetCollection::Clear() {
 
 bool szg::EditorSceneAssetCollection::IsLazyAsset(AssetType type, const std::filesystem::path& assetFilePath) {
 	auto& instance = GetInstance();
-	auto& lazyMap = instance.isLazyLoadAsset[static_cast<size_t>(type)];
+	if (type == AssetType::Unknown) {
+		return false;
+	}
+	i64 idx = static_cast<i64>(type) - 1;
+	auto& lazyMap = instance.isLazyLoadAsset[idx];
 	std::string filename = assetFilePath.filename().string();
 	if (lazyMap.contains(filename)) {
 		return lazyMap[filename];

@@ -2,592 +2,538 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Assets">
-      <UniqueIdentifier>{B817A206-51D8-44BC-8305-AB9BF1F98A50}</UniqueIdentifier>
+      <UniqueIdentifier>{E2CA0D66-FB15-4504-B5EB-FB17ECE58C39}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL">
-      <UniqueIdentifier>{CE99CAA3-E093-44EE-B1E7-4DA13C5C50CA}</UniqueIdentifier>
+      <UniqueIdentifier>{E5688C28-9FA8-42A0-8B38-B4F71A0002B1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Debug">
-      <UniqueIdentifier>{106A95A5-BDE7-45D7-8426-8ED3EE95DE65}</UniqueIdentifier>
+      <UniqueIdentifier>{ACA42DFE-5DED-4016-9D57-FCB5C938D6C1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Debug\NormalColor">
-      <UniqueIdentifier>{3E5BC60B-EE79-4B6B-88DE-648231C8D794}</UniqueIdentifier>
+      <UniqueIdentifier>{F519425A-A352-4D5D-81BC-E36A275F5C4D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Debug\Wireframe">
-      <UniqueIdentifier>{0B12C244-6936-4189-9144-3945764E0D53}</UniqueIdentifier>
+      <UniqueIdentifier>{DA6879F1-D494-474E-B978-35ED123EDF42}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Deferred">
-      <UniqueIdentifier>{7638B712-DC2C-4FF5-BBE0-86B739764466}</UniqueIdentifier>
+      <UniqueIdentifier>{BE301B55-FD97-488D-B867-EDD0BDB7CB98}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Deferred\Lighting">
-      <UniqueIdentifier>{5AC5CE66-2AD6-4610-8920-CF3D2B311515}</UniqueIdentifier>
+      <UniqueIdentifier>{A2D5115E-8FDF-4E5F-A6FC-89F23FA4439C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Deferred\Mesh">
-      <UniqueIdentifier>{EFC230F4-3BDC-4D13-87D8-2C5EBC34F5DE}</UniqueIdentifier>
+      <UniqueIdentifier>{204815A3-FE3B-488F-BD96-1C74F574563B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward">
-      <UniqueIdentifier>{1D0E43FA-9840-4F97-94B4-3F4129D17D63}</UniqueIdentifier>
+      <UniqueIdentifier>{DCC0C13C-A7AB-4F43-BADB-E6704499FA0E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward\Mesh">
-      <UniqueIdentifier>{E27FD515-D8DD-47AF-BD19-053600A35446}</UniqueIdentifier>
+      <UniqueIdentifier>{6E978415-8787-4FC0-8671-7EF44BBDDB78}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward\Particle">
-      <UniqueIdentifier>{2D512790-5E88-4F3A-B619-3550CBF7EA94}</UniqueIdentifier>
+      <UniqueIdentifier>{A4F72BD2-5BBB-4BBB-99F5-2EE518C3C628}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward\Particle\ParticleBillboard">
-      <UniqueIdentifier>{7C2D6206-D83E-4BBE-B73E-3CA6E5F99193}</UniqueIdentifier>
+      <UniqueIdentifier>{463ACB6E-60A8-4752-8727-CC7908947442}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward\Particle\ParticleMesh">
-      <UniqueIdentifier>{4EBBF726-4AFE-4548-B27D-AB3812B4F9C5}</UniqueIdentifier>
+      <UniqueIdentifier>{E3E97166-F847-420E-8ED6-765D6770D691}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Forward\Primitive">
-      <UniqueIdentifier>{19DE5FA7-4B84-47F7-B910-B9E968517DF1}</UniqueIdentifier>
+      <UniqueIdentifier>{D410D996-F35D-4F44-BD7C-BB989EC6CA38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Misc">
-      <UniqueIdentifier>{7BA7DBB2-49FB-4110-9A10-B4D9568A9AEF}</UniqueIdentifier>
+      <UniqueIdentifier>{A4448B2A-1BF8-4300-9AD3-AEFD863E740D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Misc\PrimitiveGeometry">
-      <UniqueIdentifier>{A11BD06C-E791-4F67-AA60-33DFA73861C2}</UniqueIdentifier>
+      <UniqueIdentifier>{14E7FBED-1291-4E78-B25B-3E1B5506D65F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\PostEffect">
-      <UniqueIdentifier>{BB83F19B-F072-49FC-82CB-24C3A54CBCFC}</UniqueIdentifier>
+      <UniqueIdentifier>{39A4F957-774C-4A8B-9D4B-93B1851BF069}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Sprite">
-      <UniqueIdentifier>{508E0CDC-AB40-494C-9640-C0BCC413BD67}</UniqueIdentifier>
+      <UniqueIdentifier>{286FD171-557E-4B50-8EB2-5CF8B7ECF873}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Tools">
-      <UniqueIdentifier>{708CCE54-3DD7-4653-9E81-F05F8849201E}</UniqueIdentifier>
+      <UniqueIdentifier>{E4F9C260-FC67-4A7C-B401-2DD29AD716CB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets\HLSL\Tools\Lighing">
-      <UniqueIdentifier>{56FCD262-CE62-4104-9F43-2DC14152E45E}</UniqueIdentifier>
+      <UniqueIdentifier>{8D4B1664-1AC8-49FD-AE75-321476A37A45}</UniqueIdentifier>
     </Filter>
     <Filter Include="EditorAssets">
-      <UniqueIdentifier>{1152D1C6-EB7E-4D1B-A63A-AD7720FEA4C7}</UniqueIdentifier>
+      <UniqueIdentifier>{A306E9F0-2471-4982-85CE-F81206589B39}</UniqueIdentifier>
     </Filter>
     <Filter Include="EditorAssets\HLSL">
-      <UniqueIdentifier>{B3861656-DF05-4481-AB83-28184D6EC81C}</UniqueIdentifier>
+      <UniqueIdentifier>{6CA3F606-065B-4E51-9457-1D14BC7ACD2E}</UniqueIdentifier>
     </Filter>
     <Filter Include="EditorAssets\HLSL\Grid">
-      <UniqueIdentifier>{D0D71C35-F89F-4E4C-9925-8BA97BB788C9}</UniqueIdentifier>
+      <UniqueIdentifier>{1D53F9C0-01E6-4982-9937-AC921A511EA5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine">
-      <UniqueIdentifier>{3629F6B6-8A77-4A5E-996C-A25FC7965B24}</UniqueIdentifier>
+      <UniqueIdentifier>{8BEB7AEC-52BF-431E-B4FC-39DC28FE9C21}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Application">
-      <UniqueIdentifier>{7949894F-9376-41B3-8FB8-95CB763DD77E}</UniqueIdentifier>
+      <UniqueIdentifier>{A8429BE1-176B-4D1E-957E-9008323F3C03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Application\ProjectSettings">
-      <UniqueIdentifier>{7813F11C-FF72-4B01-A74D-DA1CD7302900}</UniqueIdentifier>
+      <UniqueIdentifier>{2437D9DC-95C2-4B46-A82B-CE79D463D4C8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets">
-      <UniqueIdentifier>{BBB92F03-5DC5-4847-A5F1-FB0E7B4735A6}</UniqueIdentifier>
+      <UniqueIdentifier>{201352DA-59AC-43FD-A0BB-D3699D247277}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation">
-      <UniqueIdentifier>{8E3583AC-3FA8-47F4-882B-604CB7B47235}</UniqueIdentifier>
+      <UniqueIdentifier>{9A125632-C366-410A-93D0-6A5D750B7746}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation\NodeAnimation">
-      <UniqueIdentifier>{7CB6DBD2-0ADF-46ED-BBC0-32A9D30801BE}</UniqueIdentifier>
+      <UniqueIdentifier>{A5EDC042-A903-4DA8-960F-56CF6D205367}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Animation\Skeleton">
-      <UniqueIdentifier>{AE300C24-2543-4962-B413-51856B926892}</UniqueIdentifier>
+      <UniqueIdentifier>{4DD669C0-C3B7-4ECB-881A-C039D9AB88CA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Audio">
-      <UniqueIdentifier>{D853654A-940F-427E-9091-35C0194A0E93}</UniqueIdentifier>
+      <UniqueIdentifier>{93284B93-3C71-497D-B98C-E32A42492858}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\CSV">
-      <UniqueIdentifier>{00E72C4A-C713-4AA3-A297-E64EED7889BE}</UniqueIdentifier>
+      <UniqueIdentifier>{10D8C89A-6D5B-4B2F-8DDE-3B428C32E195}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\FontAtlasMSDF">
-      <UniqueIdentifier>{21A2AF60-A49B-4A6E-98FB-FF712CBFB309}</UniqueIdentifier>
+      <UniqueIdentifier>{CBDE041F-74EE-4B32-B568-3C8B8EA10EA8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Json">
-      <UniqueIdentifier>{1086EAE2-0889-4646-BF9A-B1F77A33DB83}</UniqueIdentifier>
+      <UniqueIdentifier>{951D2CFB-6768-424F-8C79-EAEEB824E1B7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Json\Serializer">
-      <UniqueIdentifier>{350176DA-FC97-414E-AD8D-8C35EB886492}</UniqueIdentifier>
+      <UniqueIdentifier>{7B1BEB83-C690-4105-993B-E310816817F1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\PolygonMesh">
-      <UniqueIdentifier>{473F75E8-B1E6-4E9D-A8E4-C70F1DC0BDEB}</UniqueIdentifier>
+      <UniqueIdentifier>{D524E618-4587-4CB2-8D47-F07C288969CD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\PrimitiveGeometry">
-      <UniqueIdentifier>{A720786D-069A-47DE-B839-50961E997E18}</UniqueIdentifier>
+      <UniqueIdentifier>{2CDC878D-73FB-498A-A038-4F50E64577D8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Shader">
-      <UniqueIdentifier>{B241E8E7-E85B-475F-A7F2-F57E38B285AA}</UniqueIdentifier>
+      <UniqueIdentifier>{E96A3C15-5A1E-475C-9A6D-809ADF01186E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Assets\Texture">
-      <UniqueIdentifier>{0A9BF62E-91CB-41FC-A5CB-131A686623A1}</UniqueIdentifier>
+      <UniqueIdentifier>{ED130477-85DE-4EDD-9B64-21306F4CD371}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug">
-      <UniqueIdentifier>{40304AC4-3708-4834-8B77-BB63C4696162}</UniqueIdentifier>
+      <UniqueIdentifier>{D5462BB9-DC0F-4808-BBEA-E63D0201E8B0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\DebugValues">
-      <UniqueIdentifier>{F9F5836A-3978-4F2D-9935-3A7D75DD3646}</UniqueIdentifier>
+      <UniqueIdentifier>{DD18B738-8743-4F0E-A77E-D7D818257239}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor">
-      <UniqueIdentifier>{53B929B3-8453-4405-8C00-594830048F83}</UniqueIdentifier>
+      <UniqueIdentifier>{5468C951-7BEE-4324-A619-3F8810638A9E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Adapter">
-      <UniqueIdentifier>{E8AA3002-22C8-40FE-B660-9CC5ABC8DC68}</UniqueIdentifier>
+      <UniqueIdentifier>{EDF464BC-8854-4454-9D36-D9DA34A645BA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Adapter\Field">
-      <UniqueIdentifier>{A94FBBBA-8E1D-4AB3-9917-DB3D9076EF6C}</UniqueIdentifier>
+      <UniqueIdentifier>{13032676-83E8-4AD9-A259-AAF2DC5F3C50}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Command">
-      <UniqueIdentifier>{975EBA4D-DB2F-4389-B1E3-CE748506A54C}</UniqueIdentifier>
+      <UniqueIdentifier>{51C41DFA-80C5-48A9-87EA-9BF4FEF27432}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Command\ValueChangeCommandHelper">
-      <UniqueIdentifier>{EE4C9119-EFFD-416B-B798-6F97D3B47FB0}</UniqueIdentifier>
+      <UniqueIdentifier>{4D6417EF-8E79-4F90-97D8-E3ECE51943A7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Core">
-      <UniqueIdentifier>{F72FB30D-BBE9-43AF-BCC7-0B3DD034179E}</UniqueIdentifier>
+      <UniqueIdentifier>{AB49BC9D-586C-4293-ADD2-89049583A387}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Core\CustomEditor">
-      <UniqueIdentifier>{4CCA6F92-FF1F-4786-9D78-9F462562AA05}</UniqueIdentifier>
+      <UniqueIdentifier>{B98EBA95-AF40-4846-BEC7-B659FB245EFD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Core\Runtime">
-      <UniqueIdentifier>{7C2F83CA-8FB2-415E-B2D5-020AE381296A}</UniqueIdentifier>
+      <UniqueIdentifier>{5B57CBEF-15B5-48BC-B974-4C15E5227290}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject">
-      <UniqueIdentifier>{AE220663-C80A-4207-A005-22B4A4EC13BE}</UniqueIdentifier>
+      <UniqueIdentifier>{2F971B59-315A-4DA2-A19B-33C9E01E5170}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance">
-      <UniqueIdentifier>{A508AB06-B703-4055-9A3B-5422E9516C2E}</UniqueIdentifier>
+      <UniqueIdentifier>{3BEEDA8D-EE10-429A-B69F-7CA1B3E603A3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera">
-      <UniqueIdentifier>{D14D7A9A-E05E-4373-A4A8-109EA486B800}</UniqueIdentifier>
+      <UniqueIdentifier>{4E806B48-811B-423B-833D-4ADEEF12369F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider">
-      <UniqueIdentifier>{C356ADFB-3E31-49F8-B7DF-9CB1D06FA1E8}</UniqueIdentifier>
+      <UniqueIdentifier>{C8C1344A-BB49-4A6E-B320-D893B30EB0B2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light">
-      <UniqueIdentifier>{FC93CD5F-334A-4A95-A276-B0711A2B6D90}</UniqueIdentifier>
+      <UniqueIdentifier>{46961C99-F8E4-4E3C-A60A-898782F1D413}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh">
-      <UniqueIdentifier>{6EE26A55-9324-4FFD-86E8-E730E47699B2}</UniqueIdentifier>
+      <UniqueIdentifier>{E5010F70-45CB-48B5-80A5-08EAC4BA2EFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Particle">
+      <UniqueIdentifier>{4F70ACD6-7AB2-4A06-A682-A11664409450}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive">
-      <UniqueIdentifier>{EC182536-3948-492C-A683-7111C751E579}</UniqueIdentifier>
+      <UniqueIdentifier>{AC8B956A-B868-4844-84DC-7AA5EF5472B0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect">
-      <UniqueIdentifier>{45AD7BE5-1966-4AD6-B708-E157B8213C7C}</UniqueIdentifier>
+      <UniqueIdentifier>{633C0E4D-EB5F-49E2-AF12-E5607B62A1BC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window">
-      <UniqueIdentifier>{97E31366-8516-40DE-BCE8-8DB1ED4AAB37}</UniqueIdentifier>
+      <UniqueIdentifier>{36A961A4-A9BB-4403-A815-3F9F9F0F6BFD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\AssetBrowser">
-      <UniqueIdentifier>{4C9411A9-44AC-4F07-88A8-FCAE3F4158E4}</UniqueIdentifier>
+      <UniqueIdentifier>{D5055209-F877-4F7E-96DD-16C29B790EC1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer">
-      <UniqueIdentifier>{D31040C5-EFE2-4A3B-A58B-A54F77B1C456}</UniqueIdentifier>
+      <UniqueIdentifier>{B7AE0862-0964-45FA-BED9-8C9370225FC6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas">
-      <UniqueIdentifier>{92C6715F-3AA8-4A9F-988F-03E47551CD59}</UniqueIdentifier>
+      <UniqueIdentifier>{CEBBFA5A-752D-4930-AB0B-A8F78AEBFEF3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture">
-      <UniqueIdentifier>{C7C1E2AD-77A4-46FF-A319-1F95EFBC5F82}</UniqueIdentifier>
+      <UniqueIdentifier>{1B9BBC9D-14A8-4408-A603-37AA753498E3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\Hierarchy">
-      <UniqueIdentifier>{9176B4F8-C048-417D-905A-2E07B3F8F878}</UniqueIdentifier>
+      <UniqueIdentifier>{970F30B7-C726-4469-B4A5-2E3174ACA1A4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\Inspector">
-      <UniqueIdentifier>{812B169B-5997-41AD-9BDF-63A460621E5C}</UniqueIdentifier>
+      <UniqueIdentifier>{9C885BF4-93B5-4332-8C19-1BD16E0C9018}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\Logger">
-      <UniqueIdentifier>{2150EEE1-F1A9-4064-BBAE-C9F1A7CA506D}</UniqueIdentifier>
+      <UniqueIdentifier>{6EAED86C-3E26-498B-9D6A-F2633A1CE216}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\Parameter">
-      <UniqueIdentifier>{21D55FA3-9D01-4507-B581-D9B71F7225C3}</UniqueIdentifier>
+      <UniqueIdentifier>{6BD530CC-58F5-4103-940E-1DB03B637F01}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\RenderDAG">
-      <UniqueIdentifier>{27CA3F9D-FE13-49A8-84D2-3B6A09460226}</UniqueIdentifier>
+      <UniqueIdentifier>{CB103CAC-337A-43FC-86E1-288EAC990740}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\SceneView">
-      <UniqueIdentifier>{EB8E4014-EAD6-49AA-8248-E1B4D80DCF0D}</UniqueIdentifier>
+      <UniqueIdentifier>{775A1430-CF88-4E04-9DD7-D8AA851288D0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Editor\Window\ScreenResult">
-      <UniqueIdentifier>{7C63874B-44B1-4B0F-B56C-73F82B3D121A}</UniqueIdentifier>
+      <UniqueIdentifier>{56C26862-B2B7-4852-81D4-F33B34DF548D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui">
-      <UniqueIdentifier>{5180FA83-73BB-45C4-AFA4-C8E6F77080D0}</UniqueIdentifier>
+      <UniqueIdentifier>{602303CB-E23F-4FA9-9BEA-CD6036AF83AE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiJsonEditor">
-      <UniqueIdentifier>{F8F77AEB-FDCC-4E2B-9651-6E8A61D9BA5F}</UniqueIdentifier>
+      <UniqueIdentifier>{69FFAFE2-50C3-43D0-B6C1-1703D41FC3FF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiLoadManager">
-      <UniqueIdentifier>{3C9EE5E9-EF5E-4827-A03D-AE7486181BEE}</UniqueIdentifier>
+      <UniqueIdentifier>{64F743A1-5884-4B8A-BC83-78D20D631C81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiManager">
-      <UniqueIdentifier>{713FCE4F-41EA-43E8-A150-3DD5D65FE05E}</UniqueIdentifier>
+      <UniqueIdentifier>{BD1C96B7-1721-4CED-A5E7-E61ABACB1A2B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\ImGui\ImGuiTK">
-      <UniqueIdentifier>{D5A65F9A-D945-4DEE-A613-389C21A2BA8C}</UniqueIdentifier>
+      <UniqueIdentifier>{C24C65E0-6759-4860-AF22-1760E93221D8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Debug\Profiler">
-      <UniqueIdentifier>{98181783-AAA7-455F-A19B-99A9FCBCECA2}</UniqueIdentifier>
+      <UniqueIdentifier>{853D1BB7-81C5-4FF0-9D95-609934B722EC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI">
-      <UniqueIdentifier>{E6BCB3AB-3E69-4C3D-9ABE-C05CA59B9DD5}</UniqueIdentifier>
+      <UniqueIdentifier>{D121685A-B7B2-4058-8251-CE16EE13DE9A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX">
-      <UniqueIdentifier>{01DDF810-BA93-4FFF-BD28-A5AE7951065A}</UniqueIdentifier>
+      <UniqueIdentifier>{96BFD6F4-3C2F-4553-A241-FE2BE755E5C4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxCommand">
-      <UniqueIdentifier>{B8D5C349-1574-46D0-9861-99E4BF8A7242}</UniqueIdentifier>
+      <UniqueIdentifier>{088A5C9C-F265-4E20-9704-539DD23DC06D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxCompiler">
-      <UniqueIdentifier>{24F56576-599C-464A-8088-71A6AD8B22B9}</UniqueIdentifier>
+      <UniqueIdentifier>{6ACF3635-9CC6-4F9C-82EB-F2CFEBC0FFA8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap">
-      <UniqueIdentifier>{4584E0DD-F933-44A3-84E8-6EC6E8BD111A}</UniqueIdentifier>
+      <UniqueIdentifier>{A538B13F-4479-44FB-BF17-9EBB741B881F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\DSVDescroptorHeap">
-      <UniqueIdentifier>{59DD59E1-5AEE-470A-868F-80A090DCC1AE}</UniqueIdentifier>
+      <UniqueIdentifier>{E81C2E21-95F3-415B-BEFE-5A96550E3483}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\RTVDescriptorHeap">
-      <UniqueIdentifier>{CB84BDA6-190A-43FA-B5B0-C6E96EC351C1}</UniqueIdentifier>
+      <UniqueIdentifier>{0D00CB89-99EC-48CC-8BE0-E8785C7AC97D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDescriptorHeap\SRVDescriptorHeap">
-      <UniqueIdentifier>{41507705-C9E4-47BF-B40C-64B148FF7BB7}</UniqueIdentifier>
+      <UniqueIdentifier>{D2D7AC8D-413A-4490-B5EF-5CBE84F57F09}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxDevice">
-      <UniqueIdentifier>{1B26F421-D6C1-4E5A-8F78-FC8A1AE2EC03}</UniqueIdentifier>
+      <UniqueIdentifier>{1746158D-624B-485A-B441-CA1607CCD286}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxPipelineState">
-      <UniqueIdentifier>{C994A0BA-807E-46C2-812B-F5192F925293}</UniqueIdentifier>
+      <UniqueIdentifier>{127150CA-B97B-4C78-9789-85F037B3295F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxPipelineState\PSOBuilder">
-      <UniqueIdentifier>{03991246-B3B7-4534-B2CC-5188FD839CB1}</UniqueIdentifier>
+      <UniqueIdentifier>{414896B5-504D-41AC-86B4-5A3D1B39A027}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource">
-      <UniqueIdentifier>{F391506D-91F5-440A-AE6A-DEF31D069E02}</UniqueIdentifier>
+      <UniqueIdentifier>{44158A53-2640-458B-8281-7D4F45EE0854}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\ConstantBuffer">
-      <UniqueIdentifier>{7C0DC193-AD42-44E4-B11B-C906C3AC84FC}</UniqueIdentifier>
+      <UniqueIdentifier>{F8DCA338-D26B-4A94-8372-42EC92431407}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\IndexBuffer">
-      <UniqueIdentifier>{899E11D9-FF37-4EFE-AD85-7FDAC27B3294}</UniqueIdentifier>
+      <UniqueIdentifier>{91F9D44A-57CF-45EB-B51E-4CFB324BEBA0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\StructuredBuffer">
-      <UniqueIdentifier>{6E510807-CB07-4955-BCD4-ED6E40B7B822}</UniqueIdentifier>
+      <UniqueIdentifier>{A6B53877-3C42-49F1-8B6D-22AEC921D111}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\TextureResource">
-      <UniqueIdentifier>{829646BA-7B8D-4813-A63E-E31E5B4BB504}</UniqueIdentifier>
+      <UniqueIdentifier>{58230752-C2B8-4556-87C1-3E5C07690C6A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\TextureResource\IResourceView">
-      <UniqueIdentifier>{BB814A12-DA98-43E4-BFB5-9B13602C464E}</UniqueIdentifier>
+      <UniqueIdentifier>{D5B10E4B-B407-4116-AC62-526A79572F48}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxResource\VertexBuffer">
-      <UniqueIdentifier>{ACD97991-1520-4C12-BA65-D6411F0D16CC}</UniqueIdentifier>
+      <UniqueIdentifier>{7D4A917D-9862-437C-B449-0EA6256F7B88}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\GraphicsAPI\DirectX\DxSwapChain">
-      <UniqueIdentifier>{EDFDE0A6-C6AA-41DB-89A2-C2055EF12DE5}</UniqueIdentifier>
+      <UniqueIdentifier>{AD811DF9-4300-4EEA-8A5B-F5FC560A0617}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Loader">
-      <UniqueIdentifier>{D8CCA47B-223B-433F-B366-1402CFD64D7B}</UniqueIdentifier>
+      <UniqueIdentifier>{15BAD88E-ED33-4506-BD38-DC03EF88D2B6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Loader\RenderPath">
-      <UniqueIdentifier>{60F5D1C2-D058-42A2-9D20-12B921376E00}</UniqueIdentifier>
+      <UniqueIdentifier>{AE266A39-F80B-4EE4-943F-6C8544B2F475}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module">
-      <UniqueIdentifier>{7B41BA09-F8BE-4B4A-A91B-8E022630A4BC}</UniqueIdentifier>
+      <UniqueIdentifier>{D6625240-3F42-4213-8588-73242F291272}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor">
-      <UniqueIdentifier>{0F9FC164-BA61-4AA8-9F77-282D0CA457C4}</UniqueIdentifier>
+      <UniqueIdentifier>{3DBC2B1C-4FDD-4ABA-A76F-33853367F693}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\LightingExecutor">
-      <UniqueIdentifier>{847B2425-F56A-44AB-B8AA-AA44BE96C478}</UniqueIdentifier>
+      <UniqueIdentifier>{DEAD7C0B-E9BB-41EF-BDB7-6834224AC405}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh">
-      <UniqueIdentifier>{EE63AA74-5DBB-4E20-A656-2A7ED1123E12}</UniqueIdentifier>
+      <UniqueIdentifier>{AA50C6A7-2659-40AB-99B1-7A540CD21850}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh\Forward">
-      <UniqueIdentifier>{4C3C78A7-1B4E-4872-BB16-6B2BB2424F85}</UniqueIdentifier>
+      <UniqueIdentifier>{FEBC23F8-AEF4-4B22-BF9F-62C7E07E9290}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\Mesh\Primitive">
-      <UniqueIdentifier>{02040FFE-DE9E-4A58-A867-FA5220056D04}</UniqueIdentifier>
+      <UniqueIdentifier>{62286B74-7C8E-4985-8C9D-13D74F5F378C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Module\DrawExecutor\Particle">
+      <UniqueIdentifier>{F08D72CE-7C50-47BB-B1AD-4145EF7DE18D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor">
-      <UniqueIdentifier>{39B0D1B6-C629-491D-9B75-EA309290A751}</UniqueIdentifier>
+      <UniqueIdentifier>{B924B5E6-E51F-4BC7-BA12-7EA399D13F56}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render">
-      <UniqueIdentifier>{835195B1-C103-4CC8-97EE-B1C4F1603BF0}</UniqueIdentifier>
+      <UniqueIdentifier>{69C9CD4E-9F0A-4EBB-9DF2-A41D6BCBECA1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderNode">
-      <UniqueIdentifier>{B0EDFB58-C71E-4E20-B64B-11BDCE7B0E25}</UniqueIdentifier>
+      <UniqueIdentifier>{6C03F653-7BDD-4F8C-9569-62F0B069871F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPath">
-      <UniqueIdentifier>{F535774E-91AA-439D-BBA1-33452C97A491}</UniqueIdentifier>
+      <UniqueIdentifier>{C98DFA43-5E3F-4785-9051-BF978FE2AB3B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline">
-      <UniqueIdentifier>{9D24EF83-DAE8-449B-B95F-549BC37897AF}</UniqueIdentifier>
+      <UniqueIdentifier>{65C75ACE-7EE2-4084-B822-F0B96D129961}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Debug">
-      <UniqueIdentifier>{17D9262A-7F7A-4892-9954-20E8AD3148BC}</UniqueIdentifier>
+      <UniqueIdentifier>{257DD1D3-3ABA-4175-8BC3-0D287866981D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Debug\Grid">
-      <UniqueIdentifier>{36082B91-A5F4-4DDB-9D8A-5796D6484138}</UniqueIdentifier>
+      <UniqueIdentifier>{855BF1A5-3F5D-43D7-8F48-8D8C89536AE2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Debug\Line">
-      <UniqueIdentifier>{4CA107C2-0A87-4AEE-A5F8-201C97C016D3}</UniqueIdentifier>
+      <UniqueIdentifier>{05400290-2C96-4595-BF53-F8F311F09204}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine">
-      <UniqueIdentifier>{3EC0BC41-5AC5-4F3A-894B-2BB98B72BF60}</UniqueIdentifier>
+      <UniqueIdentifier>{EAA0FF4B-0EBF-4C32-99F2-93E1B2E7FB8C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Deferred">
-      <UniqueIdentifier>{E7000E76-4DB8-4B7C-9EE8-372B089876ED}</UniqueIdentifier>
+      <UniqueIdentifier>{9468072B-7F03-43CC-BC58-14495AD305CD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting">
-      <UniqueIdentifier>{541591DE-A9DB-4FD1-8D0A-03159442242C}</UniqueIdentifier>
+      <UniqueIdentifier>{9225E218-FCF9-45D5-849E-107F1155253E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh">
-      <UniqueIdentifier>{DFF1D0C8-5EED-48AD-AE4B-E2474E351895}</UniqueIdentifier>
+      <UniqueIdentifier>{49809F65-E1FA-4129-B6B9-C97353FF3BA0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Forward">
-      <UniqueIdentifier>{30617973-811C-4A72-8770-3B87FC29E2F9}</UniqueIdentifier>
+      <UniqueIdentifier>{0B06D05F-22F7-4B14-B4C7-07D367166B81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode">
-      <UniqueIdentifier>{E5828517-1E2C-40A8-B57C-B34B8185BD0E}</UniqueIdentifier>
+      <UniqueIdentifier>{4DE3B916-1445-4747-8EC9-F1CF8ECC6D69}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Mesh">
-      <UniqueIdentifier>{D909326D-10CB-48FB-97C6-E4F7802B216D}</UniqueIdentifier>
+      <UniqueIdentifier>{4A0CC3BD-C4C9-4A43-98E5-5419755D2ECB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle">
-      <UniqueIdentifier>{435A4108-BFFB-4E60-AA78-BED92ECCBE75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode">
-      <UniqueIdentifier>{C5CE2F5B-430C-4208-B850-A2856AC37299}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode">
-      <UniqueIdentifier>{B6065EED-250B-4CEC-9255-5737E34B40D4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode">
-      <UniqueIdentifier>{03C835F2-C334-482A-8B96-A2C0E77E91D8}</UniqueIdentifier>
+      <UniqueIdentifier>{029399D2-BD4B-423B-BB2C-250CDB286B93}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Forward\Primitive">
-      <UniqueIdentifier>{9A5CBB64-1BEC-4702-AE77-CF889338702A}</UniqueIdentifier>
+      <UniqueIdentifier>{10C5B58E-5BD4-4D04-9470-77DBE288CFA0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect">
-      <UniqueIdentifier>{AC7CF9D9-7747-4B54-A515-668CB99C2B2A}</UniqueIdentifier>
+      <UniqueIdentifier>{19688C48-FB90-4D88-975B-74A0DC023C9A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom">
-      <UniqueIdentifier>{1F45CE03-6AC0-4EDF-B4F7-08DDFBF29A64}</UniqueIdentifier>
+      <UniqueIdentifier>{A7F559F7-A1C2-43F4-A722-4A344DDC6B67}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration">
-      <UniqueIdentifier>{BD8ECC2A-24CF-4D54-82B1-0A72E2A288BF}</UniqueIdentifier>
+      <UniqueIdentifier>{477F1243-0E23-41D1-BEBE-D96B159FD926}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur">
-      <UniqueIdentifier>{47B6C692-D673-489C-99EB-8C1030BC6E1A}</UniqueIdentifier>
+      <UniqueIdentifier>{D6763C3B-F8F0-4270-945D-AB3E7355E6E4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale">
-      <UniqueIdentifier>{E0B8DCCC-61F0-4D9F-BB00-2408A4F02EEC}</UniqueIdentifier>
+      <UniqueIdentifier>{D618C8E1-02FC-4553-B344-CE632C6447DA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction">
-      <UniqueIdentifier>{6E338187-7C3F-4912-AE80-A31492918A09}</UniqueIdentifier>
+      <UniqueIdentifier>{04654B92-A3F1-4725-B3A8-210B18369B8B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4">
-      <UniqueIdentifier>{AD8E6F7F-4A4E-427C-B4E4-BA2EB121E2D8}</UniqueIdentifier>
+      <UniqueIdentifier>{5C9C62FD-21FB-4C8E-A4F0-199B518FBCEA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline">
-      <UniqueIdentifier>{97B40B8B-F866-4A28-A38A-1EC13BF4856C}</UniqueIdentifier>
+      <UniqueIdentifier>{E7CD7D9F-3274-40AE-B964-A4F1E0962530}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur">
-      <UniqueIdentifier>{258DF04A-8F43-46FE-B1CC-26114EA02154}</UniqueIdentifier>
+      <UniqueIdentifier>{48EDD98D-022B-4793-913A-6F47BDE1BB0A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderSubtree">
-      <UniqueIdentifier>{2B9CFF90-C8EB-4B2F-8E5F-0A22531DB9E0}</UniqueIdentifier>
+      <UniqueIdentifier>{CC736026-506A-4CEC-9678-EE0528D675B9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderTargetCollection">
-      <UniqueIdentifier>{D955D0A7-CBCD-4C58-8F97-8AC57D51C21F}</UniqueIdentifier>
+      <UniqueIdentifier>{AF300414-2BFF-4E7B-9675-EA478E538DDF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\RenderTargetGroup">
-      <UniqueIdentifier>{EA06864E-7420-4652-BA9B-58F8AEBC25A3}</UniqueIdentifier>
+      <UniqueIdentifier>{2CE939AE-84F8-4478-BF27-34A8437369E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\Render\Struct">
-      <UniqueIdentifier>{A04A2280-84E8-46AF-B3BE-073314210647}</UniqueIdentifier>
+      <UniqueIdentifier>{02A7CF11-B3E7-46B2-9085-E95DA440298E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World">
-      <UniqueIdentifier>{EECC7877-14FE-477C-A820-2EF701447192}</UniqueIdentifier>
+      <UniqueIdentifier>{EB655405-C7FE-4795-8762-BA63354CD449}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Camera">
-      <UniqueIdentifier>{116A37DB-2973-45B4-9A5C-2349E97140D4}</UniqueIdentifier>
+      <UniqueIdentifier>{D4FFE85C-6FD0-48AD-9A51-8DF58C8D9A7C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Camera\ProjectionAdapter">
-      <UniqueIdentifier>{68887D5F-08FC-4078-A274-A09FAB9D4ECF}</UniqueIdentifier>
+      <UniqueIdentifier>{8CAE5D77-9E11-42E4-BFA4-E07AD7EBE6ED}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Collider">
-      <UniqueIdentifier>{CC071FF3-AF24-4C50-ACC1-C3C97291E2BF}</UniqueIdentifier>
+      <UniqueIdentifier>{75AB79EF-7067-4B2A-A827-058AA6A5FD9C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light">
-      <UniqueIdentifier>{320E66B9-CFB7-4B6A-80E6-91E47B61D5AA}</UniqueIdentifier>
+      <UniqueIdentifier>{5ED8784A-730A-42A4-94DF-8BAD02CB10C6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\DirectionalLight">
-      <UniqueIdentifier>{532D442E-498A-4B44-B962-AED654BED0B3}</UniqueIdentifier>
+      <UniqueIdentifier>{9F170139-8969-4037-9B68-19A111958DA1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\PointLight">
-      <UniqueIdentifier>{E1D55EB4-B0D9-443D-B700-7DA212DCFD30}</UniqueIdentifier>
+      <UniqueIdentifier>{3A40224B-F9EA-4B04-B657-F5FAF140AB83}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Light\SpotLight">
-      <UniqueIdentifier>{BA66926F-5E4F-48DF-876E-B69C3685F6B0}</UniqueIdentifier>
+      <UniqueIdentifier>{E27715C0-709E-4DB1-AFBE-1D98052A26D6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Mesh">
-      <UniqueIdentifier>{1F629B49-36EB-4EB0-98B8-51EEA96D1D13}</UniqueIdentifier>
+      <UniqueIdentifier>{FF9657A1-1B93-498C-A40B-56EC503E0E08}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Mesh\Primitive">
-      <UniqueIdentifier>{1EF0C1D6-D833-4EFB-A501-A3FAF033433B}</UniqueIdentifier>
+      <UniqueIdentifier>{21859301-3C89-4D28-9767-4D0DB0BB792F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\Particle">
-      <UniqueIdentifier>{F9C0CD1A-5C8D-4721-BA89-E494953B6567}</UniqueIdentifier>
+      <UniqueIdentifier>{81C443D5-8748-4DFC-9868-E9C1822E89A7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\World\Particle\DrawSystem">
-      <UniqueIdentifier>{83B7A238-1729-42BC-81A5-1BB102AA9723}</UniqueIdentifier>
+    <Filter Include="Engine\Module\World\Particle\Emission">
+      <UniqueIdentifier>{86EC75D3-3F4A-43A2-8C88-C1DF7E261E3F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Module\World\Particle\Particle">
-      <UniqueIdentifier>{C0AD8E41-22B5-458C-A56D-0B319DD5A8FF}</UniqueIdentifier>
+    <Filter Include="Engine\Module\World\Particle\ParticleUpdaters">
+      <UniqueIdentifier>{3A8125EB-F1D2-4B82-8708-8F132F51B5E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Module\World\WorldInstance">
-      <UniqueIdentifier>{8AB5583C-DE09-41B6-A765-A635817FC2BB}</UniqueIdentifier>
+      <UniqueIdentifier>{7876B3B3-BC63-414D-A511-DBBA75E95241}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime">
-      <UniqueIdentifier>{45172D19-D97C-4BAE-80B7-585262662AAD}</UniqueIdentifier>
+      <UniqueIdentifier>{AF8825BE-9E52-4EFA-8DEA-11B3FB521F59}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\BackgroundLoader">
-      <UniqueIdentifier>{1ED5963E-BEFC-4109-8C0A-B80F7FD3F478}</UniqueIdentifier>
+      <UniqueIdentifier>{7B40D641-B36E-473C-B84A-31F2D9956DE6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Clock">
-      <UniqueIdentifier>{DBBFD8F7-DDD8-4700-9EF1-B3A94C076F09}</UniqueIdentifier>
+      <UniqueIdentifier>{13E6CF7C-7932-450A-BC51-DC5022FA93DD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Collision">
-      <UniqueIdentifier>{4D7AC347-17EB-49B3-A05F-512C1B0AB16A}</UniqueIdentifier>
+      <UniqueIdentifier>{C803DB79-26E6-4237-AEFB-526022D459A0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Input">
-      <UniqueIdentifier>{FFD1AF69-DD93-498F-8D49-5F62251B0E0F}</UniqueIdentifier>
+      <UniqueIdentifier>{9B612F67-33EE-4006-B8A4-AD2BA96ECDB6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\RuntimeStorage">
-      <UniqueIdentifier>{F2D6B2EA-29CB-4CAD-8AE5-C6700CDFF4A1}</UniqueIdentifier>
+      <UniqueIdentifier>{1DC27270-7640-4850-8F54-3CC869244FFA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Scene">
-      <UniqueIdentifier>{4C7ACDF9-FD96-48F2-A43A-F909651392FB}</UniqueIdentifier>
+      <UniqueIdentifier>{B4F9CCC9-117E-4D38-B740-A2DF05510E08}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\Scene\World">
-      <UniqueIdentifier>{ABBBA724-3413-4223-B12A-EEF7A0BD0A10}</UniqueIdentifier>
+      <UniqueIdentifier>{58374573-B31D-40B6-95D3-A97FE5505EDF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Runtime\SceneScript">
-      <UniqueIdentifier>{B13782DA-A697-4314-BEFB-6EA7403C7E0E}</UniqueIdentifier>
+      <UniqueIdentifier>{F09F2212-B3C1-4038-9234-2A133B9FA75C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Saver">
-      <UniqueIdentifier>{DA879B35-B175-4750-AC45-032D0F23C8B0}</UniqueIdentifier>
+      <UniqueIdentifier>{074F2E4C-C24E-42EA-A8C1-D0D87D7BA3D7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library">
-      <UniqueIdentifier>{79E463F4-55A7-4DFC-9E1F-4B35771E88EA}</UniqueIdentifier>
+      <UniqueIdentifier>{2E5F8A6D-4DE5-4961-B1FC-6C0402041137}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals">
-      <UniqueIdentifier>{B349665E-87EC-462F-AE1D-61DDEE4084C8}</UniqueIdentifier>
+      <UniqueIdentifier>{CF02F759-CD95-4A7D-BC2D-8A456C4D258D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype">
-      <UniqueIdentifier>{888ECE7A-5B46-4A15-B7BC-C53A2119A9CB}</UniqueIdentifier>
+      <UniqueIdentifier>{920E266F-3C25-4104-B50A-D375BA19FF33}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype\include">
-      <UniqueIdentifier>{C8B4A6C0-EAAE-4F6E-ABDC-44D536F27418}</UniqueIdentifier>
+      <UniqueIdentifier>{9F12A0F9-FE85-4274-B112-851E579F36CB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype\include\freetype">
-      <UniqueIdentifier>{E3528BEC-5702-4B33-BFFD-57C8C8AA732B}</UniqueIdentifier>
+      <UniqueIdentifier>{471F15A4-79A6-4816-B8E4-A47CAC9FD495}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype\include\freetype\config">
-      <UniqueIdentifier>{A749F943-4D8A-4C10-9ACF-EDA989662EC5}</UniqueIdentifier>
+      <UniqueIdentifier>{5DEE975B-F4C8-41BD-A3C5-0C60FE108FF0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype\include\freetype\internal">
-      <UniqueIdentifier>{63C17F5B-F41F-4E94-BD22-889AF1A01A4F}</UniqueIdentifier>
+      <UniqueIdentifier>{2E274A42-AF52-4703-8A8A-F5DDD0E840DA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\freetype\include\freetype\internal\services">
-      <UniqueIdentifier>{50734EC9-324A-4BBC-91D9-145B2A579369}</UniqueIdentifier>
+      <UniqueIdentifier>{0F89DE5E-1009-4910-800B-676D7930FF03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen">
-      <UniqueIdentifier>{FB476C7B-A0FE-4272-872F-A27AFA27B66B}</UniqueIdentifier>
+      <UniqueIdentifier>{A6E2DF28-09ED-4FFD-BACB-5E54FEF1083A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\artery-font-format">
-      <UniqueIdentifier>{503037E2-2FB8-4633-ABF6-307A0FD233DF}</UniqueIdentifier>
+      <UniqueIdentifier>{87877348-AE16-4C44-AD57-6FBCE8C7B174}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\artery-font-format\artery-font">
-      <UniqueIdentifier>{5492BB1D-AB8D-44B2-8654-78232C3B5318}</UniqueIdentifier>
+      <UniqueIdentifier>{075E9BE2-12C8-4E9C-86AA-F54878214140}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen">
-      <UniqueIdentifier>{83EEF38A-83C0-4CA4-920D-5AB0789FF41F}</UniqueIdentifier>
+      <UniqueIdentifier>{64DF1ABC-D59E-4498-8767-E535EC195A9D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen">
-      <UniqueIdentifier>{525E3CF3-A188-42AF-88B5-8C4B5172B4B8}</UniqueIdentifier>
+      <UniqueIdentifier>{0D7505FD-AB0D-44BC-B6D4-7E2B77FBB32B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen\core">
-      <UniqueIdentifier>{9F298761-9DF9-4196-9767-55E33AA92B13}</UniqueIdentifier>
+      <UniqueIdentifier>{5F3290AB-3F62-47E0-9F52-792586D4E596}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Externals\msdf-atlas-gen\msdfgen\ext">
-      <UniqueIdentifier>{B732E118-6CB5-47E6-9980-CEA256B9B6E1}</UniqueIdentifier>
+      <UniqueIdentifier>{21AF1E46-E7A9-4C93-80FE-FBFA359773C6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Math">
-      <UniqueIdentifier>{39E6B630-0867-4149-BCCC-DD39F0D5FE6D}</UniqueIdentifier>
+      <UniqueIdentifier>{19F2764F-C9B8-4284-92CE-A00E77459FD1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility">
-      <UniqueIdentifier>{C83A91F6-713A-424E-9771-5932D18809C0}</UniqueIdentifier>
+      <UniqueIdentifier>{89A6D690-5FC6-446A-BB05-3180A9F967DB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility\Template">
-      <UniqueIdentifier>{85EEB700-957F-4440-86F8-E911651ED2B3}</UniqueIdentifier>
+      <UniqueIdentifier>{A4EC67DD-AF91-48DE-B283-7BCD12121684}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\Utility\Tools">
-      <UniqueIdentifier>{07FCD798-8993-4725-B678-EA55AD3B10BF}</UniqueIdentifier>
+      <UniqueIdentifier>{BD4EE2F3-AF92-43C7-9A8B-AAD60654092C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.cpp">
-      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.cpp">
-      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp">
-      <Filter>Engine\Assets\CSV</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp">
-      <Filter>Engine\Debug\Editor\Core\CustomEditor</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Saver\CSVAssetSaver.inl">
-      <Filter>Engine\Saver</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp">
-      <Filter>Engine\Module\Render\Struct</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp">
-      <Filter>Engine\Debug\Editor\Command</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp">
-      <Filter>Engine\Debug\Editor\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp">
-      <Filter>Engine\Debug\Editor\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.cpp">
-      <Filter>Engine\Debug\Editor\Adapter\Field</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.cpp">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp">
-      <Filter>Engine\Debug\Editor\Adapter</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Application\ArgumentParser.cpp">
       <Filter>Engine\Application</Filter>
     </ClCompile>
@@ -642,8 +588,17 @@
     <ClCompile Include="Engine\Assets\Audio\AudioPlayer.cpp">
       <Filter>Engine\Assets\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.cpp">
-      <Filter>Engine\Runtime\BackgroundLoader</Filter>
+    <ClCompile Include="Engine\Assets\CSV\CSVAssetBuilder.cpp">
+      <Filter>Engine\Assets\CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Assets\IAssetBuilder.cpp">
       <Filter>Engine\Assets</Filter>
@@ -687,8 +642,14 @@
     <ClCompile Include="Engine\Debug\DebugValues\DebugValues.cpp">
       <Filter>Engine\Debug\DebugValues</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.cpp">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.cpp">
+      <Filter>Engine\Debug\Editor\Adapter\Field</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
@@ -696,10 +657,10 @@
     <ClCompile Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.cpp">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandInvoker.cpp">
+      <Filter>Engine\Debug\Editor\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.cpp">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Command\EditorCommandReparent.cpp">
@@ -720,10 +681,19 @@
     <ClCompile Include="Engine\Debug\Editor\Command\EditorValueChangeCommandHandler.cpp">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp">
+    <ClCompile Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.cpp">
+      <Filter>Engine\Debug\Editor\Core\CustomEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorDandDManager.cpp">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorGizmo.cpp">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSceneList.cpp">
@@ -731,6 +701,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Core\EditorSelectObject.cpp">
       <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.cpp">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.cpp">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\EditorMain.cpp">
       <Filter>Engine\Debug\Editor</Filter>
@@ -762,17 +738,56 @@
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Collider\RemoteSphereColliderInstance.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteSkinningMeshInstance.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteStaticMeshInstance.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Particle\RemoteEmitterInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Particle\RemoteParticlePoolView.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.cpp">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.cpp">
       <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\IEditorWindow.cpp">
+      <Filter>Engine\Debug\Editor\Window</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.cpp">
       <Filter>Engine\Debug\Editor\Window\Inspector</Filter>
@@ -780,23 +795,14 @@
     <ClCompile Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.cpp">
       <Filter>Engine\Debug\Editor\Window\Logger</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.cpp">
+      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.cpp">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.cpp">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.cpp">
-      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.cpp">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.cpp">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\IEditorWindow.cpp">
-      <Filter>Engine\Debug\Editor\Window</Filter>
+    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.cpp">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.cpp">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
@@ -809,6 +815,21 @@
     </ClCompile>
     <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.cpp">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.cpp">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.cpp">
+      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.cpp">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -900,6 +921,18 @@
     <ClCompile Include="Engine\GraphicsAPI\RenderingSystemValues.cpp">
       <Filter>Engine\GraphicsAPI</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Loader\RenderPath\PostEffectPSOLoader.cpp">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Loader\RenderPath\RenderNodeLoader.cpp">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp">
+      <Filter>Engine\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Loader\WorldInstanceLoader.cpp">
+      <Filter>Engine\Loader</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Module\DrawExecutor\LightingExecutor\DirectionalLightingExecutor.cpp">
       <Filter>Engine\Module\DrawExecutor\LightingExecutor</Filter>
     </ClCompile>
@@ -915,6 +948,12 @@
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\Rect3dDrawManager.cpp">
       <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\SkinningMeshDrawExecutor.cpp">
       <Filter>Engine\Module\DrawExecutor\Mesh</Filter>
     </ClCompile>
@@ -927,38 +966,26 @@
     <ClCompile Include="Engine\Module\DrawExecutor\Mesh\StaticMeshDrawManager.cpp">
       <Filter>Engine\Module\DrawExecutor\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Particle\ParticleBillboardDrawExecutor.cpp">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Particle\ParticleBillboardDrawManager.cpp">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Particle\ParticleMeshDrawExecutor.cpp">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\DrawExecutor\Particle\ParticleMeshDrawManager.cpp">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor\PrimitiveGeometryDrawExecutor.cpp">
       <Filter>Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.cpp">
-      <Filter>Engine\Runtime\RuntimeStorage</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\SceneScript\ISceneScript.cpp">
-      <Filter>Engine\Runtime\SceneScript</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\SceneScript\SceneScriptManager.cpp">
-      <Filter>Engine\Runtime\SceneScript</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\World\InstanceBucket.cpp">
-      <Filter>Engine\Runtime\Scene\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\World\WorldCluster.cpp">
-      <Filter>Engine\Runtime\Scene\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\World\WorldRoot.cpp">
-      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderDAG.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderNode\IRenderNode.cpp">
       <Filter>Engine\Module\Render\RenderNode</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Loader\RenderPath\PostEffectPSOLoader.cpp">
-      <Filter>Engine\Loader\RenderPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Loader\RenderPath\RenderNodeLoader.cpp">
-      <Filter>Engine\Loader\RenderPath</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderNode\PostEffectNode.cpp">
       <Filter>Engine\Module\Render\RenderNode</Filter>
@@ -971,6 +998,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.cpp">
       <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.cpp">
       <Filter>Engine\Module\Render\RenderPipeline\Debug\Line</Filter>
@@ -1002,14 +1032,11 @@
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.cpp">
       <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.cpp">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode</Filter>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.cpp">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.cpp">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode</Filter>
+    <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshPipeline.cpp">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.cpp">
       <Filter>Engine\Module\Render\RenderPipeline\Forward\Primitive</Filter>
@@ -1053,11 +1080,23 @@
     <ClCompile Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.cpp">
       <Filter>Engine\Module\Render\RenderTargetGroup</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Module\Render\Struct\CameraBuffer.cpp">
+      <Filter>Engine\Module\Render\Struct</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Module\Render\WorldRenderCollection.cpp">
       <Filter>Engine\Module\Render</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Camera\CameraInstance.cpp">
       <Filter>Engine\Module\World\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Collider\AABBCollider.cpp">
       <Filter>Engine\Module\World\Collider</Filter>
@@ -1067,12 +1106,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Collider\SphereCollider.cpp">
       <Filter>Engine\Module\World\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Collision\CollisionCallbackManager.cpp">
-      <Filter>Engine\Runtime\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Collision\CollisionManager.cpp">
-      <Filter>Engine\Runtime\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Light\DirectionalLight\DirectionalLightInstance.cpp">
       <Filter>Engine\Module\World\Light\DirectionalLight</Filter>
@@ -1089,29 +1122,83 @@
     <ClCompile Include="Engine\Module\World\Mesh\Primitive\Rect3d.cpp">
       <Filter>Engine\Module\World\Mesh\Primitive</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Module\World\Mesh\SkinningMeshInstance.cpp">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Mesh\StaticMeshInstance.cpp">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\DrawSystem\BaseParticleDrawSystem.cpp">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionDirection.cpp">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemMesh.cpp">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionRandom.cpp">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.cpp">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionShape.cpp">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleEmitterInstance.cpp">
+    <ClCompile Include="Engine\Module\World\Particle\EmitterInstance.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\Particle\Particle.cpp">
-      <Filter>Engine\Module\World\Particle\Particle</Filter>
+    <ClCompile Include="Engine\Module\World\Particle\EmitterInstanceLoader.cpp">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleInstance.cpp">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticlePool.cpp">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaterCollection.cpp">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\AlphaFadeUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\BillboardRotationUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\ColorUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\DragGravityUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\FlipbookUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\LifetimeUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\MoveUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\PoseUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\RandomRotationUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\ScaleUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\UVScrollUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\VelocityAlignUpdater.cpp">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
       <Filter>Engine\Module\World\WorldInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.cpp">
+      <Filter>Engine\Runtime\BackgroundLoader</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Clock\WorldClock.cpp">
       <Filter>Engine\Runtime\Clock</Filter>
@@ -1119,50 +1206,50 @@
     <ClCompile Include="Engine\Runtime\Clock\WorldTimer.cpp">
       <Filter>Engine\Runtime\Clock</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Runtime\Collision\CollisionCallbackManager.cpp">
+      <Filter>Engine\Runtime\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Collision\CollisionManager.cpp">
+      <Filter>Engine\Runtime\Collision</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Runtime\Input\Input.cpp">
       <Filter>Engine\Runtime\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\Scene.cpp">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.cpp">
-      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.cpp">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.cpp">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.cpp">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.cpp">
-      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.cpp">
-      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.cpp">
-      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.cpp">
-      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Runtime\Input\InputTextController.cpp">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp">
       <Filter>Engine\Runtime\Input</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Runtime\Input\InputVKeyState.cpp">
       <Filter>Engine\Runtime\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.cpp">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    <ClCompile Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.cpp">
+      <Filter>Engine\Runtime\RuntimeStorage</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\SceneScript\ISceneScript.cpp">
+      <Filter>Engine\Runtime\SceneScript</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\SceneScript\SceneScriptManager.cpp">
+      <Filter>Engine\Runtime\SceneScript</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\Scene.cpp">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\SceneManager2.cpp">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\World\InstanceBucket.cpp">
+      <Filter>Engine\Runtime\Scene\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\World\WorldCluster.cpp">
+      <Filter>Engine\Runtime\Scene\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Runtime\Scene\World\WorldRoot.cpp">
+      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClCompile>
     <ClCompile Include="Library\Externals\msdf-atlas-gen\msdf-atlas-gen\artery-font-export.cpp">
       <Filter>Library\Externals\msdf-atlas-gen\msdf-atlas-gen</Filter>
@@ -1362,197 +1449,14 @@
     <ClCompile Include="Library\Utility\Tools\RandomEngine.cpp">
       <Filter>Library\Utility\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Loader\WorldInstanceLoader.cpp">
-      <Filter>Engine\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.cpp">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.cpp">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.cpp">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.cpp">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Loader\SceneAssetListLoader.cpp">
-      <Filter>Engine\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Scene\SceneAssetCollection.cpp">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Runtime\Input\InputTextFrame.cpp">
-      <Filter>Engine\Runtime\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.cpp">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Library\Utility\Template\unorm.inl">
       <Filter>Library\Utility\Template</Filter>
     </ClCompile>
     <ClCompile Include="Library\Utility\SparseSet.inl">
       <Filter>Library\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.cpp">
-      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.h">
-      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h">
-      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\CSV\CSVAsset.h">
-      <Filter>Engine\Assets\CSV</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h">
-      <Filter>Engine\Assets\CSV</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h">
-      <Filter>Engine\Debug\Editor\Core\CustomEditor</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\Parameter.h">
-      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Saver\CSVAssetSaver.h">
-      <Filter>Engine\Saver</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h">
-      <Filter>Engine\Module\Render\Struct</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h">
-      <Filter>Engine\Debug\Editor\Command</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
-      <Filter>Engine\Debug\Editor\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\AssetRootPath.h">
-      <Filter>Engine\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\AssetTypeEnum.h">
-      <Filter>Engine\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h">
-      <Filter>Engine\Debug\Editor\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.h">
-      <Filter>Engine\Debug\Editor\Adapter\Field</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.h">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h">
-      <Filter>Engine\Debug\Editor\Adapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h">
-      <Filter>Engine\Loader\RenderPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Debug\Line</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\DeferredAdaptor.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode\ParticleBillboardPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardNode</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode\ParticleMeshPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshNode</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode\ParticleSpriteNode.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleSpriteNode</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Forward\Primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Bloom</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Grayscale</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Outline</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\WorldInstanceType.h">
-      <Filter>Engine\Module\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.h">
-      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Application\ArgumentParser.h">
       <Filter>Engine\Application</Filter>
     </ClInclude>
@@ -1595,6 +1499,12 @@
     <ClInclude Include="Engine\Assets\Animation\Skeleton\SkeletonLibrary.h">
       <Filter>Engine\Assets\Animation\Skeleton</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Assets\AssetRootPath.h">
+      <Filter>Engine\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\AssetTypeEnum.h">
+      <Filter>Engine\Assets</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Assets\Audio\AudioAsset.h">
       <Filter>Engine\Assets\Audio</Filter>
     </ClInclude>
@@ -1610,8 +1520,20 @@
     <ClInclude Include="Engine\Assets\Audio\AudioPlayer.h">
       <Filter>Engine\Assets\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.h">
-      <Filter>Engine\Runtime\BackgroundLoader</Filter>
+    <ClInclude Include="Engine\Assets\CSV\CSVAsset.h">
+      <Filter>Engine\Assets\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\CSV\CSVAssetBuilder.h">
+      <Filter>Engine\Assets\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h">
+      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\IAssetBuilder.h">
       <Filter>Engine\Assets</Filter>
@@ -1621,6 +1543,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Assets\Json\JsonSerializer.h">
       <Filter>Engine\Assets\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\Json\Serializer\UnormSerializer.h">
+      <Filter>Engine\Assets\Json\Serializer</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\PolygonMesh\PolygonMesh.h">
       <Filter>Engine\Assets\PolygonMesh</Filter>
@@ -1658,16 +1583,28 @@
     <ClInclude Include="Engine\Debug\DebugValues\DebugValues.h">
       <Filter>Engine\Debug\DebugValues</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\EditorAssetSaver.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Adapter\EditorSceneSerializer.h">
       <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\Field\EditorAssetField.h">
+      <Filter>Engine\Debug\Editor\Adapter\Field</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Adapter\Field\EditorValueField.h">
       <Filter>Engine\Debug\Editor\Adapter\Field</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.h">
+      <Filter>Engine\Debug\Editor\Adapter</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandInvoker.h">
+      <Filter>Engine\Debug\Editor\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandRegisterAsset.h">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Command\EditorCommandReparent.h">
@@ -1697,10 +1634,22 @@
     <ClInclude Include="Engine\Debug\Editor\Command\IEditorCommand.h">
       <Filter>Engine\Debug\Editor\Command</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h">
+    <ClInclude Include="Engine\Debug\Editor\Command\ValueChangeCommandHelper\SparseSetDefaultAccesser.h">
+      <Filter>Engine\Debug\Editor\Command\ValueChangeCommandHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\CustomEditor\CustomEditorManager.h">
+      <Filter>Engine\Debug\Editor\Core\CustomEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorAssetContentsCollector.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorDandDManager.h">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorGizmo.h">
+      <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneAssetCollection.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSceneList.h">
@@ -1708,6 +1657,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Core\EditorSelectObject.h">
       <Filter>Engine\Debug\Editor\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\EditorRuntimeController.h">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.h">
+      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\EditorMain.h">
       <Filter>Engine\Debug\Editor</Filter>
@@ -1730,6 +1685,9 @@
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\RemoteWorldObject.h">
       <Filter>Engine\Debug\Editor\RemoteObject</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\DebugProjectionVariantVisitor.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Camera\RemoteCamera3dInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Camera</Filter>
     </ClInclude>
@@ -1742,17 +1700,56 @@
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\IRemoteInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteSkinningMeshInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh\RemoteStaticMeshInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Particle\RemoteEmitterInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Particle\RemoteParticlePoolView.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.h">
       <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h">
+      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilder.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h">
+      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\Hierarchy\EditorHierarchy.h">
       <Filter>Engine\Debug\Editor\Window\Hierarchy</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\IEditorWindow.h">
+      <Filter>Engine\Debug\Editor\Window</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\Inspector\EditorInspector.h">
       <Filter>Engine\Debug\Editor\Window\Inspector</Filter>
@@ -1760,20 +1757,17 @@
     <ClInclude Include="Engine\Debug\Editor\Window\Logger\EditorLogWindow.h">
       <Filter>Engine\Debug\Editor\Window\Logger</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\EditorParameterWindow.h">
+      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\Parameter\Parameter.h">
+      <Filter>Engine\Debug\Editor\Window\Parameter</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\EditorRenderDAG.h">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.h">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.h">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.h">
-      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\IEditorWindow.h">
-      <Filter>Engine\Debug\Editor\Window</Filter>
+    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.h">
+      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\PostEffectImNode.h">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
@@ -1786,6 +1780,21 @@
     </ClInclude>
     <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\WorldLayerRenderImNode.h">
       <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorDebugCamera.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorSceneView.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldGridBuffer.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\SceneView\EditorWorldView.h">
+      <Filter>Engine\Debug\Editor\Window\SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Window\ScreenResult\EditorScreenResult.h">
+      <Filter>Engine\Debug\Editor\Window\ScreenResult</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Debug\ImGui\ImGuiJsonEditor\ImGuiValueEditor.h">
       <Filter>Engine\Debug\ImGui\ImGuiJsonEditor</Filter>
@@ -1913,6 +1922,21 @@
     <ClInclude Include="Engine\GraphicsAPI\RenderingSystemValues.h">
       <Filter>Engine\GraphicsAPI</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Loader\RenderPath\PostEffectPSOLoader.h">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeLoader.h">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeType.h">
+      <Filter>Engine\Loader\RenderPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\SceneAssetListLoader.h">
+      <Filter>Engine\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Loader\WorldInstanceLoader.h">
+      <Filter>Engine\Loader</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\BaseDrawExecutor.h">
       <Filter>Engine\Module\DrawExecutor</Filter>
     </ClInclude>
@@ -1928,13 +1952,16 @@
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Forward\StaticMeshDrawExecutorForward.h">
       <Filter>Engine\Module\DrawExecutor\Mesh\Forward</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Mesh\Primitive\CharRectStruct.h">
-      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\Rect3dDrawExecutor.h">
       <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\Rect3dDrawManager.h">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h">
+      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h">
       <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\SkinningMeshDrawExecutor.h">
@@ -1949,38 +1976,29 @@
     <ClInclude Include="Engine\Module\DrawExecutor\Mesh\StaticMeshDrawManager.h">
       <Filter>Engine\Module\DrawExecutor\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Particle\ParticleBillboardDrawExecutor.h">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Particle\ParticleBillboardDrawManager.h">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Particle\ParticleDrawItem.h">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Particle\ParticleMeshDrawExecutor.h">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\DrawExecutor\Particle\ParticleMeshDrawManager.h">
+      <Filter>Engine\Module\DrawExecutor\Particle</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor\PrimitiveGeometryDrawExecutor.h">
       <Filter>Engine\Module\DrawExecutor\PrimitiveGeometryDrawExecutor</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.h">
-      <Filter>Engine\Runtime\RuntimeStorage</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\SceneScript\ISceneScript.h">
-      <Filter>Engine\Runtime\SceneScript</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\SceneScript\SceneScriptManager.h">
-      <Filter>Engine\Runtime\SceneScript</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\World\InstanceBucket.h">
-      <Filter>Engine\Runtime\Scene\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\World\WorldCluster.h">
-      <Filter>Engine\Runtime\Scene\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\World\WorldRoot.h">
-      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderDAG.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderNode\IRenderNode.h">
       <Filter>Engine\Module\Render\RenderNode</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Loader\RenderPath\PostEffectPSOLoader.h">
-      <Filter>Engine\Loader\RenderPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Loader\RenderPath\RenderNodeLoader.h">
-      <Filter>Engine\Loader\RenderPath</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderNode\PostEffectNode.h">
       <Filter>Engine\Module\Render\RenderNode</Filter>
@@ -1990,6 +2008,81 @@
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderPath\RenderPath.h">
       <Filter>Engine\Module\Render\RenderPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\BaseRenderPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Line\LinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine\PrimitiveLinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Debug\PrimitiveLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\DeferredAdaptor.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\DirectionalLightingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\NonLightingPixelPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Lighting\PointLightingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\SkinningMeshDeferredPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Deferred\Mesh\StaticMeshDeferredPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Deferred\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode\FontRenderingPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\FontRenderingNode</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\SkinningMeshForwardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Mesh\StaticMeshForwardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleBillboardPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Particle\ParticleMeshPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Forward\Primitive\Rect3dPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Forward\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\IPostEffectPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Bloom\BloomPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Bloom</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration\ChromaticAberrationPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\ChromaticAberration</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur\GaussianBlurPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\GaussianBlur</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Grayscale\GrayscalePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Grayscale</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction\LuminanceExtractionPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\LuminanceExtraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4\MargeTexture4Pipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\MargeTexture4</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\Outline\OutlinePipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\Outline</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur\RadialBlurPipeline.h">
+      <Filter>Engine\Module\Render\RenderPipeline\Posteffect\RadialBlur</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\Render\RenderSubtree\LayerRenderSubtree.h">
       <Filter>Engine\Module\Render\RenderSubtree</Filter>
@@ -2009,11 +2102,26 @@
     <ClInclude Include="Engine\Module\Render\RenderTargetGroup\SwapChainRenderTargetGroup.h">
       <Filter>Engine\Module\Render\RenderTargetGroup</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Module\Render\Struct\CameraBuffer.h">
+      <Filter>Engine\Module\Render\Struct</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Module\Render\WorldRenderCollection.h">
       <Filter>Engine\Module\Render</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Camera\CameraInstance.h">
       <Filter>Engine\Module\World\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraOrthroProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraPerspectiveProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\CameraProjectionTypeEnum.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h">
+      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Collider\AABBCollider.h">
       <Filter>Engine\Module\World\Collider</Filter>
@@ -2023,15 +2131,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Collider\SphereCollider.h">
       <Filter>Engine\Module\World\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Collision\CollisionCallbackManager.h">
-      <Filter>Engine\Runtime\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Collision\CollisionFunctions.h">
-      <Filter>Engine\Runtime\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Collision\CollisionManager.h">
-      <Filter>Engine\Runtime\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Light\BaseLightInstance.h">
       <Filter>Engine\Module\World\Light</Filter>
@@ -2051,10 +2150,16 @@
     <ClInclude Include="Engine\Module\World\Mesh\IMultiMeshInstance.h">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Module\World\Mesh\Primitive\CharRectStruct.h">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\IPrimitiveInstance.h">
       <Filter>Engine\Module\World\Mesh\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Mesh\Primitive\Rect3d.h">
+      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h">
       <Filter>Engine\Module\World\Mesh\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Mesh\SkinningMeshInstance.h">
@@ -2063,32 +2168,98 @@
     <ClInclude Include="Engine\Module\World\Mesh\StaticMeshInstance.h">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\DrawSystem\BaseParticleDrawSystem.h">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionDirection.h">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\DrawSystem\ParticleBufferValue.h">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionRandom.h">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemMesh.h">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
+    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionShape.h">
+      <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\DrawSystem\ParticleDrawSystemRect.h">
-      <Filter>Engine\Module\World\Particle\DrawSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleEmitterInstance.h">
+    <ClInclude Include="Engine\Module\World\Particle\EmitterInstance.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\Particle\Particle.h">
-      <Filter>Engine\Module\World\Particle\Particle</Filter>
+    <ClInclude Include="Engine\Module\World\Particle\EmitterInstanceLoader.h">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\EmitterSettings.h">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleInstance.h">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticlePool.h">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaterCollection.h">
+      <Filter>Engine\Module\World\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\AlphaFadeUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\BillboardRotationUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ColorUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\DragGravityUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\FlipbookUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\LifetimeUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\MoveUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ParticleUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\PoseUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\RandomRotationUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ScaleUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\UVScrollUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\VelocityAlignUpdater.h">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Module\World\WorldInstanceType.h">
+      <Filter>Engine\Module\World</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstance\WorldInstance.h">
       <Filter>Engine\Module\World\WorldInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\BackgroundLoader\BackgroundLoader.h">
+      <Filter>Engine\Runtime\BackgroundLoader</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Clock\WorldClock.h">
       <Filter>Engine\Runtime\Clock</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Clock\WorldTimer.h">
       <Filter>Engine\Runtime\Clock</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Collision\CollisionCallbackManager.h">
+      <Filter>Engine\Runtime\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Collision\CollisionFunctions.h">
+      <Filter>Engine\Runtime\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Collision\CollisionManager.h">
+      <Filter>Engine\Runtime\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Input\Input.h">
       <Filter>Engine\Runtime\Input</Filter>
@@ -2099,50 +2270,47 @@
     <ClInclude Include="Engine\Runtime\Input\InputHandler.h">
       <Filter>Engine\Runtime\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputTextController.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h">
+      <Filter>Engine\Runtime\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\RuntimeStorage\RuntimeStorage.h">
+      <Filter>Engine\Runtime\RuntimeStorage</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\SceneScript\ISceneScript.h">
+      <Filter>Engine\Runtime\SceneScript</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Runtime\SceneScript\SceneScriptManager.h">
+      <Filter>Engine\Runtime\SceneScript</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Runtime\Scene\BaseSceneFactory.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Runtime\Scene\Scene.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h">
+      <Filter>Engine\Runtime\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\Runtime\Scene\SceneManager2.h">
       <Filter>Engine\Runtime\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\RenderDAG\IRenderDagImNode.h">
-      <Filter>Engine\Debug\Editor\Window\RenderDAG</Filter>
+    <ClInclude Include="Engine\Runtime\Scene\World\InstanceBucket.h">
+      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFAsset.h">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    <ClInclude Include="Engine\Runtime\Scene\World\WorldCluster.h">
+      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFBuilder.h">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
+    <ClInclude Include="Engine\Runtime\Scene\World\WorldRoot.h">
+      <Filter>Engine\Runtime\Scene\World</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Assets\FontAtlasMSDF\FontAtlasMSDFLibrary.h">
-      <Filter>Engine\Assets\FontAtlasMSDF</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas\FontAtlasBuilderManager.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\FontAtlas</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Mesh\Primitive\StringRectInstance.h">
-      <Filter>Engine\Module\World\Mesh\Primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawExecutor.h">
-      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\DrawExecutor\Mesh\Primitive\StringRectDrawManager.h">
-      <Filter>Engine\Module\DrawExecutor\Mesh\Primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\Render\RenderPipeline\Debug\Grid\GridPipeline.h">
-      <Filter>Engine\Module\Render\RenderPipeline\Debug\Grid</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Input\InputTextController.h">
-      <Filter>Engine\Runtime\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Input\InputVKeyState.h">
-      <Filter>Engine\Runtime\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Module\World\Camera\ProjectionAdapter\ICameraProjection.h">
-      <Filter>Engine\Module\World\Camera\ProjectionAdapter</Filter>
+    <ClInclude Include="Engine\Saver\CSVAssetSaver.h">
+      <Filter>Engine\Saver</Filter>
     </ClInclude>
     <ClInclude Include="Library\Externals\freetype\include\freetype\config\ftconfig.h">
       <Filter>Library\Externals\freetype\include\freetype\config</Filter>
@@ -2771,9 +2939,6 @@
     <ClInclude Include="Library\Utility\BuiltinTypes.h">
       <Filter>Library\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Command\ValueChangeCommandHelper\SparseSetDefaultAccesser.h">
-      <Filter>Engine\Debug\Editor\Command\ValueChangeCommandHelper</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Utility\Template\Array2D.h">
       <Filter>Library\Utility\Template</Filter>
     </ClInclude>
@@ -2828,50 +2993,11 @@
     <ClInclude Include="Library\Utility\Tools\SmartPointer.h">
       <Filter>Library\Utility\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeLoader.h">
-      <Filter>Engine\Debug\Editor\Adapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Adapter\RenderDAGImNodeSaver.h">
-      <Filter>Engine\Debug\Editor\Adapter</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Loader\WorldInstanceLoader.h">
-      <Filter>Engine\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemoteDirectionalLightInstance.h">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Light\RemotePointLightInstance.h">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.h">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h">
-      <Filter>Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Loader\SceneAssetListLoader.h">
-      <Filter>Engine\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Scene\SceneAssetCollection.h">
-      <Filter>Engine\Runtime\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Runtime\Input\InputTextFrame.h">
-      <Filter>Engine\Runtime\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture\TextureOptimizer.h">
-      <Filter>Engine\Debug\Editor\Window\AssetBrowser\Optimizer\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Utility\Template\unorm.h">
       <Filter>Library\Utility\Template</Filter>
     </ClInclude>
     <ClInclude Include="Library\Utility\SparseSet.h">
       <Filter>Library\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Debug\Editor\Core\Runtime\RuntimeRegisteredSceneList.h">
-      <Filter>Engine\Debug\Editor\Core\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Assets\Json\Serializer\UnormSerializer.h">
-      <Filter>Engine\Assets\Json\Serializer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2941,6 +3067,12 @@
     <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl">
       <Filter>Engine\Assets\CSV</Filter>
     </None>
+    <None Include="Engine\Module\World\Particle\ParticleUpdaters\ParticleUpdaterTable.inl">
+      <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
+    </None>
+    <None Include="Engine\Saver\CSVAssetSaver.inl">
+      <Filter>Engine\Saver</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="EditorAssets\HLSL\Grid\Grid.PS.hlsl">
@@ -2997,14 +3129,8 @@
     <FxCompile Include="Assets\HLSL\Forward\Mesh\StaticMeshForward.VS.hlsl">
       <Filter>Assets\HLSL\Forward\Mesh</Filter>
     </FxCompile>
-    <FxCompile Include="Assets\HLSL\Forward\Particle\ParticleBillboard\ParticleBillboard.PS.hlsl">
-      <Filter>Assets\HLSL\Forward\Particle\ParticleBillboard</Filter>
-    </FxCompile>
     <FxCompile Include="Assets\HLSL\Forward\Particle\ParticleBillboard\ParticleBillboard.VS.hlsl">
       <Filter>Assets\HLSL\Forward\Particle\ParticleBillboard</Filter>
-    </FxCompile>
-    <FxCompile Include="Assets\HLSL\Forward\Particle\ParticleMesh\ParticleMesh.PS.hlsl">
-      <Filter>Assets\HLSL\Forward\Particle\ParticleMesh</Filter>
     </FxCompile>
     <FxCompile Include="Assets\HLSL\Forward\Particle\ParticleMesh\ParticleMesh.VS.hlsl">
       <Filter>Assets\HLSL\Forward\Particle\ParticleMesh</Filter>

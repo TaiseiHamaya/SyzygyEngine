@@ -8,6 +8,7 @@
 namespace szg {
 
 class CameraInstance;
+class EmitterInstance;
 class StaticMeshInstance;
 class SkinningMeshInstance;
 class DirectionalLightInstance;
@@ -38,6 +39,7 @@ private:
 	std::vector<Reference<PointLightInstance>> pointLightInstance;
 	std::vector<Reference<Rect3d>> rect;
 	std::vector<Reference<StringRectInstance>> stringRect;
+	std::vector<Reference<EmitterInstance>> emitter;
 };
 
 template<typename T>
@@ -62,6 +64,9 @@ void InstanceBucket::register_instance(Reference<T> instance) {
 	}
 	else if constexpr (std::derived_from<T, StringRectInstance>) {
 		stringRect.emplace_back(instance);
+	}
+	else if constexpr (std::derived_from<T, EmitterInstance>) {
+		emitter.emplace_back(instance);
 	}
 }
 

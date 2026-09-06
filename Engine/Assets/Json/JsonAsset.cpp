@@ -8,8 +8,8 @@
 
 using namespace szg;
 
-JsonAsset::JsonAsset(const std::filesystem::path& file, std::string_view subdirectory) {
-	load(file, subdirectory);
+JsonAsset::JsonAsset(const std::filesystem::path& file) {
+	load(file, std::string_view(file.extension().string()).substr(1));
 }
 
 void JsonAsset::load(const std::filesystem::path& file, std::string_view subdirectory) {

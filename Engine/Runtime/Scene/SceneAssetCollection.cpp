@@ -1,4 +1,4 @@
-﻿#include "SceneAssetCollection.h"
+#include "SceneAssetCollection.h"
 
 #include <filesystem>
 #include <functional>
@@ -37,6 +37,8 @@ void SceneAssetCollection::RegisterLoadQueue(const AssetListType& assets) {
 		nullptr,
 		AudioLibrary::RegisterLoadQue,
 		ShaderLibrary::RegisterLoadQue,
+		nullptr,
+		nullptr,
 	};
 
 	for (u32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {

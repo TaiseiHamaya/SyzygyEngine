@@ -19,6 +19,7 @@
 #include "../../RemoteObject/WorldInstance/Light/RemotePointLightInstance.h"
 #include "../../RemoteObject/WorldInstance/Mesh/RemoteSkinningMeshInstance.h"
 #include "../../RemoteObject/WorldInstance/Mesh/RemoteStaticMeshInstance.h"
+#include "../../RemoteObject/WorldInstance/Particle/RemoteEmitterInstance.h"
 #include "../../RemoteObject/WorldInstance/Primitive/RemoteRect3dInstance.h"
 #include "../../RemoteObject/WorldInstance/RemoteWorldInstance.h"
 #include "../../RemoteObject/WorldInstance/StringRect/RemoteStringRectInstance.h"
@@ -48,7 +49,7 @@ void EditorHierarchy::load(const std::string& sceneName) {
 }
 
 void EditorHierarchy::save(const std::filesystem::path& path) const {
-	for (auto& world : scene->get_remote_worlds()) {
+	for (auto& world : scene->remote_worlds_imm()) {
 		JsonAsset worldJson{ path / "Worlds" / (world->world_name() + ".json") };
 		worldJson.get().clear();
 		worldJson.get() = world->serialize();
@@ -213,6 +214,19 @@ void EditorHierarchy::draw() {
 					);
 				}
 			}
+
+			ImGui::SeparatorText("Effect");
+			if (ImGui::MenuItem("EmitterInstance")) {
+				if (select->get_item_mut().object &&
+					select->get_item_mut().object->instance_type() != InstanceType::DebugScene) {
+					EditorCommandInvoker::Execute(
+						std::make_unique<EditorCreateObjectCommand>(
+							select->get_item_mut().object,
+							std::make_unique<RemoteEmitterInstance>()
+						)
+					);
+				}
+			}
 			ImGui::EndMenu();
 		}
 
@@ -263,7 +277,7 @@ std::string EditorHierarchy::current_scene_name() const {
 }
 
 const std::vector<std::unique_ptr<RemoteWorldObject>>& EditorHierarchy::world_list() const {
-	return scene->get_remote_worlds();
+	return scene->remote_worlds_imm();
 }
 
 Reference<const RemoteSceneObject> EditorHierarchy::scene_imm() const {

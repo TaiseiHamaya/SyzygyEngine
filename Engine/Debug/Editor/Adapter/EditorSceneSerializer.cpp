@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "EditorSceneSerializer.h"
 
@@ -13,6 +13,7 @@
 #include "../RemoteObject/WorldInstance/Light/RemotePointLightInstance.h"
 #include "../RemoteObject/WorldInstance/Mesh/RemoteSkinningMeshInstance.h"
 #include "../RemoteObject/WorldInstance/Mesh/RemoteStaticMeshInstance.h"
+#include "../RemoteObject/WorldInstance/Particle/RemoteEmitterInstance.h"
 #include "../RemoteObject/WorldInstance/Primitive/RemoteRect3dInstance.h"
 #include "../RemoteObject/WorldInstance/RemoteWorldInstance.h"
 #include "../RemoteObject/WorldInstance/StringRect/RemoteStringRectInstance.h"
@@ -21,6 +22,7 @@
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
+#include "Engine/Module/World/Particle/EmitterInstanceLoader.h"
 
 #define COLOR_RGB_SERIALIZER
 #define COLOR_RGBA_SERIALIZER
@@ -106,6 +108,10 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteObject(const n
 
 	case InstanceType::PointLightInstance:
 		return CreateRemotePointLightInstance(json);
+		break;
+
+	case InstanceType::EmitterInstance:
+		return CreateRemoteEmitterInstance(json);
 		break;
 
 	case InstanceType::DebugFolder:
@@ -389,6 +395,25 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemotePointLightInst
 	json.get_to(result->radius);
 	json.get_to(result->decay);
 	json.get_to(result->influenceLayer);
+	return result;
+}
+
+std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteEmitterInstance(const nlohmann::json& json) {
+	std::unique_ptr<RemoteEmitterInstance> result = std::make_unique<RemoteEmitterInstance>();
+	json.get_to(result->hierarchyName);
+	if (json.contains("Children") && json["Children"].is_array()) {
+		for (const nlohmann::json& instance : json["Children"]) {
+			result->add_child(CreateRemoteObject(instance));
+		}
+	}
+	json.get_to(result->transform);
+	json.get_to(result->isUseRuntime);
+
+	std::string particleFile = json.value("ParticleFile", "");
+
+	JsonAsset particleJson{ std::format("[[game]]/{}", particleFile) };
+	result->apply_settings(EmitterInstanceLoader::Load(particleJson.cget()).value_or(EmitterInstanceSettings{}));
+	result->options.particleFile.set_weak(particleFile);
 	return result;
 }
 

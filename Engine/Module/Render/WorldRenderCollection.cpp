@@ -1,6 +1,8 @@
 #include "WorldRenderCollection.h"
 
 #include "Engine/Application/Logger.h"
+#include "Engine/Module/World/Particle/EmitterInstance.h"
+#include "Engine/Module/World/Particle/ParticlePool.h"
 #include "Engine/Runtime/Scene/World/InstanceBucket.h"
 
 using namespace szg;
@@ -20,6 +22,8 @@ void WorldRenderCollection::setup(u8 numLayer_) {
 	skinningMeshDrawManager.initialize(numLayer);
 	rect3dDrawManager.initialize(numLayer);
 	stringRectDrawManager.initialize(numLayer);
+	particleBillboardDrawManager.initialize(numLayer);
+	particleMeshDrawManager.initialize(numLayer);
 
 	// ライティング関連
 	directionalLightingExecutors.resize(numLayer);
@@ -37,6 +41,9 @@ void WorldRenderCollection::remove_marked_destroy() {
 	skinningMeshDrawManager.remove_marked_destroy();
 	rect3dDrawManager.remove_marked_destroy();
 	stringRectDrawManager.remove_marked_destroy();
+	std::erase_if(particlePools, [](const Reference<ParticlePool>& pool) {
+		return !pool || pool->is_owner_destroyed();
+	});
 	std::erase_if(directionalLights, [](const Reference<DirectionalLightInstance>& instance) {
 		return instance->is_marked_destroy();
 	});
@@ -62,6 +69,16 @@ void WorldRenderCollection::collect_instantiated(Reference<InstanceBucket> insta
 	for (auto& instance : instanceBucket->stringRect) {
 		stringRectDrawManager.register_instance(instance);
 	}
+	// Emitter
+	for (auto& instance : instanceBucket->emitter) {
+		if (!instance) {
+			continue;
+		}
+		Reference<ParticlePool> pool = instance->pool_mut();
+		if (pool) {
+			particlePools.emplace_back(pool);
+		}
+	}
 
 	// Directional Light
 	for (auto& instance : instanceBucket->directionalLightInstance) {
@@ -83,6 +100,8 @@ void szg::WorldRenderCollection::reset_buffer() {
 	skinningMeshDrawManager.reset_buffer();
 	rect3dDrawManager.reset_buffer();
 	stringRectDrawManager.reset_buffer();
+	particleBillboardDrawManager.reset_buffer();
+	particleMeshDrawManager.reset_buffer();
 }
 
 void WorldRenderCollection::transfer() {
@@ -94,6 +113,12 @@ void WorldRenderCollection::transfer() {
 	rect3dDrawManager.transfer();
 	// StringRect
 	stringRectDrawManager.transfer();
+	// Particle
+	for (auto& pool : particlePools) {
+		if (pool) {
+			pool->sync_draw(particleBillboardDrawManager, particleMeshDrawManager);
+		}
+	}
 
 	for (auto& lightExecutor : directionalLightingExecutors) {
 		lightExecutor.begin();
@@ -136,4 +161,15 @@ Reference<const CameraBuffer> WorldRenderCollection::camera_buffer_at(u32 index)
 		return nullptr;
 	}
 	return cameraData.buffer;
+}
+
+Reference<const CameraInstance> szg::WorldRenderCollection::camera_instance(u32 cameraId) const {
+	if (cameraId >= cameras.size()) {
+		return nullptr;
+	}
+	auto& cameraData = cameras[cameraId];
+	if (!cameraData.instance || !cameraData.instance->is_active()) {
+		return nullptr;
+	}
+	return cameraData.instance;
 }

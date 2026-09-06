@@ -10,4 +10,5 @@ void InstanceBucket::reset() {
 	pointLightInstance.clear();
 	rect.clear();
 	stringRect.clear();
+	emitter.clear();
 }

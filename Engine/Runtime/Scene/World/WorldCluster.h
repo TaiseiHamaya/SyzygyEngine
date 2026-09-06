@@ -6,6 +6,7 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "Engine/Module/Render/WorldRenderCollection.h"
+#include "Engine/Module/World/Particle/ParticleUpdaterCollection.h"
 #include "Engine/Runtime/Collision/CollisionManager.h"
 #include "Engine/Runtime/Scene/World/InstanceBucket.h"
 #include "Engine/Runtime/Scene/World/WorldRoot.h"
@@ -50,6 +51,8 @@ public:
 
 	WorldRoot& world_root_mut();
 
+	ParticleUpdaterCollection& particle_updaters_mut();
+
 public:
 	Reference<WorldRenderCollection> render_collection();
 
@@ -60,6 +63,7 @@ private:
 	InstanceBucket instanceBucket;
 	WorldRenderCollection worldRenderCollection;
 	CollisionManager collisionManager;
+	ParticleUpdaterCollection particleUpdaters;
 };
 
 }; // szg

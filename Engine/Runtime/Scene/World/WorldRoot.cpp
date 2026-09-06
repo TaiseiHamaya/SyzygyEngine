@@ -1,4 +1,8 @@
-﻿#include "WorldRoot.h"
+#include "WorldRoot.h"
+
+#include "Engine/Module/World/Particle/EmitterInstance.h"
+#include "Engine/Module/World/Particle/ParticlePool.h"
+#include "Engine/Module/World/Particle/ParticleUpdaterCollection.h"
 
 using namespace szg;
 
@@ -8,14 +12,16 @@ WorldRoot::~WorldRoot() = default;
 void WorldRoot::initialize() {
 }
 
-void WorldRoot::setup(Reference<InstanceBucket> instanceBucket_) {
+void WorldRoot::setup(Reference<InstanceBucket> instanceBucket_, Reference<ParticleUpdaterCollection> particleUpdaters_) {
 	instanceBucket = instanceBucket_;
+	particleUpdaters = particleUpdaters_;
 }
 
 void WorldRoot::update() {
 	for (auto& [_, instance] : worldInstances) {
 		instance->update();
 	}
+	update_particle_pools();
 }
 
 void WorldRoot::update_affine() {
@@ -42,7 +48,29 @@ void WorldRoot::destroy(Reference<WorldInstance> instance) {
 
 void WorldRoot::delete_marked_destroy() {
 	for (auto& id : destroyInstanceId) {
+		particlePools.erase(id);
 		worldInstances.erase(id);
 	}
 	destroyInstanceId.clear();
+}
+
+Reference<ParticlePool> WorldRoot::create_particle_pool(Reference<EmitterInstance> owner, u32 capacity, ParticleOverflowPolicy policy) {
+	if (!owner) {
+		return nullptr;
+	}
+	std::unique_ptr<ParticlePool> pool = std::make_unique<ParticlePool>();
+	pool->setup(particleUpdaters, owner, capacity, policy);
+	Reference<ParticlePool> result = pool.get();
+	particlePools.try_emplace(owner->instance_id(), std::move(pool));
+	return result;
+}
+
+void WorldRoot::update_particle_pools() {
+	if (!particleUpdaters) {
+		return;
+	}
+	for (auto& [_, pool] : particlePools) {
+		particleUpdaters->update_pool(pool.get());
+		pool->reclaim();
+	}
 }

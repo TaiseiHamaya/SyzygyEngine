@@ -15,6 +15,7 @@ enum class AssetType {
 	Audio,
 	Shader,
 	Param,
+	Particle,
 
 	Max,
 };
@@ -32,6 +33,7 @@ constexpr std::array<string_literal, ASSET_TYPE_MAX> ASSET_TYPE_NAME = {
 	"Audio",
 	"Shader",
 	"Param",
+	"Particle",
 };
 
 }
