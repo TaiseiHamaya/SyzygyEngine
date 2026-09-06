@@ -75,7 +75,7 @@ void FontAtlasBuilder::save_mtsdf_texture(const std::filesystem::path& outputPat
 	assert(SUCCEEDED(hr));
 
 	// 保存
-	std::filesystem::path outputFilePath = outputPath.parent_path() / (ttfFilePath.stem().native() + L".dds");
+	std::filesystem::path outputFilePath = outputPath / (ttfFilePath.stem().native() + L".dds");
 	hr = DirectX::SaveToDDSFile(scratchImage.GetImages(), scratchImage.GetImageCount(), scratchImage.GetMetadata(), DirectX::DDS_FLAGS_NONE, outputFilePath.c_str());
 	assert(SUCCEEDED(hr));
 }
