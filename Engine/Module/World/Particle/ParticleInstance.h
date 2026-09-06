@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./ParticleUpdaters/ParticleUpdater.h"
+#include "Engine/Runtime/Particle/ParticleUpdaters/ParticleUpdater.h"
 
 #include <Library/Utility/Tools/ConstructorMacro.h>
 

@@ -3,8 +3,6 @@
 #include <filesystem>
 
 #include "Engine/Application/Logger.h"
-#include "Engine/Assets/IAssetBuilder.h"
-#include "Engine/Assets/Json/JsonAsset.h"
 
 #define VECTOR3_SERIALIZER
 #define VECTOR2_SERIALIZER

@@ -1,11 +1,9 @@
 #include "EmitterInstance.h"
 
-#include <Library/Utility/Tools/RandomEngine.h>
-
-#include "./Emission/EmissionDirection.h"
-#include "./Emission/EmissionRandom.h"
-#include "./Emission/EmissionShape.h"
-#include "./ParticlePool.h"
+#include "Engine/Runtime/Particle/Emission/EmissionDirection.h"
+#include "Engine/Runtime/Particle/Emission/EmissionRandom.h"
+#include "Engine/Runtime/Particle/Emission/EmissionShape.h"
+#include "Engine/Runtime/Particle/ParticlePool.h"
 
 using namespace szg;
 

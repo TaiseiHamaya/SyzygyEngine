@@ -1,14 +1,13 @@
 #include "ParticlePool.h"
 
-#include "EmitterInstance.h"
-#include "Engine/Application/Logger.h"
+#include "./ParticleUpdaterCollection.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureAsset.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Module/DrawExecutor/Particle/ParticleBillboardDrawManager.h"
 #include "Engine/Module/DrawExecutor/Particle/ParticleDrawItem.h"
 #include "Engine/Module/DrawExecutor/Particle/ParticleMeshDrawManager.h"
-#include "ParticleUpdaterCollection.h"
+#include "Engine/Module/World/Particle/EmitterInstance.h"
 
 using namespace szg;
 
