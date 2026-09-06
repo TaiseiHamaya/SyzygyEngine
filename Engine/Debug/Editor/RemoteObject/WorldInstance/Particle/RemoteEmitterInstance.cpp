@@ -10,7 +10,7 @@
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
-#include "Engine/Module/World/Particle/EmitterInstanceLoader.h"
+#include "Engine/Loader/EmitterInstanceLoader.h"
 
 using namespace szg;
 
@@ -327,7 +327,17 @@ nlohmann::json RemoteEmitterInstance::serialize() const {
 	json.update(transform);
 	json["Type"] = instance_type();
 
-	std::string particleFile = options.particleFile.value_imm().empty() ? hierarchyName.value_imm() + ".particle" : options.particleFile.value_imm();
+	std::string particleFile;
+	
+	if (!options.particleFile.value_imm().empty()) {
+		particleFile = options.particleFile.value_imm();
+	}
+	else if (!hierarchyName.value_imm().empty()) {
+		particleFile = hierarchyName.value_imm() + ".particle";
+	}
+	else {
+		particleFile = "NewEmitter.particle";
+	}
 	std::string exportFile = std::format("[[game]]/{}", particleFile);
 	json["ParticleFile"] = particleFile;
 
@@ -336,6 +346,7 @@ nlohmann::json RemoteEmitterInstance::serialize() const {
 	JsonAsset asset{ exportFile };
 	asset.get() = exported;
 	asset.save();
+	szgInformation("Saved particle file: {}", exportFile);
 
 	return json;
 }
@@ -519,6 +530,8 @@ void RemoteEmitterInstance::import_particles() {
 	}
 	apply_settings(*loaded);
 	rebuild_preview();
+
+	szgInformation("Imported particle file: {}", options.particleFile.value_imm());
 }
 
 void RemoteEmitterInstance::rebuild_preview() {

@@ -6,8 +6,8 @@
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
 #include "../WorldInstance/WorldInstance.h"
-#include "./EmitterSettings.h"
 #include "Engine/Runtime/Clock/WorldTimer.h"
+#include "Engine/Runtime/Particle/EmitterSettings.h"
 
 namespace szg {
 

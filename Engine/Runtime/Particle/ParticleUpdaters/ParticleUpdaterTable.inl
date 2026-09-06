@@ -39,7 +39,7 @@ Reference<Payload> szg::ParticleUpdaterTable<Payload>::resolve(szg::ParticleId i
 	if (!is_current(id)) {
 		return nullptr;
 	}
-	return &slots[id.index].payload;
+	return slots[id.index].payload;
 }
 
 template<typename Payload>
@@ -47,7 +47,7 @@ Reference<const Payload> szg::ParticleUpdaterTable<Payload>::resolve(szg::Partic
 	if (!is_current(id)) {
 		return nullptr;
 	}
-	return &slots[id.index].payload;
+	return slots[id.index].payload;
 }
 
 template<typename Payload>

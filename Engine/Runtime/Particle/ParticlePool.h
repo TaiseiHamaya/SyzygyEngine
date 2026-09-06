@@ -11,10 +11,10 @@
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "./ParticleInstance.h"
 #include "./ParticleUpdaters/BillboardRotationUpdater.h"
 #include "./ParticleUpdaters/ParticleUpdater.h"
 #include "Engine/GraphicsAPI/DirectX/DxResource/BufferObjects.h"
+#include "Engine/Module/World/Particle/ParticleInstance.h"
 
 namespace szg {
 
@@ -84,7 +84,7 @@ struct ParticleDrawSpec {
 	BlendMode blend{ BlendMode::Alpha };
 	std::string textureName{ "Error.png" };
 	std::string meshName{ "ErrorObject.obj" };
-	Vector2 pivot{ 0.5f, 0.5f };
+	Vector2 pivot{ CVector2::HALF };
 };
 
 /// <summary>

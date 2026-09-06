@@ -1131,67 +1131,67 @@
     <ClCompile Include="Engine\Module\World\Mesh\StaticMeshInstance.cpp">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionDirection.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\Emission\EmissionDirection.cpp">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionRandom.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\Emission\EmissionRandom.cpp">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\Emission\EmissionShape.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\Emission\EmissionShape.cpp">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Particle\EmitterInstance.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\EmitterInstanceLoader.cpp">
+    <ClCompile Include="Engine\Loader\EmitterInstanceLoader.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\Particle\ParticleInstance.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticlePool.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticlePool.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaterCollection.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaterCollection.cpp">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\AlphaFadeUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\AlphaFadeUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\BillboardRotationUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\BillboardRotationUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\ColorUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\ColorUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\DragGravityUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\DragGravityUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\FlipbookUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\FlipbookUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\LifetimeUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\LifetimeUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\MoveUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\MoveUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\PoseUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\PoseUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\RandomRotationUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\RandomRotationUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\ScaleUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\ScaleUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\UVScrollUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\UVScrollUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Module\World\Particle\ParticleUpdaters\VelocityAlignUpdater.cpp">
+    <ClCompile Include="Engine\Runtime\Particle\ParticleUpdaters\VelocityAlignUpdater.cpp">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Module\World\WorldInstance\WorldInstance.cpp">
@@ -2168,73 +2168,73 @@
     <ClInclude Include="Engine\Module\World\Mesh\StaticMeshInstance.h">
       <Filter>Engine\Module\World\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionDirection.h">
+    <ClInclude Include="Engine\Runtime\Particle\Emission\EmissionDirection.h">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionRandom.h">
+    <ClInclude Include="Engine\Runtime\Particle\Emission\EmissionRandom.h">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\Emission\EmissionShape.h">
+    <ClInclude Include="Engine\Runtime\Particle\Emission\EmissionShape.h">
       <Filter>Engine\Module\World\Particle\Emission</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Particle\EmitterInstance.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\EmitterInstanceLoader.h">
+    <ClInclude Include="Engine\Loader\EmitterInstanceLoader.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\EmitterSettings.h">
+    <ClInclude Include="Engine\Runtime\Particle\EmitterSettings.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\Particle\ParticleInstance.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticlePool.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticlePool.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaterCollection.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaterCollection.h">
       <Filter>Engine\Module\World\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\AlphaFadeUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\AlphaFadeUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\AxisBillboardRotationUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\BillboardRotationUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\BillboardRotationUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ColorUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\ColorUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\DragGravityUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\DragGravityUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\FlipbookUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\FlipbookUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\LifetimeUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\LifetimeUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\MoveUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\MoveUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ParticleUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\ParticleUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\PoseUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\PoseUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\RandomRotationUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\RandomRotationUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\ScaleUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\ScaleUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\UVScrollUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\UVScrollUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Module\World\Particle\ParticleUpdaters\VelocityAlignUpdater.h">
+    <ClInclude Include="Engine\Runtime\Particle\ParticleUpdaters\VelocityAlignUpdater.h">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Module\World\WorldInstanceType.h">
@@ -3067,7 +3067,7 @@
     <None Include="Engine\Assets\CSV\CSVAssetBuilder.inl">
       <Filter>Engine\Assets\CSV</Filter>
     </None>
-    <None Include="Engine\Module\World\Particle\ParticleUpdaters\ParticleUpdaterTable.inl">
+    <None Include="Engine\Runtime\Particle\ParticleUpdaters\ParticleUpdaterTable.inl">
       <Filter>Engine\Module\World\Particle\ParticleUpdaters</Filter>
     </None>
     <None Include="Engine\Saver\CSVAssetSaver.inl">

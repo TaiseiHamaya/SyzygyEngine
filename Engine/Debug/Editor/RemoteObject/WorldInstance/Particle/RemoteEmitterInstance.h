@@ -5,7 +5,6 @@
 #include "../IRemoteInstance.h"
 
 #include <memory>
-#include <string>
 
 #include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Vector2.h>
@@ -15,8 +14,8 @@
 #include "Engine/Debug/Editor/Adapter/Field/EditorAssetField.h"
 #include "Engine/Module/World/Mesh/Primitive/Rect3d.h"
 #include "Engine/Module/World/Particle/EmitterInstance.h"
-#include "Engine/Module/World/Particle/ParticlePool.h"
-#include "Engine/Module/World/Particle/ParticleUpdaterCollection.h"
+#include "Engine/Runtime/Particle/ParticlePool.h"
+#include "Engine/Runtime/Particle/ParticleUpdaterCollection.h"
 
 namespace szg {
 
@@ -56,13 +55,13 @@ public:
 		SZG_CLASS_DEFAULT(DrawSection)
 
 	public:
-		EditorValueField<u32> drawType{ "DrawType", 0 };
+		EditorValueField<u32> drawType{ "DrawType", static_cast<u32>(ParticleDrawType::Billboard) };
 		EditorAssetField textureName{ "Texture", AssetType::Texture, "Error.png" };
 		EditorAssetField meshName{ "Mesh", AssetType::Mesh, "ErrorObject.obj" };
-		EditorValueField<u32> blend{ "Blend", 1 };
+		EditorValueField<u32> blend{ "Blend", static_cast<u32>(BlendMode::Alpha) };
 		EditorValueField<u32> layer{ "Layer", 0 };
-		EditorValueField<Vector2> pivot{ "Pivot", Vector2{ 0.5f, 0.5f } };
-		EditorValueField<u32> overflowPolicy{ "OverflowPolicy", 0 };
+		EditorValueField<Vector2> pivot{ "Pivot", CVector2::HALF };
+		EditorValueField<u32> overflowPolicy{ "OverflowPolicy", static_cast<u32>(ParticleOverflowPolicy::Discard) };
 		EditorValueField<u32> capacity{ "Capacity", 256 };
 		EditorValueField<bool> followParent{ "FollowParent", true };
 	};
@@ -126,7 +125,7 @@ public:
 		EditorValueField<ColorRGBA> colorMax{ "ColorMax", CColorRGBA::WHITE };
 		EditorValueField<ColorRGBA> colorEndMin{ "ColorEndMin", CColorRGBA::WHITE };
 		EditorValueField<ColorRGBA> colorEndMax{ "ColorEndMax", CColorRGBA::WHITE };
-		EditorValueField<u32> easing{ "Easing", 0 };
+		EditorValueField<u32> easing{ "Easing", static_cast<u32>(ParticleEasingMode::Linear) };
 		EditorValueField<Vector3> accelerationMin{ "AccelerationMin", CVector3::ZERO };
 		EditorValueField<Vector3> accelerationMax{ "AccelerationMax", CVector3::ZERO };
 		EditorValueField<bool> useDragGravity{ "UseDragGravity", false };
@@ -143,7 +142,7 @@ public:
 		SZG_CLASS_DEFAULT(RotationSection)
 
 	public:
-		EditorValueField<u32> rotationKind{ "RotationKind", 0 };
+		EditorValueField<u32> rotationKind{ "RotationKind", static_cast<u32>(ParticleRotationKind::Billboard) };
 		EditorValueField<Vector3> constantRotation{ "ConstantRotation", CVector3::ZERO };
 		EditorValueField<r32> angleMin{ "AngleMin", 0.0f };
 		EditorValueField<r32> angleMax{ "AngleMax", 0.0f };
@@ -152,7 +151,7 @@ public:
 		EditorValueField<r32> randomAngularVelocityMin{ "RandomAngularVelocityMin", 0.0f };
 		EditorValueField<r32> randomAngularVelocityMax{ "RandomAngularVelocityMax", 0.0f };
 		EditorValueField<Vector3> lookTarget{ "LookTarget", CVector3::ZERO };
-		EditorValueField<u32> lookAtCameraId{ "LookAtCameraId", LOOKAT_INVALID_CAMERA_ID };
+		EditorValueField<u32> lookAtCameraId{ "LookAtCameraId", 0 };
 		EditorValueField<Vector3> axisBillboardAxis{ "AxisBillboardAxis", CVector3::BASIS_Y };
 		EditorValueField<r32> axisBillboardAngle{ "AxisBillboardAngle", 0.0f };
 	};

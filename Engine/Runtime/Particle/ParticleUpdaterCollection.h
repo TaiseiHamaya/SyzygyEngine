@@ -3,7 +3,7 @@
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "./ParticleInstance.h"
+#include "Engine/Module/World/Particle/ParticleInstance.h"
 
 #include "./ParticleUpdaters/AlphaFadeUpdater.h"
 #include "./ParticleUpdaters/AxisBillboardRotationUpdater.h"

@@ -1,12 +1,10 @@
 #pragma once
 
-#include <filesystem>
 #include <optional>
-#include <string>
 
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
-#include "./EmitterSettings.h"
+#include "Engine/Runtime/Particle/EmitterSettings.h"
 
 #include <json.hpp>
 

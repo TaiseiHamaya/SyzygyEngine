@@ -1,8 +1,8 @@
 #include "WorldRoot.h"
 
 #include "Engine/Module/World/Particle/EmitterInstance.h"
-#include "Engine/Module/World/Particle/ParticlePool.h"
-#include "Engine/Module/World/Particle/ParticleUpdaterCollection.h"
+#include "Engine/Runtime/Particle/ParticlePool.h"
+#include "Engine/Runtime/Particle/ParticleUpdaterCollection.h"
 
 using namespace szg;
 
