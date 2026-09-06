@@ -22,6 +22,9 @@ enum class InstanceType {
 	DirectionalLightInstance = 5000,
 	PointLightInstance,
 
+	// Particle
+	EmitterInstance = 6000,
+
 	DebugFolder = 9000, // フォルダ用
 #ifdef DEBUG_FEATURES_ENABLE
 	DebugScene,

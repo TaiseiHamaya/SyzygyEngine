@@ -97,6 +97,7 @@ std::optional<szg::EditorAssetContentsCollector::AssetEntry> szg::EditorAssetCon
 			nullptr,
 			&AudioLibrary::RegisterLoadQue,
 			&ShaderLibrary::RegisterLoadQue,
+			nullptr,
 			nullptr
 		};
 
@@ -134,6 +135,9 @@ szg::AssetType szg::EditorAssetContentsCollector::GetAssetTypeByExtension(const 
 	}
 	else if (extension == ".param") {
 		assetType = AssetType::Param;
+	}
+	else if (extension == ".particle") {
+		assetType = AssetType::Particle;
 	}
 
 	return assetType;

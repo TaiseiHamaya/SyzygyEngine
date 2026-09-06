@@ -12,7 +12,7 @@ void WorldCluster::initialize() {
 }
 
 void WorldCluster::setup(const std::filesystem::path& setupFile) {
-	worldRoot.setup(instanceBucket);
+	worldRoot.setup(instanceBucket, particleUpdaters);
 
 	// 読み込み
 	JsonAsset json{ setupFile };
@@ -28,6 +28,7 @@ void WorldCluster::setup(const std::filesystem::path& setupFile) {
 	// 描画レイヤー数の設定
 	u8 numLayer = json.cget().value<u8>("NumLayer", 0);
 	worldRenderCollection.setup(numLayer);
+	particleUpdaters.setup(worldRenderCollection);
 }
 
 void WorldCluster::begin_frame() {
@@ -86,6 +87,10 @@ eps::bitflag<WorldState>& szg::WorldCluster::state_mut() {
 
 WorldRoot& WorldCluster::world_root_mut() {
 	return worldRoot;
+}
+
+ParticleUpdaterCollection& WorldCluster::particle_updaters_mut() {
+	return particleUpdaters;
 }
 
 Reference<WorldRenderCollection> WorldCluster::render_collection() {

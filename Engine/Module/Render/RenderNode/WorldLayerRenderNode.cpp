@@ -117,6 +117,22 @@ void szg::WorldLayerRenderNode::execute_forward_pass() {
 	subtree.next_node();
 	camera->stack_projection(3);
 	data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer(data.layerData.index);
+
+	// ParticleBillboard
+	subtree.next_node();
+	depthStencilTexture->start_write();
+	data.outputRenderTargetGroup->begin_write(false, depthStencilTexture);
+	camera->stack_projection(3);
+	camera->stack_lighting(4);
+	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
+	data.layerData.worldRenderCollection->particleBillboardDrawManager.draw_layer(data.layerData.index);
+
+	// ParticleMesh
+	subtree.next_node();
+	camera->stack_projection(2);
+	camera->stack_lighting(3);
+	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(4);
+	data.layerData.worldRenderCollection->particleMeshDrawManager.draw_layer(data.layerData.index);
 }
 
 const WorldLayerRenderNode::Data& WorldLayerRenderNode::data_imm() const {

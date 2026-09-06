@@ -52,7 +52,7 @@ public:
 
 	std::string name() const;
 
-	const std::vector<std::unique_ptr<RemoteWorldObject>>& get_remote_worlds() const;
+	const std::vector<std::unique_ptr<RemoteWorldObject>>& remote_worlds_imm() const;
 
 	void set_editor(Reference<EditorRenderDAG> renderDAGEditor_);
 

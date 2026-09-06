@@ -1,6 +1,9 @@
 #include "WorldInstanceLoader.h"
 
+#include <optional>
+
 #include "Engine/Assets/AssetTypeEnum.h"
+#include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraOrthroProjection.h"
@@ -14,6 +17,8 @@
 #include "Engine/Module/World/Mesh/Primitive/StringRectInstance.h"
 #include "Engine/Module/World/Mesh/SkinningMeshInstance.h"
 #include "Engine/Module/World/Mesh/StaticMeshInstance.h"
+#include "Engine/Module/World/Particle/EmitterInstance.h"
+#include "Engine/Module/World/Particle/EmitterInstanceLoader.h"
 #include "Engine/Module/World/WorldInstance/WorldInstance.h"
 #include "Engine/Module/World/WorldInstanceType.h"
 #include "Engine/Runtime/RuntimeStorage/RuntimeStorage.h"
@@ -75,6 +80,10 @@ void WorldInstanceLoader::entry_point(const nlohmann::json& json, Reference<Worl
 
 	case InstanceType::PointLightInstance:
 		create_point_light_instance(json, parent);
+		break;
+
+	case InstanceType::EmitterInstance:
+		create_emitter_instance(json, parent);
 		break;
 
 	case InstanceType::DebugFolder:
@@ -376,11 +385,40 @@ void WorldInstanceLoader::create_point_light_instance(const nlohmann::json& json
 		}
 	}
 }
-
 void WorldInstanceLoader::calculate_folder_hierarchy(const nlohmann::json& json, Reference<WorldInstance> parent) {
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
 			entry_point(instanceJson, parent);
+		}
+	}
+}
+
+void WorldInstanceLoader::create_emitter_instance(const nlohmann::json& json, Reference<WorldInstance> parent) {
+	auto instance = worldRoot->instantiate<EmitterInstance>(parent);
+
+	instance->transform_mut() = json["Local transform"].get<Transform3D>();
+	if (json.value("Use runtime", false) && !json.value("Name", "").empty()) {
+		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
+	}
+
+	std::string particleFile = json.value("ParticleFile", "");
+	JsonAsset particleJson{ std::format("[[game]]/{}", particleFile) };
+	std::optional<EmitterInstanceSettings> loaded = EmitterInstanceLoader::Load(particleJson.cget());
+	if (loaded) {
+		instance->setup_settings(loaded.value());
+	}
+
+	const EmitterInstanceSettings& settings = instance->settings_imm();
+	Reference<ParticlePool> pool = worldRoot->create_particle_pool(instance, settings.capacity == 0 ? 1 : settings.capacity, settings.overflowPolicy);
+	instance->setup_pool(pool);
+	if (pool) {
+		pool->setup_draw_spec(settings.drawSpec);
+		pool->setup_updaters(EmitterInstance::BuildUpdaterMask(settings), settings.rotation.rotationKind);
+	}
+
+	if (json.contains("Children") && json["Children"].is_array()) {
+		for (const nlohmann::json& instanceJson : json["Children"]) {
+			entry_point(instanceJson, instance);
 		}
 	}
 }

@@ -1,29 +1,43 @@
 #include "ParticleBillboard.hlsli"
 
-struct ParticleData {
-	float4x4 world;
-	float4x4 uvMatrix;
-	float4 color;
+#include "Tools/MathTool.hlsli"
+
+static const float2 Positions[] = {
+	float2(0.0f, 0.0f),
+	float2(1.0f, 0.0f),
+	float2(0.0f, 1.0f),
+	float2(1.0f, 1.0f),
 };
 
-struct CameraInformation {
-	float4x4 viewProjection;
+static const float2 Texcoords[] = {
+	float2(0.0f, 1.0f),
+	float2(1.0f, 1.0f),
+	float2(0.0f, 0.0f),
+	float2(1.0f, 0.0f),
 };
 
-struct VertexShaderInput {
-	float2 position : POSITION0;
-	float2 texcoord : TEXCOORD0;
-};
+StructuredBuffer<ParticleTransformMatrix> gParticleMatrix : register(t0, space0);
+StructuredBuffer<ParticleRectData> gParticleRectData : register(t1, space0);
+ConstantBuffer<ParticleCameraInformation> gCameraMatrix : register(b0, space1);
 
-StructuredBuffer<ParticleData> gParticleData : register(t0);
-ConstantBuffer<CameraInformation> gCameraMatrix : register(b0);
+static const float3 Normal = float3(0.0f, 0.0f, 1.0f);
 
-VertexShaderOutput main(VertexShaderInput input, uint instanceID : SV_InstanceID) {
+VertexShaderOutput main(uint index : SV_VertexID, uint instance : SV_InstanceID) {
+	ParticleRectData data = gParticleRectData[instance];
+	float rotateCos = cos(data.angle);
+	float rotateSin = sin(data.angle);
+	float2 planar = (Positions[index] - data.pivot) * data.size;
+	planar = float2(planar.x * rotateCos - planar.y * rotateSin, planar.x * rotateSin + planar.y * rotateCos);
+	float3 position = float3(planar, 0.0f);
+
+	float3 world = transform(position, gParticleMatrix[instance].world);
+	const float3x3 worldIT = gParticleMatrix[instance].worldIT;
+
 	VertexShaderOutput output;
-	const float4x4 wvp = mul(gParticleData[instanceID].world, gCameraMatrix.viewProjection);
-	output.position = mul(float4(input.position, 0.0f, 1.0f), wvp);
-	float3 transformedUV = mul(float3(input.texcoord, 1.0f), (float3x3) gParticleData[instanceID].uvMatrix);
-	output.texcoord = transformedUV.xy / transformedUV.z;
-	output.color = gParticleData[instanceID].color;
+	output.position = mul(float4(world, 1.0f), gCameraMatrix.viewProjection);
+	output.texcoord = Texcoords[index];
+	output.normal = normalize(mul(Normal, worldIT));
+	output.world = world;
+	output.instance = instance;
 	return output;
 }

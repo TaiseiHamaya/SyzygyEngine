@@ -6,6 +6,8 @@
 #include "Engine/Module/Render/RenderPipeline/Deferred/Mesh/SkinningMeshDeferredPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Deferred/Mesh/StaticMeshDeferredPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/FontRenderingNode/FontRenderingPipeline.h"
+#include "Engine/Module/Render/RenderPipeline/Forward/Particle/ParticleBillboardPipeline.h"
+#include "Engine/Module/Render/RenderPipeline/Forward/Particle/ParticleMeshPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Primitive/Rect3dPipeline.h"
 
 using namespace szg;
@@ -53,6 +55,16 @@ void LayerRenderSubtree::setup() {
 	}
 	{
 		auto node = std::make_shared<FontRenderingPipeline>();
+		node->initialize();
+		nodes.emplace_back(node);
+	}
+	{
+		auto node = std::make_shared<ParticleBillboardPipeline>();
+		node->initialize();
+		nodes.emplace_back(node);
+	}
+	{
+		auto node = std::make_shared<ParticleMeshPipeline>();
 		node->initialize();
 		nodes.emplace_back(node);
 	}

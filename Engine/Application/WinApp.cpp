@@ -173,6 +173,9 @@ void WinApp::Initialize() {
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Font/MsdfFont.VS.hlsl");
 	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Font/MsdfFont.PS.hlsl");
 
+	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Particle/ParticleMesh/ParticleMesh.VS.hlsl");
+	ShaderLibrary::RegisterLoadQue("[[szg]]/Forward/Particle/ParticleBillboard/ParticleBillboard.VS.hlsl");
+
 #ifdef DEBUG_FEATURES_ENABLE
 	// デバッグ用アセットのロード
 	// Shader
@@ -207,6 +210,7 @@ void WinApp::Initialize() {
 
 	// Texture
 	TextureLibrary::RegisterLoadQue("[[editor]]/EngineIcon_DirectionalLight.png");
+	TextureLibrary::RegisterLoadQue("[[editor]]/EngineIcon_Emitter.png");
 #endif // _DEBUG
 
 	// 待機

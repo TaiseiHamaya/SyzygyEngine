@@ -154,7 +154,7 @@ std::string RemoteSceneObject::name() const {
 	return hierarchyName.copy();
 }
 
-const std::vector<std::unique_ptr<RemoteWorldObject>>& RemoteSceneObject::get_remote_worlds() const {
+const std::vector<std::unique_ptr<RemoteWorldObject>>& RemoteSceneObject::remote_worlds_imm() const {
 	return remoteWorlds;
 }
 

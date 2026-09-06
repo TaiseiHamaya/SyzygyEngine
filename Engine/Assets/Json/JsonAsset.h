@@ -25,7 +25,7 @@ public:
 	JsonAsset() = default;
 	~JsonAsset() = default;
 
-	JsonAsset(const std::filesystem::path& file, std::string_view subdirectory = "json");
+	JsonAsset(const std::filesystem::path& file);
 
 public:
 	void load(const std::filesystem::path& file, std::string_view subdirectory = "json");

@@ -1,7 +1,10 @@
 #pragma once
 
+#include <optional>
 #include <vector>
 
+#include <Library/Math/Quaternion.h>
+#include <Library/Math/Vector3.h>
 #include <Library/Utility/Template/Reference.h>
 #include <Library/Utility/Tools/ConstructorMacro.h>
 
@@ -12,11 +15,16 @@
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/StringRectDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/SkinningMeshDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"
+#include "Engine/Module/DrawExecutor/Particle/ParticleBillboardDrawManager.h"
+#include "Engine/Module/DrawExecutor/Particle/ParticleMeshDrawManager.h"
 #include "Engine/Module/World/Camera/CameraInstance.h"
 #include "Engine/Module/World/Light/DirectionalLight/DirectionalLightInstance.h"
 #include "Engine/Module/World/Light/PointLight/PointLightInstance.h"
 
 namespace szg {
+
+class EmitterInstance;
+class ParticlePool;
 
 class WorldLayerRenderNode;
 class InstanceBucket;
@@ -48,6 +56,13 @@ public:
 
 	Reference<const CameraBuffer> camera_buffer_at(u32 index) const;
 
+	/// <summary>
+	/// カメラインスタンスを取得する
+	/// </summary>
+	/// <param name="cameraId">カメラID</param>
+	/// <returns></returns>
+	Reference<const CameraInstance> camera_instance(u32 cameraId) const;
+
 private:
 	u8 numLayer{ 0 };
 
@@ -55,11 +70,14 @@ private:
 	SkinningMeshDrawManager skinningMeshDrawManager;
 	Rect3dDrawManager rect3dDrawManager;
 	StringRectDrawManager stringRectDrawManager;
+	ParticleBillboardDrawManager particleBillboardDrawManager;
+	ParticleMeshDrawManager particleMeshDrawManager;
 	std::vector<DirectionalLightingExecutor> directionalLightingExecutors;
 	std::vector<PointLightingExecutor> pointLightingExecutors;
 
 	std::vector<Reference<DirectionalLightInstance>> directionalLights;
 	std::vector<Reference<PointLightInstance>> pointLights;
+	std::vector<Reference<ParticlePool>> particlePools;
 
 	std::vector<CameraData> cameras;
 };
