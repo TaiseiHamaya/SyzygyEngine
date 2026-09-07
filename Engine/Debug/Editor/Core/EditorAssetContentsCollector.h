@@ -46,6 +46,7 @@ public:
 
 private:
 	void collect_assets();
+	void register_animations_from_model(const std::filesystem::path& path, const AssetEntry& baseEntry);
 
 private:
 	static inline std::mutex mutex{};

@@ -6,6 +6,10 @@
 
 #include <imgui.h>
 
+#include <assimp/Importer.hpp>
+#include <assimp/postprocess.h>
+#include <assimp/scene.h>
+
 #include "Engine/Assets/AssetRootPath.h"
 #include "Engine/Debug/Editor/Core/EditorDandDManager.h"
 
@@ -188,9 +192,30 @@ void szg::EditorAssetContentsCollector::collect_assets() {
 			// fbxとgltfはMeshだけでなくBoneとAnimationも登録する
 			if (extension == ".fbx" || extension == ".gltf") {
 				instance.assetMaps[static_cast<i32>(AssetType::Skeleton)][assetName] = entry;
-				instance.assetMaps[static_cast<i32>(AssetType::Animation)][assetName] = entry;
+				instance.register_animations_from_model(directory.path(), entry);
 			}
 		}
+	}
+}
+
+void szg::EditorAssetContentsCollector::register_animations_from_model(const std::filesystem::path& path, const AssetEntry& baseEntry) {
+	auto& instance = GetInstance();
+	Assimp::Importer importer;
+	const aiScene* scene = importer.ReadFile(path.string().c_str(),
+		aiProcess_FlipUVs |
+		aiProcess_FlipWindingOrder |
+		aiProcess_LimitBoneWeights
+	);
+	if (!scene || !scene->HasAnimations()) {
+		return;
+	}
+
+	std::string fileName = path.filename().string();
+	for (u32 i = 0; i < scene->mNumAnimations; ++i) {
+		std::string animAssetName = std::format("{}-{}", fileName, scene->mAnimations[i]->mName.C_Str());
+		AssetEntry animEntry = baseEntry;
+		animEntry.fileName = animAssetName;
+		instance.assetMaps[static_cast<i32>(AssetType::Animation)][animAssetName] = animEntry;
 	}
 }
 
