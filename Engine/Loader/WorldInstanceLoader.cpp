@@ -162,7 +162,13 @@ void WorldInstanceLoader::create_skinning_mesh_instance(const nlohmann::json& js
 		RuntimeStorage::OverwirteValue("RuntimeInstance", json["Name"], instance);
 	}
 
-	instance->reset_animated_mesh(json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], ""), json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Animation)], ""), json.value("IsLoop", false));
+	std::string meshName = json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Mesh)], "");
+	std::string animationNameFormatted = json.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Animation)], "");
+	bool isLoop = json.value("IsLoop", false);
+
+	instance->reset_animated_mesh(meshName);
+	instance->reset_animation_formatted(animationNameFormatted, isLoop);
+
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
 
