@@ -2,7 +2,7 @@
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Module/World/Particle/EmitterInstance.h"
-#include "Engine/Module/World/Particle/ParticlePool.h"
+#include "Engine/Runtime/Particle/ParticlePool.h"
 #include "Engine/Runtime/Scene/World/InstanceBucket.h"
 
 using namespace szg;
