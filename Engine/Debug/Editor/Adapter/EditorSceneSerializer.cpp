@@ -21,8 +21,8 @@
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/Json/JsonAsset.h"
+#include "Engine/Loader/EmitterInstanceLoader.h"
 #include "Engine/Module/World/Camera/ProjectionAdapter/CameraProjectionTypeEnum.h"
-#include "Engine/Module/World/Particle/EmitterInstanceLoader.h"
 
 #define COLOR_RGB_SERIALIZER
 #define COLOR_RGBA_SERIALIZER
