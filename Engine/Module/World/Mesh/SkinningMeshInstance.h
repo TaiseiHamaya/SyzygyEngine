@@ -42,7 +42,8 @@ public:
 	void update_animation();
 
 public:
-	void reset_animated_mesh(const std::string& meshName, const std::string& animationName = "", bool isLoop = false);
+	void reset_animated_mesh(const std::string& meshName);
+	void reset_animation_formatted(const std::string& formattedAnimationName = "", bool isLoop = false);
 	void reset_animation(const std::string& fileName, const std::string& animationName = "", bool isLoop = false);
 	NodeAnimationPlayer* const get_animation();
 	const std::vector<SkeletonSpaceInstance>& joints() const { return jointInstances; }

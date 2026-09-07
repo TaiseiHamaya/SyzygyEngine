@@ -19,7 +19,8 @@ SkinningMeshInstance::SkinningMeshInstance() noexcept :
 
 SkinningMeshInstance::SkinningMeshInstance(const std::string& keyID, const std::string& animationName, bool isLoop) :
 	SkinningMeshInstance() {
-	reset_animated_mesh(keyID, animationName, isLoop);
+	reset_animated_mesh(keyID);
+	reset_animation(keyID, animationName, isLoop);
 }
 
 SkinningMeshInstance::~SkinningMeshInstance() noexcept = default;
@@ -57,7 +58,7 @@ void SkinningMeshInstance::update_animation() {
 	}
 }
 
-void SkinningMeshInstance::reset_animated_mesh(const std::string& meshName_, const std::string& animationName, bool isLoop) {
+void SkinningMeshInstance::reset_animated_mesh(const std::string& meshName_) {
 	// メッシュ情報の取得
 	if (PolygonMeshLibrary::IsRegistered(meshName_)) {
 		keyID = meshName_;
@@ -68,8 +69,12 @@ void SkinningMeshInstance::reset_animated_mesh(const std::string& meshName_, con
 
 	default_material();
 	skeletonAsset = SkeletonLibrary::GetSkeleton(keyID);
-	reset_animation(keyID, animationName, isLoop);
 	create_skeleton();
+}
+
+void szg::SkinningMeshInstance::reset_animation_formatted(const std::string& formatedAnimationName, bool isLoop) {
+	nodeAnimation->reset_animation(formatedAnimationName);
+	nodeAnimation->set_loop(isLoop);
 }
 
 void SkinningMeshInstance::reset_animation(const std::string& fileName, const std::string& animationName, bool isLoop) {
