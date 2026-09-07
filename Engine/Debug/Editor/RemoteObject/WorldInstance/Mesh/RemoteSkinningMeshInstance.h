@@ -67,6 +67,7 @@ private:
 	EditorAssetField animationName{ "Animation", AssetType::Animation };
 	EditorValueField<bool> isLoop{ "IsLoop" };
 
+	EditorAssetField skeletonName{ "Skeleton", AssetType::Skeleton };
 	std::shared_ptr<const SkeletonAsset> skeleton;
 };
 

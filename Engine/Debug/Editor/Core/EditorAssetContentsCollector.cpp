@@ -110,6 +110,9 @@ std::optional<szg::EditorAssetContentsCollector::AssetEntry> szg::EditorAssetCon
 		if (loadFunc) {
 			loadFunc(assetEntry.path);
 		}
+		if (type == AssetType::Mesh && (assetEntry.extension == ".fbx" || assetEntry.extension == ".gltf")) {
+			loadFuncs[static_cast<i32>(AssetType::Skeleton)](assetEntry.path);
+		}
 		BackgroundLoader::WaitEndExecute();
 	}
 
