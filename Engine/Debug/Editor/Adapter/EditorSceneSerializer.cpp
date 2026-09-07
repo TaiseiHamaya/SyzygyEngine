@@ -200,6 +200,7 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteSkinningMeshIn
 	json.get_to(result->isUseRuntime);
 	json.get_to(result->isDraw);
 	json.get_to(result->meshName);
+	result->skeletonName.set_weak(result->meshName);
 	result->skeleton = SkeletonLibrary::GetSkeleton(result->meshName);
 	json.get_to(result->layer);
 	if (json.contains("Materials") && json["Materials"].is_array()) {

@@ -4,6 +4,7 @@
 
 #include "Engine/Application/Logger.h"
 #include "Engine/Assets/Animation/Skeleton/SkeletonAsset.h"
+#include "Engine/Assets/Animation/Skeleton/SkeletonLibrary.h"
 #include "Engine/Assets/PolygonMesh/PolygonMesh.h"
 #include "Engine/Assets/PolygonMesh/PolygonMeshLibrary.h"
 #include "Engine/Assets/Texture/TextureLibrary.h"
@@ -24,6 +25,7 @@ szg::RemoteSkinningMeshInstance::~RemoteSkinningMeshInstance() noexcept = defaul
 void RemoteSkinningMeshInstance::setup() {
 	debugVisual = std::make_unique<StaticMeshInstance>();
 	debugVisual->reset_mesh(meshName);
+	skeleton = SkeletonLibrary::GetSkeleton(meshName);
 	if (sceneView) {
 		sceneView->register_mesh(query_world(), debugVisual);
 	}
@@ -66,8 +68,15 @@ void RemoteSkinningMeshInstance::draw_inspector() {
 
 	isDraw.show_gui();
 	layer.show_gui();
-	if (meshName.show_gui(std::bind(&RemoteSkinningMeshInstance::default_material, this), std::bind(&RemoteSkinningMeshInstance::default_material, this)).any()) {
+	if (meshName.show_gui(std::bind(&RemoteSkinningMeshInstance::default_material, this), [&]() {
+		default_material();
+		skeletonName.on_deactivated();
+		skeletonName.set_weak(meshName.value_imm());
+		skeletonName.on_activated();
+		EditorValueChangeCommandHandler::GenCommandInstant<decltype(skeleton)>(skeleton, SkeletonLibrary::GetSkeleton(meshName));
+	}).any()) {
 		sceneView->create_mesh_instancing(query_world(), meshName);
+
 	}
 
 	if (ImGui::Button("ResetMaterialData")) {
@@ -204,6 +213,8 @@ void RemoteSkinningMeshInstance::on_spawn() {
 	debugVisual->set_layer(result.value_or(-1));
 
 	meshName.on_activated();
+	animationName.on_activated();
+	skeletonName.on_activated();
 	RemoteInstanceType::on_spawn();
 }
 
@@ -211,6 +222,8 @@ void RemoteSkinningMeshInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
 
 	meshName.on_deactivated();
+	animationName.on_deactivated();
+	skeletonName.on_deactivated();
 	RemoteInstanceType::on_destroy();
 }
 
