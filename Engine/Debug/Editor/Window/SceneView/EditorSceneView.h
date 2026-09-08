@@ -12,7 +12,11 @@
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/Rect3dDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/Primitive/StringRectDrawManager.h"
 #include "Engine/Module/DrawExecutor/Mesh/StaticMeshDrawManager.h"
+#include "Engine/Module/DrawExecutor/Particle/ParticleBillboardDrawManager.h"
+#include "Engine/Module/DrawExecutor/Particle/ParticleMeshDrawManager.h"
 #include "Engine/Module/Render/RenderPath/RenderPath.h"
+#include "Engine/Runtime/Particle/ParticlePool.h"
+#include "Engine/Runtime/Particle/ParticleUpdaterCollection.h"
 
 #include <Library/Math/Vector2.h>
 
@@ -54,6 +58,9 @@ public:
 	void register_mesh(Reference<const RemoteWorldObject> world, Reference<const StaticMeshInstance> instance);
 	void register_rect(Reference<const RemoteWorldObject> world, Reference<const Rect3d> rect);
 	void register_string(Reference<const RemoteWorldObject> world, Reference<const StringRectInstance> stringRect);
+	void register_particle(Reference<const RemoteWorldObject> world, Reference<ParticlePool> particle);
+	void unregister_particle(Reference<ParticlePool> particle);
+	void create_particle_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName);
 	void register_directional_light(Reference<const RemoteWorldObject> world, Reference<const DirectionalLightInstance> lightInstance);
 	void write_primitive(Reference<const RemoteWorldObject> world, const std::string& primitiveName, const Affine& affine);
 
@@ -103,8 +110,13 @@ private:
 	StaticMeshDrawManager staticMeshDrawManager;
 	Rect3dDrawManager rect3dDrawManager;
 	StringRectDrawManager stringRectDrawManager;
+	ParticleBillboardDrawManager particleBillboardDrawManager;
+	ParticleMeshDrawManager particleMeshDrawManager;
+
+	ParticleUpdaterCollection particleUpdaters;
 
 	std::vector<std::vector<Reference<const DirectionalLightInstance>>> directionalLights;
+	std::unordered_set<Reference<ParticlePool>> particlePools;
 };
 
 }; // szg

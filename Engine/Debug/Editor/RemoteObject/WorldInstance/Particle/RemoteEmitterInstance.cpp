@@ -42,7 +42,9 @@ void RemoteEmitterInstance::setup() {
 	debugVisual->material_mut().lightingType = LighingType::None;
 	debugVisual->material_mut().texture = TextureLibrary::GetTexture("EngineIcon_Emitter.png");
 
-	sceneView->register_rect(query_world(), debugVisual);
+	if (sceneView) {
+		sceneView->register_rect(query_world(), debugVisual);
+	}
 
 	rebuild_preview();
 	RemoteInstanceType::setup();
@@ -75,7 +77,9 @@ void RemoteEmitterInstance::update_preview(Reference<RemoteWorldObject> world, R
 		rebuild_preview();
 	}
 	if (previewEmitter && previewPool && isPreviewPlaying.value_imm()) {
-		previewEmitter->transform_mut() = transform.value_mut();
+		previewEmitter->transform_mut().set_scale(worldAffine.get_basis().to_scale());
+		previewEmitter->transform_mut().set_quaternion(worldAffine.get_basis().to_quaternion());
+		previewEmitter->transform_mut().set_translate(worldAffine.get_origin());
 		previewEmitter->update_affine();
 		previewEmitter->update();
 		previewUpdaters.update_pool(previewPool.get());
@@ -123,7 +127,11 @@ void RemoteEmitterInstance::inspect_draw() {
 			draw.textureName.show_gui();
 		}
 		else {
-			draw.meshName.show_gui();
+			if (draw.meshName.show_gui().any()) {
+				if (sceneView) {
+					sceneView->create_particle_mesh_instancing(query_world(), draw.meshName);
+				}
+			}
 			draw.textureName.show_gui();
 		}
 		draw_combo(draw.blend, "Blend", szg::EditorUtils::BLEND_MODE_LABELS.data(), BLEND_MODE_COUNT);
@@ -295,7 +303,9 @@ void RemoteEmitterInstance::inspect_preview() {
 		isPreviewPlaying.show_gui();
 		if (ImGui::Button("Burst")) {
 			if (previewEmitter && previewPool) {
-				previewEmitter->transform_mut() = transform.value_mut();
+				previewEmitter->transform_mut().set_scale(worldAffine.get_basis().to_scale());
+				previewEmitter->transform_mut().set_quaternion(worldAffine.get_basis().to_quaternion());
+				previewEmitter->transform_mut().set_translate(worldAffine.get_origin());
 				previewEmitter->update_affine();
 				for (u32 i = 0; i < schedule.count.value_imm(); ++i) {
 					previewUpdaters.update_pool(previewPool.get());
@@ -357,12 +367,16 @@ void RemoteEmitterInstance::on_spawn() {
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
 	debugVisual->set_layer(result.value_or(-1));
+	previewPool->set_layer(result.value_or(-1));
 	RemoteInstanceType::on_spawn();
 }
 
 void RemoteEmitterInstance::on_destroy() {
 	draw.textureName.on_deactivated();
 	draw.meshName.on_deactivated();
+
+	debugVisual->set_layer(std::numeric_limits<u32>::max());
+	previewPool->set_layer(std::numeric_limits<u32>::max());
 	RemoteInstanceType::on_destroy();
 }
 
@@ -539,12 +553,20 @@ void RemoteEmitterInstance::rebuild_preview() {
 	previewUpdaters.clear_all();
 	previewEmitter = std::make_unique<EmitterInstance>();
 	previewEmitter->setup_settings(built);
+
+	if (sceneView) {
+		sceneView->unregister_particle(previewPool);
+	}
 	previewPool = std::make_unique<ParticlePool>();
 	previewPool->setup(previewUpdaters, previewEmitter.get(), built.capacity == 0 ? 1 : built.capacity, built.overflowPolicy);
 	previewPool->setup_draw_spec(built.drawSpec);
 	previewPool->setup_updaters(EmitterInstance::BuildUpdaterMask(built), built.rotation.rotationKind);
 	previewEmitter->setup_pool(previewPool.get());
 	poolView.refresh(previewPool.get());
+
+	if (sceneView) {
+		sceneView->register_particle(query_world(), previewPool);
+	}
 }
 
 #endif // DEBUG_FEATURES_ENABLE

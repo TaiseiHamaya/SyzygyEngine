@@ -196,17 +196,13 @@ public:
 	/// <returns></returns>
 	const ParticleDrawSpec& draw_spec_imm() const { return drawSpec; }
 
+	void set_layer(u32 layer) { drawSpec.layer = layer; }
+
 	/// <summary>
 	/// 解決済みテクスチャの取得
 	/// </summary>
 	/// <returns></returns>
 	std::shared_ptr<const TextureAsset> texture_imm() const { return texture; }
-
-	/// <summary>
-	/// 解決済みメッシュの取得
-	/// </summary>
-	/// <returns></returns>
-	std::shared_ptr<const PolygonMesh> mesh_imm() const { return mesh; }
 
 	/// <summary>
 	/// 所有者が破棄予定か
@@ -249,7 +245,6 @@ private:
 	Reference<EmitterInstance> owner;
 
 	std::shared_ptr<const TextureAsset> texture;
-	std::shared_ptr<const PolygonMesh> mesh;
 };
 
 }; // szg

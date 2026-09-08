@@ -31,7 +31,7 @@ public:
 	/// <param name="blendMode">ブレンドモード</param>
 	/// <param name="maxInstance">上限数</param>
 	/// <param name="asset">メッシュ資産</param>
-	void ensure_instancing(u32 layer, const std::string& meshName_, BlendMode blendMode, u32 maxInstance, std::shared_ptr<const PolygonMesh> asset);
+	void ensure_instancing(u32 layer, const std::string& meshName_, BlendMode blendMode, u32 maxInstance);
 
 	/// <summary>
 	/// 1件の書込

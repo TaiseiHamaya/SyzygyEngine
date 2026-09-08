@@ -33,19 +33,11 @@ void ParticlePool::setup(Reference<ParticleUpdaterCollection> updaters_, Referen
 void ParticlePool::setup_draw_spec(const ParticleDrawSpec& spec_) {
 	drawSpec = spec_;
 	texture = nullptr;
-	mesh = nullptr;
 	if (TextureLibrary::IsRegistered(drawSpec.textureName)) {
 		texture = TextureLibrary::GetTexture(drawSpec.textureName);
 	}
 	if (!texture) {
 		texture = TextureLibrary::GetTexture("Error.png");
-	}
-	if (drawSpec.drawType == ParticleDrawType::Mesh) {
-		std::string meshName = drawSpec.meshName;
-		if (!PolygonMeshLibrary::IsRegistered(meshName)) {
-			meshName = "ErrorObject.obj";
-		}
-		mesh = PolygonMeshLibrary::GetPolygonMesh(meshName);
 	}
 }
 
@@ -157,7 +149,7 @@ void ParticlePool::sync_draw(ParticleBillboardDrawManager& billboardManager, Par
 		billboardManager.ensure_instancing(drawSpec.layer, drawSpec.blend, capacity);
 	}
 	else {
-		meshManager.ensure_instancing(drawSpec.layer, drawSpec.meshName, drawSpec.blend, capacity, mesh);
+		meshManager.ensure_instancing(drawSpec.layer, drawSpec.meshName, drawSpec.blend, capacity);
 	}
 	u32 textureIndex = TextureLibrary::GetTexture("Error.png")->index();
 	if (texture) {

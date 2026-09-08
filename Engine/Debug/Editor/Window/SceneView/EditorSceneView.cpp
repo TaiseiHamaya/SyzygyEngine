@@ -18,31 +18,47 @@
 #include "Engine/Module/Render/RenderPipeline/Forward/Mesh/StaticMeshForwardPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Forward/Primitive/Rect3dPipeline.h"
 #include "Engine/Module/Render/RenderTargetGroup/SwapChainRenderTargetGroup.h"
+#include <Engine/Module/Render/RenderPipeline/Forward/Particle/ParticleBillboardPipeline.h>
+#include <Engine/Module/Render/RenderPipeline/Forward/Particle/ParticleMeshPipeline.h>
 
 using namespace szg;
 
 void EditorSceneView::initialize() {
 	screenResultTexture.initialize();
 
+	std::vector<std::shared_ptr<BaseRenderPipeline>> nodes;
 	std::shared_ptr<StaticMeshForwardPipeline> staticMeshNode = std::make_shared<StaticMeshForwardPipeline>();
 	staticMeshNode->initialize();
+	nodes.emplace_back(staticMeshNode);
 
 	std::shared_ptr<Rect3dPipeline> rect3dNode = std::make_shared<Rect3dPipeline>();
 	rect3dNode->initialize(BlendMode::None);
+	nodes.emplace_back(rect3dNode);
 
 	std::shared_ptr<FontRenderingPipeline> stringRectNode = std::make_shared<FontRenderingPipeline>();
 	stringRectNode->initialize(BlendMode::None);
+	nodes.emplace_back(stringRectNode);
+
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
+		auto node = std::make_shared<ParticleBillboardPipeline>();
+		node->initialize(static_cast<BlendMode>(i));
+		nodes.emplace_back(node);
+	}
+
+	std::shared_ptr<ParticleMeshPipeline> particleMeshNode = std::make_shared<ParticleMeshPipeline>();
+	particleMeshNode->initialize(BlendMode::None);
+	nodes.emplace_back(particleMeshNode);
 
 	std::shared_ptr<PrimitiveLinePipeline> primitiveLineNode = std::make_shared<PrimitiveLinePipeline>();
 	primitiveLineNode->initialize();
+	nodes.emplace_back(primitiveLineNode);
 
 	std::shared_ptr<GridPipeline> gridPipeline = std::make_shared<GridPipeline>();
 	gridPipeline->initialize();
+	nodes.emplace_back(gridPipeline);
 
 	directionalLightingExecutor.reinitialize(3);
-	renderPath.initialize(
-		{ staticMeshNode, rect3dNode, stringRectNode, primitiveLineNode, gridPipeline }
-	);
+	renderPath.initialize(std::move(nodes));
 	directionalLights.resize(32);
 
 	axisMesh = std::make_unique<StaticMeshInstance>("CameraAxis.obj");
@@ -60,6 +76,10 @@ void EditorSceneView::update() {
 	if (selectWorldId.has_value() && worldViews.contains(selectWorldId.value())) {
 		u32 layer = worldViews[selectWorldId.value()].layer;
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
+
+		for (auto& pool : particlePools) {
+			particleUpdaters.update_pool(pool);
+		}
 
 		// Windowがフォーカスされている場合のみ更新
 		if (is_focus()) {
@@ -83,6 +103,8 @@ void EditorSceneView::update() {
 		rect3dDrawManager.reset_buffer();
 		stringRectDrawManager.reset_buffer();
 		directionalLightingExecutor.begin();
+		particleBillboardDrawManager.reset_buffer();
+		particleMeshDrawManager.reset_buffer();
 
 		// 書き込み
 		for (auto& lightInstance : directionalLights[selectWorldId.value()]) {
@@ -94,6 +116,13 @@ void EditorSceneView::update() {
 		staticMeshDrawManager.transfer();
 		rect3dDrawManager.transfer();
 		stringRectDrawManager.transfer();
+
+		for (auto pool : particlePools) {
+			if (pool->draw_spec_imm().layer != layer) {
+				continue;
+			}
+			pool->sync_draw(particleBillboardDrawManager, particleMeshDrawManager);
+		}
 	}
 }
 
@@ -145,6 +174,23 @@ void EditorSceneView::draw_scene() {
 		renderPath.next();
 		view.register_world_projection(3);
 		stringRectDrawManager.draw_layer(layer);
+		
+		// Particle Billboard
+		renderPath.next();
+		view.register_world_projection(3);
+		view.register_world_lighting(4);
+		directionalLightingExecutor.set_command(5);
+		particleBillboardDrawManager.draw_layer(layer);
+		for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
+			particleBillboardDrawManager.draw_layer_key(layer, static_cast<BlendMode>(i));
+			renderPath.next();
+		}
+
+		// Particle Mesh
+		view.register_world_projection(2);
+		view.register_world_lighting(3);
+		directionalLightingExecutor.set_command(4);
+		particleMeshDrawManager.draw_layer(layer);
 
 		// lines
 		renderPath.next();
@@ -189,6 +235,8 @@ void EditorSceneView::register_world(Reference<RemoteWorldObject> world) {
 	staticMeshDrawManager.initialize(layerSize);
 	rect3dDrawManager.initialize(layerSize);
 	stringRectDrawManager.initialize(layerSize);
+	particleBillboardDrawManager.initialize(layerSize);
+	particleMeshDrawManager.initialize(layerSize);
 
 	staticMeshDrawManager.make_instancing(tmp.layer, "CameraAxis.obj", 1024);
 	if (layerSize == 1) {
@@ -219,6 +267,20 @@ void EditorSceneView::register_string(Reference<const RemoteWorldObject> world, 
 		stringRectDrawManager.make_instancing(worldViews.at(world->get_id()).layer, stringRect->key_id(), 1024);
 	}
 	stringRectDrawManager.register_instance(stringRect);
+}
+
+void szg::EditorSceneView::register_particle(Reference<const RemoteWorldObject>, Reference<ParticlePool> particle) {
+	particlePools.emplace(particle);
+}
+
+void szg::EditorSceneView::unregister_particle(Reference<ParticlePool> particle) {
+	particlePools.erase(particle);
+}
+
+void szg::EditorSceneView::create_particle_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName) {
+	if (worldViews.contains(world->get_id())) {
+		particleMeshDrawManager.ensure_instancing(worldViews.at(world->get_id()).layer, meshName, BlendMode::None, 1024);
+	}
 }
 
 void EditorSceneView::register_directional_light(Reference<const RemoteWorldObject> world, Reference<const DirectionalLightInstance> lightInstance) {

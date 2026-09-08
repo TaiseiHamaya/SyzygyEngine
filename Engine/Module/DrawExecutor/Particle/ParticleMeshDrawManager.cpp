@@ -23,10 +23,12 @@ void ParticleMeshDrawManager::make_instancing(u32 layer, const std::string& mesh
 	layerExecutors[layer].emplace_back(executor);
 }
 
-void ParticleMeshDrawManager::ensure_instancing(u32 layer, const std::string& meshName_, BlendMode blendMode, u32 maxInstance, std::shared_ptr<const PolygonMesh> asset) {
-	if (layer >= maxLayer || !asset) {
+void ParticleMeshDrawManager::ensure_instancing(u32 layer, const std::string& meshName_, BlendMode blendMode, u32 maxInstance) {
+	if (layer >= maxLayer) {
 		return;
 	}
+	std::string resolved = PolygonMeshLibrary::IsRegistered(meshName_) ? meshName_ : "ErrorObject.obj";
+	std::shared_ptr<const PolygonMesh> asset = PolygonMeshLibrary::GetPolygonMesh(resolved);
 	std::string key = MakeKey(meshName_, blendMode);
 	auto mapKey = std::make_pair(layer, key);
 	if (!executors.contains(mapKey)) {
