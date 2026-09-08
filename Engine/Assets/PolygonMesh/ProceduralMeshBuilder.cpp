@@ -1,5 +1,8 @@
 #include "ProceduralMeshBuilder.h"
 
+#include <format>
+
+#include <Library/Utility/Tools/ConvertString.h>
 #include <Library/Utility/Tools/SmartPointer.h>
 
 #include "./PolygonMesh.h"
@@ -25,22 +28,30 @@ ProceduralMeshBuilder& ProceduralMeshBuilder::set_material(
 	return *this;
 }
 
-std::shared_ptr<PolygonMesh> ProceduralMeshBuilder::build() {
+std::shared_ptr<PolygonMesh> ProceduralMeshBuilder::build(std::string_view meshName) {
 	std::vector<PolygonMesh::MeshData> meshData;
 	meshData.reserve(submeshes_.size());
-	for (auto& sub : submeshes_) {
+	std::wstring meshNameW = ConvertString(meshName);
+	for (i32 i = 0; auto& sub : submeshes_) {
+		if (sub.indices.empty() || sub.vertices.empty()) {
+			continue;
+		}
 		PolygonMesh::MeshData md;
 		md.vertices = std::make_unique<Object3DVertexBuffer>(sub.vertices);
+		md.vertices->get_resource()->SetName(std::format(L"VertexBuffer-{}({}-{})", i, meshNameW, L"Procedural").c_str());
 		md.indexes = std::make_unique<IndexBuffer>(sub.indices);
+		md.indexes->get_resource()->SetName(std::format(L"IndexBuffer-{}({}-{})", i, meshNameW, L"Procedural").c_str());
 		md.meshName = sub.materialName;
 		md.materialName = sub.materialName;
 		meshData.emplace_back(std::move(md));
+
+		++i;
 	}
 	return eps::CreateShared<PolygonMesh>(meshData, materialData_);
 }
 
 std::shared_ptr<PolygonMesh> ProceduralMeshBuilder::build_and_register(const std::string& meshName) {
-	auto mesh = build();
+	auto mesh = build(meshName);
 	if (PolygonMeshLibrary::IsRegistered(meshName)) {
 		PolygonMeshLibrary::Replace(meshName, mesh);
 	}

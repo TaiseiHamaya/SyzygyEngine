@@ -32,7 +32,7 @@ public:
 		const Transform2D& defaultUV = Transform2D{}
 	);
 
-	std::shared_ptr<PolygonMesh> build();
+	std::shared_ptr<PolygonMesh> build(std::string_view meshName = "<Unnamed>");
 
 	std::shared_ptr<PolygonMesh> build_and_register(const std::string& meshName);
 
