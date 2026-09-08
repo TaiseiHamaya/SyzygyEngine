@@ -615,6 +615,9 @@
     <ClCompile Include="Engine\Assets\PolygonMesh\PolygonMeshLibrary.cpp">
       <Filter>Engine\Assets\PolygonMesh</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Assets\PolygonMesh\ProceduralMeshBuilder.cpp">
+      <Filter>Engine\Assets\PolygonMesh</Filter>
+    </ClCompile>
     <ClCompile Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryAsset.cpp">
       <Filter>Engine\Assets\PrimitiveGeometry</Filter>
     </ClCompile>
@@ -1554,6 +1557,9 @@
       <Filter>Engine\Assets\PolygonMesh</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\PolygonMesh\PolygonMeshLibrary.h">
+      <Filter>Engine\Assets\PolygonMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Assets\PolygonMesh\ProceduralMeshBuilder.h">
       <Filter>Engine\Assets\PolygonMesh</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryAsset.h">

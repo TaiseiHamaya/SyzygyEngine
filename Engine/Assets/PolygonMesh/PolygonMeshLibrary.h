@@ -48,6 +48,8 @@ public:
 	/// <param name="data">ロード済みデータ</param>
 	static void Transfer(const std::string& name, std::shared_ptr<PolygonMesh>& data);
 
+	static void Replace(const std::string& name, std::shared_ptr<PolygonMesh> data);
+
 private:
 	/// <summary>
 	/// メッシュが登録されているか取得(mutexなし)

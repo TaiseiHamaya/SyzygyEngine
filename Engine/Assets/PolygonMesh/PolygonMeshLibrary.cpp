@@ -56,6 +56,13 @@ void PolygonMeshLibrary::Transfer(const std::string& name, std::shared_ptr<Polyg
 	GetInstance().meshInstanceList.emplace(name, data);
 }
 
+void PolygonMeshLibrary::Replace(const std::string& name, std::shared_ptr<PolygonMesh> data) {
+	std::lock_guard<std::mutex> lock{ mutex };
+	auto& list = GetInstance().meshInstanceList;
+	list.erase(name);
+	list.emplace(name, std::move(data));
+}
+
 bool PolygonMeshLibrary::IsRegisteredNonlocking(const std::string& meshName) {
 	return GetInstance().meshInstanceList.contains(meshName);
 }

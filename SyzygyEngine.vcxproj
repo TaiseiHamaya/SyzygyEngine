@@ -208,6 +208,7 @@
     <ClCompile Include="Engine\Assets\PolygonMesh\PolygonMesh.cpp" />
     <ClCompile Include="Engine\Assets\PolygonMesh\PolygonMeshBuilder.cpp" />
     <ClCompile Include="Engine\Assets\PolygonMesh\PolygonMeshLibrary.cpp" />
+    <ClCompile Include="Engine\Assets\PolygonMesh\ProceduralMeshBuilder.cpp" />
     <ClCompile Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryAsset.cpp" />
     <ClCompile Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryLibrary.cpp" />
     <ClCompile Include="Engine\Assets\Shader\ShaderAsset.cpp" />
@@ -627,6 +628,7 @@
     <ClInclude Include="Engine\Assets\PolygonMesh\PolygonMesh.h" />
     <ClInclude Include="Engine\Assets\PolygonMesh\PolygonMeshBuilder.h" />
     <ClInclude Include="Engine\Assets\PolygonMesh\PolygonMeshLibrary.h" />
+    <ClInclude Include="Engine\Assets\PolygonMesh\ProceduralMeshBuilder.h" />
     <ClInclude Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryAsset.h" />
     <ClInclude Include="Engine\Assets\PrimitiveGeometry\PrimitiveGeometryLibrary.h" />
     <ClInclude Include="Engine\Assets\Shader\ShaderAsset.h" />
