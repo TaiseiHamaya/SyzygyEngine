@@ -164,7 +164,7 @@ void EditorMain::Setup() {
 		instance.runtimeController.setup("Unselected");
 	}
 
-	SceneAssetListLoader{}.load(sceneName).load_assets();
+	SceneAssetListLoader{}.load(sceneName, false).load_assets();
 	BackgroundLoader::WaitEndExecute();
 
 	instance.hierarchy.load(sceneName);
@@ -199,7 +199,7 @@ void EditorMain::DrawBase() {
 		// AssetCollectionのリセット
 		EditorSceneAssetCollection::Clear();
 		// アセットのロード
-		SceneAssetListLoader{}.load(instance.switchSceneName.value()).load_assets();
+		SceneAssetListLoader{}.load(instance.switchSceneName.value(), false).load_assets();
 		BackgroundLoader::WaitEndExecute();
 		// シーンのロード
 		instance.hierarchy.load(instance.switchSceneName.value());
