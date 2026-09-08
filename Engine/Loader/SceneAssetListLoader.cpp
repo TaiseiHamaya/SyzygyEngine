@@ -5,11 +5,15 @@
 
 using namespace szg;
 
-SceneAssetCollection SceneAssetListLoader::load(const std::string& sceneName) {
+SceneAssetCollection SceneAssetListLoader::load(const std::string& sceneName, bool isCustom) {
 	SceneAssetCollection::AssetListType assets{};
 	SceneAssetCollection::AssetListType lazyAssets{};
 
-	JsonAsset json{ std::format("./Game/Core/Scene/{}/Assets.json", sceneName) };
+	JsonAsset json{ 
+		isCustom ? 
+			std::format("./Game/Core/Scene/{}/CustomAssets.json", sceneName) :
+			std::format("./Game/Core/Scene/{}/Assets.json", sceneName)
+	};
 
 	if (json.cget().is_null()) {
 		return {};

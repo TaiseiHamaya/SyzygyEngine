@@ -7,15 +7,19 @@
 using namespace szg;
 
 void Scene::load_assets() {
-	assetCollection = SceneAssetListLoader{}.load(sceneName);
-	assetCollection.load_assets();
+	for (i32 i = 0; i < 2; ++i) {
+		assetCollection[i] = SceneAssetListLoader{}.load(sceneName, i == 1);
+		assetCollection[i].load_assets();
+	}
 }
 
 void Scene::custom_load_asset() {
 }
 
 void Scene::initialize() {
-	assetCollection.load_lazy_assets();
+	for (auto& assets : assetCollection) {
+		assets.load_lazy_assets();
+	}
 }
 
 void Scene::setup() {

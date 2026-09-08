@@ -23,9 +23,9 @@ public:
 	SceneAssetCollection() = default;
 	~SceneAssetCollection() = default;
 
-	SZG_CLASS_MOVE_ONLY(SceneAssetCollection)
+	SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
 
-		SceneAssetCollection(const AssetListType& assets, const AssetListType& lazyLoadAssets);
+	SZG_CLASS_MOVE_ONLY(SceneAssetCollection)
 
 public:
 	/// <summary>

@@ -37,6 +37,8 @@ private:
 
 	void save_to_json(const std::filesystem::path& filePath);
 
+	void try_generate_custom_asset_json(const std::filesystem::path& filePath);
+
 private:
 	Reference<const EditorRenderDAG> dagEditor;
 

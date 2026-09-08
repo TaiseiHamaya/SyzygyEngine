@@ -16,7 +16,7 @@ public:
 	SZG_CLASS_MOVE_ONLY(SceneAssetListLoader)
 
 public:
-	SceneAssetCollection load(const std::string& sceneName);
+	SceneAssetCollection load(const std::string& sceneName, bool isCustom);
 
 private:
 	void load_asset_list(

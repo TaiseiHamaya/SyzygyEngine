@@ -65,7 +65,7 @@ protected:
 private:
 	std::vector<std::unique_ptr<WorldCluster>> worlds;
 	RenderDAG renderDAG;
-	SceneAssetCollection assetCollection;
+	std::array<SceneAssetCollection, 2> assetCollection;
 };
 
 }; // szg

@@ -23,6 +23,8 @@ void EditorAssetSaver::save(const std::filesystem::path& filePath) {
 	collect_shaders();
 
 	save_to_json(filePath);
+
+	try_generate_custom_asset_json(filePath);
 }
 
 void szg::EditorAssetSaver::collect_assets() {
@@ -105,6 +107,26 @@ void EditorAssetSaver::save_to_json(const std::filesystem::path& filePath) {
 	}
 
 	json.get().clear();
+	json.get() = assets;
+
+	json.save();
+}
+
+void szg::EditorAssetSaver::try_generate_custom_asset_json(const std::filesystem::path& filePath) {
+	std::filesystem::path customAssetJsonPath = filePath / "CustomAssets.json";
+
+	if (std::filesystem::exists(customAssetJsonPath)) {
+		return;
+	}
+
+	JsonAsset json{ customAssetJsonPath };
+
+	nlohmann::json assets = nlohmann::json::object();
+	for (u32 i = 0; i < SceneAssetCollection::COLLECTION_ASSET_TYPE_MAX; ++i) {
+		nlohmann::json assetArray = nlohmann::json::array();
+		assets[ASSET_TYPE_NAME[i + 1]] = assetArray;
+	}
+
 	json.get() = assets;
 
 	json.save();
