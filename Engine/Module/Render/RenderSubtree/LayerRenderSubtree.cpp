@@ -1,4 +1,4 @@
-﻿#include "LayerRenderSubtree.h"
+#include "LayerRenderSubtree.h"
 
 #include "Engine/Module/Render/RenderPipeline/Deferred/Lighting/DirectionalLightingPipeline.h"
 #include "Engine/Module/Render/RenderPipeline/Deferred/Lighting/NonLightingPixelPipeline.h"
@@ -48,19 +48,19 @@ void LayerRenderSubtree::setup() {
 		}
 	}
 	// Primitiveパス
-	{
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
 		auto node = std::make_shared<Rect3dPipeline>();
-		node->initialize();
+		node->initialize(static_cast<BlendMode>(i));
 		nodes.emplace_back(node);
 	}
-	{
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
 		auto node = std::make_shared<FontRenderingPipeline>();
-		node->initialize();
+		node->initialize(static_cast<BlendMode>(i));
 		nodes.emplace_back(node);
 	}
-	{
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
 		auto node = std::make_shared<ParticleBillboardPipeline>();
-		node->initialize();
+		node->initialize(static_cast<BlendMode>(i));
 		nodes.emplace_back(node);
 	}
 	{

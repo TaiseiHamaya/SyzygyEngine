@@ -3,6 +3,8 @@
 #ifdef DEBUG_FEATURES_ENABLE
 
 #include "Engine/Debug/Editor/Command/EditorCommandScope.h"
+#include "Engine/Debug/Editor/Utils/EditorBlendMode.h"
+#include "Engine/Debug/Editor/Utils/RadioButton.h"
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
@@ -34,7 +36,7 @@ void RemoteRect3dInstance::update_preview(Reference<RemoteWorldObject> world, Re
 	debugVisual->isDraw = isDraw;
 	debugVisual->keyID = BlendMode::None;
 
-	PrimitiveMaterial& dest = debugVisual->get_material();
+	PrimitiveMaterial& dest = debugVisual->material_mut();
 	dest.texture = TextureLibrary::GetTexture(material.texture);
 	dest.color = material.color;
 	dest.uvTransform = material.uvTransform;
@@ -59,6 +61,12 @@ void RemoteRect3dInstance::draw_inspector() {
 
 	ImGui::Separator();
 
+	std::optional<u32> selectedBlendMode =
+		szg::EditorUtils::DrawRadioButton(blendMode.value_imm(), EditorUtils::BLEND_MODE_LABELS, "BlendMode");
+	if (selectedBlendMode.has_value()) {
+		blendMode.set(selectedBlendMode.value());
+	}
+
 	size.show_gui();
 	pivot.show_gui();
 	isFlipY.show_gui();
@@ -73,19 +81,19 @@ void RemoteRect3dInstance::draw_inspector() {
 	material.uvTransform.show_gui();
 	{
 		std::optional<LighingType> temp;
-		if (ImGui::RadioButton("None", material.lightingType == LighingType::None)) {
+		if (ImGui::RadioButton("None##LighingType", material.lightingType == LighingType::None)) {
 			if (material.lightingType != LighingType::None) {
 				temp = LighingType::None;
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::RadioButton("Lambert", material.lightingType == LighingType::Lambert)) {
+		if (ImGui::RadioButton("Lambert##LighingType", material.lightingType == LighingType::Lambert)) {
 			if (material.lightingType != LighingType::Lambert) {
 				temp = LighingType::Lambert;
 			}
 		}
 		ImGui::SameLine();
-		if (ImGui::RadioButton("Half lambert", material.lightingType == LighingType::HalfLambert)) {
+		if (ImGui::RadioButton("Half lambert##LighingType", material.lightingType == LighingType::HalfLambert)) {
 			if (material.lightingType != LighingType::HalfLambert) {
 				temp = LighingType::HalfLambert;
 			}
@@ -113,6 +121,8 @@ nlohmann::json RemoteRect3dInstance::serialize() const {
 	result.update(size);
 	result.update(pivot);
 	result.update(isFlipY);
+
+	result.update(blendMode);
 
 	nlohmann::json materialJson;
 	materialJson.update(material.texture);

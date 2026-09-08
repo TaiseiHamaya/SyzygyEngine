@@ -214,16 +214,17 @@ void WorldInstanceLoader::create_rect3d_instance(const nlohmann::json& json, Ref
 		json.value("Size", CVector2::BASIS), json.value("Pivot", CVector2::ZERO)
 	);
 	instance->set_flip_y(json.value("IsFlipY", false));
+	instance->set_blend_mode(json.value("BlendMode", BlendMode::None));
 
 	instance->set_draw(json.value("IsDraw", true));
 	instance->set_layer(json.value("Layer", 0u));
 
 	nlohmann::json materialJson = json.value("Material", nlohmann::json::object());
-	instance->get_material().texture = TextureLibrary::GetTexture(materialJson.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)], ""));
-	instance->get_material().color = materialJson.value("Color", CColorRGBA::WHITE);
-	instance->get_material().uvTransform = materialJson.value("UV Transform", Transform2D{});
-	instance->get_material().lightingType = materialJson.value("LightingType", LighingType::None);
-	instance->get_material().shininess = materialJson.value("Shininess", 50.0f);
+	instance->material_mut().texture = TextureLibrary::GetTexture(materialJson.value(ASSET_TYPE_NAME[static_cast<i32>(AssetType::Texture)], ""));
+	instance->material_mut().color = materialJson.value("Color", CColorRGBA::WHITE);
+	instance->material_mut().uvTransform = materialJson.value("UV Transform", Transform2D{});
+	instance->material_mut().lightingType = materialJson.value("LightingType", LighingType::None);
+	instance->material_mut().shininess = materialJson.value("Shininess", 50.0f);
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {
@@ -245,10 +246,12 @@ void WorldInstanceLoader::create_string_rect_instance(const nlohmann::json& json
 		json.value("Pivot", CVector2::ZERO)
 	);
 
+	instance->set_blend_mode(json.value("BlendMode", BlendMode::None));
+
 	instance->reset_string(json.value("Text", ""));
 	instance->set_layer(json.value("Layer", 0u));
 	instance->set_draw(json.value("IsDraw", true));
-	instance->get_material().color = json.value("Color", CColorRGBA::WHITE);
+	instance->material_mut().color = json.value("Color", CColorRGBA::WHITE);
 
 	if (json.contains("Children") && json["Children"].is_array()) {
 		for (const nlohmann::json& instanceJson : json["Children"]) {

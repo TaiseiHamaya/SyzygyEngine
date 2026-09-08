@@ -4,8 +4,6 @@
 
 #include "../IRemoteInstance.h"
 
-#include <string>
-
 #include <Library/Math/ColorRGBA.h>
 #include <Library/Math/Transform2D.h>
 
@@ -53,6 +51,7 @@ private:
 private:
 	EditorValueField<bool> isDraw{ "IsDraw", true };
 	EditorValueField<u32> layer{ "Layer", 0 };
+	EditorValueField<u32> blendMode{ "BlendMode", 0 };
 
 	EditorValueField<Vector2> size{ "Size", CVector2::ONE };
 	EditorValueField<Vector2> pivot{ "Pivot", CVector2::ZERO };

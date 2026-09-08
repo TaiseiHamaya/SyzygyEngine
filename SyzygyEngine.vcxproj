@@ -684,6 +684,8 @@
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\Primitive\RemoteRect3dInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\RemoteWorldInstance.h" />
     <ClInclude Include="Engine\Debug\Editor\RemoteObject\WorldInstance\StringRect\RemoteStringRectInstance.h" />
+    <ClInclude Include="Engine\Debug\Editor\Utils\EditorBlendMode.h" />
+    <ClInclude Include="Engine\Debug\Editor\Utils\RadioButton.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetBrowser.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetImporter.h" />
     <ClInclude Include="Engine\Debug\Editor\Window\AssetBrowser\EditorAssetOptimizer.h" />

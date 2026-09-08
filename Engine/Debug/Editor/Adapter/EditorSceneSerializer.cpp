@@ -242,6 +242,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteRedct3dInstanc
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
 
+	json.get_to(result->blendMode);
+
 	json.get_to(result->isDraw);
 	json.get_to(result->layer);
 
@@ -271,6 +273,8 @@ std::unique_ptr<IRemoteObject> EditorSceneSerializer::CreateRemoteStringRectInst
 
 	json.get_to(result->transform);
 	json.get_to(result->isUseRuntime);
+
+	json.get_to(result->blendMode);
 
 	json.get_to(result->isDraw);
 	json.get_to(result->layer);

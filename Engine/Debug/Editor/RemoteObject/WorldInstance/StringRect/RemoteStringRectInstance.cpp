@@ -1,7 +1,9 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteStringRectInstance.h"
 
+#include "Engine/Debug/Editor/Utils/EditorBlendMode.h"
+#include "Engine/Debug/Editor/Utils/RadioButton.h"
 #include "Engine/Debug/Editor/Window/SceneView/EditorSceneView.h"
 
 #define COLOR_RGBA_SERIALIZER
@@ -31,7 +33,7 @@ void RemoteStringRectInstance::update_preview(Reference<RemoteWorldObject> world
 	debugVisual->keyID = BlendMode::None;
 
 	debugVisual->reset_string(text.value_imm());
-	debugVisual->get_material().color = color;
+	debugVisual->material_mut().color = color;
 	if (isChangedValue) {
 		debugVisual->data.pivot = pivot;
 		debugVisual->data.fontSize = fontSize;
@@ -56,6 +58,12 @@ void RemoteStringRectInstance::draw_inspector() {
 
 	ImGui::Separator();
 
+	std::optional<u32> selectedBlendMode =
+		szg::EditorUtils::DrawRadioButton(blendMode.value_imm(), EditorUtils::BLEND_MODE_LABELS, "BlendMode");
+	if (selectedBlendMode.has_value()) {
+		blendMode.set(selectedBlendMode.value());
+	}
+
 	isChangedValue = false;
 
 	isChangedValue |= font.show_gui().any();
@@ -76,6 +84,8 @@ nlohmann::json RemoteStringRectInstance::serialize() const {
 
 	result.update(isDraw);
 	result.update(layer);
+
+	result.update(blendMode);
 
 	result.update(fontSize);
 	result.update(pivot);

@@ -26,6 +26,9 @@ public:
 	SZG_CLASS_MOVE_ONLY(BaseDrawManager)
 
 public:
+	using LayerKey = std::pair<u32, KeyType>;
+
+public:
 	void initialize(u32 numLayer);
 
 	virtual void make_instancing(u32 layer, const KeyType& meshName, u32 maxInstance) = 0;
@@ -38,11 +41,12 @@ public:
 	void transfer();
 
 	void draw_layer(u32 layer) const;
+	void draw_layer_key(u32 layer, const KeyType& key) const;
 
 protected:
 	u32 maxLayer;
 	std::unordered_set<Reference<const InstanceType>> instances;
-	std::unordered_map<std::pair<u32, KeyType>, Executor> executors;
+	std::unordered_map<LayerKey, Executor> executors;
 	std::vector<std::vector<Reference<Executor>>> layerExecutors;
 };
 
@@ -112,6 +116,18 @@ inline void BaseDrawManager<Executor, KeyType, InstanceType>::draw_layer(u32 lay
 	for (Reference<const Executor> executor : layerExecutors[layer]) {
 		executor->draw_command();
 	}
+}
+
+template<class Executor, typename KeyType, typename InstanceType>
+	requires ConceptExecutor<Executor, InstanceType>
+inline void BaseDrawManager<Executor, KeyType, InstanceType>::draw_layer_key(u32 layer, const KeyType& key) const {
+	LayerKey layerKey = std::make_pair(layer, key);
+	if (!executors.contains(layerKey)) {
+		// executorにkeyが存在しない
+		return;
+	}
+
+	executors.at(layerKey).draw_command();
 }
 
 }; // szg
