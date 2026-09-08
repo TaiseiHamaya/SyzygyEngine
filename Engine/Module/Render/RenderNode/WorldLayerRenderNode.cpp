@@ -111,28 +111,36 @@ void szg::WorldLayerRenderNode::execute_forward_pass() {
 	camera->stack_projection(3);
 	camera->stack_lighting(4);
 	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
-	data.layerData.worldRenderCollection->rect3dDrawManager.draw_layer(data.layerData.index);
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
+		data.layerData.worldRenderCollection->rect3dDrawManager.draw_layer_key(data.layerData.index, static_cast<BlendMode>(i));
+		subtree.next_node();
+	}
 
 	// StringRect
-	subtree.next_node();
 	camera->stack_projection(3);
-	data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer(data.layerData.index);
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
+		data.layerData.worldRenderCollection->stringRectDrawManager.draw_layer_key(data.layerData.index, static_cast<BlendMode>(i));
+		subtree.next_node();
+	}
 
 	// ParticleBillboard
-	subtree.next_node();
 	depthStencilTexture->start_write();
 	data.outputRenderTargetGroup->begin_write(false, depthStencilTexture);
 	camera->stack_projection(3);
 	camera->stack_lighting(4);
 	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(5);
-	data.layerData.worldRenderCollection->particleBillboardDrawManager.draw_layer(data.layerData.index);
+	for (u32 i = 0; i < BLEND_MODE_COUNT; ++i) {
+		data.layerData.worldRenderCollection->particleBillboardDrawManager.draw_layer_key(data.layerData.index, static_cast<BlendMode>(i));
+		subtree.next_node();
+	}
 
 	// ParticleMesh
-	subtree.next_node();
 	camera->stack_projection(2);
 	camera->stack_lighting(3);
 	data.layerData.worldRenderCollection->directionalLightingExecutors[data.layerData.index].set_command(4);
 	data.layerData.worldRenderCollection->particleMeshDrawManager.draw_layer(data.layerData.index);
+	
+	subtree.next_node();
 }
 
 const WorldLayerRenderNode::Data& WorldLayerRenderNode::data_imm() const {

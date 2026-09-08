@@ -29,10 +29,12 @@ public:
 	SZG_CLASS_MOVE_ONLY(IPrimitiveInstance)
 
 public:
-	PrimitiveMaterial& get_material() { return material; }
-	const PrimitiveMaterial& get_material() const { return material; }
-	PrimitiveData& get_data() { return data; }
-	const PrimitiveData& get_data() const { return data; }
+	PrimitiveMaterial& material_mut() { return material; }
+	const PrimitiveMaterial& material_imm() const { return material; }
+	PrimitiveData& data_mut() { return data; }
+	const PrimitiveData& data_imm() const { return data; }
+
+	void set_blend_mode(BlendMode mode) { keyID = mode; }
 
 protected:
 	PrimitiveData data;

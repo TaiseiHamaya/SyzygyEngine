@@ -2999,6 +2999,8 @@
     <ClInclude Include="Library\Utility\SparseSet.h">
       <Filter>Library\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debug\Editor\Utils\RadioButton.h" />
+    <ClInclude Include="Engine\Debug\Editor\Utils\EditorBlendMode.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="EditorAssets\HLSL\Grid\Grid.hlsli">

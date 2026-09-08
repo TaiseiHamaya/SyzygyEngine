@@ -1,4 +1,4 @@
-﻿#ifdef DEBUG_FEATURES_ENABLE
+#ifdef DEBUG_FEATURES_ENABLE
 
 #include "RemoteDirectionalLightInstance.h"
 
@@ -12,8 +12,8 @@ using namespace szg;
 void RemoteDirectionalLightInstance::setup() {
 	debugVisual = std::make_unique<Rect3d>();
 	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
-	debugVisual->get_material().lightingType = LighingType::None;
-	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
+	debugVisual->material_mut().lightingType = LighingType::None;
+	debugVisual->material_mut().texture = TextureLibrary::GetTexture("EngineIcon_DirectionalLight.png");
 
 	instance = std::make_unique<DirectionalLightInstance>();
 

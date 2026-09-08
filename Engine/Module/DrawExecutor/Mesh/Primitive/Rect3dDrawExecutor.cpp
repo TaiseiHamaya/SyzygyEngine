@@ -1,4 +1,4 @@
-﻿#include "Rect3dDrawExecutor.h"
+#include "Rect3dDrawExecutor.h"
 
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryAsset.h"
 #include "Engine/Assets/PrimitiveGeometry/PrimitiveGeometryLibrary.h"
@@ -57,8 +57,8 @@ void Rect3dDrawExecutor::write_to_buffer(Reference<const Rect3d> instance) {
 		.world = transformAffine,
 		.itWorld = transformAffine.inverse().get_basis().transposed()
 	};
-	rectData[next] = instance->get_data();
-	const PrimitiveMaterial& source = instance->get_material();
+	rectData[next] = instance->data_imm();
+	const PrimitiveMaterial& source = instance->material_imm();
 	material[next] = {
 		source.color,
 		source.lightingType,

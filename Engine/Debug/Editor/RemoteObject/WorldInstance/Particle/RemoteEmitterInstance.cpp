@@ -6,6 +6,7 @@
 
 #include <imgui.h>
 
+#include "Engine/Debug/Editor/Utils/EditorBlendMode.h"
 #include "Engine/Assets/IAssetBuilder.h"
 #include "Engine/Assets/Json/JsonAsset.h"
 #include "Engine/Debug/Editor/Command/EditorValueChangeCommandHandler.h"
@@ -17,7 +18,6 @@ using namespace szg;
 namespace {
 
 string_literal DRAW_TYPE_ITEMS[] = { "Billboard", "Mesh" };
-string_literal BLEND_ITEMS[] = { "None", "Alpha", "Add", "Subtract", "Multily", "Screen" };
 string_literal OVERFLOW_ITEMS[] = { "Discard", "ReuseOldest" };
 string_literal SHAPE_ITEMS[] = { "Point", "Sphere", "Cone", "Box" };
 string_literal DIRECTION_ITEMS[] = { "Constant", "EmissionShape", "AngleRange" };
@@ -39,8 +39,8 @@ void RemoteEmitterInstance::draw_combo(EditorValueField<u32>& field, string_lite
 void RemoteEmitterInstance::setup() {
 	debugVisual = std::make_unique<Rect3d>();
 	debugVisual->initialize(CVector2::HALF, CVector2::HALF);
-	debugVisual->get_material().lightingType = LighingType::None;
-	debugVisual->get_material().texture = TextureLibrary::GetTexture("EngineIcon_Emitter.png");
+	debugVisual->material_mut().lightingType = LighingType::None;
+	debugVisual->material_mut().texture = TextureLibrary::GetTexture("EngineIcon_Emitter.png");
 
 	sceneView->register_rect(query_world(), debugVisual);
 
@@ -126,7 +126,7 @@ void RemoteEmitterInstance::inspect_draw() {
 			draw.meshName.show_gui();
 			draw.textureName.show_gui();
 		}
-		draw_combo(draw.blend, "Blend", BLEND_ITEMS, 6);
+		draw_combo(draw.blend, "Blend", szg::EditorUtils::BLEND_MODE_LABELS.data(), BLEND_MODE_COUNT);
 		draw.layer.show_gui();
 		draw.pivot.show_gui();
 		draw_combo(draw.overflowPolicy, "OverflowPolicy", OVERFLOW_ITEMS, 2);
@@ -328,7 +328,7 @@ nlohmann::json RemoteEmitterInstance::serialize() const {
 	json["Type"] = instance_type();
 
 	std::string particleFile;
-	
+
 	if (!options.particleFile.value_imm().empty()) {
 		particleFile = options.particleFile.value_imm();
 	}

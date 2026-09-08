@@ -43,6 +43,7 @@ public:
 private:
 	EditorValueField<bool> isDraw{ "IsDraw", true };
 	EditorValueField<u32> layer{ "Layer", 0 };
+	EditorValueField<u32> blendMode{ "BlendMode", 0 };
 
 	EditorAssetField font{ "Font", AssetType::Font };
 	EditorValueField<r32> fontSize{ "Size", 16.0f };
