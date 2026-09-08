@@ -70,6 +70,6 @@ constexpr Vector3 Affine::transform(const Vector3& v) const {
 
 namespace CAffine {
 
-constexpr Affine IDENTITY{};
+inline constexpr Affine IDENTITY{};
 
 }

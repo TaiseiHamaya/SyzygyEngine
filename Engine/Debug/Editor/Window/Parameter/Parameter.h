@@ -32,7 +32,7 @@ enum class ParameterType {
 	COUNT
 };
 
-constexpr i64 ParameterTypeCount = static_cast<i64>(ParameterType::COUNT);
+inline constexpr i64 ParameterTypeCount = static_cast<i64>(ParameterType::COUNT);
 
 inline constexpr std::array<string_literal, ParameterTypeCount> ParameterTypeNames = {
 	"String",

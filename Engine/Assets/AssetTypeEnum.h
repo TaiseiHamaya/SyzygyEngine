@@ -20,9 +20,9 @@ enum class AssetType {
 	Max,
 };
 
-constexpr i32 ASSET_TYPE_MAX = static_cast<i32>(AssetType::Max);
+inline constexpr i32 ASSET_TYPE_MAX = static_cast<i32>(AssetType::Max);
 
-constexpr std::array<string_literal, ASSET_TYPE_MAX> ASSET_TYPE_NAME = {
+inline constexpr std::array<string_literal, ASSET_TYPE_MAX> ASSET_TYPE_NAME = {
 	"Unknown",
 	"Texture",
 	"Mesh",

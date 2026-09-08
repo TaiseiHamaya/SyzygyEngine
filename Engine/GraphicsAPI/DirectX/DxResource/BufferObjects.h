@@ -8,6 +8,11 @@
 #include <Library/Math/Vector2.h>
 #include <Library/Math/Vector3.h>
 
+/// <summary>
+/// VertexBuffer
+/// </summary>
+namespace szg {
+
 enum class LighingType : u32 {
 	None,
 	Lambert,
@@ -19,14 +24,13 @@ enum class BlendMode : u32 {
 	Alpha,
 	Add,
 	Subtract,
-	Multily,
+	Multiply,
 	Screen,
+
+	COUNT,
 };
 
-/// <summary>
-/// VertexBuffer
-/// </summary>
-namespace szg {
+inline constexpr u32 BLEND_MODE_COUNT = static_cast<u32>(BlendMode::COUNT);
 
 struct VertexDataBuffer {
 	Vector3 position = CVector3::ZERO;

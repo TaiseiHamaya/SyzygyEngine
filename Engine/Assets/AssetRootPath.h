@@ -13,23 +13,23 @@ enum class AssetRootType {
 	Max,
 };
 
-static constexpr i32 ASSET_ROOT_TYPE_MAX = static_cast<i32>(AssetRootType::Max);
+inline constexpr i32 ASSET_ROOT_TYPE_MAX = static_cast<i32>(AssetRootType::Max);
 
-static constexpr std::array<string_literal, ASSET_ROOT_TYPE_MAX>  ROOT_TAG{
+inline constexpr std::array<string_literal, ASSET_ROOT_TYPE_MAX>  ROOT_TAG{
 	"[[unselect]]",
 	"[[szg]]",
 	"[[game]]",
 	"[[editor]]",
 };
 
-static constexpr std::array<wstring_literal, ASSET_ROOT_TYPE_MAX>  ROOT_TAG_W{
+inline constexpr std::array<wstring_literal, ASSET_ROOT_TYPE_MAX>  ROOT_TAG_W{
 	L"[[unselect]]",
 	L"[[szg]]",
 	L"[[game]]",
 	L"[[editor]]",
 };
 
-static constexpr std::array<string_literal, ASSET_ROOT_TYPE_MAX>  ROOT_PATH{
+inline constexpr std::array<string_literal, ASSET_ROOT_TYPE_MAX>  ROOT_PATH{
 	"",
 	".\\SyzygyEngine\\Assets",
 	".\\Game\\Assets",

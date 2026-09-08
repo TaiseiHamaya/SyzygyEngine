@@ -6,7 +6,7 @@
 
 namespace szg {
 
-constexpr u32 COLOR_UPDATER_MAX_KEYS = 4;
+inline constexpr u32 COLOR_UPDATER_MAX_KEYS = 4;
 
 /// <summary>
 /// 色キー

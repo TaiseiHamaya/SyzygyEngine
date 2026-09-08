@@ -330,23 +330,23 @@ constexpr Vector3 Vector3::Bezier(const Vector3& initial, const Vector3& control
 /// </summary>
 namespace CVector3 {
 
-constexpr Vector3 BASIS{ 1.0f, 1.0f, 1.0f }; // x(1.0f), y(1.0f), z(1.0f)
-constexpr Vector3 BASIS_X{ 1.0f, 0.0f, 0.0f }; // x(1.0f), y(0.0f), z(0.0f)
-constexpr Vector3 BASIS_Y{ 0.0f, 1.0f, 0.0f }; // x(0.0f), y(1.0f), z(0.0f)
-constexpr Vector3 BASIS_Z{ 0.0f, 0.0f, 1.0f }; // x(0.0f), y(0.0f), z(1.0f)
-constexpr Vector3 ONE{ BASIS }; // x(0.0f), y(0.0f), z(0.0f)
-constexpr Vector3 ZERO{ 0.0f, 0.0f, 0.0f }; // x(0.0f), y(0.0f), z(0.0f)
-constexpr Vector3 HALF{ 0.5f, 0.5f, 0.5f }; // x(0.5f), y(0.5f), z(0.5f)
-constexpr Vector3 INFINTY{ std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity() };
-constexpr Vector3 INFINTY_X{ std::numeric_limits<r32>::infinity(), 0, 0 };
-constexpr Vector3 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity(), 0 };
-constexpr Vector3 INFINTY_Z{ 0, 0, std::numeric_limits<r32>::infinity() };
+inline constexpr Vector3 BASIS{ 1.0f, 1.0f, 1.0f }; // x(1.0f), y(1.0f), z(1.0f)
+inline constexpr Vector3 BASIS_X{ 1.0f, 0.0f, 0.0f }; // x(1.0f), y(0.0f), z(0.0f)
+inline constexpr Vector3 BASIS_Y{ 0.0f, 1.0f, 0.0f }; // x(0.0f), y(1.0f), z(0.0f)
+inline constexpr Vector3 BASIS_Z{ 0.0f, 0.0f, 1.0f }; // x(0.0f), y(0.0f), z(1.0f)
+inline constexpr Vector3 ONE{ BASIS }; // x(0.0f), y(0.0f), z(0.0f)
+inline constexpr Vector3 ZERO{ 0.0f, 0.0f, 0.0f }; // x(0.0f), y(0.0f), z(0.0f)
+inline constexpr Vector3 HALF{ 0.5f, 0.5f, 0.5f }; // x(0.5f), y(0.5f), z(0.5f)
+inline constexpr Vector3 INFINTY{ std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity(), std::numeric_limits<r32>::infinity() };
+inline constexpr Vector3 INFINTY_X{ std::numeric_limits<r32>::infinity(), 0, 0 };
+inline constexpr Vector3 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity(), 0 };
+inline constexpr Vector3 INFINTY_Z{ 0, 0, std::numeric_limits<r32>::infinity() };
 
-constexpr Vector3 FORWARD{ BASIS_Z };
-constexpr Vector3 BACKWARD{ -FORWARD };
-constexpr Vector3 UP{ BASIS_Y };
-constexpr Vector3 DOWN{ -UP };
-constexpr Vector3 RIGHT{ BASIS_X };
-constexpr Vector3 LEFT{ -RIGHT };
+inline constexpr Vector3 FORWARD{ BASIS_Z };
+inline constexpr Vector3 BACKWARD{ -FORWARD };
+inline constexpr Vector3 UP{ BASIS_Y };
+inline constexpr Vector3 DOWN{ -UP };
+inline constexpr Vector3 RIGHT{ BASIS_X };
+inline constexpr Vector3 LEFT{ -RIGHT };
 
 }
