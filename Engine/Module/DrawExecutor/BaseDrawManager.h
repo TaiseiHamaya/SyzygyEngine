@@ -93,6 +93,12 @@ inline void BaseDrawManager<Executor, KeyType, InstanceType>::reset_buffer() {
 template<class Executor, typename KeyType, typename InstanceType>
 	requires ConceptExecutor<Executor, InstanceType>
 inline void BaseDrawManager<Executor, KeyType, InstanceType>::transfer() {
+	for (auto instance : instances) {
+		auto key = std::make_pair(instance->layer(), instance->key_id());
+		if (!executors.contains(key)) {
+			make_instancing(instance->layer(), instance->key_id(), 1024);
+		}
+	}
 	std::for_each(
 		std::execution::par, instances.begin(), instances.end(),
 		[&](const Reference<const InstanceType> instance) {
