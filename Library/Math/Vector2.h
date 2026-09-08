@@ -317,21 +317,21 @@ constexpr const Vector2 Vector2::Rotate(const Vector2& vector, const r32 sinThet
 /// </summary>
 namespace CVector2 {
 
-constexpr Vector2 BASIS_X{ 1.0f, 0.0f }; // x(1.0f), y(0.0f)
-constexpr Vector2 BASIS_Y{ 0.0f, 1.0f }; // x(0.0f), y(1.0f)
-constexpr Vector2 BASIS{ 1.0f, 1.0f }; // x(1.0f), y(1.0f)
-constexpr Vector2 ONE{ BASIS }; // x(0.0f), y(0.0f)
-constexpr Vector2 ZERO{ 0.0f, 0.0f }; // x(0.0f), y(0.0f)
-constexpr Vector2 HALF{ 0.5f, 0.5f }; // x(0.5f), y(0.5f)
-constexpr Vector2 INFINTY{ std::numeric_limits<r32>::infinity(),std::numeric_limits<r32>::infinity() };
-constexpr Vector2 INFINTY_X{ std::numeric_limits<r32>::infinity(),0 };
-constexpr Vector2 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity() };
+inline constexpr Vector2 BASIS_X{ 1.0f, 0.0f }; // x(1.0f), y(0.0f)
+inline constexpr Vector2 BASIS_Y{ 0.0f, 1.0f }; // x(0.0f), y(1.0f)
+inline constexpr Vector2 BASIS{ 1.0f, 1.0f }; // x(1.0f), y(1.0f)
+inline constexpr Vector2 ONE{ BASIS }; // x(0.0f), y(0.0f)
+inline constexpr Vector2 ZERO{ 0.0f, 0.0f }; // x(0.0f), y(0.0f)
+inline constexpr Vector2 HALF{ 0.5f, 0.5f }; // x(0.5f), y(0.5f)
+inline constexpr Vector2 INFINTY{ std::numeric_limits<r32>::infinity(),std::numeric_limits<r32>::infinity() };
+inline constexpr Vector2 INFINTY_X{ std::numeric_limits<r32>::infinity(),0 };
+inline constexpr Vector2 INFINTY_Y{ 0, std::numeric_limits<r32>::infinity() };
 
-constexpr Vector2 FORWARD{ BASIS_X };
-constexpr Vector2 BACKWARD{ -FORWARD };
-constexpr Vector2 RIGHT{ FORWARD };
-constexpr Vector2 LEFT{ -RIGHT };
-constexpr Vector2 UP{ BASIS_Y };
-constexpr Vector2 DOWN{ -UP };
+inline constexpr Vector2 FORWARD{ BASIS_X };
+inline constexpr Vector2 BACKWARD{ -FORWARD };
+inline constexpr Vector2 RIGHT{ FORWARD };
+inline constexpr Vector2 LEFT{ -RIGHT };
+inline constexpr Vector2 UP{ BASIS_Y };
+inline constexpr Vector2 DOWN{ -UP };
 
 };

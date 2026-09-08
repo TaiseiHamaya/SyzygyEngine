@@ -81,17 +81,17 @@ constexpr ColorRGBA::ColorRGBA(r32 _red, r32 _green, r32 _blue, r32 _alpha) noex
 /// </summary>
 namespace CColorRGBA {
 
-constexpr ColorRGBA WHITE{ 1.0f, 1.0f, 1.0f, 1.0f };
-constexpr ColorRGBA BLACK{ 0.0f, 0.0f, 0.0f, 1.0f };
-constexpr ColorRGBA RED{ 1.0f, 0.0f, 0.0f, 1.0f };
-constexpr ColorRGBA GREEN{ 0.0f, 1.0f, 0.0f, 1.0f };
-constexpr ColorRGBA BLUE{ 0.0f, 0.0f, 1.0f, 1.0f };
+inline constexpr ColorRGBA WHITE{ 1.0f, 1.0f, 1.0f, 1.0f };
+inline constexpr ColorRGBA BLACK{ 0.0f, 0.0f, 0.0f, 1.0f };
+inline constexpr ColorRGBA RED{ 1.0f, 0.0f, 0.0f, 1.0f };
+inline constexpr ColorRGBA GREEN{ 0.0f, 1.0f, 0.0f, 1.0f };
+inline constexpr ColorRGBA BLUE{ 0.0f, 0.0f, 1.0f, 1.0f };
 
-constexpr ColorRGBA YELLOW{ 1.0f, 1.0f, 0.0f, 1.0f };
-constexpr ColorRGBA MAGENTA{ 1.0f, 0.0f, 1.0f, 1.0f };
-constexpr ColorRGBA CYAN{ 0.0f, 1.0f, 1.0f, 1.0f };
+inline constexpr ColorRGBA YELLOW{ 1.0f, 1.0f, 0.0f, 1.0f };
+inline constexpr ColorRGBA MAGENTA{ 1.0f, 0.0f, 1.0f, 1.0f };
+inline constexpr ColorRGBA CYAN{ 0.0f, 1.0f, 1.0f, 1.0f };
 
-constexpr ColorRGBA ZERO{ 0.0f, 0.0f, 0.0f, 0.0f };
-constexpr ColorRGBA ZERO_WHITE{ 1.0f, 1.0f, 1.0f, 0.0f };
+inline constexpr ColorRGBA ZERO{ 0.0f, 0.0f, 0.0f, 0.0f };
+inline constexpr ColorRGBA ZERO_WHITE{ 1.0f, 1.0f, 1.0f, 0.0f };
 
 }

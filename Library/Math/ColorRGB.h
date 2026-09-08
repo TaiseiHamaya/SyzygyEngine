@@ -65,18 +65,18 @@ constexpr ColorRGB::ColorRGB(r32 _red, r32 _green, r32 _blue) noexcept :
 /// </summary>
 namespace CColorRGB {
 
-constexpr ColorRGB WHITE{ 1.0f, 1.0f, 1.0f };
-constexpr ColorRGB BLACK{ 0.0f, 0.0f, 0.0f };
-constexpr ColorRGB RED{ 1.0f, 0.0f, 0.0f };
-constexpr ColorRGB GREEN{ 0.0f, 1.0f, 0.0f };
-constexpr ColorRGB BLUE{ 0.0f, 0.0f, 1.0f };
+inline constexpr ColorRGB WHITE{ 1.0f, 1.0f, 1.0f };
+inline constexpr ColorRGB BLACK{ 0.0f, 0.0f, 0.0f };
+inline constexpr ColorRGB RED{ 1.0f, 0.0f, 0.0f };
+inline constexpr ColorRGB GREEN{ 0.0f, 1.0f, 0.0f };
+inline constexpr ColorRGB BLUE{ 0.0f, 0.0f, 1.0f };
 
-constexpr ColorRGB YELLOW{ 1.0f, 1.0f, 0.0f };
-constexpr ColorRGB MAGENTA{ 1.0f, 0.0f, 1.0f };
-constexpr ColorRGB CYAN{ 0.0f, 1.0f, 1.0f };
+inline constexpr ColorRGB YELLOW{ 1.0f, 1.0f, 0.0f };
+inline constexpr ColorRGB MAGENTA{ 1.0f, 0.0f, 1.0f };
+inline constexpr ColorRGB CYAN{ 0.0f, 1.0f, 1.0f };
 
-constexpr ColorRGB ZERO{ 0.0f, 0.0f, 0.0f };
-constexpr ColorRGB ZERO_WHITE{ 1.0f, 1.0f, 1.0f };
+inline constexpr ColorRGB ZERO{ 0.0f, 0.0f, 0.0f };
+inline constexpr ColorRGB ZERO_WHITE{ 1.0f, 1.0f, 1.0f };
 
 }
 

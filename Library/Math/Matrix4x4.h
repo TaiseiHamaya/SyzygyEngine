@@ -166,14 +166,14 @@ constexpr const Matrix4x4 Matrix4x4::transpose() const {
 
 namespace CMatrix4x4 {
 
-constexpr Matrix4x4 IDENTITY = {
+inline constexpr Matrix4x4 IDENTITY = {
 	{{1,0,0,0},
 	{0,1,0,0},
 	{0,0,1,0},
 	{0,0,0,1}}
 };
 
-constexpr Matrix4x4 ZERO = {
+inline constexpr Matrix4x4 ZERO = {
 	{{0,0,0,0},
 	{0,0,0,0},
 	{0,0,0,0},

@@ -262,10 +262,10 @@ inline constexpr const r32& Quaternion::real() const noexcept {
 
 namespace CQuaternion {
 
-constexpr Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
-constexpr Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
-constexpr Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
-constexpr Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
+inline constexpr Quaternion IDENTITY{ 0,0,0,1 }; // 回転なし
+inline constexpr Quaternion BACK_X{ 1,0,0,0 }; // X軸に180度回転する
+inline constexpr Quaternion BACK_Y{ 0,1,0,0 }; // Y軸に180度回転する
+inline constexpr Quaternion BACK_Z{ 0,0,1,0 }; // Z軸に180度回転する
 
 };
 

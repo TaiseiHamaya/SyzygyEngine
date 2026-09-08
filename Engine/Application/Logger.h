@@ -131,22 +131,22 @@ inline void Logger::LogEntryPoint(const std::source_location& sourceLocation, Le
 }; // szg
 
 // Traceレベルのログ出力
-#define szgTrace(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Trace, msg, __VA_ARGS__)
+#define szgTrace(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Trace, msg __VA_OPT__(,) __VA_ARGS__)
 // Informationレベルのログ出力
-#define szgInformation(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Information, msg, __VA_ARGS__)
+#define szgInformation(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Information, msg __VA_OPT__(,) __VA_ARGS__)
 // Warningレベルのログ出力
-#define szgWarning(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Warning, msg, __VA_ARGS__)
+#define szgWarning(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Warning, msg __VA_OPT__(,) __VA_ARGS__)
 // Errorレベルのログ出力
-#define szgError(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Error, msg, __VA_ARGS__)
+#define szgError(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Error, msg __VA_OPT__(,) __VA_ARGS__)
 // Criticalレベルのログ出力
-#define szgCritical(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Critical, msg, __VA_ARGS__)
+#define szgCritical(msg, ...) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Critical, msg __VA_OPT__(,) __VA_ARGS__)
 
 // 条件付きWarningログ出力
-#define szgWarningIf(conditional, msg, ...) if((conditional)) szgWarning(msg, __VA_ARGS__)
+#define szgWarningIf(conditional, msg, ...) if((conditional)) szgWarning(msg __VA_OPT__(,) __VA_ARGS__)
 // 条件付きErrorログ出力
-#define szgErrorIf(conditional, msg, ...) if((conditional)) szgError(msg, __VA_ARGS__)
+#define szgErrorIf(conditional, msg, ...) if((conditional)) szgError(msg __VA_OPT__(,) __VA_ARGS__)
 // 条件付きCriticalログ出力
-#define szgCriticalIf(conditional, msg, ...) if((conditional)) szgCritical(msg, __VA_ARGS__)
+#define szgCriticalIf(conditional, msg, ...) if((conditional)) szgCritical(msg __VA_OPT__(,) __VA_ARGS__)
 
 // Assert
-#define szgAssert(conditional) if (!(conditional)) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Assert, L"Assertion failed: {}", L#conditional)
+#define szgAssert(conditional) if (!(conditional)) szg::Logger::LogEntryPoint(std::source_location::current(), szg::Logger::Level::Assert, L"Assertion failed: {}", L""#conditional)

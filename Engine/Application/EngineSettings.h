@@ -30,7 +30,7 @@ extern inline const std::filesystem::path LogFilePath{
 /// <para>ログレベルの設定</para>
 /// <para>詳細はLogger.hを参照</para>
 /// </summary>
-static constexpr std::array<u8, 6> LoggerConfigs = {
+constexpr std::array<u8, 6> LoggerConfigs = {
 	0b00000111, // Trace
 	0b00000111, // Information
 	0b00000111, // Warning
@@ -43,7 +43,7 @@ static constexpr std::array<u8, 6> LoggerConfigs = {
 /// <para>ログレベルの設定</para>
 /// <para>詳細はLogger.hを参照</para>
 /// </summary>
-static constexpr std::array<u8, 6> LoggerConfigs = {
+inline constexpr std::array<u8, 6> LoggerConfigs = {
 	0b00000000, // Trace
 	0b00000000, // Information
 	0b00000111, // Warning

@@ -13,7 +13,7 @@ class CameraInstance;
 /// <summary>
 /// 無効なカメラID
 /// </summary>
-constexpr u32 LOOKAT_INVALID_CAMERA_ID = 0xFFFFFFFFu;
+inline constexpr u32 LOOKAT_INVALID_CAMERA_ID = 0xFFFFFFFFu;
 
 /// <summary>
 /// 面内回転＋注視実体
