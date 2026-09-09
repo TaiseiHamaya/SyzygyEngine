@@ -220,7 +220,7 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<PostEffect
 		json["Data"].update(data.effectTagName);
 	}
 	else {
-		json["Data"][data.effectTagName.label()] = nullptr;
+		json["Data"][data.effectTagName.label()] = data.effectTagName.value_imm();
 	}
 
 	json["Debug"]["Position"]["X"] = node->getPos().x;
