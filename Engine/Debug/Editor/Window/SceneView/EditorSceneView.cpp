@@ -219,6 +219,7 @@ void EditorSceneView::reset_force() {
 	particleBillboardDrawManager = ParticleBillboardDrawManager{};
 	particleMeshDrawManager = ParticleMeshDrawManager{};
 	particleUpdaters.clear_all();
+	particlePools.clear();
 	layerSize = 0;
 }
 
