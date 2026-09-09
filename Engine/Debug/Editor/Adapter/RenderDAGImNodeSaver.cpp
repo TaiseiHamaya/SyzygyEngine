@@ -216,6 +216,7 @@ nlohmann::json RenderDAGImNodeSaver::operator()(const std::shared_ptr<PostEffect
 	const PostEffectImNode::Data& data = node->get_data();
 	json["Data"].update(data.outputSize);
 	json["Data"].update(data.peType);
+	json["Data"].update(data.isUseRuntime);
 	if (data.isUseRuntime) {
 		json["Data"].update(data.effectTagName);
 	}
