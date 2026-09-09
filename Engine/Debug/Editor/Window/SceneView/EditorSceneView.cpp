@@ -216,6 +216,9 @@ void EditorSceneView::reset_force() {
 	staticMeshDrawManager = StaticMeshDrawManager{};
 	rect3dDrawManager = Rect3dDrawManager{};
 	stringRectDrawManager = StringRectDrawManager{};
+	particleBillboardDrawManager = ParticleBillboardDrawManager{};
+	particleMeshDrawManager = ParticleMeshDrawManager{};
+	particleUpdaters.clear_all();
 	layerSize = 0;
 }
 

@@ -366,6 +366,7 @@ void RemoteEmitterInstance::on_spawn() {
 	draw.meshName.on_activated();
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
+	sceneView->register_particle(query_world(), previewPool);
 	debugVisual->set_layer(result.value_or(-1));
 	previewPool->set_layer(result.value_or(-1));
 	RemoteInstanceType::on_spawn();
@@ -377,6 +378,9 @@ void RemoteEmitterInstance::on_destroy() {
 
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
 	previewPool->set_layer(std::numeric_limits<u32>::max());
+
+	sceneView->unregister_particle(previewPool);
+
 	RemoteInstanceType::on_destroy();
 }
 
