@@ -1,4 +1,4 @@
-﻿#include "PolygonMeshBuilder.h"
+#include "PolygonMeshBuilder.h"
 
 #include <algorithm>
 #include <sstream>
@@ -85,9 +85,9 @@ bool LoadMeshAssimp(const std::filesystem::path& filePath, std::vector<PolygonMe
 			// テクスチャ名の書き込み
 			aiString textureFilePath;
 			if (material->GetTexture(aiTextureType_DIFFUSE, 0, &textureFilePath) == AI_SUCCESS) {
-				newMaterial.textureFileName = textureFilePath.C_Str();
+				newMaterial.textureFileName = std::filesystem::path(textureFilePath.C_Str()).filename().string();
 				std::filesystem::path directory{ filePath.parent_path() };
-				TextureLibrary::RegisterLoadQue(L".\\" / directory / newMaterial.textureFileName);
+				TextureLibrary::RegisterLoadQue(L".\\" / directory / textureFilePath.C_Str());
 			}
 
 			// UVTransformの取得

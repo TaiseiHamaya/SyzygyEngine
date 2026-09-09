@@ -366,7 +366,7 @@ void RemoteEmitterInstance::on_spawn() {
 	draw.meshName.on_activated();
 	auto world = query_world();
 	auto result = sceneView->get_layer(world);
-	sceneView->register_particle(query_world(), previewPool);
+	sceneView->register_particle(query_world(), this, previewPool);
 	debugVisual->set_layer(result.value_or(-1));
 	previewPool->set_layer(result.value_or(-1));
 	RemoteInstanceType::on_spawn();
@@ -379,7 +379,7 @@ void RemoteEmitterInstance::on_destroy() {
 	debugVisual->set_layer(std::numeric_limits<u32>::max());
 	previewPool->set_layer(std::numeric_limits<u32>::max());
 
-	sceneView->unregister_particle(previewPool);
+	sceneView->unregister_particle(this);
 
 	RemoteInstanceType::on_destroy();
 }
@@ -554,12 +554,13 @@ void RemoteEmitterInstance::import_particles() {
 
 void RemoteEmitterInstance::rebuild_preview() {
 	EmitterInstanceSettings built = build_settings();
+	built.drawSpec.layer = sceneView ? sceneView->get_layer(query_world()).value_or(0) : 0;
 	previewUpdaters.clear_all();
 	previewEmitter = std::make_unique<EmitterInstance>();
 	previewEmitter->setup_settings(built);
 
 	if (sceneView) {
-		sceneView->unregister_particle(previewPool);
+		sceneView->unregister_particle(this);
 	}
 	previewPool = std::make_unique<ParticlePool>();
 	previewPool->setup(previewUpdaters, previewEmitter.get(), built.capacity == 0 ? 1 : built.capacity, built.overflowPolicy);
@@ -569,7 +570,7 @@ void RemoteEmitterInstance::rebuild_preview() {
 	poolView.refresh(previewPool.get());
 
 	if (sceneView) {
-		sceneView->register_particle(query_world(), previewPool);
+		sceneView->register_particle(query_world(), this, previewPool);
 	}
 }
 

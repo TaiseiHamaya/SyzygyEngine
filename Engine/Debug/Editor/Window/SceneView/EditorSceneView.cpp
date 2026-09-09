@@ -77,7 +77,7 @@ void EditorSceneView::update() {
 		u32 layer = worldViews[selectWorldId.value()].layer;
 		EditorWorldView& view = worldViews[selectWorldId.value()].view;
 
-		for (auto& pool : particlePools) {
+		for (auto& [_, pool] : particlePools) {
 			particleUpdaters.update_pool(pool);
 		}
 
@@ -117,8 +117,8 @@ void EditorSceneView::update() {
 		rect3dDrawManager.transfer();
 		stringRectDrawManager.transfer();
 
-		for (auto pool : particlePools) {
-			if (pool->draw_spec_imm().layer != layer) {
+		for (auto [emitter, pool] : particlePools) {
+			if (emitter->query_world()->get_id() != selectWorldId.value()) {
 				continue;
 			}
 			pool->sync_draw(particleBillboardDrawManager, particleMeshDrawManager);
@@ -174,7 +174,7 @@ void EditorSceneView::draw_scene() {
 		renderPath.next();
 		view.register_world_projection(3);
 		stringRectDrawManager.draw_layer(layer);
-		
+
 		// Particle Billboard
 		renderPath.next();
 		view.register_world_projection(3);
@@ -273,12 +273,12 @@ void EditorSceneView::register_string(Reference<const RemoteWorldObject> world, 
 	stringRectDrawManager.register_instance(stringRect);
 }
 
-void szg::EditorSceneView::register_particle(Reference<const RemoteWorldObject>, Reference<ParticlePool> particle) {
-	particlePools.emplace(particle);
+void szg::EditorSceneView::register_particle(Reference<const RemoteWorldObject>, Reference<RemoteEmitterInstance> emitter, Reference<ParticlePool> particle) {
+	particlePools.emplace(emitter, particle);
 }
 
-void szg::EditorSceneView::unregister_particle(Reference<ParticlePool> particle) {
-	particlePools.erase(particle);
+void szg::EditorSceneView::unregister_particle(Reference<RemoteEmitterInstance> emitter) {
+	particlePools.erase(emitter);
 }
 
 void szg::EditorSceneView::create_particle_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName) {

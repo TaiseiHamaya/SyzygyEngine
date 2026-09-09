@@ -19,6 +19,7 @@
 #include "Engine/Runtime/Particle/ParticleUpdaterCollection.h"
 
 #include <Library/Math/Vector2.h>
+#include <Engine/Debug/Editor/RemoteObject/WorldInstance/Particle/RemoteEmitterInstance.h>
 
 struct ImDrawList;
 
@@ -58,8 +59,8 @@ public:
 	void register_mesh(Reference<const RemoteWorldObject> world, Reference<const StaticMeshInstance> instance);
 	void register_rect(Reference<const RemoteWorldObject> world, Reference<const Rect3d> rect);
 	void register_string(Reference<const RemoteWorldObject> world, Reference<const StringRectInstance> stringRect);
-	void register_particle(Reference<const RemoteWorldObject> world, Reference<ParticlePool> particle);
-	void unregister_particle(Reference<ParticlePool> particle);
+	void register_particle(Reference<const RemoteWorldObject> world, Reference<RemoteEmitterInstance> emitter, Reference<ParticlePool> particle);
+	void unregister_particle(Reference<RemoteEmitterInstance> emitter);
 	void create_particle_mesh_instancing(Reference<const RemoteWorldObject> world, const std::string& meshName);
 	void register_directional_light(Reference<const RemoteWorldObject> world, Reference<const DirectionalLightInstance> lightInstance);
 	void write_primitive(Reference<const RemoteWorldObject> world, const std::string& primitiveName, const Affine& affine);
@@ -116,7 +117,7 @@ private:
 	ParticleUpdaterCollection particleUpdaters;
 
 	std::vector<std::vector<Reference<const DirectionalLightInstance>>> directionalLights;
-	std::unordered_set<Reference<ParticlePool>> particlePools;
+	std::unordered_map<Reference<RemoteEmitterInstance>, Reference<ParticlePool>> particlePools;
 };
 
 }; // szg
